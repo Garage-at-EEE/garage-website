@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/garage-website/static/css/main.d0d88f87.css",
+    "main.js": "/garage-website/static/js/main.e38b3e89.js",
+    "static/js/787.cda612ba.chunk.js": "/garage-website/static/js/787.cda612ba.chunk.js",
+    "static/media/escape-room.jpeg": "/garage-website/static/media/escape-room.7c2b6735e19f7b834617.jpeg",
+    "static/media/tinkering.jpeg": "/garage-website/static/media/tinkering.15ef4074f1546c18d12d.jpeg",
+    "static/media/lab-visit.jpeg": "/garage-website/static/media/lab-visit.2d83e18426b728580489.jpeg",
+    "static/media/facebook.svg": "/garage-website/static/media/facebook.68c1bc35d3d7e7f316382fdba4bad4aa.svg",
+    "static/media/banner.jpeg": "/garage-website/static/media/banner.8d329455dcaa45435bbd.jpeg",
+    "static/media/github.svg": "/garage-website/static/media/github.0fe9e9ba3d5542d0fa8916d0b9b8548f.svg",
+    "static/media/instagram.svg": "/garage-website/static/media/instagram.8b664d80f7c75d7e5c125b596b15bbb6.svg",
+    "static/media/linkedin.svg": "/garage-website/static/media/linkedin.e2722f1f7e5822c9cedcba78ea30c6d8.svg",
+    "static/media/wondering.png": "/garage-website/static/media/wondering.87ba631fa62d21caec65.png",
+    "index.html": "/garage-website/index.html",
+    "main.d0d88f87.css.map": "/garage-website/static/css/main.d0d88f87.css.map",
+    "main.e38b3e89.js.map": "/garage-website/static/js/main.e38b3e89.js.map",
+    "787.cda612ba.chunk.js.map": "/garage-website/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0d88f87.css",
+    "static/js/main.e38b3e89.js"
+  ]
+}
