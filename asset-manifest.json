@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/garage-website/static/css/main.10c33a20.css",
-    "main.js": "/garage-website/static/js/main.00ada01e.js",
+    "main.js": "/garage-website/static/js/main.b6437778.js",
     "static/js/787.cda612ba.chunk.js": "/garage-website/static/js/787.cda612ba.chunk.js",
     "static/media/escape-room.jpeg": "/garage-website/static/media/escape-room.7c2b6735e19f7b834617.jpeg",
     "static/media/tinkering.jpeg": "/garage-website/static/media/tinkering.15ef4074f1546c18d12d.jpeg",
@@ -14,11 +14,11 @@
     "static/media/wondering.png": "/garage-website/static/media/wondering.87ba631fa62d21caec65.png",
     "index.html": "/garage-website/index.html",
     "main.10c33a20.css.map": "/garage-website/static/css/main.10c33a20.css.map",
-    "main.00ada01e.js.map": "/garage-website/static/js/main.00ada01e.js.map",
+    "main.b6437778.js.map": "/garage-website/static/js/main.b6437778.js.map",
     "787.cda612ba.chunk.js.map": "/garage-website/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.10c33a20.css",
-    "static/js/main.00ada01e.js"
+    "static/js/main.b6437778.js"
   ]
 }
