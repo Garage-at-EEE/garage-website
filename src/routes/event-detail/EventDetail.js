@@ -42,7 +42,7 @@ function EventDetail(){
     }, []);
 
         return(
-            <div className="detail-page">
+            <div className="event-detail-page">
                 <Header/>
                     {isLoading === true ? <Loading/> :
                     <main className="detail-main">

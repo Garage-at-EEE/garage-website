@@ -52,30 +52,28 @@ function AmbassadorDetail() {
         <main className="detail-main">
           <div className="main-wrapper" data-aos="fade-up">
             {/* put your code below */}
-            <div className="detail-header-box">
-              <p className="detail-header">{state.name} </p>
-              <button className="detail-header-button">
-                <div className="detail-header-button-chevron-left">&#x2C2;</div>
-                <div className="detail-header-button-back">Back</div>
-              </button>
+            <div>
+              <div className="detail-header-box">
+                <p className="detail-header">{state.name}</p>
+                <button className="detail-header-button">
+                  <div className="detail-header-button-chevron-left">
+                    &#x2C2;
+                  </div>
+                  <div className="detail-header-button-back">Back</div>
+                </button>
+              </div>
+              <img
+                src={state.displayImageUrl}
+                className="display-image"
+                alt={"image of '" + state.name + "'"}
+              />
             </div>
-
-            <img
-              src={state.displayImageUrl}
-              className="display-image"
-              alt={"image of '" + state.name + "'"}
-            ></img>
-            <br />
             <p className="article">{state.desc}</p>
-            <br />
-
-            <br />
             {/* put your code above */}
           </div>
+          <Footer />
         </main>
       )}
-      <br />
-      {isLoading === false ? <Footer /> : <p></p>}
     </div>
   );
 }

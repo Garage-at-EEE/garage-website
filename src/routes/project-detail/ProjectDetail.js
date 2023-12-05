@@ -43,7 +43,7 @@ function ProjectDetail(){
     }, []);
 
         return(
-            <div className="detail-page">
+            <div className="project-detail-page">
                 <Header/>
                     {isLoading === true ? <Loading/> :
                     <main className="detail-main">

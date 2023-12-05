@@ -1,7 +1,6 @@
 /* OVERALL STYLING */
 html{
   box-sizing: border-box;
-  overflow-x: hidden;
   font-family: 'Lexend Deca';
   font-style: normal;
 }
@@ -65,7 +64,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background : #F6F6F6;
-  overflow-x : hidden;
 }
 
 code {

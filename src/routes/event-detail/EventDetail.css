@@ -1,22 +1,22 @@
-.detail-main {
+.event-detail-page .detail-main {
     margin: 0px 30px 50px 30px;
 }
 
-.detail-header{
+.event-detail-page.detail-header{
     font-size: 12vw;
     line-height: 1;
     margin-top: 3vw;
 }
 
 
-.subheader{
+.event-detail-page.subheader{
     font-size: 5.1vw;
     font-style: italic;
     line-height: 1;
     margin-top: 15px;
 }
 
-.article{
+.event-detail-page .article{
     font-size: 4vw;
     line-height: 1.4;
     margin: 1px;
@@ -25,51 +25,51 @@
 
 /* Wide screen styling */
 @media (min-width:851px) {
-    .main-wrapper {
+    .event-detail-page .main-wrapper {
         width: 50%;
         margin: 0 auto;
     }
 
-    .detail-header{
+    .event-detail-page .detail-header{
         font-size: 5vw;
     }
 
-    .subheader{
+    .event-detail-page .subheader{
         font-size: 2vw;
     }
 
-    .article{
+    .event-detail-page .article{
         font-size: 1.4vw;
         line-height: 1.5;
     }
 }
 
 @media (min-width:441px) and (max-width: 900px) {
-    .main-wrapper {
+    .event-detail-page .main-wrapper {
         width: 65%;
         margin: 0 auto;
     }
 
-    .detail-header{
+    .event-detail-page .detail-header{
         font-size: 10vw;
     }
 
-    .subheader{
+    .event-detail-page .subheader{
         font-size: 4.3vw;
     }
 
-    .article{
+    .event-detail-page .article{
         font-size: 2.5vw;
         line-height: 1.4;
     }
 }
 
-.display-image {
+.event-detail-page .display-image {
     border-radius: 5vw;
     width: 100%;
 }
 
-.video {
+.event-detail-page .video {
     border-radius: 5vw;
     margin-bottom: 20px;
     width: 100%;
