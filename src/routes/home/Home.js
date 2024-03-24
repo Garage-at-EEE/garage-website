@@ -14,6 +14,8 @@ import Typography from "../../components/typography/Typography";
 import Gutter from "../../components/gutter/Gutter";
 import Transition from "../../components/transition/Transition";
 
+import { motion } from "framer-motion";
+
 const Home = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -66,21 +68,47 @@ const Home = () => {
                 </div>
                 <div className="banner-image"></div>
               </div>
+
               <section className="section-wrapper">
                 {/* Intro section */}
-                <Typography variant="heading">ABOUT</Typography>
-                <Typography variant="body">
-                  Garage@EEE is a student-led maker space in the School of
-                  Electrical and Electronic Engineering. We provide the
-                  environment, materials, and funding for students to develop
-                  their ideas, alongside their technical skills. Furthermore, we
-                  run creative initiatives to provide opportunities for our
-                  ambassadors to enhance other holistic skills. Aided by our
-                  strong industry connections and extensive alumni network,
-                  Garage@EEE creates not only engineers of today, but thinkers,
-                  entrepreneurs, and world leaders of tomorrow.
-                </Typography>
+
                 <div>
+                  <motion.div
+                    initial={{ color: "rgb(33,37,41)" }}
+                    whileInView={{ color: "rgb(73, 105, 137)" }}
+                    transition={{ ease: "linear" }}
+                    viewport={{ once: false }}
+                  >
+                    <Typography variant="heading">ABOUT</Typography>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 50 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: false }}
+                  >
+                    <Typography variant="body">
+                      Garage@EEE is a student-led maker space in the School of
+                      Electrical and Electronic Engineering. We provide the
+                      environment, materials, and funding for students to
+                      develop their ideas, alongside their technical skills.
+                      Furthermore, we run creative initiatives to provide
+                      opportunities for our ambassadors to enhance other
+                      holistic skills. Aided by our strong industry connections
+                      and extensive alumni network, Garage@EEE creates not only
+                      engineers of today, but thinkers, entrepreneurs, and world
+                      leaders of tomorrow.
+                    </Typography>
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1 }}
+                  viewport={{ once: false }}
+                >
                   <Typography variant="smallHeading">Our Objective</Typography>
                   <Typography variant="body">
                     <br />
@@ -91,24 +119,42 @@ const Home = () => {
                     To instill a passion for engineering ideation across
                     students in the EEE community.
                   </Typography>
-                </div>
+                </motion.div>
               </section>
+
               <section className="section-wrapper">
                 {/* Ambassadors section */}
-                <Typography variant={"heading"}>MEMBER TRACKS</Typography>
-                <div>
-                  <Typography variant={"smallHeading"}>Ambassadors</Typography>
-                  <Typography variant={"body"}>
-                    <br />
-                    The Ambassador Track focuses on giving students a platform
-                    to learn and grow. Students will get to propose and
-                    facilitate unique initiatives for the NTU community. The
-                    Ambassador Track consists of 6 portfolios, namely Branding &
-                    Marketing, Business Development, Operations, Start-Up,
-                    Training & Development and Welfare. Students also ensure
-                    that Garage will be a efficient and impactful makerspace.
-                  </Typography>
-                </div>
+
+                <motion.div
+                  initial={{ color: "rgb(33,37,41)" }}
+                  whileInView={{ color: "rgb(73, 105, 137)" }}
+                  transition={{ ease: "linear" }}
+                  viewport={{ once: false }}
+                >
+                  <Typography variant={"heading"}>MEMBER TRACKS</Typography>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1 }}
+                  viewport={{ once: false }}
+                >
+                  <div>
+                    <Typography variant={"smallHeading"}>
+                      Ambassadors
+                    </Typography>
+                    <Typography variant={"body"}>
+                      <br />
+                      The Ambassador Track focuses on giving students a platform
+                      to learn and grow. Students will get to propose and
+                      facilitate unique initiatives for the NTU community. The
+                      Ambassador Track consists of 6 portfolios, namely Branding
+                      & Marketing, Business Development, Operations, Start-Up,
+                      Training & Development and Welfare. Students also ensure
+                      that Garage will be a efficient and impactful makerspace.
+                    </Typography>
+                  </div>
+                </motion.div>
                 <div className="grid-wrapper">
                   <Grid columns={3}>
                     {data.Ambassador.map((card, index) => (
@@ -123,6 +169,7 @@ const Home = () => {
                   </Grid>
                 </div>
               </section>
+
               <section className="innovators">
                 {/* Innovators section */}
                 <Grid columns={2}>
