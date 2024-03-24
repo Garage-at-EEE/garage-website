@@ -74,20 +74,18 @@ const Home = () => {
 
                 <div>
                   <motion.div
-                    initial={{ color: "rgb(33,37,41)" }}
-                    whileInView={{ color: "rgb(73, 105, 137)" }}
-                    transition={{ ease: "linear" }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1, ease: "linear" }}
                     viewport={{ once: false }}
                   >
-                    <Typography variant="heading">ABOUT</Typography>
-                  </motion.div>
+                    <motion.div
+                      initial={{ color: "rgb(33,37,41)", y: -50 }}
+                      whileInView={{ color: "rgb(73, 105, 137)" }}
+                    >
+                      <Typography variant="heading">ABOUT</Typography>
+                    </motion.div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 50 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: false }}
-                  >
                     <Typography variant="body">
                       Garage@EEE is a student-led maker space in the School of
                       Electrical and Electronic Engineering. We provide the
@@ -104,9 +102,9 @@ const Home = () => {
                 </div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, ease: "linear" }}
                   viewport={{ once: false }}
                 >
                   <Typography variant="smallHeading">Our Objective</Typography>
@@ -124,21 +122,21 @@ const Home = () => {
 
               <section className="section-wrapper">
                 {/* Ambassadors section */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, ease: "linear" }}
+                  viewport={{ once: false }}
+                >
+                  <motion.div
+                    initial={{ color: "rgb(33,37,41)", y: -50 }}
+                    whileInView={{ color: "rgb(73, 105, 137)" }}
+                    transition={{ duration: 1, ease: "linear" }}
+                    viewport={{ once: false }}
+                  >
+                    <Typography variant={"heading"}>MEMBER TRACKS</Typography>
+                  </motion.div>
 
-                <motion.div
-                  initial={{ color: "rgb(33,37,41)" }}
-                  whileInView={{ color: "rgb(73, 105, 137)" }}
-                  transition={{ ease: "linear" }}
-                  viewport={{ once: false }}
-                >
-                  <Typography variant={"heading"}>MEMBER TRACKS</Typography>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1 }}
-                  viewport={{ once: false }}
-                >
                   <div>
                     <Typography variant={"smallHeading"}>
                       Ambassadors
@@ -156,17 +154,21 @@ const Home = () => {
                   </div>
                 </motion.div>
                 <div className="grid-wrapper">
-                  <Grid columns={3}>
-                    {data.Ambassador.map((card, index) => (
-                      <div key={index}>
+                  <motion.div
+                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 50 }}
+                  >
+                    <Grid columns={3}>
+                      {data.Ambassador.map((card, index) => (
                         <Card
+                          key={index}
                           image={card.displayImageUrl}
                           text={card.name}
                           to={"ambassadors/" + card.pk}
                         />
-                      </div>
-                    ))}
-                  </Grid>
+                      ))}
+                    </Grid>
+                  </motion.div>
                 </div>
               </section>
 
