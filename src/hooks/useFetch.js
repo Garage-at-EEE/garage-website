@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const useFetch = (url, deps = [], headers = {}) => {
-  const [isLoading, setIsLoading] = useState(true);
+const useFetch = ({ url, headers = {}, enabled = true }) => {
+  const control = useRef();
+  const [isLoading, setIsLoading] = useState(enabled);
   const [error, setError] = useState();
   const [data, setData] = useState();
 
-  useEffect(() => {
-    setIsLoading(true);
+  const getData = async () => {
+    if (control.current) {
+      control.current.abort();
+    }
     const controller = new AbortController();
-
-    fetch(url, { signal: controller.signal, headers: headers })
+    control.current = controller;
+    setIsLoading(true);
+    fetch(url, { signal: control.current.signal, headers: headers })
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -18,14 +22,24 @@ const useFetch = (url, deps = [], headers = {}) => {
           `Unable to fetch page data! ${response.status} ${response.statusText}`
         );
       })
-      .then(setData)
-      .catch(setError)
-      .finally(() => setIsLoading(false));
+      .then((data) => {
+        setData(data);
+      })
+      .then(() => {
+        setIsLoading(false);
+      })
+      .catch(setError);
+  };
 
-    return () => controller.abort();
-  }, [url, ...deps]);
+  useEffect(() => {
+    if (enabled) getData();
 
-  return { isLoading, error, data };
+    return () => {
+      if (control.current) control.current.abort();
+    };
+  }, []);
+
+  return { getData, isLoading, error, data };
 };
 
 export default useFetch;

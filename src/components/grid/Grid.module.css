@@ -1,0 +1,6 @@
+/* Grid Styles */
+.grid-container {
+  display: grid;
+  justify-content: center;
+  gap: var(--gutter);
+}

@@ -1,8 +1,13 @@
 /* Card Styles */
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
 .card {
   overflow: hidden;
   border-radius: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.5s;
   background: white;
   position: relative;
@@ -12,38 +17,50 @@
 .card-image {
   object-fit: cover;
   width: 100%;
-  padding-top: 100%;
+  height: 100%;
   transition: transform 0.3s;
-}
-
-/* Adjust padding-top based on screen size */
-@media (max-width: 768px) {
-  .card-image {
-    padding-top: 120%;
-  }
-}
-
-@media (max-width: 576px) {
-  .card-image {
-    padding-top: 120%;
-  }
 }
 
 .text-overlay {
   position: absolute;
-  top: 20px; /* Adjust as needed to position the text */
-  left: 23px; /* Adjust as needed to position the text */
+  top: 32px; /* Adjust as needed to position the text */
+  left: 32px; /* Adjust as needed to position the text */
   color: var(--body); /* Text color */
   z-index: 1; /* Ensure the text appears on top of the image */
-  max-width: 50%;
+  max-width: 60%;
+}
+
+.bottom-text {
+  padding-bottom: calc(var(--content-gap-mobile) - var(--gutter));
+}
+
+.link {
+  color: var(--body);
+  cursor: pointer;
 }
 
 /* Hover Effect */
+.link:hover {
+  color: var(--body);
+}
+.link:hover .card-image {
+  transform: scale(1.02);
+}
+.card:hover {
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.20);
+}
 .card:hover .card-image {
   transform: scale(1.02);
 }
 
-.card:hover {
-  transform: scale(1.02); /* Scale the entire card */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+@media (max-width: 1200px) {
+  .card-wrapper { 
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .card-wrapper {
+    gap: 0.75rem;
+  }
 }

@@ -1,13 +1,18 @@
-import React from "react";
-import "./Grid.css";
+import useBreakpoint from "../../hooks/useBreakpoint";
+import styles from "./Grid.module.css";
 
-const Grid = ({ children, columns }) => {
+const Grid = ({ children, desktop = 3, tablet = 2, mobile = 1 }) => {
+  const breakpoint = useBreakpoint();
   const gridStyles = {
-    gridTemplateColumns: `repeat(${columns}, 1fr)`, // Use the 'columns' variable
+    gridTemplateColumns:
+      breakpoint === "desktop"
+        ? `repeat(${desktop}, 1fr)`
+        : breakpoint === "tablet"
+        ? `repeat(${tablet}, 1fr)`
+        : `repeat(${mobile}, 1fr)`, // Use the 'columns' variable
   };
-
   return (
-    <div className="grid-container" style={gridStyles}>
+    <div className={styles["grid-container"]} style={gridStyles}>
       {children}
     </div>
   );
