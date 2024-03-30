@@ -154,22 +154,22 @@ const Home = () => {
                   </div>
                 </motion.div>
                 <div className="grid-wrapper">
-                  <motion.div
-                    whileInView={{ opacity: 1, y: 0 }}
-                    initial={{ opacity: 0, y: 50 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <Grid columns={3}>
-                      {data.Ambassador.map((card, index) => (
+                  <Grid columns={3}>
+                    {data.Ambassador.map((card, index) => (
+                      <motion.div
+                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        viewport={{ once: true, amount: 0.6 }}
+                      >
                         <Card
                           key={index}
                           image={card.displayImageUrl}
                           text={card.name}
                           to={"ambassadors/" + card.pk}
                         />
-                      ))}
-                    </Grid>
-                  </motion.div>
+                      </motion.div>
+                    ))}
+                  </Grid>
                 </div>
               </section>
 
