@@ -248,13 +248,19 @@ const Home = () => {
                 <div className="grid-wrapper">
                   <Grid columns={3}>
                     {data.Project.map((card, index) => (
-                      <div className="card-wrapper" key={index}>
-                        <Card
-                          image={card.displayImageUrl}
-                          to={"projects/" + card.pk}
-                        />
-                        <Typography variant={"body"}>{card.name}</Typography>
-                      </div>
+                      <motion.div
+                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                      >
+                        <div className="card-wrapper" key={index}>
+                          <Card
+                            image={card.displayImageUrl}
+                            to={"projects/" + card.pk}
+                          />
+                          <Typography variant={"body"}>{card.name}</Typography>
+                        </div>
+                      </motion.div>
                     ))}
                   </Grid>
                   <Link to="/projects" className="link-view-more">
@@ -269,13 +275,19 @@ const Home = () => {
                 <div className="grid-wrapper">
                   <Grid columns={3}>
                     {data.Event.map((card, index) => (
-                      <div className="card-wrapper" key={index}>
-                        <Card
-                          image={card.displayImageUrl}
-                          to={"events/" + card.pk}
-                        />
-                        <Typography variant={"body"}>{card.name}</Typography>
-                      </div>
+                      <motion.div
+                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, y: 50 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                      >
+                        <div className="card-wrapper" key={index}>
+                          <Card
+                            image={card.displayImageUrl}
+                            to={"events/" + card.pk}
+                          />
+                          <Typography variant={"body"}>{card.name}</Typography>
+                        </div>
+                      </motion.div>
                     ))}
                   </Grid>
                   <Link to="/events" className="link-view-more">
