@@ -77,7 +77,7 @@ const Home = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 1, ease: "linear" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                   >
                     <motion.div
                       initial={{ color: "rgb(33,37,41)", y: -50 }}
@@ -105,7 +105,7 @@ const Home = () => {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 1, ease: "linear" }}
-                  viewport={{ once: false }}
+                  viewport={{ once: true, amount: 0.5 }}
                 >
                   <Typography variant="smallHeading">Our Objective</Typography>
                   <Typography variant="body">
@@ -126,13 +126,13 @@ const Home = () => {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 1, ease: "linear" }}
-                  viewport={{ once: false }}
+                  viewport={{ once: true, amount: 0.5 }}
                 >
                   <motion.div
                     initial={{ color: "rgb(33,37,41)", y: -50 }}
                     whileInView={{ color: "rgb(73, 105, 137)" }}
                     transition={{ duration: 1, ease: "linear" }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true, amount: 0.5 }}
                   >
                     <Typography variant={"heading"}>MEMBER TRACKS</Typography>
                   </motion.div>
@@ -157,6 +157,7 @@ const Home = () => {
                   <motion.div
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 50 }}
+                    viewport={{ once: true, amount: 0.3 }}
                   >
                     <Grid columns={3}>
                       {data.Ambassador.map((card, index) => (
