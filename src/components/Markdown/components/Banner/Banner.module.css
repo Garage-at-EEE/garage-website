@@ -1,0 +1,7 @@
+.banner-image {
+    object-fit: cover;
+    border-radius: 2rem;
+    width: 100%; /* Adjust the width of the container as needed */
+    height: 60%;
+    min-height: 640px;
+  }
