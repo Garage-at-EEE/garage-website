@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.8a756579.css",
-    "main.js": "/static/js/main.79b0bdbc.js",
-    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
-    "static/media/garage-white.png": "/static/media/garage-white.c56d29c781b38c8d35b3.png",
-    "static/media/instagram.png": "/static/media/instagram.d2300c39dd8c99d1e746.png",
-    "static/media/wondering.png": "/static/media/wondering.87ba631fa62d21caec65.png",
-    "static/media/github.png": "/static/media/github.816ae36ce9af2355736d.png",
-    "index.html": "/index.html",
-    "static/media/arrow_back_ios.svg": "/static/media/arrow_back_ios.46f5eefd73154697f5a4aacab543200d.svg",
-    "main.8a756579.css.map": "/static/css/main.8a756579.css.map",
-    "main.79b0bdbc.js.map": "/static/js/main.79b0bdbc.js.map",
-    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+    "main.css": "/garage-website/static/css/main.8a756579.css",
+    "main.js": "/garage-website/static/js/main.19779706.js",
+    "static/js/787.cda612ba.chunk.js": "/garage-website/static/js/787.cda612ba.chunk.js",
+    "static/media/garage-white.png": "/garage-website/static/media/garage-white.c56d29c781b38c8d35b3.png",
+    "static/media/instagram.png": "/garage-website/static/media/instagram.d2300c39dd8c99d1e746.png",
+    "static/media/wondering.png": "/garage-website/static/media/wondering.87ba631fa62d21caec65.png",
+    "static/media/github.png": "/garage-website/static/media/github.816ae36ce9af2355736d.png",
+    "index.html": "/garage-website/index.html",
+    "static/media/arrow_back_ios.svg": "/garage-website/static/media/arrow_back_ios.46f5eefd73154697f5a4aacab543200d.svg",
+    "main.8a756579.css.map": "/garage-website/static/css/main.8a756579.css.map",
+    "main.19779706.js.map": "/garage-website/static/js/main.19779706.js.map",
+    "787.cda612ba.chunk.js.map": "/garage-website/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a756579.css",
-    "static/js/main.79b0bdbc.js"
+    "static/js/main.19779706.js"
   ]
 }
