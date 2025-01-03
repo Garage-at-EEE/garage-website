@@ -93,7 +93,11 @@ const Header = () => {
     {
       label: "Newsletter",
       to: "/newsletter",
-    },
+    },  
+    {
+      label: "Contact Us",
+      to: "/contact-us",
+    }
   ];
 
   useEffect(() => {
