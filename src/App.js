@@ -11,7 +11,7 @@ import ProjectDetail from "./routes/projects/ProjectDetail";
 import NotFound from "./routes/notFound/NotFound";
 import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
-
+import ContactUsPage from "./routes/contactUs/ContactUs";
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -32,6 +32,7 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

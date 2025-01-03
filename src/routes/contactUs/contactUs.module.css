@@ -1,0 +1,62 @@
+* {
+    font-family: "Lexend Deca", sans-serif;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    max-width: 600px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    color: #333;
+    margin: 100px;
+}
+
+form h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.inputBox {
+    margin-top: 20px;
+}
+
+.field {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    padding: 15px;
+    font-size: 16px;
+    color: #333;
+    margin-top: 8px;
+}
+
+.mess {
+    height: 200px;
+    resize: none;
+}
+
+form button {
+    width: 100%;
+    height: 55px;
+    background: #284d8a;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 20px;
+}
