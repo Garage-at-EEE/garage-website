@@ -1,1 +1,1 @@
-# Garage Shop Apps Scripts API
+# Garage Shop Apps Script API
