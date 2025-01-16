@@ -28,6 +28,13 @@ const Home = () => {
   const { data: newsletterData } = useFetch({
     url: API_DOMAIN + "?type=newsletter",
   });
+  const { data: shopData, error: shopError } = useFetch({
+    url: "https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec",
+  });
+  
+  if (shopError) {
+    console.error("Error fetching Shop data:", shopError);
+  }
 
   return (
     <Transition isLoading={isLoading}>

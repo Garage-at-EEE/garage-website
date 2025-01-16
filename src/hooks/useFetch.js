@@ -1,57 +1,77 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const control = useRef();
   const [isLoading, setIsLoading] = useState(enabled);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+
+  // Memoize headers to prevent unnecessary re-renders
+  const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
   const getData = async () => {
+    // Abort any previous request
     if (control.current) {
       control.current.abort();
     }
     const controller = new AbortController();
     control.current = controller;
+
+    // Reset state
     setIsLoading(true);
+    setError(null);
 
+    // Check for cached data
     const cachedData = localStorage.getItem(url);
-
-    if (cachedData && useCache) {
+    const cacheTimestamp = localStorage.getItem(`${url}_timestamp`);
+    const cacheExpiry = 1000 * 60 * 5; // Cache expires after 5 minutes
+    if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
       setData(JSON.parse(cachedData));
       setIsLoading(false);
+      return;
     }
 
-    fetch(url, { signal: control.current.signal, headers: headers })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject(
-          `Unable to fetch page data! ${response.status} ${response.statusText}`
-        );
-      })
-      .then((responseData) => {
-        if (responseData.error) throw new Error(responseData.error);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: memoizedHeaders,
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const responseData = await response.json();
+
+      // Only update state if data is different
+      setData((prev) =>
+        JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
+      );
+
+      // Cache data
+      if (useCache) {
         localStorage.setItem(url, JSON.stringify(responseData));
-        if (!useCache || !data) {
-          setData(responseData);
-        }
-      })
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch(setError);
+      }
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        setError(err.message || "An error occurred");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    if (enabled) getData();
+    if (enabled) {
+      getData();
+    }
 
     return () => {
-      if (control.current) control.current.abort();
+      if (control.current) {
+        control.current.abort();
+      }
     };
-  }, []);
+  }, [url, memoizedHeaders, enabled, useCache]); // Updated dependencies
 
-  return { getData, isLoading, error, data };
+  return { data, isLoading, error };
 };
 
 export default useFetch;

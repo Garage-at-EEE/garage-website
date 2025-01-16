@@ -94,6 +94,10 @@ const Header = () => {
       label: "Newsletter",
       to: "/newsletter",
     },
+    {
+      label: "Shop",
+      to: "/shop",
+    },
   ];
 
   useEffect(() => {
