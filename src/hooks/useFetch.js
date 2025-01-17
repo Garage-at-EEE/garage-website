@@ -1,57 +1,86 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const control = useRef();
-  const [isLoading, setIsLoading] = useState(enabled);
-  const [error, setError] = useState();
-  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState(null);
+
+  const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
   const getData = async () => {
+    console.log("Fetching data from:", url);
+
     if (control.current) {
+      console.log("Aborting previous request");
       control.current.abort();
     }
+
     const controller = new AbortController();
     control.current = controller;
+
     setIsLoading(true);
+    setError(null);
 
     const cachedData = localStorage.getItem(url);
+    const cacheTimestamp = localStorage.getItem(`${url}_timestamp`);
+    const cacheExpiry = 1000 * 60 * 5; // 5 minutes
 
-    if (cachedData && useCache) {
+    if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
+      console.log("Using cached data:", JSON.parse(cachedData));
       setData(JSON.parse(cachedData));
       setIsLoading(false);
+      return;
     }
 
-    fetch(url, { signal: control.current.signal, headers: headers })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject(
-          `Unable to fetch page data! ${response.status} ${response.statusText}`
-        );
-      })
-      .then((responseData) => {
-        if (responseData.error) throw new Error(responseData.error);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: memoizedHeaders,
+      });
+      console.log("Response received:", response);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      console.log("Parsed response data:", responseData);
+
+      setData((prev) =>
+        JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
+      );
+
+      if (useCache) {
         localStorage.setItem(url, JSON.stringify(responseData));
-        if (!useCache || !data) {
-          setData(responseData);
-        }
-      })
-      .then(() => {
-        setIsLoading(false);
-      })
-      .catch(setError);
+        localStorage.setItem(`${url}_timestamp`, Date.now().toString());
+      }
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.error("Error during fetch:", err);
+        setError(err.message || "An error occurred");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    if (enabled) getData();
+    console.log("useFetch triggered:", { url, enabled, useCache });
+    if (enabled) {
+      getData();
+    }
 
     return () => {
-      if (control.current) control.current.abort();
+      if (control.current) {
+        console.log("Cleaning up fetch request");
+        control.current.abort();
+      }
     };
-  }, []);
+  }, [url, memoizedHeaders, enabled, useCache]);
 
-  return { getData, isLoading, error, data };
+  return { data, isLoading, error };
 };
+
 
 export default useFetch;

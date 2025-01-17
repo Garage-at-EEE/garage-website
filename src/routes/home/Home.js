@@ -5,7 +5,7 @@ import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/Constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
-
+import React, { useEffect } from "react";
 import styles from "./Home.module.css";
 import Button from "../../components/button/Button";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
@@ -28,7 +28,29 @@ const Home = () => {
   const { data: newsletterData } = useFetch({
     url: API_DOMAIN + "?type=newsletter",
   });
+  const { data: shopData, error: shopError, isLoading: shopLoading } = useFetch({
+    url: "https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec?timestamp=${new Date().getTime()}",
+  });
+  
 
+  console.log("Shop data fetched:", shopData); // Add this line here
+
+  if (shopError) {
+    console.error("Error fetching Shop data:", shopError);
+  }
+
+  if (!data) {
+    console.error("Home data is null or undefined:", data);
+    return (
+      <PageTemplate>
+        <Typography variant="largeHeading">Home Page</Typography>
+        <Typography variant="body" className="error-message">
+          Failed to load homepage data. Please try again later.
+        </Typography>
+      </PageTemplate>
+    );
+  }
+ 
   return (
     <Transition isLoading={isLoading}>
       {!isLoading && (
