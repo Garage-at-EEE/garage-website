@@ -23,6 +23,18 @@
         </PageTemplate>
       );
     }
+    if (!data) {
+      console.error("Shop data is null or undefined.");
+      return (
+        <PageTemplate>
+          <Typography variant="largeHeading">Garage Shop</Typography>
+          <Typography variant="body" className="error-message">
+            No data available at the moment. Please try again later.
+          </Typography>
+        </PageTemplate>
+      );
+    }
+    
 
     // Handle loading state
     if (isLoading) {

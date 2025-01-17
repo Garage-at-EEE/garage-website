@@ -2,30 +2,32 @@ import { useEffect, useRef, useState, useMemo } from "react";
 
 const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const control = useRef();
-  const [isLoading, setIsLoading] = useState(enabled);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
 
-  // Memoize headers to prevent unnecessary re-renders
   const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
   const getData = async () => {
-    // Abort any previous request
+    console.log("Fetching data from:", url);
+
     if (control.current) {
+      console.log("Aborting previous request");
       control.current.abort();
     }
+
     const controller = new AbortController();
     control.current = controller;
 
-    // Reset state
     setIsLoading(true);
     setError(null);
 
-    // Check for cached data
     const cachedData = localStorage.getItem(url);
     const cacheTimestamp = localStorage.getItem(`${url}_timestamp`);
-    const cacheExpiry = 1000 * 60 * 5; // Cache expires after 5 minutes
+    const cacheExpiry = 1000 * 60 * 5; // 5 minutes
+
     if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
+      console.log("Using cached data:", JSON.parse(cachedData));
       setData(JSON.parse(cachedData));
       setIsLoading(false);
       return;
@@ -36,22 +38,26 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
         signal: controller.signal,
         headers: memoizedHeaders,
       });
+      console.log("Response received:", response);
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const responseData = await response.json();
 
-      // Only update state if data is different
+      const responseData = await response.json();
+      console.log("Parsed response data:", responseData);
+
       setData((prev) =>
         JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
       );
 
-      // Cache data
       if (useCache) {
         localStorage.setItem(url, JSON.stringify(responseData));
+        localStorage.setItem(`${url}_timestamp`, Date.now().toString());
       }
     } catch (err) {
       if (err.name !== "AbortError") {
+        console.error("Error during fetch:", err);
         setError(err.message || "An error occurred");
       }
     } finally {
@@ -60,18 +66,21 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   };
 
   useEffect(() => {
+    console.log("useFetch triggered:", { url, enabled, useCache });
     if (enabled) {
       getData();
     }
 
     return () => {
       if (control.current) {
+        console.log("Cleaning up fetch request");
         control.current.abort();
       }
     };
-  }, [url, memoizedHeaders, enabled, useCache]); // Updated dependencies
+  }, [url, memoizedHeaders, enabled, useCache]);
 
   return { data, isLoading, error };
 };
+
 
 export default useFetch;
