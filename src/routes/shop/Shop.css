@@ -19,6 +19,7 @@
   color: #555;
 }
 
+
 /* Credits Display */
 .credits {
   text-align: right;
@@ -219,6 +220,17 @@
   width: 30px;
   height: 30px;
 }
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 10px 15px;
+  font-size: 18px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
 
 /* Checkout Button */
 .checkout-button {
