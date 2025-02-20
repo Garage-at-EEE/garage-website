@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Checkout.css"; // Importing CSS for styling
+//import "./Checkout.css"; // Importing CSS for styling
 
 const Checkout = () => {
   const [credits, setCredits] = useState(66);
