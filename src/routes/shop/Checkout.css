@@ -6,6 +6,7 @@
   
   h1 {
     text-align: center;
+    color: black;
   }
   
   .progress {
@@ -57,7 +58,7 @@
   
   .checkout {
     display: block;
-    width: 60px;
+    width: 120px;
     padding: 30px;
     background-color: rgb(12, 167, 22);
     color: white;
