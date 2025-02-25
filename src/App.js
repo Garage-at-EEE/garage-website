@@ -11,6 +11,7 @@ import ProjectDetail from "./routes/projects/ProjectDetail";
 import NotFound from "./routes/notFound/NotFound";
 import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
+import TinkeringProject from "./routes/tinkeringProject/TinkeringProject";
 
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
@@ -32,6 +33,7 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="/tinkeringProject" element={<TinkeringProject />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
