@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import useFetch from "../../hooks/useFetch";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
@@ -6,11 +6,12 @@ import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
 import "./Shop.css";
 import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
 
 
 const Shop = () => {
   const { data, isLoading, error } = useFetch({
-    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec?timestamp=${new Date().getTime()}`
+    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`
 
   });
 const navigate = useNavigate(); // ✅ Define navigate before using it
@@ -18,51 +19,37 @@ const navigate = useNavigate(); // ✅ Define navigate before using it
   const [quantities, setQuantities] = useState({});
   const [cartCount, setCartCount] = useState(0); // 🔹 NEW: Track total items in cart
 
-  // Initialize quantities
-  useEffect(() => {
-    if (data && Array.isArray(data)) {
-      const initialQuantities = {};
-      data.forEach((item) => {
-        initialQuantities[item.itemName] = 0;
-      });
-      setQuantities(initialQuantities);
-    }
-  }, [data]);
+   // ✅ FIX: Always run `useMemo`, even if data is `undefined`
+const items = useMemo(() => {
+  if (!data || !Array.isArray(data)) {
+    return []; // Always return an empty array to prevent errors
+  }
+  return data.filter(entry => entry.itemName && entry.innocreditPrice !== undefined);
+}, [data]);
+ // 🔹 Preload images for faster rendering
+ useEffect(() => {
+  if (data && Array.isArray(data)) {
+    data.forEach(item => {
+      const img = new Image();
+      img.src = item.image?.preview_url || "/default-placeholder.png";
+    });
+  }
+}, [data]);
+
+// 🔹 Initialize item quantities when data loads
+useEffect(() => {
+  if (data && Array.isArray(data)) {
+    const initialQuantities = {};
+    data.forEach(item => {
+      initialQuantities[item.itemName] = 0;
+    });
+    setQuantities(initialQuantities);
+  }
+}, [data]);
 
   console.log("Fetched Shop Data:", data);
 
-  if (error) {
-    return (
-      <PageTemplate>
-        <Typography variant="largeHeading">Garage Shop</Typography>
-        <Typography variant="body" className="error-message">
-          Failed to load shop items. Please try again later. Error: {error}
-        </Typography>
-      </PageTemplate>
-    );
-  }
-
-  if (!data) {
-    console.error("Shop data is null or undefined.");
-    return (
-      <PageTemplate>
-        <Typography variant="largeHeading">Garage Shop</Typography>
-        <Typography variant="body" className="error-message">
-          No data available at the moment. Please try again later.
-        </Typography>
-      </PageTemplate>
-    );
-  }
-
-  if (isLoading) {
-    return (
-      <PageTemplate>
-        <Typography variant="largeHeading">Garage Shop</Typography>
-        <Typography variant="body">Loading shop items...</Typography>
-      </PageTemplate>
-    );
-  }
-
+ 
   const incrementQuantity = (itemName) => {
     setQuantities((prev) => {
       const newQuantities = { ...prev, [itemName]: prev[itemName] + 1 };
@@ -86,17 +73,38 @@ const navigate = useNavigate(); // ✅ Define navigate before using it
     setCartCount(totalItems);
   };
 
-  // 🔹 Handle checkout button click
   const handleCheckout = () => {
-    navigate("/checkout", { state: { cartItems: quantities } }); // Pass cart data to checkout page
+    if (cartCount === 0) {
+      alert("Your cart is empty! Please add items before checking out.");
+      return;
+    }
+    navigate("/checkout", { state: { cartItems: { ...quantities } } });
   };
+  
 
 
-  const items = data.filter(
-    (entry) => entry.itemName && entry.innocreditPrice !== undefined
+
+// ✅ Move error & loading checks below `useMemo()`
+if (isLoading) {
+  return (
+    <PageTemplate>
+      <Typography variant="largeHeading">Garage Shop</Typography>
+      <Typography variant="body">🔄 Loading shop items...</Typography>
+    </PageTemplate>
   );
+}
 
-  console.log("Rendered Items:", items);
+
+if (error) {
+  return (
+    <PageTemplate>
+      <Typography variant="largeHeading">Garage Shop</Typography>
+      <Typography variant="body" className="error-message">
+        Failed to load shop items. Please try again later. Error: {error}
+      </Typography>
+    </PageTemplate>
+  );
+}
 
   return (
     <PageTemplate>

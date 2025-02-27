@@ -1,75 +1,92 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
-import "./Shan-TestingCheckout.css";
+import "./Checkout.css";
+import { useMemo } from "react";
 
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Cart passed from Shop page: { itemName: quantity }
-  const initialCart = location.state?.cartItems || {};
+  // Set initial cart state based on what was passed from Shop
+  const initialCart = location.state?.cartItems && Object.keys(location.state.cartItems).length > 0 
+    ? { ...location.state.cartItems } 
+    : {};
+
   const [cart, setCart] = useState(initialCart);
+  const [baseCredits] = useState(100); // Starting Inno Credits
+  
 
-  // Suppose the user starts with 100 Inno Credits
-  const [baseCredits] = useState(100);
-
-  // Fetch shop data for up-to-date prices, images, etc.
+  // 🛠️ Debugging - Log cart updates
+  useEffect(() => {
+    console.log("Cart Updated:", cart);
+    if (!cart || Object.keys(cart).length === 0 || Object.values(cart).every(qty => qty === 0)) {
+      console.log("Cart is empty! Should show empty cart message.");
+    }
+  }, [cart]);
+ 
+  // Fetch shop data for up-to-date prices and images
   const { data, isLoading, error } = useFetch({
-    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec?timestamp=${new Date().getTime()}`
+    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`
   });
 
-  // Filter only items that appear in the cart with quantity > 0
-  const cartItemsData = data && Array.isArray(data)
-    ? data.filter(item => cart[item.itemName] > 0)
-    : [];
-
+  const cartItemsData = useMemo(() => {
+    if (!data || !Array.isArray(data) || !cart) return [];
+    return data.filter(item => cart[item.itemName] && cart[item.itemName] > 0);
+  }, [data, cart]);
   // Calculate total cost
   const totalCost = cartItemsData.reduce((sum, item) => {
     const quantity = cart[item.itemName] || 0;
     return sum + item.innocreditPrice * quantity;
   }, 0);
 
-  // Dynamic credits after deductions
+  // Remaining credits after purchase
   const remainingCredits = baseCredits - totalCost;
 
-  // Increment quantity if user has enough credits
+  // Increment item quantity
   const incrementQuantity = (itemName, price) => {
     if (remainingCredits - price < 0) {
       alert("Insufficient credits to add more of this item.");
       return;
     }
-    setCart(prev => ({ ...prev, [itemName]: prev[itemName] + 1 }));
+    setCart(prev => ({ ...prev, [itemName]: (prev[itemName] || 0) + 1 }));
   };
 
-  // Decrement quantity (remove if it goes below 1)
+  // Decrement item quantity (remove if 0)
   const decrementQuantity = (itemName) => {
-    if (cart[itemName] > 1) {
-      setCart(prev => ({ ...prev, [itemName]: prev[itemName] - 1 }));
-    } else {
-      removeItem(itemName);
-    }
+    setCart(prev => {
+      const newCart = { ...prev };
+      if (newCart[itemName] > 1) {
+        newCart[itemName] -= 1;
+      } else {
+        delete newCart[itemName]; // Fully remove item if quantity reaches 0
+      }
+      return Object.keys(newCart).length > 0 ? newCart : {}; // Ensure empty cart updates UI
+    });
   };
 
   // Remove item entirely
   const removeItem = (itemName) => {
-    const newCart = { ...cart };
-    delete newCart[itemName];
-    setCart(newCart);
+    setCart(prev => {
+      const newCart = { ...prev };
+      delete newCart[itemName];
+      console.log("Updated Cart After Removal:", newCart);
+      return Object.keys(newCart).length > 0 ? newCart : {}; // Force React to detect state change
+    });
   };
 
-  // Place order (demo only)
+  // Handle checkout process
   const handlePlaceOrder = () => {
-    if (Object.keys(cart).length === 0) {
+    if (!cart || Object.keys(cart).length === 0) {
       alert("Your cart is empty.");
       return;
     }
     alert("Order placed successfully!");
-    navigate("/"); // or navigate("/some-other-page")
+    navigate("/"); // Redirect after checkout
   };
 
   return (
@@ -91,28 +108,23 @@ const Checkout = () => {
             <Typography variant="body" className="credits-value">
               {remainingCredits < 0 ? 0 : remainingCredits}
             </Typography>
-            <img
-              src="/coin-icon.png"
-              alt="Credits Icon"
-              className="credits-icon"
-            />
+            <img src="/coin-icon.png" alt="Credits Icon" className="credits-icon" />
           </div>
         </div>
 
-        {/* Loading / Error / Empty Cart States */}
-        {isLoading && (
-          <Typography variant="body">Loading checkout items...</Typography>
-        )}
-        {error && (
-          <Typography variant="body" className="error-message">
-            Failed to load data. Error: {error}
-          </Typography>
-        )}
-        {!isLoading && !error && Object.keys(cart).length === 0 && (
-          <Typography variant="body">Your cart is empty.</Typography>
+        {/* 🛠️ Empty Cart Message */}
+        {!isLoading && !error && (!cart || Object.keys(cart).length === 0 || Object.values(cart).every(qty => qty === 0)) && (
+          <div className="empty-cart-container">
+            <Typography variant="body" className="empty-cart-message">
+              🚨 Your cart is empty. Go back to the shop to add items. 🚨
+            </Typography>
+            <button className="back-to-shop-button" onClick={() => navigate("/shop")}>
+              Back to Shop
+            </button>
+          </div>
         )}
 
-        {/* List of cart items */}
+        {/* 🛍️ Display Cart Items */}
         {!isLoading && !error && cartItemsData.length > 0 && (
           <div className="checkout-items-container">
             {cartItemsData.map((item, idx) => {
@@ -138,23 +150,12 @@ const Checkout = () => {
                     </Typography>
 
                     <div className="quantity-controls">
-                      <button onClick={() => decrementQuantity(item.itemName)}>
-                        –
-                      </button>
+                      <button onClick={() => decrementQuantity(item.itemName)}>–</button>
                       <Typography variant="body" className="quantity-count">
                         {quantity}
                       </Typography>
-                      <button
-                        onClick={() =>
-                          incrementQuantity(item.itemName, item.innocreditPrice)
-                        }
-                      >
-                        +
-                      </button>
-                      <button
-                        className="remove-button"
-                        onClick={() => removeItem(item.itemName)}
-                      >
+                      <button onClick={() => incrementQuantity(item.itemName, item.innocreditPrice)}>+</button>
+                      <button className="remove-button" onClick={() => removeItem(item.itemName)}>
                         Remove
                       </button>
                     </div>
@@ -169,7 +170,7 @@ const Checkout = () => {
           </div>
         )}
 
-        {/* Totals and Place Order */}
+        {/* 🛒 Checkout Summary & Place Order */}
         {!isLoading && !error && cartItemsData.length > 0 && (
           <>
             <div className="checkout-summary">
@@ -182,10 +183,7 @@ const Checkout = () => {
             </div>
 
             <div className="checkout-place-order-container">
-              <button
-                className="checkout-place-order-button"
-                onClick={handlePlaceOrder}
-              >
+              <button className="checkout-place-order-button" onClick={handlePlaceOrder}>
                 Place Order
               </button>
             </div>
