@@ -4,9 +4,20 @@
 
 .contact {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    gap: var(--content-gap-desktop);
     min-height: 100vh;
+    padding-top: var(--top-padding);
+}
+
+.headerReach {
+    margin-left: 100px;
+}
+
+.bodyText {
+    margin-left: 100px;
 }
 
 form {
@@ -17,10 +28,11 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     color: #333;
-    margin: 100px;
+    margin-left: 100px;
+    margin-bottom: 100px;
 }
 
-.title {
+.formTitle {
     text-align: center;
 }
 
