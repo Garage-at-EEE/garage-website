@@ -6,7 +6,7 @@ const ContactUs = () => {
     return (
         <div className={styles.contentWrapper}>
             <section className={styles.contact}>
-                <div className={styles.headerReach}>
+                <div className={styles.headerOne}>
                     <Typography variant="heading">REEEACH OUT!</Typography>
                 </div>
                 <div className={styles.bodyText}>
@@ -31,6 +31,24 @@ const ContactUs = () => {
                     </div>
                     <button type="submit">Send Message</button>
                 </form>
+            </section>
+            <section className={styles.address}>
+                <div className={styles.headerOne}>
+                    <Typography variant="heading">ADDRESS & MAP</Typography>
+                </div>
+                <div className={styles.bodyText}>
+                    <Typography variant="body">
+                        <p><b>Garage@EEE Workshop:</b></p>
+                        <p>50 Nanyang Ave, Nanyang Technological University</p>
+                        <p>Singapore, S5639798</p>
+                    </Typography>
+                </div>
+                <div className={styles.bodyText}>
+                    <Typography variant="body"><b>Opening Hours: </b>Weekdays 9am - 5pm</Typography>
+                </div>
+                <div className={styles.bodyText}>
+                    <Typography variant="body"><b>Email: </b>ntugarageeee@gmail.com</Typography>
+                </div>
             </section>
         </div>
     );

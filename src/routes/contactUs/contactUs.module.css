@@ -2,22 +2,24 @@
     font-family: "Lexend Deca", sans-serif;
 }
 
+.contentWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--gutter);
+}
+
 .contact {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: var(--content-gap-desktop);
     min-height: 100vh;
     padding-top: var(--top-padding);
-}
-
-.headerReach {
     margin-left: 100px;
-}
-
-.bodyText {
-    margin-left: 100px;
+    max-width: 708px;
+    overflow-wrap: break-word;
 }
 
 form {
@@ -28,7 +30,6 @@ form {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     color: #333;
-    margin-left: 100px;
     margin-bottom: 100px;
 }
 
@@ -75,4 +76,15 @@ form button {
 
 form button:hover {
     background: #204279;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--content-gap-desktop);
+    padding-top: var(--top-padding);
+    min-height: 100vh;
+    max-width: 708px;
 }
