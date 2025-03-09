@@ -64,6 +64,9 @@ const ContactUs = () => {
                         </div>
                     </div>
                     <button type="submit">Send Message</button>
+                    <div className={styles["privacy-text"]}>
+                        <Typography variant="subtitle">By submitting the form, you consent to the terms stated in this Personal Data Privacy Statement</Typography>
+                    </div>
                 </form>
             </section>
             <section className={styles["address"]}>

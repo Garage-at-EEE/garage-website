@@ -136,6 +136,10 @@ form button:hover {
     background: #204279;
 }
 
+.privacy-text {
+    text-align: center;
+}
+
 .address {
     display: flex;
     flex-direction: column;
