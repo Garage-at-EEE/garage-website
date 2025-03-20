@@ -12,6 +12,7 @@ import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
 import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
+import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
 
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
@@ -42,6 +43,7 @@ function App() {
                 <Database />
               </PrivateRoute>
           }/>
+          <Route path="/assigned_projects" element={<AssignedProjects />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
