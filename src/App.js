@@ -13,6 +13,7 @@ import NewsletterPage from "./routes/newsletter/NewsletterPage";
 import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
+import AssignedProjectsDetail from "./routes/assignedProjects/AssignedProjectDetail";
 
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
@@ -44,6 +45,7 @@ function App() {
               </PrivateRoute>
           }/>
           <Route path="/assigned_projects" element={<AssignedProjects />} />
+          <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
