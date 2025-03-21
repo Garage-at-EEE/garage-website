@@ -16,8 +16,6 @@
     align-items: flex-start;
     gap: var(--content-gap-desktop);
     min-height: 100vh;
-    padding-top: var(--top-padding);
-    margin-left: 100px;
     max-width: 708px;
     overflow-wrap: break-word;
 }
@@ -101,13 +99,14 @@ select.field:invalid {
 
 .upload-box {
     width: 100%;
-    height: 150px;
+    padding: 20px 14px;
     border: 2px dashed #ccc;  /* Dotted border */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     text-align: center;
     cursor: pointer;
     transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -115,6 +114,10 @@ select.field:invalid {
 
 .upload-box:hover {
     border-color: var(--garage-blue-hover);
+}
+
+.upload-text {
+    color: #6A6A6A;
 }
 
 form button {
@@ -146,7 +149,6 @@ form button:hover {
     justify-content: flex-start;
     align-items: flex-start;
     gap: var(--content-gap-desktop);
-    padding-top: var(--top-padding);
     min-height: 100vh;
     max-width: 708px;
 }
