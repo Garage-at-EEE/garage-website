@@ -13,6 +13,7 @@
     "@vis.gl/react-google-maps": "^1.5.2",
     "aos": "^2.3.4",
     "caniuse-lite": "^1.0.30001538",
+    "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.0.2",
     "framer-motion": "^11.0.14",
     "lenis": "^1.0.45",

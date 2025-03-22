@@ -13,8 +13,9 @@ const center = {
 const MAP_ID = "c8b545f909f6471e";
 
 const GoogleMapComponent = () => {
+  
   return (
-    <APIProvider apiKey="AIzaSyBOAenSw49xVrQvb4DgqxzoQbvEcbjvJxU">
+    <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
       <div style={containerStyle}>
         <Map
         defaultCenter={center} 
