@@ -5,6 +5,7 @@ import { ReactComponent as FileUpload } from "../../icons/file_upload.svg";
 
 import styles from "./ContactUs.module.css";
 import Button from "../../components/button/Button";
+import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
     return (
@@ -95,6 +96,8 @@ const ContactUs = () => {
                         <div className={styles["body-text"]}>
                             <Typography variant="body"><b>Email: </b>ntugarageeee@gmail.com</Typography>
                         </div>
+
+                        <GoogleMapComponent />
                     </section>
                 </div>
             </PageTemplate>
