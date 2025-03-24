@@ -5,8 +5,12 @@ import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
-import "./Checkout.css";
+import Image from '../../components/image/Image';
+import coinIcon from '../../icons/coin-icon.png'; 
+import cartIcon from '../../icons/shopping-cart.png'; 
+import styles from './Checkout.module.css';
 import { useMemo } from "react";
+import { SHOP_API } from '../../utils/Constants';
 
 const Checkout = () => {
   const location = useLocation();
@@ -30,8 +34,8 @@ const Checkout = () => {
   }, [cart]);
  
   // Fetch shop data for up-to-date prices and images
-  const { data, isLoading, error } = useFetch({
-    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`
+  const { data, isLoading, error} = useFetch({
+    url: SHOP_API,
   });
 
   const cartItemsData = useMemo(() => {
@@ -93,32 +97,32 @@ const Checkout = () => {
     <PageTemplate>
       <PageGap>
         {/* Main heading + Back button */}
-        <div className="heading-space">
+        <div className={styles['heading-space']}>
           <Typography variant="heading">Checkout</Typography>
           <BackButton />
         </div>
 
         {/* Subheading + Dynamic Inno Credits display */}
-        <div className="heading-space">
+        <div className={styles['heading-space']}>
           <Typography variant="smallHeading">Review Your Order</Typography>
-          <div className="credits">
-            <Typography variant="body" className="credits-label">
+          <div className={styles['credits']}>
+            <Typography variant="body" className={styles['credits-label']}>
               Inno Credits:
             </Typography>
-            <Typography variant="body" className="credits-value">
+            <Typography variant="body" className={styles['credits-value']}>
               {remainingCredits < 0 ? 0 : remainingCredits}
             </Typography>
-            <img src="/coin-icon.png" alt="Credits Icon" className="credits-icon" />
+            <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']}/>
           </div>
         </div>
 
         {/* 🛠️ Empty Cart Message */}
         {!isLoading && !error && (!cart || Object.keys(cart).length === 0 || Object.values(cart).every(qty => qty === 0)) && (
-          <div className="empty-cart-container">
-            <Typography variant="body" className="empty-cart-message">
+          <div className={styles['empty-cart-container']}>
+            <Typography variant="body" className={styles['empty-cart-message']}>
               🚨 Your cart is empty. Go back to the shop to add items. 🚨
             </Typography>
-            <button className="back-to-shop-button" onClick={() => navigate("/shop")}>
+            <button className={styles['back-to-shop-button']} onClick={() => navigate("/shop")}>
               Back to Shop
             </button>
           </div>
@@ -126,36 +130,36 @@ const Checkout = () => {
 
         {/* 🛍️ Display Cart Items */}
         {!isLoading && !error && cartItemsData.length > 0 && (
-          <div className="checkout-items-container">
+          <div className={styles['checkout-items-container']}>
             {cartItemsData.map((item, idx) => {
               const quantity = cart[item.itemName] || 0;
               const subtotal = item.innocreditPrice * quantity;
               return (
-                <div className="checkout-item" key={idx}>
+                <div className={styles['checkout-item']} key={idx}>
                   <img
                     src={item.image?.preview_url || "/default-placeholder.png"}
                     alt={item.itemName || "Item"}
-                    className="item-image"
+                    className={styles['item-image']}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = "/default-placeholder.png";
                     }}
                   />
-                  <div className="checkout-item-details">
-                    <Typography variant="body" className="item-name">
+                  <div className={styles['checkout-item-details']}>
+                    <Typography variant="body" className={styles['item-name']}>
                       {item.itemName}
                     </Typography>
                     <Typography variant="body">
                       Price: <strong>{item.innocreditPrice} Credits</strong>
                     </Typography>
 
-                    <div className="quantity-controls">
+                    <div className={styles['quantity-controls']}>
                       <button onClick={() => decrementQuantity(item.itemName)}>–</button>
-                      <Typography variant="body" className="quantity-count">
+                      <Typography variant="body" className={styles['quantity-count']}>
                         {quantity}
                       </Typography>
                       <button onClick={() => incrementQuantity(item.itemName, item.innocreditPrice)}>+</button>
-                      <button className="remove-button" onClick={() => removeItem(item.itemName)}>
+                      <button className={styles['remove-button']} onClick={() => removeItem(item.itemName)}>
                         Remove
                       </button>
                     </div>
@@ -173,17 +177,17 @@ const Checkout = () => {
         {/* 🛒 Checkout Summary & Place Order */}
         {!isLoading && !error && cartItemsData.length > 0 && (
           <>
-            <div className="checkout-summary">
-              <Typography variant="body" className="summary-text">
+            <div className={styles['checkout-summary']}>
+              <Typography variant="body" className={styles['summary-text']}>
                 Total: {totalCost} Credits
               </Typography>
-              <Typography variant="body" className="summary-text">
+              <Typography variant="body" className={styles['summary-text']}>
                 Remaining Balance: {remainingCredits < 0 ? 0 : remainingCredits} Credits
               </Typography>
             </div>
 
-            <div className="checkout-place-order-container">
-              <button className="checkout-place-order-button" onClick={handlePlaceOrder}>
+            <div className={styles['checkout-place-order-container']}>
+              <button className={styles['checkout-place-order-button']} onClick={handlePlaceOrder}>
                 Place Order
               </button>
             </div>

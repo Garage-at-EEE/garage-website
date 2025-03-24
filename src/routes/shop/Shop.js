@@ -1,42 +1,37 @@
 import React, { useState, useEffect} from "react";
 import useFetch from "../../hooks/useFetch";
+import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
-import "./Shop.css";
+import Image from '../../components/image/Image';
+import coinIcon from '../../icons/coin-icon.png'; 
+import cartIcon from '../../icons/shopping-cart.png'; 
+import styles from './Shop.module.css';
 import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
+import { SHOP_API } from '../../utils/Constants';
 
 
 const Shop = () => {
-  const { data, isLoading, error } = useFetch({
-    url: `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`
-
+  const { data, isLoading, error} = useFetch({
+    url: SHOP_API,
   });
-const navigate = useNavigate(); // ✅ Define navigate before using it
-  // State to track quantities of each item
-  const [quantities, setQuantities] = useState({});
-  const [cartCount, setCartCount] = useState(0); // 🔹 NEW: Track total items in cart
+const navigate = useNavigate(); 
 
-   // ✅ FIX: Always run `useMemo`, even if data is `undefined`
+  const [quantities, setQuantities] = useState({});
+  const [cartCount, setCartCount] = useState(0);
+
+
 const items = useMemo(() => {
   if (!data || !Array.isArray(data)) {
-    return []; // Always return an empty array to prevent errors
+    return [];
   }
   return data.filter(entry => entry.itemName && entry.innocreditPrice !== undefined);
 }, [data]);
- // 🔹 Preload images for faster rendering
- useEffect(() => {
-  if (data && Array.isArray(data)) {
-    data.forEach(item => {
-      const img = new Image();
-      img.src = item.image?.preview_url || "/default-placeholder.png";
-    });
-  }
-}, [data]);
 
-// 🔹 Initialize item quantities when data loads
+
 useEffect(() => {
   if (data && Array.isArray(data)) {
     const initialQuantities = {};
@@ -47,9 +42,7 @@ useEffect(() => {
   }
 }, [data]);
 
-  console.log("Fetched Shop Data:", data);
 
- 
   const incrementQuantity = (itemName) => {
     setQuantities((prev) => {
       const newQuantities = { ...prev, [itemName]: prev[itemName] + 1 };
@@ -67,7 +60,7 @@ useEffect(() => {
     });
   };
   
-   // 🔹 Function to update cart count based on item quantities
+   
   const updateCartCount = (newQuantities) => {
     const totalItems = Object.values(newQuantities).reduce((sum, qty) => sum + qty, 0);
     setCartCount(totalItems);
@@ -81,16 +74,15 @@ useEffect(() => {
     navigate("/checkout", { state: { cartItems: { ...quantities } } });
   };
   
+  
 
-
-
-// ✅ Move error & loading checks below `useMemo()`
 if (isLoading) {
   return (
+    <Transition isLoading={isLoading}>
     <PageTemplate>
       <Typography variant="largeHeading">Garage Shop</Typography>
       <Typography variant="body">🔄 Loading shop items...</Typography>
-    </PageTemplate>
+    </PageTemplate></Transition>
   );
 }
 
@@ -99,7 +91,7 @@ if (error) {
   return (
     <PageTemplate>
       <Typography variant="largeHeading">Garage Shop</Typography>
-      <Typography variant="body" className="error-message">
+      <Typography variant="body" className={styles['error-message']}>
         Failed to load shop items. Please try again later. Error: {error}
       </Typography>
     </PageTemplate>
@@ -109,74 +101,74 @@ if (error) {
   return (
     <PageTemplate>
       <PageGap>
-        <div className="heading-space">
+        <div className={styles['heading-space']}>
           <Typography variant="heading">Garage Shop</Typography>
           <BackButton />
         </div>
 
-        <div className="heading-space">
+        <div className={styles['heading-space']}>
           <Typography variant="smallHeading">
             Welcome to Garage Shop
           </Typography>
-          <div className="credits">
-            <Typography variant="body" className="credits-label">
+          <div className={styles['credits']}>
+            <Typography variant="body" className={styles['credits-label']}>
               Inno Credits:
             </Typography>
-            <Typography variant="body" className="credits-value">100</Typography>
+            <Typography variant="body" className={styles['credits-value']}>100</Typography>
             <img
-              src="/coin-icon.png"
+              src={coinIcon}
               alt="Credits Icon"
-              className="credits-icon"
+              className={styles['credits-icon']}
             />
           </div>
         </div>
 
-        <div className="shop-items-container">
+        <div className={styles['shop-items-container']}>
           {items.map((item, index) => (
 
-            <div className="shop-item" key={index}>
-             <img
+            <div className={styles['shop-item']} key={index}>
+             <Image
   src={item.image?.preview_url ? item.image.preview_url : "/default-placeholder.png"}
   alt={item.itemName ? item.itemName : "Unnamed Item"}
-  className="item-image"
+  className={styles['item-image']}
   onError={(e) => {
-    e.target.onerror = null; // Prevent infinite looping if default image also fails
+    e.target.onerror = null; 
     e.target.src = "/default-placeholder.png";
   }}
 />
 
   
-              <Typography variant="subtitle" className="item-description">
+              <Typography variant="subtitle" className={styles['item-description']}>
                 {item.description || "No description available."}
               </Typography>
 
-              <Typography variant="body" className="item-name">
+              <Typography variant="body" className={styles['item-name']}>
                 {item.itemName || "No Name"}
               </Typography>
 
-              <div className="item-price">
+              <div className={styles['item-price']}>
                 <Typography variant="body">
                   {item.innocreditPrice || 0} Credits
                 </Typography>
                 <img
-                  src="/coin-icon.png"
+                  src="src/icons/coin-icon.png"
                   alt="Credits Icon"
-                  className="credits-icon"
+                  className={styles['credits-icon']}
                 />
               </div>
 
-              <div className="item-stock-quantity">
-                <Typography variant="body" className="item-stock">
+              <div className={styles['item-stock-quantity']}>
+                <Typography variant="body" className={styles['item-stock']}>
                   {item.inventory ? `Stock: ${item.inventory}` : "Out of Stock"}
                 </Typography>
-                <div className="quantity-controls">
+                <div className={styles['quantity-controls']}>
                   <button
                     onClick={() => decrementQuantity(item.itemName)}
                     disabled={quantities[item.itemName] === 0}
                   >
                     -
                   </button>
-                  <Typography variant="body" className="quantity-count">
+                  <Typography variant="body" className={styles['quantity-count']}>
                     {quantities[item.itemName]}
                   </Typography>
                   <button
@@ -194,14 +186,14 @@ if (error) {
           ))}
         </div>
 
-        <div className="checkout">
-          <button className="checkout-button"onClick={handleCheckout}>
+          <div className={styles['checkout']}>
+          <button className={styles['checkout-button']} onClick={handleCheckout}>
             <img
-              src="/shopping-cart.png"
+              src={cartIcon}
               alt="Cart Icon"
-              className="cart-icon"
+              className={styles['cart-icon']}
             />
-             <span className="cart-count">{cartCount}</span> {/* Badge for Cart Count */}
+             <span className={styles['cart-count']}>{cartCount}</span> {/* Badge for Cart Count */}
             Check Out
           </button>
         </div>

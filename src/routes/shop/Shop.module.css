@@ -212,7 +212,7 @@
 
 .checkout{
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
 }
 
@@ -236,7 +236,6 @@
 .checkout-button {
   width: 250px;
   max-height: 200px;
-  position: fixed;
   bottom: 150px; /* Distance from the bottom of the viewport */
   right: 80px; /* Distance from the right of the viewport */
   background-color: var(--garage-blue);
@@ -245,7 +244,6 @@
   border-radius: 45px; /* Rounded corners */
   font-size: 20px; /* Font size */
   display: flex; /* For aligning the icon and text */
-  align-items: center; /* Center content vertically */
   gap: 60px; /* Space between the icon and text */
   cursor: pointer; /* Change cursor on hover */
   z-index: 1000; /* Ensure it stays on top of other elements */;
@@ -255,29 +253,6 @@
   background-color: #757575;
 }
 
-/* Footer */
-footer {
-  background-color: #f9f9f9;
-  padding: 2rem;
-  text-align: start;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-footer .social-icons {
-  margin-top: 1rem;
-}
-
-footer .social-icons img {
-  width: 24px;
-  height: 24px;
-  margin: 0 8px;
-  cursor: pointer;
-}
-
-footer .social-icons img:hover {  
-  opacity: 0.7;
-}
 
 .heading-space {
   display: flex;
