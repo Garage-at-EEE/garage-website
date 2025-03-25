@@ -5,6 +5,7 @@ import { ReactComponent as FileUpload } from "../../icons/file_upload.svg";
 
 import styles from "./ContactUs.module.css";
 import Button from "../../components/button/Button";
+import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
@@ -63,14 +64,7 @@ const ContactUs = () => {
                                         <Typography variant="body">Upload Files (if any)</Typography>
                                         <Typography variant="subtitle">Select and upload files of your choice</Typography>
                                     </div>
-                                    <div className={styles["upload-box"]}>
-                                        <FileUpload />
-                                        <Typography variant="body">
-                                            <p>Choose a file or drag & drop it here</p>
-                                            <p className={styles["upload-text"]}>in JPG, PNG, PDF, DOCX, MP4 formats, up to 50MB</p>
-                                        </Typography>
-                                        <Button to={"/contact-us"} variant="outlined">Browse Files</Button>
-                                    </div>
+                                    <FileUploader />
                                 </div>
                             </div>
                             <button type="submit">Send Message</button>
