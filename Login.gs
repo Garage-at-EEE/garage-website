@@ -1,4 +1,4 @@
-const DATABASE_SHEET_URL = "https://docs.google.com/spreadsheets/d/14q40oie2lpdHAqlHiVP1EySWnEvbnia_dXZLWMRsXUE/edit?usp=sharing"; //REPLACE w/ Actual Sheet in Production
+const DATABASE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1-Z_b7VH6jR1735fo_ycGdxpocVlJRQrWt9dt9KQxFSE/edit?usp=sharing";
 
 const databaseSheet = SpreadsheetApp.openByUrl(DATABASE_SHEET_URL).getSheetByName("Current🚀");
 
