@@ -14,7 +14,7 @@ function ProjectDetail() {
   const params = useParams();
   const id = params.id;
   const { data, isLoading } = useFetch({ // TODO: change url get to assigned projects data
-    url: API_DOMAIN + "?type=projectInfo&index=" + id,
+    url: API_DOMAIN + "?type=assignedProjectInfo&index=" + id,
   });
   return (
     <Transition isLoading={isLoading}>
@@ -27,10 +27,10 @@ function ProjectDetail() {
               subheading={data.tagline}
             />
             <Typography variant="body">{data.description}</Typography>
-            <div className={styles["gallery-box"]}>
+            {/* <div className={styles["gallery-box"]}>
               <Typography variant="smallHeading">Gallery</Typography>
               {data.photos && <Carousel images={data.photos} />}
-            </div>
+            </div> */}
           </PageGap>
         )}
       </PageTemplate>
