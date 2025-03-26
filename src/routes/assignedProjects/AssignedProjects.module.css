@@ -1,0 +1,15 @@
+.heading-space {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: var(--content-gap-mobile);
+}

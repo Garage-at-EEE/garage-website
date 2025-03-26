@@ -2,7 +2,7 @@
 
 Garage uses Google Sheets for the database of the website, along with Apps Script to do some processing. The database can be found [here](https://docs.google.com/spreadsheets/d/1gbVZyjOPrPNwODgqkhg7ZztwQeg1aV3gcVilFcp9AL0/edit#gid=516508848).
 
-API Endpoint: https://script.google.com/macros/s/AKfycbwpBDp51U6tRBM9MC_3-QYAOSsEoyoYtcwWOWxXBwy8FhcEy7FcltekRybuZOfmfv3EgQ/exec
+API Endpoint: [src/utils/Constants.js](./src/utils/Constants.js)
 
 ## Parameters
 
@@ -31,6 +31,7 @@ To specify the parameters, append them to the end of the endpoint after a `?` ch
 | `events`      | Gets the data related to events hosted by Garage        |
 | `facilities`  | Gets the facilities present in Garage                   |
 | `newsletter`  | Gets the newsletters published by Garage                |
+| `assignedProjectInfo` | Gets the data related to Garage assigned projects                |
 
 ### `fields`
 
@@ -76,6 +77,13 @@ API will only return data for fields specified. If no fields are specifed, all f
 |             | `date`            | Date of when the newsletter was published                                  | `string`                                                                                                           |
 |             | `link`            | URL that links to the newsletter                                           | `string`                                                                                                           |
 |             | `image`           | URL for the image of the newsletter                                        | `string`                                                                                                           |
+| assignedProjectInfo | `name`         | Name of the project/team | `string` |
+|                     | `contactInfo`  | Instagram/Telegram handle of person to contact | `string` |
+|                     | `tagline`      | Short description of the project | `string` |
+|                     | `description`  | Description of the project | Markdown formatted `string` |
+|                     | `coverPic`     | URL for the banner image of the project | `string` |
+|                     | `recruitment`  | Recruitment requirements and expectations of the project | `string` |
+|                     | `isRecruiting`  | Recruitment requirements and expectations of the project | `string` (Y or N) |
 
 ### `index`
 
