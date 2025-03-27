@@ -1,71 +1,73 @@
-const DATABASE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1-Z_b7VH6jR1735fo_ycGdxpocVlJRQrWt9dt9KQxFSE/edit?usp=sharing";
+// UNIT TEST: test for getCURRENT_DB_MAP() function
+function testScriptPropDBMAP() {
+  const CURRENT_DB_MAP = getCURRENT_DB_MAP();
+  const testPassed = (
+    CURRENT_DB_MAP.Matric_Number.ROW === 8 && 
+    CURRENT_DB_MAP.New_Event_Details.ROW.NFT_Badge === 6
+    );
+  console.log("Test Passed? ", testPassed);
+  return testPassed;
+}
 
-const databaseSheet = SpreadsheetApp.openByUrl(DATABASE_SHEET_URL).getSheetByName("Current🚀");
+// UNIT TEST: test for validateCredentials() function
+function testValidation() {
+  const functionResult1 = validateCredentials("U12345678G","1911",true);
+  const functionResult2 = validateCredentials("U12345328G","1321",true);
+  const testResult = (
+    functionResult1.status==='ACCESS GRANTED' && 
+    functionResult2.status==='ERROR'
+    );
+  console.log("Test Passed? ",testResult);
+  return testResult;
+}
 
-const CURRENT_DB_MAP = {
-  VIP_Alumni: 2,
-  Name: 3,
-  Matric_Number: {
-    COLUMN: 4,
-    ROW: 8,
-  },
-  Gender: 5,
-  Course: 6,
-  Course_Year: 7,
-  Category: 8,
-  Portfolio_Remark: 9,
-  Garage_Access: 10,
-  BirthDay: 11,
-  BirthMonth: 12,
-  NTU_Email: 13,
-  Gmail: 14,
-  Phone_Number: 15,
-  Telegram_Handle: 16,
-  Public_Address: 17,
-  Remark: 18,
-  Feedback: 19,
-  Certification: 20,
-  New_Event_Details: { //This entry seems out of place, maybe transfer to another sheet?
-    COLUMN: 27,
-    ROW: {
-      Event_Name: 1,
-      Event_Date: 2,
-      Event_Description: 3,
-      NFT_Name: 4,
-      NFT_Desc: 5,
-      NFT_Badge: 6
+// Helper Function to get CURRENT_DB_MAP (object) from ScriptProperties
+function getCURRENT_DB_MAP() {
+  const DBMAP_SCRIPTPROP = PropertiesService.getScriptProperties().getProperty('GARAGE_MEMBER_DB_MAP');
+  const CURRENT_DB_MAP = eval("("+ DBMAP_SCRIPTPROP +")");
+  return CURRENT_DB_MAP;
+}
+
+// MAIN Function for Login.gs
+function validateCredentials(MATRIC_INPUT, PASSCODE_INPUT, TEST = false) {
+
+  let DATABASE_SHEET_URL; // use sheet url based on testing or not
+  if (!TEST) { // REAL DATABASE SHEET (NO ACCESS FOR NON-GARAGE)
+    DATABASE_SHEET_URL = "https://docs.google.com/spreadsheets/d/1-Z_b7VH6jR1735fo_ycGdxpocVlJRQrWt9dt9KQxFSE/edit?usp=sharing";
+  } else { // TESTING DATABASE SHEET FOR testValidation function
+    DATABASE_SHEET_URL = "https://docs.google.com/spreadsheets/d/14q40oie2lpdHAqlHiVP1EySWnEvbnia_dXZLWMRsXUE/edit?usp=sharing";
+  }
+  
+  const databaseSheet = SpreadsheetApp.openByUrl(DATABASE_SHEET_URL).getSheetByName("Current🚀");
+  const CURRENT_DB_MAP = getCURRENT_DB_MAP(); // GARAGE_MEMBER_SHEET_DB_MAP stored in ScriptProperties (hidden)
+
+  const _MATRIC_ROW_HUNTING_ = (matric) => {
+    // Helper function to check whether the given matric is present in the database
+    // Input: matric number (string)
+    // Output: row number (int) if found, -1 if not found
+
+    const MATRIC_MODIFIED = matric.toUpperCase().trim();
+    const ActiveSheet_matric_column = CURRENT_DB_MAP.Matric_Number.COLUMN; // MATRIC COLUMN
+    const ActiveSheet_matric_row = CURRENT_DB_MAP.Matric_Number.ROW; // MATRIC COLUMN
+    const ActiveSheet_matric_end_row = databaseSheet.getLastRow() + 1; // MATRIC LAST ROW
+    const searchResults = databaseSheet.getRange(
+      ActiveSheet_matric_row, 
+      ActiveSheet_matric_column, 
+      ActiveSheet_matric_end_row - ActiveSheet_matric_row,
+      1
+    ).createTextFinder(MATRIC_MODIFIED)
+    .matchEntireCell(true)
+    .matchCase(false)
+    .findAll(); // Gets keyword and searches all cells for occurences
+
+    if (searchResults[0] == null) {
+      return -1;
     }
-  },
-}
-
-function _MATRIC_ROW_HUNTING_(matric) {
-  //check whether the given matric is present in the database
-  //return the row if present
-  //return -1 if doesn't exist
-
-  const MATRIC_MODIFIED = matric.toUpperCase().trim();
-  const ActiveSheet_matric_column = CURRENT_DB_MAP.Matric_Number.COLUMN; // MATRIC COLUMN
-  const ActiveSheet_matric_row = CURRENT_DB_MAP.Matric_Number.ROW; // MATRIC COLUMN
-  const ActiveSheet_matric_end_row = databaseSheet.getLastRow() + 1; // MATRIC LAST ROW
-  const searchResults = databaseSheet.getRange(
-    ActiveSheet_matric_row, 
-    ActiveSheet_matric_column, 
-    ActiveSheet_matric_end_row - ActiveSheet_matric_row,
-    1
-  ).createTextFinder(MATRIC_MODIFIED)
-  .matchEntireCell(true)
-  .matchCase(false)
-  .findAll(); // Gets keyword and searches all cells for occurences
-
-  if (searchResults[0] == null) {
-    return -1;
+    else {
+      return searchResults[0].getRow();
+    }
   }
-  else {
-    return searchResults[0].getRow();
-  }
-}
 
-function validateCredentials(MATRIC_INPUT, PASSCODE_INPUT) {
   let return_obj = {
     'name':'',
     'portfolio':'',
@@ -74,6 +76,7 @@ function validateCredentials(MATRIC_INPUT, PASSCODE_INPUT) {
     'matric_row':''
   };
 
+  // EDGE CASES
   if (MATRIC_INPUT == "") {
     return_obj['status'] = "ERROR"
     return_obj['description'] = "No matric number provided"
@@ -92,6 +95,7 @@ function validateCredentials(MATRIC_INPUT, PASSCODE_INPUT) {
     return return_obj
   }
 
+  // MAIN CASES
   const MATRIC_ROW_IN_DATABASE = _MATRIC_ROW_HUNTING_(MATRIC_INPUT);
   if (MATRIC_ROW_IN_DATABASE == -1) {
     return_obj['status'] = "ERROR"
@@ -124,9 +128,4 @@ function validateCredentials(MATRIC_INPUT, PASSCODE_INPUT) {
   }
 
   return return_obj;
-
 }
-
-
-
-
