@@ -31,6 +31,9 @@ function doGet(e) {
     case "newsletter":
       return getNewsletterRequest(fields)
 
+    case "assignedProjectInfo":
+      return getAssignedProjectInfoRequest(fields, number)
+
     case "database": {
       try {
         parseJwt(jwt_token); //Checks JWT token in Token.gs, throws Exception if invalid or missing
