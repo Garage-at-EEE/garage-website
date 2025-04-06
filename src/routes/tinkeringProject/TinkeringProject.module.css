@@ -51,12 +51,12 @@
     width: 100%;
   }
   
-  .innovators-text {
+  .join-text, .garage-assigned-text {
     width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 40px;
-    align-items: center;
+    align-items: left;
   }
   
   .card-wrapper {

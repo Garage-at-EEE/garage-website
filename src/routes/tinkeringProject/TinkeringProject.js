@@ -66,18 +66,58 @@ const TinkeringProjects = () => {
               It is a one-semester endeavor that requires Tinkerers to attend bi-weekly update sessions. 
               At the end of the semester, Tinkerers will present their final products to fellow tinkerers and mentors in a sharing session.
               </Typography>
-            </section>
-            <section className={styles["section-wrapper"]}>
-              {/* Join section */}
-              <Typography variant="heading">How Can I Join?</Typography>
-              <Typography variant="smallHeading">Send in your proposal for an idea or a project that you have in mind in the sign-up form!</Typography>
-              <Typography variant="body">Both individual applicants and groups must include at least one NTU EEE student.</Typography>
+            
+              {/* Join section */} 
+              <Typography variant="heading">How Can I Join?</Typography> 
+              <div className={styles["join-text"]}> 
+                  <div className={styles["text-section"]}> 
+                    <Typography variant="smallHeading">Send in your proposal for an idea or a project that you have in mind in the sign-up form!</Typography> 
+                    <Typography variant="body">Both individual applicants and groups must include at least one NTU EEE student.</Typography> 
+                    <div> 
+                    <Button  
+                      style={{ width: '100%', textAlign: 'center', padding: '1rem' }} 
+                      onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSejqiZy4ggazdTJYQBebvnmH4Tqh0IizxJZ4ydAapymEOluYQ/viewform?usp=sf_link', '_blank')} variant="filled">
+                      Register now by 21 Jan! 
+                    </Button> 
+                    </div> 
+                  </div> 
+              </div> 
+               
+              {/* Garage Assigned section */} 
+              <Typography variant="heading">Alternatively,</Typography> 
+              <div className={styles["garage-assigned-text"]}> 
+                  <div className={styles["text-section"]}> 
+                      <Typography variant="smallHeading">Join Garage Assigned Project and work with other peers</Typography> 
+                      <Typography variant="body">Garage Assigned Projects are a list of projects from other Tinkering Projects teams that are looking for peers to collaborate with.  
+                        By joining these projects, you will have the opportunity to work alongside experienced makers, gain hands-on experience, and build friendships through teamwork.<br /><br /> 
+                        Refer to the provided spreadsheet to explore available projects and their expectations!</Typography> 
+
+                  </div> 
+              </div> 
               <div>
-                <Button 
-                  style={{ width: '100%', textAlign: 'center', padding: '1rem' }}
-                  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSejqiZy4ggazdTJYQBebvnmH4Tqh0IizxJZ4ydAapymEOluYQ/viewform?usp=sf_link', '_blank')} variant="filled">
-                  Register now by 21 Jan!
-                </Button>
+                  <Grid desktop={3} tablet={2} mobile={1}>
+                    {ambassadorData.map((card, index) => (
+                        <Card
+                        key={card.name}
+                        image={card.homeImage}
+                        bottomText={
+                            <>
+                            <Typography variant="body" style={{ textAlign: "center" }}>
+                                Presentation and Mentors Feedback Session
+                            </Typography>
+                            </>
+                        }
+                        to={"tinker/" + index}
+                        />
+                    ))}
+                  </Grid>
+              </div>
+              <div>
+                <Button  
+                  style={{ width: '100%', textAlign: 'center', padding: '1rem' }} 
+                  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSejqiZy4ggazdTJYQBebvnmH4Tqh0IizxJZ4ydAapymEOluYQ/viewform?usp=sf_link')} variant="filled"> 
+                  View All 
+                </Button> 
               </div>
             </section>
             <section className={styles["section-wrapper"]}>
@@ -108,34 +148,36 @@ const TinkeringProjects = () => {
             </section>
             <section className={styles["section-wrapper"]}>
                 <Typography variant={"heading"}>PROGRAMMES</Typography>
-                <Typography variant={"smallHeading"}>Tinkerer's Night</Typography>
-                {data && (
-                <section className={styles["innovators"]}>
-                    <Image
-                    className={styles["innovators-image"]}
-                    objectFit="contain"
-                    src={data.innovatorsImage}
-                    alt="Innovators illustration"
-                    />
-                    <div className={styles["innovators-text"]}>
-                        <div className={styles["text-section"]}>
-                            <Typography variant={"body"}>
-                            Tinkerer's Night is a biweekly event where tinkerers gather to work on personal or collaborative projects. 
-                            It serves as a platform for sharing ideas, exchanging skills, and exploring creative solutions in a casual, hands-on environment.
-                            </Typography>
-                            <Typography variant={"body"}>
-                            <strong>Date:</strong> Every even school week Wednesday
-                            </Typography>
-                            <Typography variant={"body"}>
-                            <strong>Time:</strong> 7:00 pm - 9:00 pm
-                            </Typography>
-                            <Typography variant={"body"}>
-                            <strong>Venue:</strong> Garage@EEE
-                            </Typography>
+                <div className={styles["join-text"]}> 
+                  <div className={styles["text-section"]}> 
+                    <Typography variant={"smallHeading"}>Tinkerer's Night</Typography>
+                    {data && (
+                    <section className={styles["innovators"]}>
+                        <Image
+                        className={styles["innovators-image"]}
+                        objectFit="contain"
+                        src={data.innovatorsImage}
+                        alt="Innovators illustration"
+                        />
+                        <div className={styles["innovators-text"]}>
+                            <div className={styles["text-section"]}>
+                                <Typography variant={"body"}>
+                                Tinkerer's Night is a biweekly event where tinkerers gather to work on personal or collaborative projects. 
+                                It serves as a platform for sharing ideas, exchanging skills, and exploring creative solutions in a casual, hands-on environment.
+                                </Typography>
+                                <Typography variant={"body"}>
+                                <strong>Date:</strong> Every even school week Wednesday
+                                </Typography>
+                                <Typography variant={"body"}>
+                                <strong>Time:</strong> 7:00 pm - 9:00 pm
+                                </Typography>
+                                <Typography variant={"body"}>
+                                <strong>Venue:</strong> Garage@EEE
+                                </Typography>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                )}
+                    </section>
+                    )}
                 <Typography variant={"smallHeading"}>Tinkering Projects Sharing Session</Typography>
                 <Typography variant={"body"}>
                     During this casual session, students who have been working on their mini-projects within the Tinkering Projects platform share their semester-long journey and showcase their prototypes. 
@@ -157,6 +199,8 @@ const TinkeringProjects = () => {
                         />
                     ))}
                 </Grid>
+                  </div> 
+              </div> 
             </section>
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>FREQUENTLY ASKED QUESTIONS</Typography>
