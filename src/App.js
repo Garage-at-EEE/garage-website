@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useLayoutEffect } from "react";
 import { ReactLenis } from "lenis/react";
 
 import Home from "./routes/home/Home";
@@ -14,15 +13,21 @@ import NewsletterPage from "./routes/newsletter/NewsletterPage";
 import Shop from "./routes/shop/Shop";
 import Checkout from "./routes/shop/Checkout";
 import Acknowledgement from "./routes/shop/Acknowledgement";  
+import Database from "./routes/database/Database";
+import Login from "./routes/login/Login";
+
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import AuthProvider from "./contexts/AuthProvider";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const location = useLocation();
 
   return (
     <ReactLenis root options={{ duration: 0.8 }}>
+      <AuthProvider>
       <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -37,10 +42,17 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/acknowledgement" element={<Acknowledgement />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/database" element={
+              <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
+                <Database />
+              </PrivateRoute>
+          }/>
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
       <Footer />
+      </AuthProvider>
     </ReactLenis>
   );
 }

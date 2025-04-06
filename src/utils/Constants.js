@@ -3,3 +3,4 @@ export const API_DOMAIN =
 
 
 export const SHOP_API = `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`;
+  "https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec"
