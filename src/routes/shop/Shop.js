@@ -187,15 +187,21 @@ if (error) {
         </div>
 
           <div className={styles['checkout']}>
+      
           <button className={styles['checkout-button']} onClick={handleCheckout}>
-            <img
-              src={cartIcon}
-              alt="Cart Icon"
-              className={styles['cart-icon']}
-            />
-             <span className={styles['cart-count']}>{cartCount}</span> {/* Badge for Cart Count */}
-            Check Out
-          </button>
+  <div className={styles['cart-icon-wrapper']}>
+    <img
+      src={cartIcon}
+      alt="Cart Icon"
+      className={styles['cart-icon']}
+    />
+    {cartCount > 0 && (
+      <span className={styles['cart-count']}>{cartCount}</span>
+    )}
+  </div>
+  Check Out
+</button>
+
         </div>
       </PageGap>
     </PageTemplate>
