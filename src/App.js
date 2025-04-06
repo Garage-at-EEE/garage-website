@@ -13,7 +13,7 @@ import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
 import Shop from "./routes/shop/Shop";
 import Checkout from "./routes/shop/Checkout";
-
+import Acknowledgement from "./routes/shop/Acknowledgement";  
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -36,6 +36,7 @@ function App() {
           <Route path="/newsletter" element={<NewsletterPage />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/acknowledgement" element={<Acknowledgement />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

@@ -151,9 +151,9 @@ if (error) {
                   {item.innocreditPrice || 0} Credits
                 </Typography>
                 <img
-                  src="src/icons/coin-icon.png"
-                  alt="Credits Icon"
-                  className={styles['credits-icon']}
+                   src={coinIcon}
+                   alt="Credits Icon"
+                   className={styles['credits-icon']}
                 />
               </div>
 

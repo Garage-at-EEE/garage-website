@@ -71,10 +71,29 @@ const Checkout = () => {
       alert("Your cart is empty.");
       return;
     }
-    alert("Order placed successfully!");
-    navigate("/");
+  
+    // Optional: generate order ID and date
+    const orderDetails = {
+      orderId: `#${Math.floor(100000 + Math.random() * 900000)}`, // e.g., #123456
+      date: new Date().toLocaleDateString("en-SG", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      totalCredits: totalCost,
+      remainingCredits: remainingCredits,
+      items: cartItemsData.map((item) => ({
+        name: item.itemName,
+        quantity: cart[item.itemName],
+        image: item.image?.preview_url || "/default-placeholder.png",
+      })),
+    };
+  
+    navigate("/acknowledgement", {
+      state: { orderDetails },
+    });
   };
-
+  
   return (
     <PageTemplate>
       <PageGap>

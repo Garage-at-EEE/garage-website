@@ -1,0 +1,123 @@
+/* Page & Headings */
+.heading-space {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .heading{
+    display: flex;
+    justify-content: center;
+  }
+  /* Credits Panel */
+  .credits-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  .credits {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+    font-weight: bold;
+    gap: 8px;
+    width: 225px;
+  }
+  
+  .credits-label {
+    color: #333;
+  }
+  
+  .credits-value {
+    color: #000;
+    font-size: 1.5rem;
+  }
+  
+  .credits-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--para-gap-desktop);
+  }
+  
+.ack-container {
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    width: 75%;
+  }
+  .ack-subtext-container{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+
+  .ack-info-container{
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .ack-info {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+    text-align: center;
+  }
+  
+  .ack-items-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+
+  .ack-image-card {
+    position: relative;
+    width: 80px;
+    height: 100px;
+    background-color: #6b7280; /* slate-500 for placeholder */
+    border-radius: 6px;
+  }
+  
+
+  .ack-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+  }
+  .quantity-badge {
+    position: absolute;
+    top: -8px; /* float it outside */
+    right: -8px;
+    background-color: #1f2937; /* dark slate */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px white;
+    z-index: 10;
+  }
