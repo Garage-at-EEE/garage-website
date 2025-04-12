@@ -1,7 +1,7 @@
 .upload-box {
     width: 100%;
     padding: 20px 14px;
-    border: 2px dashed #ccc;  /* Dotted border */
+    border: 2px dashed #ccc; /* Dotted border */
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -17,11 +17,36 @@
     border-color: var(--garage-blue-hover);
 }
 
+
 .upload-text {
     color: #6A6A6A;
 }
 
 .progress-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.file-list {
+    margin-top: 20px;
+}
+
+.file-item {
+    margin-bottom: 15px;
+}
+
+.file-item span {
+    margin-left: 10px;
+    font-weight: bold;
+}
+/*.progress-container {
     width: 100%;
     margin-top: 10px;
     text-align: center;
@@ -54,6 +79,7 @@ progress::-moz-progress-bar {
     font-size: 14px;
     color: green;
 }
+*/
 
 .upload-message {
     margin-top: 10px;

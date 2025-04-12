@@ -116,9 +116,9 @@ select.field:invalid {
     border-color: var(--garage-blue-hover);
 }
 
-.upload-text {
+/*.upload-text {
     color: #6A6A6A;
-}
+}*/
 
 form button {
     width: 100%;

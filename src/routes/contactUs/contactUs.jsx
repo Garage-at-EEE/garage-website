@@ -1,7 +1,8 @@
+import { useState } from "react";
 import Typography from "../../components/typography/Typography";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
-import { ReactComponent as FileUpload } from "../../icons/file_upload.svg";
+import axios from "axios";
 
 import styles from "./ContactUs.module.css";
 import Button from "../../components/button/Button";
@@ -9,6 +10,65 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwBbRwkY483tciCd4RRxu2DJ48knBKrv5JqAQjJDLXOSntqi-K842zksbaseLCIg3Dr3g/exec";
+    
+    const [filesToUpload, setFilesToUpload] = useState([]);
+    const [messageStatus, setMessageStatus] = useState("");
+
+    const handleFilesReady = (newFiles) => {
+        setFilesToUpload((prevFiles) => [...prevFiles, ...newFiles]);
+    };
+
+    const handleSubmit = async () => {
+        try {
+            for (const file of filesToUpload) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+
+                await new Promise((resolve, reject) => {
+                    reader.onload = async () => {
+                        const base64Data = reader.result.split(",")[1];
+                        const payload = {
+                            fileName: file.name,
+                            fileContent: base64Data,
+                        };
+
+                        try {
+                            // Upload file to drive via Google Apps Script
+                            const response = await axios.post(UPLOAD_URL, payload, {
+                                headers: { "Content-Type": "application/json" },
+                                onUploadProgress: (progressEvent) => {
+                                    // Calculate the percentage
+                                    const percent = Math.round((progressEvent.loaded * 100))
+
+                                    // Update progress state for this file
+                                    setFilesToUpload(prevFiles =>
+                                        prevFiles.map(f => 
+                                            f.name === file.name ? {...f, progress: percent } : f
+                                        )   
+                                    );
+                                }
+                                
+                            });
+
+                            if (!response.data.success) throw new Error(response.data.error);
+                            resolve(); // Complete upload for this file
+                        } catch (err) {
+                            reject(err);
+                        }
+                    };
+                    reader.onerror = reject;
+                });
+            }
+
+            setMessageStatus("Form submitted successfully");
+        } catch (error) {
+            console.error("Error during upload:", error);
+            setMessageStatus("Upload failed. Please try again.");
+        }
+    };
+
+
     return (
         <Transition>
             <PageTemplate>
@@ -64,10 +124,13 @@ const ContactUs = () => {
                                         <Typography variant="body">Upload Files (if any)</Typography>
                                         <Typography variant="subtitle">Select and upload files of your choice</Typography>
                                     </div>
-                                    <FileUploader />
+                                    <FileUploader onFilesReady={handleFilesReady} />
                                 </div>
                             </div>
-                            <button type="submit">Send Message</button>
+                            <div className={styles["submit-text"]}>
+                                <Typography variant="subtitle">{messageStatus}</Typography>
+                            </div>
+                            <button type="submit" onClick={handleSubmit}>Send Message</button>
                             <div className={styles["privacy-text"]}>
                                 <Typography variant="subtitle">By submitting the form, you consent to the terms stated in this Personal Data Privacy Statement</Typography>
                             </div>
@@ -97,6 +160,6 @@ const ContactUs = () => {
             </PageTemplate>
         </Transition>
     );
-}
+};
 
 export default ContactUs;
