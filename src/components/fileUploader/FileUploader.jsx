@@ -5,7 +5,8 @@ import Typography from "../typography/Typography";
 import styles from "./FileUploader.module.css";
 import Button from "../../components/button/Button";
 
-const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbyGNEBA9xAnYoOCS2GUgMBIF8_pVse1jJQ3KYV0JtsCPduR7nLAsyJezc6CoEtsuRtq/exec";
+// App Script URL
+const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwBbRwkY483tciCd4RRxu2DJ48knBKrv5JqAQjJDLXOSntqi-K842zksbaseLCIg3Dr3g/exec";
 
 const FileUploader = () => {
 
@@ -24,55 +25,51 @@ const FileUploader = () => {
         });
     }, []);
 
+    // Upload file to Google Apps Script
     const uploadFile = async (file) => {
         setUploading(true);
         setProgress(0);
 
         const reader = new FileReader();
-
         reader.readAsDataURL(file);
         reader.onload = async () => {
-            const fileName = file.name; // Get file name
-            const fileContent = reader.result.split(",")[1]; // Extract Base64 content
+            const base64Data = reader.result.split(",")[1];
+
+            const payload = {
+                fileName: file.name,
+                fileContent: base64Data,
+            };
 
             try {
-                const response = await axios.post(UPLOAD_URL, { fileName, fileContent }, {
-                    headers: { "Content-Type": "application/json" },
+                const response = await axios.post(UPLOAD_URL, payload, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
                     onUploadProgress: (event) => {
                         if (event.total) {
-                            const percentComplete = Math.round((event.loaded / event.total) * 100);
-                            setProgress(percentComplete);
+                            const percent = Math.round((event.loaded / event.total) * 100);
+                            setProgress(percent);
                         }
-                    },
+                    }
                 });
 
-                console.log("Server Response:", response);  // Log response
+                console.log("Server Response:", response.data);
 
                 setUploading(false);
-                setProgress(100);
-
                 if (response.data.success) {
+                    setUploadedFile({ name: file.name, url: response.data.fileUrl });
                     setMessage("Upload complete!");
-                    setUploadedFile({ name: fileName, url: response.data.fileUrl });
                 } else {
+                    console.error("Upload failed:", response.data.error);
                     setMessage("Upload failed!");
                 }
+
             } catch (error) {
+                console.error("Upload error:", error.response?.data || error.message);
                 setUploading(false);
                 setMessage("Upload error. Please try again.");
-                console.error("Upload error:", error);
-                console.log("Error response:", error.response);
             }
         };
-
-        reader.onabort = () => {
-            setUploading(false);
-            setMessage("File reading was aborted");
-        }
-        reader.onerror = () => {
-            setUploading(false);
-            setMessage("File reading error.");
-        }
     };
 
 
@@ -100,7 +97,7 @@ const FileUploader = () => {
                 <Button to={"/contact-us"} variant="outlined">Browse Files</Button>
             </div>
 
-            {/* Progress Bar */} 
+            {/* Progress Bar */}
             {
                 uploading && (
                     <div className={styles["progress-container"]}>

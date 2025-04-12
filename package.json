@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "homepage": "https://garage-eee.com/",
+  "proxy": "https://script.google.com/macros/s/AKfycbyuLBzc0t0O6ryti7NcQ5omEzkApc0Vdf9-gR4JAwRlSoU5OkCGQX0d8eiBxnOtroihkg/exec",
   "private": true,
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
