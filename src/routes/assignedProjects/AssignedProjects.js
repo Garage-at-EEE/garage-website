@@ -12,10 +12,19 @@ import Button from "../../components/button/Button";
 import styles from "./AssignedProjects.module.css";
 
 const AssignedProjects = () => {
-  const { data, isLoading } = useFetch({ // TODO: change url get to assigned projects data
+  const { data, isLoading } = useFetch({ 
     url: API_DOMAIN + "?type=assignedProjectInfo&fields=name,coverPic,isRecruiting",
   });
   const lenis = useLenis();
+
+  const today = new Date();
+  const year = today.getFullYear()-2000;
+  let acadYear;
+  if (today.getMonth()+1 < 8) {
+    acadYear = "AY" + (year-1) + "/" + year;
+  } else {
+    acadYear = "AY" + year + "/" + (year+1);
+  }
 
   return (
     <Transition isLoading={isLoading}>
@@ -23,23 +32,22 @@ const AssignedProjects = () => {
         {data && // Shows page if data exists
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
-              <Typography variant="heading">Garage Assigned Projects</Typography>
+              <Typography variant="heading">Garage Assigned Projects {acadYear}</Typography>
               <BackButton />
             </div>
               <Grid>
                 {data.map((card, index) => (
-                  <div>
+                  <div className={styles["project-item"]}>
                     <Card
                       key={card.name}
                       image={card.coverPic}
                       to={`${index}/`}
                       bottomText={card.name}
                     />
-                    {
-                    (card.isRecruiting==="Y") ?
-                      <Typography variant="body">Recruiting</Typography>
+                    {(card.isRecruiting==="Y") ?
+                      <Typography variant="body" className={styles["recruiting"]}>APPLICATION OPEN </Typography>
                      :
-                      <Typography variant="body">Not Recruiting</Typography>
+                      <Typography variant="body" className={styles["not-recruiting"]}>APPLICATION CLOSED</Typography>
                     }
                   </div>
                 ))}

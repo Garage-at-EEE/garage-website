@@ -13,3 +13,18 @@
   align-items: center;
   row-gap: var(--content-gap-mobile);
 }
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+
+.recruiting {
+  color: var(--garage-blue)
+}
+
+.not-recruiting {
+  color: var(--error)
+}
