@@ -19,18 +19,19 @@ function getAssignedProjectInfo(fields, index) {
   
   // Helper function to get a single row of data from the google sheet
   // Input: fields - array of strings that specify the fields to be returned
-  //        index - integer that specifies the row number to be returned
+  //        rowIndex - integer that specifies the row number to be returned
   // Output: object containing the specified fields from the row
-  function getDataFromRow(fields, index) {
-    const row = values[index]; 
+  function getDataFromRow(fields, rowIndex) {
+    const column = values[rowIndex]; 
     let projectData = {
-      name: row[0],
-      contactInfo: row[1],
-      coverPic: processGDriveLinks(row[2], true),
-      tagline: row[3],
-      description: row[4],
-      recruitment: row[5],
-      isRecruiting: row[6],
+      name: column[0],
+      contactInfo: column[1],
+      coverPic: processGDriveLinks(column[2], true),
+      tagline: column[3],
+      description: column[4],
+      recruitment: column[5],
+      isRecruiting: column[6],
+      registerLink: column[7],
     };
     console.log("Project Data: ", projectData);
     
