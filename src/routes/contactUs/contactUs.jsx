@@ -11,7 +11,7 @@ import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
     const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwBbRwkY483tciCd4RRxu2DJ48knBKrv5JqAQjJDLXOSntqi-K842zksbaseLCIg3Dr3g/exec";
-    
+
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [messageStatus, setMessageStatus] = useState("");
 
@@ -43,12 +43,12 @@ const ContactUs = () => {
 
                                     // Update progress state for this file
                                     setFilesToUpload(prevFiles =>
-                                        prevFiles.map(f => 
-                                            f.name === file.name ? {...f, progress: percent } : f
-                                        )   
+                                        prevFiles.map(f =>
+                                            f.name === file.name ? { ...f, progress: percent } : f
+                                        )
                                     );
                                 }
-                                
+
                             });
 
                             if (!response.data.success) throw new Error(response.data.error);
@@ -127,10 +127,12 @@ const ContactUs = () => {
                                     <FileUploader onFilesReady={handleFilesReady} />
                                 </div>
                             </div>
-                            <div className={styles["submit-text"]}>
-                                <Typography variant="subtitle">{messageStatus}</Typography>
+                            <div className={styles["submit-group"]}>
+                                <div className={styles["submit-text"]}>
+                                    <Typography variant="subtitle">{messageStatus}</Typography>
+                                </div>
+                                <button type="submit" onClick={handleSubmit}>Send Message</button>
                             </div>
-                            <button type="submit" onClick={handleSubmit}>Send Message</button>
                             <div className={styles["privacy-text"]}>
                                 <Typography variant="subtitle">By submitting the form, you consent to the terms stated in this Personal Data Privacy Statement</Typography>
                             </div>

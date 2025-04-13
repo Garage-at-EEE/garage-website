@@ -35,16 +35,26 @@ progress {
 }
 
 .file-list {
-    margin-top: 20px;
+    margin-top: var(--para-gap-desktop);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .file-item {
-    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.file-item span {
-    margin-left: 10px;
-    font-weight: bold;
+.file-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.upload-status-text {
+    color: red;
 }
 /*.progress-container {
     width: 100%;
