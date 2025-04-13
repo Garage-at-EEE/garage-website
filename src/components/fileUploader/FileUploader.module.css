@@ -56,6 +56,18 @@ progress {
 .upload-status-text {
     color: red;
 }
+
+.remove-icon {
+    margin-top: 5px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.remove-icon:hover {
+    opacity: 0.5;
+}
+
 /*.progress-container {
     width: 100%;
     margin-top: 10px;

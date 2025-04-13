@@ -7,6 +7,7 @@ import { ReactComponent as FileUpload } from "../../icons/file_upload.svg";
 import { ReactComponent as WordFile } from "../../icons/word_file_icon.svg";
 import { ReactComponent as VideoFile } from "../../icons/video_file_icon.svg";
 import { ReactComponent as ImageFile } from "../../icons/image_file_icon.svg";
+import { ReactComponent as RemoveFile } from "../../icons/close.svg";
 
 const FileUploader = ({ onFilesReady }) => {
     const [files, setFiles] = useState([]);
@@ -59,6 +60,10 @@ const FileUploader = ({ onFilesReady }) => {
         }
     });
 
+    const handleRemoveFile = (indexToRemove) => {
+        setFiles(prev => prev.filter((_, i) => i !== indexToRemove));
+    };
+
     const getFileIcon = (fileType) => {
         if (fileType.startsWith("image/")) return <ImageFile className={styles["file-icon"]} />;
         if (fileType === "application/pdf" || fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
@@ -98,6 +103,7 @@ const FileUploader = ({ onFilesReady }) => {
                     <div key={index} className={styles["file-item"]}>
                         {getFileIcon(fileObj.file.type)}
                         <Typography variant="body">{fileObj.name}</Typography>
+                            <RemoveFile className={styles["remove-icon"]} onClick={() => handleRemoveFile(index)} />
                     </div>
                 ))}
             </div>
