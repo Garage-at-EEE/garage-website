@@ -120,6 +120,10 @@ select.field:invalid {
     color: #6A6A6A;
 }*/
 
+.submit-text {
+    font-weight: bold;
+}
+
 form button {
     width: 100%;
     height: 55px;
