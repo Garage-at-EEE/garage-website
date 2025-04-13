@@ -22,16 +22,8 @@
     color: #6A6A6A;
 }
 
-.progress-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-progress {
-    width: 100%;
-    height: 20px;
-    margin-right: 10px;
+.upload-status-text {
+    color: red;
 }
 
 .file-list {
@@ -53,8 +45,13 @@ progress {
     flex-shrink: 0;
 }
 
-.upload-status-text {
-    color: red;
+.file-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.file-link:hover {
+    text-decoration: underline;
 }
 
 .remove-icon {
@@ -62,6 +59,7 @@ progress {
     cursor: pointer;
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
 }
 
 .remove-icon:hover {

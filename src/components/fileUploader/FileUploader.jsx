@@ -61,7 +61,15 @@ const FileUploader = ({ onFilesReady }) => {
     });
 
     const handleRemoveFile = (indexToRemove) => {
-        setFiles(prev => prev.filter((_, i) => i !== indexToRemove));
+        setFiles(prev => {
+            const updatedFiles = prev.filter((_, i) => i !== indexToRemove);
+            
+            if (updatedFiles.length === 0) {
+                setUploadHeader(""); // Clear header if no files left
+            }
+
+            return updatedFiles;
+        });
     };
 
     const getFileIcon = (fileType) => {
@@ -99,13 +107,27 @@ const FileUploader = ({ onFilesReady }) => {
                         <Typography variant="subtitle">{uploadStatus}</Typography>
                     </div>
                 </div>
-                {files.map((fileObj, index) => (
-                    <div key={index} className={styles["file-item"]}>
-                        {getFileIcon(fileObj.file.type)}
-                        <Typography variant="body">{fileObj.name}</Typography>
-                            <RemoveFile className={styles["remove-icon"]} onClick={() => handleRemoveFile(index)} />
-                    </div>
-                ))}
+                {files.map((fileObj, index) => {
+                    const fileUrl = URL.createObjectURL(fileObj.file);
+
+                    return (
+                        <div key={index} className={styles["file-item"]}>
+                            {getFileIcon(fileObj.file.type)}
+                            <a
+                                href={fileUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={styles["file-link"]}
+                            >
+                                <Typography variant="body">{fileObj.name}</Typography>
+                            </a>
+                            <RemoveFile
+                                className={styles["remove-icon"]}
+                                onClick={() => handleRemoveFile(index)}
+                            />
+                        </div>
+                    )
+                })}
             </div>
         </div>
     );
