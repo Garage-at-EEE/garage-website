@@ -37,7 +37,7 @@
     min-height: 640px;
   }
   
-  .innovators {
+  .tinkererNight {
     display: flex;
     gap: var(--content-gap-mobile);
     align-items: center;
@@ -47,11 +47,11 @@
     display: none;
   }
   
-  .innovators-image {
+  .tinkererNight-image {
     width: 100%;
   }
   
-  .join-text, .garage-assigned-text {
+  .join-text, .garage-assigned-text, .programme-section {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -81,30 +81,23 @@
     justify-content: center;
   }
   
-  .facilities-images {
-    height: 480px;
-    display: flex;
-    gap: 24px;
+  .custom-photo-layout {
+    display: grid;
+    gap: 20px;
+    grid-template-areas:
+      "left1 center right1"
+      "left2 center right2";
+    grid-template-columns: 1fr 2.3fr 1fr;
   }
   
-  .facilities-images > :nth-child(1) {
-    flex: 2 0;
+  .custom-photo-layout > :nth-child(1) { grid-area: left1; }
+  .custom-photo-layout > :nth-child(2) { grid-area: left2; }
+  .custom-photo-layout > :nth-child(3) {
+    grid-area: center;
   }
-  
-  .facilities-images > :nth-child(2) {
-    flex: 1 0;
-  }
-  
-  .facilities-images-smaller {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .issues {
-    width: 100%;
-  }
-  
+  .custom-photo-layout > :nth-child(4) { grid-area: right1; }
+  .custom-photo-layout > :nth-child(5) { grid-area: right2; }
+
   @media (max-width: 1200px) {
     .scroll-more {
       display: none;
@@ -122,7 +115,7 @@
     .content-wrapper {
       row-gap: 180px;
     }
-    .innovators {
+    .tinkererNight {
       flex-direction: column;
       gap: 24px;
       align-items: flex-start;
@@ -133,11 +126,8 @@
     .tablet-hide {
       display: none;
     }
-    .innovators-image {
+    .tinkererNight-image {
       aspect-ratio: 2;
-    }
-    .facilities-images > :nth-child(n) {
-      flex: 1 0;
     }
   }
   
@@ -154,15 +144,17 @@
     .banner-image {
       min-height: 320px;
     }
-    .innovators-image {
+    .tinkererNight-image {
       aspect-ratio: unset;
     }
-    .facilities-images {
-      flex-direction: column;
-      height: unset;
-    }
-    .facilities-images-smaller {
-      display: none;
+    .custom-photo-layout {
+      grid-template-areas:
+        "left1"
+        "left2"
+        "center"
+        "right1"
+        "right2";
+      grid-template-columns: 1fr;
     }
   }
   
