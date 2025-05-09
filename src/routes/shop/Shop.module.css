@@ -95,6 +95,9 @@
   transform: translateY(-5px); /* Slight hover effect */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.Image image-wrapper{
+  border-radius: none;
+}
 
 /* Item Image */
 .item-image {
@@ -107,9 +110,7 @@
   border-radius: 8px;
 }
 
-.image-wrapper{
-  border-radius: none;
-}
+
 /* Item Name */
 .item-name {
   font-weight: bold;
