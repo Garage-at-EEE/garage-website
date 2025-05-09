@@ -100,14 +100,16 @@
 .item-image {
   width: 100%;
   height: 350px;
-  object-fit: contain; /* Ensures the entire image fits without cropping */
-  background-color: #f9f9f9; /* Add a background color to fill empty spaces */
-  border-radius: 8px;
+  object-fit: contain; 
+  background-color: #f9f9f9; 
   margin-bottom: 1rem;
-  transition: opacity 0.3s ease; /* Smooth fade-out effect */
+  transition: opacity 0.3s ease; 
+  border-radius: 8px;
 }
 
-
+.image-wrapper{
+  border-radius: none;
+}
 /* Item Name */
 .item-name {
   font-weight: bold;
@@ -136,31 +138,31 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Same width as the image */
-  height: 100%; /* Same height as the image box */
+  width: 100%; 
+  height: 100%; 
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7); /* Dark background for contrast */
-  color: #fff; /* White text */
-  font-size: 1rem; /* Adjust font size */
-  text-align: center; /* Center-align text */
-  opacity: 0; /* Invisible by default */
-  visibility: hidden; /* Hidden to prevent interactions */
-  transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth fade-in effect */
+  background-color: rgba(0, 0, 0, 0.7); 
+  color: #fff;
+  font-size: 1rem; 
+  text-align: center; 
+  opacity: 0; 
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Show description on hover */
 .shop-item:hover .item-description {
   opacity: 1;
   visibility: visible;
-  max-height: 100px; /* Adjust based on description length */
+  max-height: 100px;
 }
 
 /* Hover Effect */
 .shop-item:hover .item-image {
-  opacity: 50; /* Fade out the image */
+  opacity: 50; 
 }
 
 
@@ -182,7 +184,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px; /* Spacing between buttons */
+  gap: 12px;
 }
 
 .quantity-controls button {
@@ -216,6 +218,7 @@
   align-items: center;
 }
 
+
 .cart-icon{
   width: 30px;
   height: 30px;
@@ -234,7 +237,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* box-shadow: 0 0 0 2px white; */
 }
 
 
@@ -247,17 +249,22 @@
 .checkout-button {
   width: 250px;
   max-height: 200px;
-  bottom: 150px; /* Distance from the bottom of the viewport */
-  right: 80px; /* Distance from the right of the viewport */
   background-color: var(--garage-blue);
-  color: white; /* Text color */
-  padding:24px 24px; /* Padding for the button */
-  border-radius: 45px; /* Rounded corners */
-  font-size: 20px; /* Font size */
-  display: flex; /* For aligning the icon and text */
-  gap: 60px; /* Space between the icon and text */
-  cursor: pointer; /* Change cursor on hover */
-  z-index: 1000; /* Ensure it stays on top of other elements */;
+  color: white; 
+  padding:24px 24px;   
+  border-radius: 45px;
+  font-size: 20px;
+  display: flex; 
+  gap: 50px; 
+  cursor: pointer; 
+  z-index: 1000; 
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  box-shadow: none;
+border: none;
+outline: none;
+
 }
 
 .checkout-button:hover {
@@ -282,28 +289,28 @@
 
 
 .credits {
-  display: flex; /* Use Flexbox for alignment */
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Align items vertically */
-  gap: 8px; /* Add spacing between items */
-  background-color: #fff; /* Background for the container */
-  border-radius: 12px; /* Rounded corners */
-  padding: 12px 16px; /* Padding for spacing */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  font-size: 1.25rem; /* Adjust font size */
-  font-weight: bold; /* Make the text bold */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 8px; 
+  background-color: #fff; 
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  font-size: 1.25rem; 
+  font-weight: bold;
 }
 
 .credits-label {
-  color: #333; /* Text color */
+  color: #333; 
 }
 
 .credits-value {
-  color: #000; /* Make the value stand out */
-  font-size: 1.5rem; /* Slightly larger font size */
+  color: #000; 
+  font-size: 1.5rem; 
 }
 
 .credits-icon {
-  width: 24px; /* Icon size */
-  height: 24px; /* Keep it square */
+  width: 24px; 
+  height: 24px; 
 }
