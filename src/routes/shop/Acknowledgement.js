@@ -40,7 +40,8 @@ const Acknowledgement = () => {
         <PageGap>
              <div className={styles['heading-space']}>
           <Typography variant="heading">Acknowledgement</Typography>
-          <BackButton /></div>
+          <BackButton to="/shop" />
+          </div>
           <div className={styles["credits-wrapper"]}>
           <div className={styles['credits']}>
             <Typography variant="body" className={styles['credits-label']}>
@@ -53,6 +54,12 @@ const Acknowledgement = () => {
           </div></div>
 
           <div className={styles['ack-container']}>
+            <div className={styles['ack-info-container']}>
+              <div className={styles['ack-order-id']}>  <Typography variant="body">Order ID: {orderDetails.orderId}
+              </Typography></div>
+              <div className={styles['ack-order-date']}>  <Typography variant="body">Date: {orderDetails.date}
+              </Typography></div>
+            </div>
             <div className={styles['heading-text']}>
                 <Typography variant="smallHeading">Thank You!🎉</Typography>
             </div>
@@ -77,22 +84,13 @@ const Acknowledgement = () => {
                     />
                     
                     </div>
-            ))}
-</div>
-            <div className={styles['ack-info-container']}>
-                <div className={styles['ack-info']}>
-                    <Typography variant="body">Order Code: {orderDetails.orderId}
-                    </Typography></div>
-                 <div className={styles['ack-info']}>
-                    <Typography variant="body">Date: {orderDetails.date}
-                    </Typography></div>
-                 <div className={styles['ack-info']}>
-                    <Typography variant="body">Total: {orderDetails.totalCredits} Credits
-                </Typography> 
-                 </div>
+                ))}
             </div>
-  
-
+          
+            <div className={styles['ack-info']}>
+                <Typography variant="body">Total: {orderDetails.totalCredits} Credits
+                </Typography> 
+            </div>
           </div>
       </PageGap>
       </PageTemplate>

@@ -13,6 +13,12 @@
     display: flex;
     justify-content: center;
   }
+  
+  .heading-text{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
   /* Credits Panel */
   .credits-wrapper {
     display: flex;
@@ -29,7 +35,6 @@
     font-size: 1.25rem;
     font-weight: bold;
     gap: 8px;
-    width: 225px;
   }
   
   .credits-label {
@@ -55,23 +60,35 @@
 .ack-container {
     margin: 0 auto;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
-    margin-bottom: 0.75rem;
-    width: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .ack-subtext-container{
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
-  }
-
 
   .ack-info-container{
-    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+   }
+  .ack-order-id{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .ack-order-date{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .ack-subtext-container{
     margin-bottom: 2rem;
   }
+
+
+
   .ack-info {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
@@ -84,14 +101,15 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
-    margin-top: 2rem;
+    
+    margin-bottom: 2rem;
   }
   
 
   .ack-image-card {
     position: relative;
-    width: 80px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     background-color: #6b7280; /* slate-500 for placeholder */
     border-radius: 6px;
   }
@@ -108,16 +126,17 @@
     position: absolute;
     top: -8px; /* float it outside */
     right: -8px;
-    background-color: #1f2937; /* dark slate */
+    background-color:var(--garage-blue); /* dark slate */
     color: white;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
-    width: 22px;
-    height: 22px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 0 2px white;
     z-index: 10;
-  }
+    font-family:"Lexend Deca", sans-serif;
+  } ;
