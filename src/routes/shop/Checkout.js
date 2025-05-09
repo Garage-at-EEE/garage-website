@@ -114,6 +114,15 @@ const Checkout = () => {
             <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
           </div>
         </div>
+        <div className={styles['checkout-table']}>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Image</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Product Name</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Price</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Quantity</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Subtotal</Typography></div>
+          <div></div> {/* For remove icon */}
+        </div>
+
 
         {!isLoading && !error && (!cart || Object.keys(cart).length === 0 || Object.values(cart).every(qty => qty === 0)) && (
           <div className={styles['empty-cart-container']}>
@@ -131,30 +140,42 @@ const Checkout = () => {
               const subtotal = item.innocreditPrice * quantity;
               return (
                 <div className={styles['checkout-item']} key={idx}>
-                  <img
-                    src={item.image?.preview_url || "/default-placeholder.png"}
-                    alt={item.itemName || "Item"}
-                    className={styles['item-image']}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = "/default-placeholder.png";
-                    }}
-                  />
-                  <div className={styles['checkout-item-details']}>
-                    <Typography variant="body" className={styles['item-name']}>
+                  <div className={styles['checkout-item-image']}>
+                    <img
+                      src={item.image?.preview_url || "/default-placeholder.png"} className={styles['item-image']}
+                      onError={(e) => {
+                        if (!e.target.src.includes("default-placeholder.png")) {
+                          e.target.onerror = null;
+                          e.target.src = "/default-placeholder.png";
+                        }
+                      }}
+                    />
+
+                  </div>
+                  <div className={styles['checkout-item-name']}>
+                    <Typography variant="smallHeading" className={styles['item-name']}>
                       {item.itemName}
                     </Typography>
+                  </div>
+                  <div className={styles['checkout-item-price']}>
                     <Typography variant="body">
-                      Price: <strong>{item.innocreditPrice} Credits</strong>
+                    {item.innocreditPrice} Credits
                     </Typography>
-
-                    <div className={styles['quantity-controls']}>
+                  </div>
+                  <div className={styles['quantity-controls']}>
                       <button onClick={() => decrementQuantity(item.itemName)}>–</button>
                       <Typography variant="body" className={styles['quantity-count']}>
                         {quantity}
                       </Typography>
                       <button onClick={() => incrementQuantity(item.itemName, item.innocreditPrice)}>+</button>
-                      <button
+                  </div>
+                  <div className={styles['checkout-item-subtotal']}>
+                    <Typography variant="body">
+                      <strong>{subtotal} Credits</strong>
+                    </Typography>
+                  </div>
+                  <div className={styles['checkout-item-remove']}>
+                  <button
                         className={styles['remove-button']}
                         onClick={() => removeItem(item.itemName)}
                         aria-label="Remove item"
@@ -177,12 +198,7 @@ const Checkout = () => {
                           <line x1="14" y1="11" x2="14" y2="17" />
                         </svg>
                       </button>
-                    </div>
-
-                    <Typography variant="body">
-                      Subtotal: <strong>{subtotal} Credits</strong>
-                    </Typography>
-                  </div>
+                    </div>  
                 </div>
               );
             })}
@@ -190,19 +206,18 @@ const Checkout = () => {
         )}
 
         {!isLoading && !error && cartItemsData.length > 0 && (
-          <>
+          <div className={styles['checkout-summary-container']}>
             <div className={styles['checkout-summary']}>
-              <Typography variant="body" className={styles['summary-text']}>
+              <Typography variant="smallHeading" className={styles['summary-text']}>
                 Total: {totalCost} Credits
               </Typography>
             </div>
-
             <div className={styles['checkout-place-order-container']}>
               <button className={styles['checkout-place-order-button']} onClick={handlePlaceOrder}>
                 Place Order
               </button>
             </div>
-          </>
+          </div>
         )}
       </PageGap>
     </PageTemplate>
