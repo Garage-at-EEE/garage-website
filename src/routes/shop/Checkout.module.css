@@ -159,8 +159,8 @@ justify-content: center;
 
 /* Remove (Trash Icon) Button */
 .remove-button {
-  width: 32px;
-  height: 32px;
+  width: 45px;
+  height: 45px;
   background-color: #fceaea;
   border: none;
   border-radius: 50%;

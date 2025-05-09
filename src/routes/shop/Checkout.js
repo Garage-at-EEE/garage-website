@@ -6,6 +6,7 @@ import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
 import coinIcon from '../../icons/coin-icon.png';
+import Image from '../../components/image/Image';
 import styles from './Checkout.module.css';
 import { SHOP_API } from '../../utils/Constants';
 
@@ -141,14 +142,11 @@ const Checkout = () => {
               return (
                 <div className={styles['checkout-item']} key={idx}>
                   <div className={styles['checkout-item-image']}>
-                    <img
+                    <Image
                       src={item.image?.preview_url || "/default-placeholder.png"} className={styles['item-image']}
                       onError={(e) => {
-                        if (!e.target.src.includes("default-placeholder.png")) {
-                          e.target.onerror = null;
-                          e.target.src = "/default-placeholder.png";
-                        }
-                      }}
+                        e.target.onerror = null; 
+                        e.target.src = "/default-placeholder.png";}}
                     />
 
                   </div>
