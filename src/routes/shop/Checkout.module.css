@@ -71,7 +71,7 @@
   align-items: center;
   background-color: #fff;
   border: 1px solid #eaeaea;
-  border-radius: 12px;
+  border-radius: 1.5rem;
   padding: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   gap: 1rem;
@@ -86,6 +86,7 @@
   object-fit: contain;
   border: 1px solid #e0e0e0;
   background-color: #fafafa;
+  border-radius: 1.5rem;
 }
 
 .checkout-item-details {

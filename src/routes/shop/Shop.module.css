@@ -71,7 +71,7 @@
   width: 331px; /* Adjust width for compact layout */
   height: 550px; /* Allow height to adjust dynamically */
   border: 1px solid #eaeaea;
-  border-radius: 12px; /* Rounded corners */
+  border-radius: 1.5rem;
   padding: 16px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -98,7 +98,7 @@
   background-color: #f9f9f9; 
   margin-bottom: 1rem;
   transition: opacity 0.3s ease; 
-  border-radius: 8px;
+  border-radius: 1.5rem;
 }
 
 
@@ -314,6 +314,11 @@ outline: none;
   width: 24px; 
   height: 24px; 
 }
+
+[class*="image-wrapper"] {
+  border-radius: 0 !important;
+}
+
 /* Tablet: 640px–1200px */
 @media (max-width: 1200px) {
   .scroll-more {

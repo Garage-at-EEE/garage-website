@@ -120,10 +120,9 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 6px;
+    border-radius: 1.5rem;
   }
   .Image .image-wrapper{
-
     border-radius: 0;
   }
   .quantity-badge {
@@ -184,17 +183,16 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
-    
     margin-bottom: 2rem;
   }
   
-
   .ack-image-card {
     position: relative;
     width: 180px;
     height: 180px;
-    background-color: none; /* slate-500 for placeholder */
+    background-color: #6b7280; /* slate-500 for placeholder */
     border-radius: 6px;
   }
+ 
   
 } 
