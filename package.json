@@ -13,11 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@vis.gl/react-google-maps": "^1.5.2",
     "aos": "^2.3.4",
-<<<<<<< HEAD
     "axios": "^1.8.4",
-=======
-    "axios": "^1.7.9",
->>>>>>> ef0a8a10a4fddfd57ade20c36bc9a34afae9c906
     "caniuse-lite": "^1.0.30001538",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.0.2",
