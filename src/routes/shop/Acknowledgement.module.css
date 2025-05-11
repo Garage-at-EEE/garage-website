@@ -84,14 +84,14 @@
   }
 
   .ack-subtext-container{
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
 
 
 
   .ack-info {
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 3rem;
     color: #555;
     text-align: center;
   }
@@ -120,7 +120,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 8px;
+    border-radius: 6px;
+  }
+  .Image .image-wrapper{
+
+    border-radius: 0;
   }
   .quantity-badge {
     position: absolute;
@@ -140,3 +144,57 @@
     z-index: 10;
     font-family:"Lexend Deca", sans-serif;
   } ;
+
+  /* Tablet: 640px–1200px */
+@media (max-width: 1200px) {
+  .scroll-more {
+    display: none;
+  }
+ 
+  .text-section {
+    row-gap: var(--para-gap-tablet);
+  }
+  .banner {
+    height: auto;
+    min-height: unset;
+  }
+  .content-wrapper {
+    row-gap: 180px;
+  }
+  .tablet {
+    display: unset;
+  }
+  .tablet-hide {
+    display: none;
+  }}
+
+/* Mobile: <640px */
+@media (max-width: 640px) {
+  .section-wrapper {
+    row-gap: var(--content-gap-mobile);
+  }
+  .text-section {
+    row-gap: var(--para-gap-mobile);
+  }
+  .content-wrapper {
+    row-gap: 90px;
+  }
+  .ack-items-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    
+    margin-bottom: 2rem;
+  }
+  
+
+  .ack-image-card {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    background-color: none; /* slate-500 for placeholder */
+    border-radius: 6px;
+  }
+  
+} 

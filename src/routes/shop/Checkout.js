@@ -157,7 +157,7 @@ const Checkout = () => {
                   </div>
                   <div className={styles['checkout-item-price']}>
                     <Typography variant="body">
-                    {item.innocreditPrice} Credits
+                    {item.innocreditPrice} <span className={styles['hide-on-mobile']}>Credits</span>
                     </Typography>
                   </div>
                   <div className={styles['quantity-controls']}>
@@ -168,8 +168,8 @@ const Checkout = () => {
                       <button onClick={() => incrementQuantity(item.itemName, item.innocreditPrice)}>+</button>
                   </div>
                   <div className={styles['checkout-item-subtotal']}>
-                    <Typography variant="body">
-                      <strong>{subtotal} Credits</strong>
+                    <Typography variant="body"className={styles['subtotal-text']}>
+                      <strong>{subtotal} <span className={styles['hide-on-mobile']}>Credits</span></strong>
                     </Typography>
                   </div>
                   <div className={styles['checkout-item-remove']}>

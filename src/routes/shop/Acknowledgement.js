@@ -73,7 +73,7 @@ const Acknowledgement = () => {
                     <div key={index} className={styles['ack-image-card']}>
                     <div className={styles['quantity-badge']}>
                         {item.quantity}
-                    </div><img
+                    </div><Image
                         src={item.image}
                         alt={`Item ${index}`}
                         className={styles['ack-item-image']}

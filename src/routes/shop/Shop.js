@@ -106,7 +106,7 @@ if (error) {
           <BackButton />
         </div>
 
-        <div className={styles['heading-space']}>
+        <div className={styles['heading-info-space']}>
           <Typography variant="smallHeading">
             Welcome to Garage Shop
           </Typography>
