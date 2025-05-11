@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useLayoutEffect } from "react";
 import { ReactLenis } from "lenis/react";
 
 import Home from "./routes/home/Home";
@@ -11,16 +10,25 @@ import ProjectDetail from "./routes/projects/ProjectDetail";
 import NotFound from "./routes/notFound/NotFound";
 import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
+<<<<<<< HEAD
 import ContactUsPage from "./routes/contactUs/ContactUs";
+=======
+import Database from "./routes/database/Database";
+import Login from "./routes/login/Login";
+
+>>>>>>> ef0a8a10a4fddfd57ade20c36bc9a34afae9c906
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import AuthProvider from "./contexts/AuthProvider";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 function App() {
   const location = useLocation();
 
   return (
     <ReactLenis root options={{ duration: 0.8 }}>
+      <AuthProvider>
       <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
@@ -32,11 +40,21 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
+<<<<<<< HEAD
           <Route path="/contact-us" element={<ContactUsPage />} />
+=======
+          <Route path="/login" element={<Login />} />
+          <Route path="/database" element={
+              <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
+                <Database />
+              </PrivateRoute>
+          }/>
+>>>>>>> ef0a8a10a4fddfd57ade20c36bc9a34afae9c906
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
       <Footer />
+      </AuthProvider>
     </ReactLenis>
   );
 }

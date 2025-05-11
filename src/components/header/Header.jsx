@@ -13,6 +13,8 @@ import { ReactComponent as Menu } from "../../icons/menu.svg";
 import { ReactComponent as Close } from "../../icons/close.svg";
 import Gutter from "../pageTemplate/gutter/Gutter";
 import Modal from "../modal/Modal";
+import { useAuth } from "../../contexts/AuthProvider";
+import LoginMenu from "./LoginMenu";
 
 import styles from "./Header.module.css";
 
@@ -62,6 +64,8 @@ const Header = () => {
   const { scrollY } = useScroll();
   const [shadow, setShadow] = useState(false);
 
+  const { name } = useAuth();
+
   const topPaddings = {
     desktop: 60,
     tablet: 60,
@@ -100,6 +104,17 @@ const Header = () => {
     }
   ];
 
+  const protected_navlinks = [
+    {
+      label: "Shop",
+      to: "/shop",
+    },
+    {
+      label: "Database",
+      to: "/database",
+    },
+  ];
+
   useEffect(() => {
     if (breakpoint !== "mobile") handleClose();
   }, [breakpoint]);
@@ -116,6 +131,8 @@ const Header = () => {
             <Link to="/" onClick={handleClose} className={styles["logo"]}>
               <Logo />
             </Link>
+
+            {/* DESKTOP/TABLET HEADER */}
             {breakpoint !== "mobile" ? (
               <nav className={styles["nav"]}>
                 {navlinks.map((navlink) => (
@@ -127,11 +144,27 @@ const Header = () => {
                     <Typography variant="body">{navlink.label}</Typography>
                   </Link>
                 ))}
+
+                {/* LAST Link in Header => Login if unauth | {name} if auth*/}
+                {name === null ? (
+                  <Link
+                    key="Login"
+                    to="/login"
+                    className={styles["navlink"]}
+                  >
+                    <Typography variant="body">Login</Typography>
+                  </Link>
+                  ) : (
+                    <LoginMenu protected_navlinks={protected_navlinks}/>
+                  )
+                }
               </nav>
             ) : (
               <MenuButton open={open} setOpen={setOpen} />
             )}
           </div>
+
+          {/* MOBILE HEADER */}
           {breakpoint === "mobile" && (
             <motion.nav
               className={styles["drawer"]}
@@ -169,6 +202,27 @@ const Header = () => {
                         </Link>
                       </div>
                     ))}
+
+                    {/* LAST Link in Header => Login if unauth | {name} if auth*/}
+                    <div
+                      key="Login"
+                      style={{ animationDelay: `${0.1 * navlinks.length}s` }}
+                      className={styles["mobile-link"]}
+                    >
+                      {name===null ? (
+                        <Link
+                          to="/login"
+                          className={styles["navlink"]}
+                          onClick={handleClose}
+                        >
+                          <Typography variant="body">
+                            Login
+                          </Typography>
+                        </Link>
+                      ):(
+                        <LoginMenu protected_navlinks={protected_navlinks}/>
+                      )}
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

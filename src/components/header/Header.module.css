@@ -91,6 +91,28 @@
   animation-fill-mode: both;
 }
 
+.login-menu, .mobile-login-menu {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.login-menu {
+  position: absolute;
+  gap: 0.5rem;
+  padding: 10px 10px 10px 12px;
+  align-items: flex-end;
+  right: 0;
+  left: auto;
+}
+
+.mobile-login-menu {
+  position: relative;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 @keyframes grow {
   from {
     width: 0%;

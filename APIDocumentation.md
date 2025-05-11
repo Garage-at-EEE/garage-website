@@ -11,6 +11,7 @@ API Endpoint: https://script.google.com/macros/s/AKfycbwpBDp51U6tRBM9MC_3-QYAOSs
 | [`type`](#type)     | `True`   |
 | [`fields`](#fields) | `False`  |
 | [`index`](#index)   | `False`  |
+| [`token`](#token)   | `True` for Protected Routes  |
 
 To specify the parameters, append them to the end of the endpoint after a `?` character. For example to specify a `type` of `projectInfo` and `fields` of `teamName` and `description`, you will have to append
 
@@ -79,3 +80,7 @@ API will only return data for fields specified. If no fields are specifed, all f
 ### `index`
 
 Specify the index of data you want to fetch. This corresponds to the row index + 2 (accounting for header and starting index) in the Google Sheets.
+
+### `token`
+
+JSON Web Token to be sent back to AppScript backend for validation on Protected Get Requests. Stored on frontend in src/contexts/AuthProvider under 'token'.

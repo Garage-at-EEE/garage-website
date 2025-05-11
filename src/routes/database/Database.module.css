@@ -1,0 +1,25 @@
+.content {
+  height: calc(100vh - var(--top-padding));
+  min-height: 760px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-bottom: 1.5rem;
+  gap: var(--content-gap-mobile);
+}
+
+.heading-space {
+  display: flex;
+  justify-content: space-between; /* Elements at opposite ends with space in between */
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%; /* Adjust the width of the container as needed */
+  gap: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .content {
+    height: auto;
+    min-height: unset;
+  }
+}
