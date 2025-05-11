@@ -6,46 +6,39 @@ import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
 import coinIcon from '../../icons/coin-icon.png';
+import Image from '../../components/image/Image';
 import styles from './Checkout.module.css';
-import { API_DOMAIN } from '../../utils/Constants';
-import { useAuth } from '../../contexts/AuthProvider';
+import { SHOP_API } from '../../utils/Constants';
 
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { token } = useAuth();
-
-  // Fetch the user's credit balance
-  const { data: userData = {}, isLoading: userLoading } = useFetch({
-    url: `${API_DOMAIN}?type=userdata&token=${token}`
-  });
-  // Default to 0 if not loaded yet
-  const baseCredits = userData.currentInnocredit ?? 0;
 
   const initialCart = location.state?.cartItems && Object.keys(location.state.cartItems).length > 0
     ? { ...location.state.cartItems }
     : {};
+
   const [cart, setCart] = useState(initialCart);
+  const [baseCredits] = useState(100);
 
   useEffect(() => {
     console.log("Cart Updated:", cart);
   }, [cart]);
 
-  // Use the shop endpoint
-  const { data, isLoading, error } = useFetch({ url: `${API_DOMAIN}?type=shop` });
+  const { data, isLoading, error } = useFetch({ url: SHOP_API });
 
   const cartItemsData = useMemo(() => {
-    if (!Array.isArray(data) || !cart) return [];
-    return data.filter(item => cart[item.itemName] > 0);
+    if (!data || !Array.isArray(data) || !cart) return [];
+    return data.filter(item => cart[item.itemName] && cart[item.itemName] > 0);
   }, [data, cart]);
 
   const totalCost = cartItemsData.reduce((sum, item) => {
-    return sum + item.innocreditPrice * cart[item.itemName];
+    const quantity = cart[item.itemName] || 0;
+    return sum + item.innocreditPrice * quantity;
   }, 0);
 
   const remainingCredits = baseCredits - totalCost;
 
-  // Prevent over-spend
   const incrementQuantity = (itemName, price) => {
     if (remainingCredits - price < 0) {
       alert("Insufficient credits to add more of this item.");
@@ -56,71 +49,52 @@ const Checkout = () => {
 
   const decrementQuantity = (itemName) => {
     setCart(prev => {
-      const next = { ...prev };
-      if (next[itemName] > 1) next[itemName] -= 1;
-      else delete next[itemName];
-      return Object.keys(next).length > 0 ? next : {};
+      const newCart = { ...prev };
+      if (newCart[itemName] > 1) {
+        newCart[itemName] -= 1;
+      } else {
+        delete newCart[itemName];
+      }
+      return Object.keys(newCart).length > 0 ? newCart : {};
     });
   };
 
-  // POST to the backend purchase endpoint
-  const handlePlaceOrder = async () => {
+  const removeItem = (itemName) => {
+    setCart(prev => {
+      const newCart = { ...prev };
+      delete newCart[itemName];
+      return Object.keys(newCart).length > 0 ? newCart : {};
+    });
+  };
+
+  const handlePlaceOrder = () => {
     if (!cart || Object.keys(cart).length === 0) {
       alert("Your cart is empty.");
       return;
     }
-
-    const response = await fetch(`${API_DOMAIN}?type=purchase&token=${token}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ type: "purchase", items: cart })
-    });
-    const result = await response.json();
-    if (result.status !== "PURCHASE SUCCESSFUL") {
-      alert(result.message || "Purchase failed.");
-      return;
-    }
-
+  
+    // Optional: generate order ID and date
     const orderDetails = {
-      orderId: `#${Math.floor(100000 + Math.random() * 900000)}`,
+      orderId: `#${Math.floor(100000 + Math.random() * 900000)}`, // e.g., #123456
       date: new Date().toLocaleDateString("en-SG", {
-        year: "numeric", month: "long", day: "numeric"
+        year: "numeric",
+        month: "long",
+        day: "numeric",
       }),
       totalCredits: totalCost,
-      remainingCredits: result.remainingCredits,
-      items: cartItemsData.map(item => ({
+      remainingCredits: remainingCredits,
+      items: cartItemsData.map((item) => ({
         name: item.itemName,
         quantity: cart[item.itemName],
-        image: item.image?.preview_url || "/default-placeholder.png"
-      }))
+        image: item.image?.preview_url || "/default-placeholder.png",
+      })),
     };
-
-    navigate("/acknowledgement", { state: { orderDetails } });
+  
+    navigate("/acknowledgement", {
+      state: { orderDetails },
+    });
   };
-
-  // Loading state
-  if (isLoading || userLoading) {
-    return (
-      <PageTemplate>
-        <PageGap>
-          <Typography variant="heading">Checkout</Typography>
-          <Typography>Loading…</Typography>
-        </PageGap>
-      </PageTemplate>
-    );
-  }
-
-  if (error) {
-    return (
-      <PageTemplate>
-        <PageGap>
-          <Typography variant="heading">Checkout</Typography>
-          <Typography>Error loading shop data.</Typography>
-        </PageGap>
-      </PageTemplate>
-    );
-  }
-
+  
   return (
     <PageTemplate>
       <PageGap>
@@ -133,21 +107,30 @@ const Checkout = () => {
           <Typography variant="smallHeading">Review Your Order</Typography>
           <div className={styles['credits']}>
             <Typography variant="body" className={styles['credits-label']}>
-              Inno Credits Remaining:
+              Inno Credits:
             </Typography>
             <Typography variant="body" className={styles['credits-value']}>
-              {Math.max(0, remainingCredits)}
+              {remainingCredits < 0 ? 0 : remainingCredits}
             </Typography>
             <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
           </div>
         </div>
+        <div className={styles['checkout-table']}>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Image</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Product Name</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Price</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Quantity</Typography></div>
+          <div className={styles['checkout-table-heading']}><Typography variant="body">Subtotal</Typography></div>
+          <div></div> {/* For remove icon */}
+        </div>
 
-        {(!data || cartItemsData.length === 0) && (
+
+        {!isLoading && !error && (!cart || Object.keys(cart).length === 0 || Object.values(cart).every(qty => qty === 0)) && (
           <div className={styles['empty-cart-container']}>
             <Typography variant="body" className={styles['empty-cart-message']}>
-              🚨 Your cart is empty. 🚨
+              🚨 Your cart is empty. Go back to the shop to add items. 🚨
             </Typography>
-            <button onClick={() => navigate("/shop")}>Back to Shop</button>
+            <button className={styles['back-to-shop-button']} onClick={() => navigate("/shop")}>Back to Shop</button>
           </div>
         )}
 
@@ -174,7 +157,7 @@ const Checkout = () => {
                   </div>
                   <div className={styles['checkout-item-price']}>
                     <Typography variant="body">
-                    {item.innocreditPrice} Credits
+                    {item.innocreditPrice} <span className={styles['hide-on-mobile']}>Credits</span>
                     </Typography>
                   </div>
                   <div className={styles['quantity-controls']}>
@@ -185,8 +168,8 @@ const Checkout = () => {
                       <button onClick={() => incrementQuantity(item.itemName, item.innocreditPrice)}>+</button>
                   </div>
                   <div className={styles['checkout-item-subtotal']}>
-                    <Typography variant="body">
-                      <strong>{subtotal} Credits</strong>
+                    <Typography variant="body"className={styles['subtotal-text']}>
+                      <strong>{subtotal} <span className={styles['hide-on-mobile']}>Credits</span></strong>
                     </Typography>
                   </div>
                   <div className={styles['checkout-item-remove']}>
@@ -220,14 +203,18 @@ const Checkout = () => {
           </div>
         )}
 
-        {cartItemsData.length > 0 && (
-          <div className={styles['checkout-place-order-container']}>
-            <button
-              className={styles['checkout-place-order-button']}
-              onClick={handlePlaceOrder}
-            >
-              Place Order
-            </button>
+        {!isLoading && !error && cartItemsData.length > 0 && (
+          <div className={styles['checkout-summary-container']}>
+            <div className={styles['checkout-summary']}>
+              <Typography variant="smallHeading" className={styles['summary-text']}>
+                Total: {totalCost} Credits
+              </Typography>
+            </div>
+            <div className={styles['checkout-place-order-container']}>
+              <button className={styles['checkout-place-order-button']} onClick={handlePlaceOrder}>
+                Place Order
+              </button>
+            </div>
           </div>
         )}
       </PageGap>

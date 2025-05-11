@@ -1,44 +1,54 @@
-// Acknowledgement.js
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/pageGap/PageGap";
 import Image from '../../components/image/Image';
 import coinIcon from '../../icons/coin-icon.png'; 
+import cartIcon from '../../icons/shopping-cart.png'; 
 import styles from './Acknowledgement.module.css';
+import { SHOP_API } from '../../utils/Constants';
 
 const Acknowledgement = () => {
-  const { state } = useLocation();
-  const orderDetails = state?.orderDetails;
+      
+    const location = useLocation();
+  //  const navigate = useNavigate();
+    //  const [baseCredits] = useState(100);
+    const orderDetails = location.state?.orderDetails || {
+      orderId: "#0123_456789",
+      date: "December 12, 2024",
+      totalCredits: 14,
+      items: [2, 3, 1], // dummy images/items
+    };
+
+    if (!orderDetails) {
+      return (
+        <PageTemplate>
+          <PageGap>
+            <Typography variant="heading">Invalid Order</Typography>
+            <Typography variant="body">No order data was found.</Typography>
+          </PageGap>
+        </PageTemplate>
+      );
+    }
   
-  if (!orderDetails) {
     return (
       <PageTemplate>
         <PageGap>
-          <Typography variant="heading">Invalid Order</Typography>
-          <Typography variant="body">No order data was found.</Typography>
-        </PageGap>
-      </PageTemplate>
-    );
-  }
-
-  return (
-    <PageTemplate>
-      <PageGap>
-        <div className={styles['heading-space']}>
+             <div className={styles['heading-space']}>
           <Typography variant="heading">Acknowledgement</Typography>
-          <BackButton />
-        </div>
-
-        <div className={styles['credits-wrapper']}>
+          <BackButton to="/shop" />
+          </div>
+          <div className={styles["credits-wrapper"]}>
           <div className={styles['credits']}>
             <Typography variant="body" className={styles['credits-label']}>
-              Inno Credits Remaining:
+              Inno Credits:
             </Typography>
             <Typography variant="body" className={styles['credits-value']}>
-              {Math.max(0, orderDetails.remainingCredits)}
+              {orderDetails.remainingCredits < 0 ? 0 : orderDetails.remainingCredits}
             </Typography>
             <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
           </div></div>
@@ -82,45 +92,8 @@ const Acknowledgement = () => {
                 </Typography> 
             </div>
           </div>
-        </div>
-
-        <div className={styles['ack-container']}>
-          <Typography variant="smallHeading">Thank You! 🎉</Typography>
-          <Typography variant="body" className={styles['ack-subtext']}>
-            Your order has been received.
-          </Typography>
-          <Typography variant="body" className={styles['ack-subtext']}>
-            An email has been sent to you with the collection details.
-          </Typography>
-
-          <div className={styles['ack-items-card']}>
-            {orderDetails.items.map((item, idx) => (
-              <div key={idx} className={styles['ack-image-card']}>
-                <div className={styles['quantity-badge']}>{item.quantity}</div>
-                <img
-                  src={item.image || "/default-placeholder.png"}
-                  alt={item.name || `Item ${idx}`}
-                  className={styles['ack-item-image']}
-                  onError={e => { e.target.onerror = null; e.target.src = "/default-placeholder.png"; }}
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className={styles['ack-info-container']}>
-            <Typography variant="body">
-              Order Code: {orderDetails.orderId}
-            </Typography>
-            <Typography variant="body">
-              Date: {orderDetails.date}
-            </Typography>
-            <Typography variant="body">
-              Total Spent: {orderDetails.totalCredits} Credits
-            </Typography>
-          </div>
-        </div>
       </PageGap>
-    </PageTemplate>
+      </PageTemplate>
   );
 };
 
