@@ -1,10 +1,14 @@
 .heading-space {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
   width: 100%;
   gap: 1.5rem;
+}
+
+.register-button {
+  align-self: flex-start;
+  min-width: 100%;
 }
 
 .content-wrapper {
@@ -21,10 +25,20 @@
   border-radius: 2rem;
 }
 
+.recruiting, .not-recruiting {
+  align-self: center;
+  position: relative;
+  top: 40px;
+  z-index: 1;
+  color: var(--white);
+  padding: 2px 20px;
+  border-radius: 8px;
+}
+
 .recruiting {
-  color: var(--garage-blue)
+  background-color: var(--garage-blue);
 }
 
 .not-recruiting {
-  color: var(--error)
+  background-color: var(--error);
 }

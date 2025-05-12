@@ -1,11 +1,15 @@
 import { useParams } from "react-router-dom";
 import Typography from "../../components/typography/Typography";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN, ASSIGNED_PROJECTS_SIGNUP_LINK } from "../../utils/Constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";
 import HeroImage from "../../components/heroImage/heroImage";
+import Button from "../../components/button/Button";
+
+
+import styles from "./AssignedProjects.module.css";
 
 function ProjectDetail() {
   const params = useParams();
@@ -21,7 +25,7 @@ function ProjectDetail() {
             <HeroImage
               heading={data.name}
               src={data.coverPic}
-              subheading={data.tagline}
+              subheading={""}
             />
             <div>
               <Typography variant="smallHeading">DESCRIPTION</Typography>
@@ -30,13 +34,20 @@ function ProjectDetail() {
             {(data.isRecruiting === "Y") ?
             <>
               <div>
-                <Typography variant="smallHeading">RECRUITMENT</Typography>
-                <Typography variant="body">{data.recruitment}</Typography>
+                <Typography variant="smallHeading">RECRUITMENT INFO</Typography>
+                <Typography variant="body"><b>Team Openings</b></Typography>
+                <Typography variant="body">{data.recruitment.team_opening}</Typography>
+                <Typography variant="body"><b>What we're looking for</b></Typography>
+                <Typography variant="body">{data.recruitment.looking_for}</Typography>
+                <Typography variant="body"><b>What you'll do</b></Typography>
+                <Typography variant="body">{data.recruitment.what_you_do}</Typography>
               </div>
               <div>
-                <Typography variant="smallHeading">REGISTRATION LINK</Typography>
-                <Typography variant="smallHeading">
-                <a href={data.registerLink} target="_blank" rel="noopener noreferrer">{data.registerLink}</a>
+                <Typography variant="smallHeading">REGISTRATION</Typography>
+                <Typography variant="smallHeading" className={styles["link"]}>
+                  <Button onClick={() => window.open(ASSIGNED_PROJECTS_SIGNUP_LINK, "_blank")}>
+                  Register Here
+                  </Button>                
                 </Typography>
               </div>
             </>

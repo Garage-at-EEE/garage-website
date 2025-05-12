@@ -1,7 +1,7 @@
 import { useLenis } from "lenis/react";
 import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN, ASSIGNED_PROJECTS_SIGNUP_LINK } from "../../utils/Constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
@@ -29,33 +29,37 @@ const AssignedProjects = () => {
   return (
     <Transition isLoading={isLoading}>
       <PageTemplate>
-        {data && // Shows page if data exists
+        {data && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
               <Typography variant="heading">Garage Assigned Projects {acadYear}</Typography>
               <BackButton />
             </div>
-              <Grid>
-                {data.map((card, index) => (
-                  <div className={styles["project-item"]}>
-                    <Card
-                      key={card.name}
-                      image={card.coverPic}
-                      to={`${index}/`}
-                      bottomText={card.name}
-                    />
-                    {(card.isRecruiting==="Y") ?
-                      <Typography variant="body" className={styles["recruiting"]}>APPLICATION OPEN </Typography>
-                     :
-                      <Typography variant="body" className={styles["not-recruiting"]}>APPLICATION CLOSED</Typography>
-                    }
-                  </div>
-                ))}
-              </Grid>
+            <Button onClick={() => window.open(ASSIGNED_PROJECTS_SIGNUP_LINK, "_blank")} className={styles["register-button"]}>
+              Register Here
+            </Button>
 
-              <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
-                Back to top
-              </Button>
+            <Grid>
+              {data.map((card, index) => (
+                <div className={styles["project-item"]}>
+                  {(card.isRecruiting==="Y") ?
+                    <Typography variant="body" className={styles["recruiting"]}>OPEN</Typography>
+                    :
+                    <Typography variant="body" className={styles["not-recruiting"]}>CLOSED</Typography>
+                  }
+                  <Card
+                    key={card.name}
+                    image={card.coverPic}
+                    to={`${index}/`}
+                    bottomText={card.name}
+                  />
+                </div>
+              ))}
+            </Grid>
+
+            <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
+              Back to top
+            </Button>
           </div>
         }
       </PageTemplate>

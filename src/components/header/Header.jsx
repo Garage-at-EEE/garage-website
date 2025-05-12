@@ -83,10 +83,6 @@ const Header = () => {
 
   const navlinks = [
     {
-      label: "Test_AP",
-      to: "/assigned_projects",
-    },
-    {
       label: "Projects",
       to: "/projects",
     },
