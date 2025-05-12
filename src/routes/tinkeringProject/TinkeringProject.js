@@ -45,6 +45,8 @@ const TinkeringProjects = () => {
                 className={styles["banner-image"]}
                 src={data[0].bannerImage}
                 alt="Tinkering Cover"
+                // objectFit="contain"
+                // style={{ width: "100%", height: "auto" }}
               />
             </div>
             <section className={styles["section-wrapper"]}>

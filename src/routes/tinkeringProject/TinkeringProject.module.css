@@ -36,7 +36,7 @@
   .banner-image {
     min-height: 640px;
   }
-  
+
   .tinkererNight {
     display: flex;
     gap: var(--content-gap-mobile);
