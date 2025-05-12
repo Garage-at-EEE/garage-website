@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwwaE4HqkcUJKTuVOsSwOJnXRa7lQwP-Szxqa5tSDm-jijrs-LEHMS8v2yTsfFgMyiwFQ/exec";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbw_KGJ2wQ75Qha_B_OtsVMGNys-17fXOUqk44DhfnqTe5TML4WrtHGgwFvPzhgky1Vo3w/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -43,48 +43,27 @@ const ContactUs = () => {
         }
 
         try {
-            // If files exist, handle each one
-            if (filesToUpload.length > 0) {
-                for (const file of filesToUpload) {
-                    await new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.onload = async () => {
-                            const base64Data = reader.result.split(",")[1];
-
-                            const payload = {
-                                ...formData,
-                                fileName: file.name,
-                                fileContent: base64Data
-                            };
-
-                            try {
-                                const response = await axios.post(UPLOAD_URL, payload, {
-                                    headers: { "Content-Type": "application/json" },
-                                });
-
-                                if (!response.data.success) throw new Error(response.data.error);
-                                resolve();
-                            } catch (err) {
-                                reject(err);
-                            }
-                        };
-
-                        reader.onerror = reject;
-                        reader.readAsDataURL(file);
-                    });
-                }
-            } else {
-                // No files, just send the form data
-                const payload = {
-                    ...formData,
+            // Prepare files payload
+            const filesPayload = await Promise.all(filesToUpload.map(file => new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64Data = reader.result.split(",")[1];
+                    resolve({ fileName: file.name, fileContent: base64Data });
                 };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            })));
 
-                const response = await axios.post(UPLOAD_URL, payload, {
-                    headers: { "Content-Type": "application/json" },
-                });
+            const payload = {
+                ...formData,
+                files: filesPayload.length > 0 ? filesPayload : [],
+            };
 
-                if (!response.data.success) throw new Error(response.data.error);
-            }
+            const response = await axios.post(UPLOAD_URL, payload, {
+                headers: { "Content-Type": "application/json" },
+            });
+
+            if (!response.data.success) throw new Error(response.data.error);
 
             setMessageStatus("Form submitted successfully!");
             setFormData({
@@ -97,7 +76,6 @@ const ContactUs = () => {
             });
             setFilesToUpload([]);
             setResetKey(prevKey => prevKey + 1);
-
         } catch (error) {
             console.error("Error during upload:", error);
             setMessageStatus("Upload failed. Please try again.");
