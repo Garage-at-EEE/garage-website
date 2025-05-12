@@ -78,12 +78,10 @@ API will only return data for fields specified. If no fields are specifed, all f
 |             | `link`            | URL that links to the newsletter                                           | `string`                                                                                                           |
 |             | `image`           | URL for the image of the newsletter                                        | `string`                                                                                                           |
 | assignedProjectInfo | `name`         | Name of the project/team | `string` |
-|                     | `contactInfo`  | Instagram/Telegram handle of person to contact | `string` |
-|                     | `tagline`      | Short description of the project | `string` |
 |                     | `description`  | Description of the project | Markdown formatted `string` |
 |                     | `coverPic`     | URL for the banner image of the project | `string` |
-|                     | `recruitment`  | Recruitment requirements and expectations of the project | `string` |
-|                     | `isRecruiting`  | Recruitment requirements and expectations of the project | `string` (Y or N) |
+|                     | `recruitment`  | Recruitment requirements and expectations of the project | `Object:{team_opening: string, looking_for: string, what_you_do: string}` |
+|                     | `isRecruiting`  | Boolean based on whether project is recruiting or not | `string` (Y or N) |
 
 ### `index`
 
