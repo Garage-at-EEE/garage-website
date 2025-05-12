@@ -63,7 +63,13 @@ const FileUploader = ({ onFilesReady }) => {
     const handleRemoveFile = (indexToRemove) => {
         setFiles(prev => {
             const updatedFiles = prev.filter((_, i) => i !== indexToRemove);
-            
+
+            // Notify parent about the updated file list
+            if (onFilesReady) {
+                const structuredFiles = updatedFiles.map(f => f.file);
+                onFilesReady(structuredFiles);
+            }
+
             if (updatedFiles.length === 0) {
                 setUploadHeader(""); // Clear header if no files left
             }
