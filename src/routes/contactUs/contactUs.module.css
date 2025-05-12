@@ -150,6 +150,10 @@ form button {
     font-weight: 500;
     margin-top: 25px;
     transition: .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 form button:hover {
