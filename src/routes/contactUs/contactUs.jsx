@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbxOXyK1iDhuMstkImloHhR-WqbFjGK4Q-XEO3D4p2-3scTVzDGSS54vZsJG3ci0HtXbhg/exec";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwtV8vEgaWIJXRTgnFmG8Ccfcz8ogz6gNc1naFDhVdZt0FEqVXOA-h9paNYu2VSrFxesA/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -21,6 +21,7 @@ const ContactUs = () => {
     });
 
     const [filesToUpload, setFilesToUpload] = useState([]);
+    const [resetKey, setResetKey] = useState(0);
     const [messageStatus, setMessageStatus] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -95,6 +96,7 @@ const ContactUs = () => {
                 message: "",
             });
             setFilesToUpload([]);
+            setResetKey(prevKey => prevKey + 1);
 
         } catch (error) {
             console.error("Error during upload:", error);
@@ -193,7 +195,7 @@ const ContactUs = () => {
                                         <Typography variant="body">Upload Files (if any)</Typography>
                                         <Typography variant="subtitle">Select and upload files of your choice</Typography>
                                     </div>
-                                    <FileUploader onFilesReady={handleFilesReady} />
+                                    <FileUploader key={resetKey} onFilesReady={handleFilesReady} />
                                 </div>
                             </div>
                             <div className={styles["submit-group"]}>
