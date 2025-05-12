@@ -66,41 +66,6 @@
     opacity: 0.5;
 }
 
-/*.progress-container {
-    width: 100%;
-    margin-top: 10px;
-    text-align: center;
-}
-
-progress {
-    width: 100%;
-    height: 10px;
-    border-radius: 5px;
-    appearance: none;
-}
-
-progress::-webkit-progress-bar {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-}
-
-progress::-webkit-progress-value {
-    background-color: #4caf50;
-    border-radius: 5px;
-}
-
-progress::-moz-progress-bar {
-    background-color: #4caf50;
-    border-radius: 5px;
-}
-
-.file-info {
-    margin-top: 10px;
-    font-size: 14px;
-    color: green;
-}
-*/
-
 .upload-message {
     margin-top: 10px;
     font-size: 14px;

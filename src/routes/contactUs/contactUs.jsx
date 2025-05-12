@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbxnPTqbvH2Ju9N89PB43rXRB0RZdtv1MaDdykKOMGawUVr-iN3L6Z1lMa2JHvKc_bcsoQ/exec";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbxOXyK1iDhuMstkImloHhR-WqbFjGK4Q-XEO3D4p2-3scTVzDGSS54vZsJG3ci0HtXbhg/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -22,6 +22,7 @@ const ContactUs = () => {
 
     const [filesToUpload, setFilesToUpload] = useState([]);
     const [messageStatus, setMessageStatus] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFilesReady = (newFiles) => {
         setFilesToUpload((prevFiles) => [...prevFiles, ...newFiles]);
@@ -30,14 +31,16 @@ const ContactUs = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessageStatus(""); // Clear previous messages
-    
+        setIsLoading(true); // Show loading spinner
+
         const { firstName, lastName, email, phone, category, message } = formData;
 
         if (!firstName || !lastName || !email || !phone || !category || !message) {
             setMessageStatus("Please fill in all required fields.");
+            setIsLoading(false); // Hide loading spinner
             return;
         }
-    
+
         try {
             // If files exist, handle each one
             if (filesToUpload.length > 0) {
@@ -46,25 +49,25 @@ const ContactUs = () => {
                         const reader = new FileReader();
                         reader.onload = async () => {
                             const base64Data = reader.result.split(",")[1];
-    
+
                             const payload = {
                                 ...formData,
                                 fileName: file.name,
                                 fileContent: base64Data
                             };
-    
+
                             try {
                                 const response = await axios.post(UPLOAD_URL, payload, {
                                     headers: { "Content-Type": "application/json" },
                                 });
-    
+
                                 if (!response.data.success) throw new Error(response.data.error);
                                 resolve();
                             } catch (err) {
                                 reject(err);
                             }
                         };
-    
+
                         reader.onerror = reject;
                         reader.readAsDataURL(file);
                     });
@@ -74,14 +77,14 @@ const ContactUs = () => {
                 const payload = {
                     ...formData,
                 };
-    
+
                 const response = await axios.post(UPLOAD_URL, payload, {
                     headers: { "Content-Type": "application/json" },
                 });
-    
+
                 if (!response.data.success) throw new Error(response.data.error);
             }
-    
+
             setMessageStatus("Form submitted successfully!");
             setFormData({
                 firstName: "",
@@ -92,10 +95,12 @@ const ContactUs = () => {
                 message: "",
             });
             setFilesToUpload([]);
-    
+
         } catch (error) {
             console.error("Error during upload:", error);
             setMessageStatus("Upload failed. Please try again.");
+        } finally {
+            setIsLoading(false); // Hide loading spinner after form is submitted successfully
         }
     };
 
@@ -120,51 +125,51 @@ const ContactUs = () => {
                                 <div className={styles["name-container"]}>
                                     <div className={styles["input-box"]}>
                                         <Typography variant="body">First Name</Typography>
-                                        <input 
-                                            type="text" 
-                                            className={styles["field"]} 
+                                        <input
+                                            type="text"
+                                            className={styles["field"]}
                                             placeholder="Enter your first name"
                                             value={formData.firstName}
-                                            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} 
+                                            onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                                             required />
                                     </div>
                                     <div className={styles["input-box"]}>
                                         <Typography variant="body">Last Name</Typography>
-                                        <input 
-                                        type="text" 
-                                        className={styles["field"]} 
-                                        placeholder="Enter your last name" 
-                                        value={formData.lastName}
-                                        onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                                        required />
+                                        <input
+                                            type="text"
+                                            className={styles["field"]}
+                                            placeholder="Enter your last name"
+                                            value={formData.lastName}
+                                            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                                            required />
                                     </div>
                                 </div>
                                 <div className={styles["input-box"]}>
                                     <Typography variant="body">Email</Typography>
-                                    <input 
-                                    type="text" 
-                                    className={styles["field"]} 
-                                    placeholder="Enter your email" 
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    required />
+                                    <input
+                                        type="text"
+                                        className={styles["field"]}
+                                        placeholder="Enter your email"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required />
                                 </div>
                                 <div className={styles["input-box"]}>
                                     <Typography variant="body">Phone Number</Typography>
-                                    <input 
-                                    type="text" 
-                                    className={styles["field"]} 
-                                    placeholder="+65 1234 5678"
-                                    value={formData.phone}
-                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })} 
-                                    required />
+                                    <input
+                                        type="text"
+                                        className={styles["field"]}
+                                        placeholder="+65 1234 5678"
+                                        value={formData.phone}
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                        required />
                                 </div>
                                 <div className={styles["input-box"]}>
                                     <Typography variant="body">What is your enquiry about?</Typography>
-                                    <select className={styles["field"]} 
-                                    value={formData.category}
-                                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                    required>
+                                    <select className={styles["field"]}
+                                        value={formData.category}
+                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                        required>
                                         <option value="" disabled selected>Select a category</option>
                                         <option value="facilities">Facilities</option>
                                         <option value="tinkering-project">Tinkering Project</option>
@@ -175,11 +180,11 @@ const ContactUs = () => {
                                 </div>
                                 <div className={styles["input-box"]}>
                                     <Typography variant="body">Your Message</Typography>
-                                    <textarea 
-                                        className={`${styles["field"]} ${styles["message"]}`} 
+                                    <textarea
+                                        className={`${styles["field"]} ${styles["message"]}`}
                                         placeholder="Enter your message"
                                         value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })} 
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         required>
                                     </textarea>
                                 </div>
@@ -195,7 +200,10 @@ const ContactUs = () => {
                                 <div className={styles["submit-text"]}>
                                     <Typography variant="subtitle" className={styles["submit-text"]}>{messageStatus}</Typography>
                                 </div>
-                                <button type="submit" onClick={handleSubmit}>Send Message</button>
+                                <button type="submit" onClick={handleSubmit} disabled={isLoading}>
+                                    {isLoading ? "Sending..." : "Send Message"}
+                                    {isLoading && <div className={styles["spinner"]}></div>}
+                                </button>
                             </div>
                             <div className={styles["privacy-text"]}>
                                 <Typography variant="subtitle">By submitting the form, you consent to the terms stated in this Personal Data Privacy Statement</Typography>

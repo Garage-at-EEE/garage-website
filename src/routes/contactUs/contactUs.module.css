@@ -69,12 +69,20 @@ form {
     font-size: 16px;
     color: #333;
     margin-top: var(--para-gap-desktop);
+    align-items: center;
 }
 
 select {
     cursor: pointer;
+    appearance: base-select;
 }
 
+select::picker-icon {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+/* Style placeholder text in textarea, input & select */
 ::placeholder {
     color: var(--on-disabled);
 }
@@ -146,6 +154,28 @@ form button {
 
 form button:hover {
     background: #204279;
+}
+
+form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .privacy-text {
