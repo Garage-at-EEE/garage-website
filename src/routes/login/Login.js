@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { API_DOMAIN } from "../../utils/Constants";
+import { LOGIN_DOMAIN } from "../../utils/Constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
@@ -50,7 +50,7 @@ function Login() {
       setLoading(true);
 
       const response = await axios.post(
-        API_DOMAIN, 
+        LOGIN_DOMAIN, 
         {matric: matric, passcode:passcode, type:"userdata"}, 
         config,
       );

@@ -378,3 +378,44 @@ justify-content: center;
   display: none;
 }
 }
+
+/* Error message container */
+.error-message-container {
+  background-color: #ffeeee;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid #d9534f;
+}
+
+.error-message {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+/* Loading container for spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+}
+
+/* Disabled button styling */
+.checkout-place-order-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Error container for API errors */
+.error-container {
+  background-color: #ffeeee;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  text-align: center;
+  border-left: 4px solid #d9534f;
+}

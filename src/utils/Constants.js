@@ -1,8 +1,7 @@
+// Update this when using new AppScript Deployment
 export const API_DOMAIN =
- " https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec";
+    "https://script.google.com/macros/s/AKfycbzE7Azkc8H4SM2x3WD93Vz_SSkk4VvYp5OCqDMxwP8926ynqe6xOPRdBivaTgfUNkpYog/exec";
 
-//old api incase need
- //"https://script.google.com/macros/s/AKfycbwpBDp51U6tRBM9MC_3-QYAOSsEoyoYtcwWOWxXBwy8FhcEy7FcltekRybuZOfmfv3EgQ/exec";
-export const SHOP_API = `https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec`;
- //old api incase need
-// "https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec"
+// Do not update LOGIN_DOMAIN! Used for login POST method
+export const LOGIN_DOMAIN =
+    "https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec";
