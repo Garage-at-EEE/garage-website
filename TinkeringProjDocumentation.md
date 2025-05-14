@@ -55,7 +55,8 @@ In summary,
 
 ## Notes and Future Improvements
 1.  The tinkering page is not fully responsive, and the layout may look different on different dimensions.
-2.  The images under Tinkering projects sharing session are hard-coded in a way for the layout to stay that way.
+2.  The images under Tinkering projects sharing session are hard-coded in a way for the layout to stay that way. 
+    Some 3 images layout look weird in tablet dimension.
 3.  Current dropdown on Navbar is through hashlink, smooth scrolling within React.
     When navigating from a different page, the scroll may misfire and not reach the section or overshoot it as the page may not be
     fully loaded yet at the time of the command to scroll
