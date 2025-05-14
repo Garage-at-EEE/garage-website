@@ -15,6 +15,9 @@ import Gutter from "../pageTemplate/gutter/Gutter";
 import Modal from "../modal/Modal";
 
 import styles from "./Header.module.css";
+import DropdownMenu from "./DropdownMenu";
+import { ReactComponent as ArrowDown } from "../../icons/arrow_down.svg";
+import { HashLink } from "react-router-hash-link";
 
 const MenuButton = ({ open, setOpen }) => {
   const handleClick = (e) => {
@@ -56,6 +59,7 @@ const MenuButton = ({ open, setOpen }) => {
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [mobileSubOpen, setMobileSubOpen] = useState(null);
 
   const breakpoint = useBreakpoint();
 
@@ -87,16 +91,20 @@ const Header = () => {
       to: "/events",
     },
     {
+      label: "Recruitment",
+      dropdown: [
+        { label: "Ambassador", to: "/#ambassadors" },
+        { label: "Innovator",  to: "/#innovators"  },
+        { label: "Tinkering",  to: "/#tinkering"   },
+      ],
+    },
+    {
       label: "Facilities",
       to: "/facilities",
     },
     {
       label: "Newsletter",
       to: "/newsletter",
-    },
-    {
-      label: "Tinkering",
-      to: "/tinkeringProject",
     },
   ];
 
@@ -118,7 +126,14 @@ const Header = () => {
             </Link>
             {breakpoint !== "mobile" ? (
               <nav className={styles["nav"]}>
-                {navlinks.map((navlink) => (
+              {navlinks.map((navlink) =>
+                navlink.dropdown ? (
+                  <DropdownMenu
+                    key={navlink.label}
+                    header={navlink.label}
+                    navlinks={navlink.dropdown}
+                  />
+                ) : (
                   <Link
                     key={navlink.label}
                     to={navlink.to}
@@ -126,7 +141,8 @@ const Header = () => {
                   >
                     <Typography variant="body">{navlink.label}</Typography>
                   </Link>
-                ))}
+                )
+              )}
               </nav>
             ) : (
               <MenuButton open={open} setOpen={setOpen} />
@@ -134,7 +150,7 @@ const Header = () => {
           </div>
           {breakpoint === "mobile" && (
             <motion.nav
-              className={styles["drawer"]}
+              className={styles.drawer}
               initial={false}
               animate={open ? { height: "auto" } : { height: 0 }}
               transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] }}
@@ -151,22 +167,78 @@ const Header = () => {
                       ease: [0.7, 0, 0.3, 1],
                     }}
                   >
-                    <div className={styles["separator"]} />
-                    {navlinks.map((navlink, index) => (
-                      <div
-                        key={navlink.label}
-                        style={{ animationDelay: `${0.1 * index}s` }}
-                        className={styles["mobile-link"]}
-                      >
-                        <Link
-                          to={navlink.to}
-                          className={styles["navlink"]}
-                          onClick={handleClose}
-                        >
-                          <Typography variant="body">
-                            {navlink.label}
-                          </Typography>
-                        </Link>
+                    {/* single divider at top */}
+                    <div className={styles.separator} />
+
+                    {navlinks.map((navlink) => (
+                      <div key={navlink.label} className={styles["mobile-link"]}>
+                        {navlink.dropdown ? (
+                          <>
+                            {/* 1) Toggle “Recruitment” submenu open/closed */}
+                            <a
+                              href="#"
+                              className={styles.navlink}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setMobileSubOpen((prev) =>
+                                  prev === navlink.label ? null : navlink.label
+                                );
+                              }}
+                            >
+                              <Typography variant="body">
+                                {navlink.label}{" "}
+                                <ArrowDown
+                                  className={
+                                    mobileSubOpen === navlink.label
+                                      ? styles.rotated
+                                      : ""
+                                  }
+                                />
+                              </Typography>
+                            </a>
+
+                            {/* 2) Only when open, map each sub‐item to a HashLink */}
+                            {mobileSubOpen === navlink.label && (
+                              <div className={styles["mobile-submenu"]}>
+                                {navlink.dropdown.map((item) => (
+                                  <HashLink
+                                    key={item.label}
+                                    smooth
+                                    to={item.to}        // “/#innovators” etc.
+                                    scroll={(el) => {
+                                      // offset for fixed header
+                                      const headerHeight = 80;
+                                      const y =
+                                        el.getBoundingClientRect().top +
+                                        window.pageYOffset -
+                                        headerHeight;
+                                      window.scrollTo({ top: y, behavior: "smooth" });
+                                    }}
+                                    className={styles.navlink}
+                                    onClick={() => {
+                                      handleClose();
+                                      setMobileSubOpen(null);
+                                    }}
+                                  >
+                                    <Typography variant="body">
+                                      {item.label}
+                                    </Typography>
+                                  </HashLink>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <Link
+                            to={navlink.to}
+                            className={styles.navlink}
+                            onClick={handleClose}
+                          >
+                            <Typography variant="body">
+                              {navlink.label}
+                            </Typography>
+                          </Link>
+                        )}
                       </div>
                     ))}
                   </motion.div>
