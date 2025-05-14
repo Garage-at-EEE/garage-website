@@ -25,20 +25,26 @@
   border-radius: 2rem;
 }
 
-.recruiting, .not-recruiting {
-  align-self: center;
-  position: relative;
-  top: 40px;
-  z-index: 1;
-  color: var(--white);
-  padding: 2px 20px;
-  border-radius: 8px;
-}
-
 .recruiting {
   background-color: var(--garage-blue);
 }
 
 .not-recruiting {
-  background-color: var(--error);
+  background-color: #D9534F;
+}
+
+.overlay-card {
+  visibility: hidden;
+  z-index: 1;
+  margin-top: -100%;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.card-container:hover .overlay-card {
+  visibility: visible;
 }

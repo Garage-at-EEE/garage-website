@@ -38,15 +38,14 @@ function ProjectDetail() {
                 <Typography variant="body"><b>Team Openings</b></Typography>
                 <Typography variant="body">{data.recruitment.team_opening}</Typography>
                 <Typography variant="body"><b>What we're looking for</b></Typography>
-                <Typography variant="body">{data.recruitment.looking_for}</Typography>
+                <Typography variant="body">{data.recruitment.looking_for.toString().replace(/-/g, "•")}</Typography>
                 <Typography variant="body"><b>What you'll do</b></Typography>
-                <Typography variant="body">{data.recruitment.what_you_do}</Typography>
+                <Typography variant="body">{data.recruitment.what_you_do.toString().replace(/-/g, "•")}</Typography>
               </div>
               <div>
-                <Typography variant="smallHeading">REGISTRATION</Typography>
                 <Typography variant="smallHeading" className={styles["link"]}>
                   <Button onClick={() => window.open(ASSIGNED_PROJECTS_SIGNUP_LINK, "_blank")}>
-                  Register Here
+                  REGISTER HERE
                   </Button>                
                 </Typography>
               </div>
