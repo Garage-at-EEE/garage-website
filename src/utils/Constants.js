@@ -1,6 +1,6 @@
 // Update this when using new AppScript Deployment
 export const API_DOMAIN =
-    "https://script.google.com/macros/s/AKfycbzE7Azkc8H4SM2x3WD93Vz_SSkk4VvYp5OCqDMxwP8926ynqe6xOPRdBivaTgfUNkpYog/exec";
+    "https://script.google.com/macros/s/AKfycbyOn3XPKLY0DvA__lP3V79YLvKx18keKLjnf1fugSqF8SLIWYpCfRP_E4wtmRyOnPb2/exec";
 
 // Do not update LOGIN_DOMAIN! Used for login POST method
 export const LOGIN_DOMAIN =
