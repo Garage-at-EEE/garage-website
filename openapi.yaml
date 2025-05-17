@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Contact Form API
+  version: 1.0.0
+servers:
+  - url: https://rising-artifact-454508-f4.uc.gateway.dev
+paths:
+  /contact:
+    options:
+      responses:
+        '204':
+          description: CORS preflight response
+    post:
+      operationId: handleFormSubmission
+      responses:
+        '200':
+          description: Form submission successful
+      x-google-backend:
+        address: https://script.google.com/macros/s/AKfycbzqaF5pwrBULVnb0WfJdEHFffJRWdX5-Ih2pf5S7ZR4fwNJdDM21i-0ELLP4Rn562Ov-g/exec
