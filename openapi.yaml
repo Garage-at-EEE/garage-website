@@ -8,6 +8,7 @@ schemes:
 paths:
   /contact:
     options:
+      operationId: handleCorsPreflight
       summary: CORS preflight request
       responses:
         204:
@@ -26,6 +27,7 @@ paths:
               type: string
               description: Indicates if credentials are supported
     post:
+      operationId: handleFormSubmission
       summary: Handle form submissions
       consumes:
         - application/json
