@@ -15,16 +15,16 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: string
-              example: http://localhost:3000
+              description: Allowed origin for CORS
             Access-Control-Allow-Methods:
               type: string
-              example: POST, OPTIONS
+              description: Allowed HTTP methods for CORS
             Access-Control-Allow-Headers:
               type: string
-              example: Content-Type
+              description: Allowed headers for CORS
             Access-Control-Allow-Credentials:
               type: string
-              example: "true"
+              description: Indicates if credentials are supported
     post:
       summary: Handle form submissions
       consumes:
@@ -63,15 +63,15 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: string
-              example: http://localhost:3000
+              description: Allowed origin for CORS
             Access-Control-Allow-Methods:
               type: string
-              example: POST, OPTIONS
+              description: Allowed HTTP methods for CORS
             Access-Control-Allow-Headers:
               type: string
-              example: Content-Type
+              description: Allowed headers for CORS
             Access-Control-Allow-Credentials:
               type: string
-              example: "true"
+              description: Indicates if credentials are supported
       x-google-backend:
         address: https://script.google.com/macros/s/AKfycbzqaF5pwrBULVnb0WfJdEHFffJRWdX5-Ih2pf5S7ZR4fwNJdDM21i-0ELLP4Rn562Ov-g/exec
