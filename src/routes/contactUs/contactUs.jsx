@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "my-contact-api-gateway-3jpxkizc.uc.gateway.dev/contact";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx1L0gavMWf78QhEVwQyik5Rf3TCA5mgNy29yQSe28APV96QKC8u2X7sB3fwTEVJMP3BA/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -62,7 +62,7 @@ const ContactUs = () => {
             const response = await axios.post(UPLOAD_URL, payload, {
                 headers: { 
                     "Content-Type": "application/json",
-                    "x-api-key": process.env.REACT_APP_CONTACT_FORM_API_KEY,
+                    //"x-api-key": process.env.REACT_APP_CONTACT_FORM_API_KEY,
                 },
             });
 
