@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbzqaF5pwrBULVnb0WfJdEHFffJRWdX5-Ih2pf5S7ZR4fwNJdDM21i-0ELLP4Rn562Ov-g/exec";
+    const UPLOAD_URL = "my-contact-api-gateway-3jpxkizc.uc.gateway.dev/contact";
 
     const [formData, setFormData] = useState({
         firstName: "",

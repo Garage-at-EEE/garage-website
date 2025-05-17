@@ -5,6 +5,13 @@ info:
 host: rising-artifact-454508-f4.uc.gateway.dev
 schemes:
   - https
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: x-api-key
+    in: header
+security:
+  - api_key: []
 paths:
   /contact:
     options:
