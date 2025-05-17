@@ -1,19 +1,77 @@
-openapi: 3.0.0
+swagger: "2.0"
 info:
   title: Contact Form API
   version: 1.0.0
-servers:
-  - url: https://rising-artifact-454508-f4.uc.gateway.dev
+host: rising-artifact-454508-f4.uc.gateway.dev
+schemes:
+  - https
 paths:
   /contact:
     options:
+      summary: CORS preflight request
       responses:
-        '204':
+        204:
           description: CORS preflight response
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              example: http://localhost:3000
+            Access-Control-Allow-Methods:
+              type: string
+              example: POST, OPTIONS
+            Access-Control-Allow-Headers:
+              type: string
+              example: Content-Type
+            Access-Control-Allow-Credentials:
+              type: string
+              example: "true"
     post:
-      operationId: handleFormSubmission
+      summary: Handle form submissions
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              email:
+                type: string
+              phone:
+                type: string
+              category:
+                type: string
+              message:
+                type: string
+              files:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fileName:
+                      type: string
+                    fileContent:
+                      type: string
       responses:
-        '200':
+        200:
           description: Form submission successful
+          headers:
+            Access-Control-Allow-Origin:
+              type: string
+              example: http://localhost:3000
+            Access-Control-Allow-Methods:
+              type: string
+              example: POST, OPTIONS
+            Access-Control-Allow-Headers:
+              type: string
+              example: Content-Type
+            Access-Control-Allow-Credentials:
+              type: string
+              example: "true"
       x-google-backend:
         address: https://script.google.com/macros/s/AKfycbzqaF5pwrBULVnb0WfJdEHFffJRWdX5-Ih2pf5S7ZR4fwNJdDM21i-0ELLP4Rn562Ov-g/exec
