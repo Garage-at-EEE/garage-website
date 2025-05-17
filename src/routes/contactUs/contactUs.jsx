@@ -9,7 +9,7 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbw_KGJ2wQ75Qha_B_OtsVMGNys-17fXOUqk44DhfnqTe5TML4WrtHGgwFvPzhgky1Vo3w/exec";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbzqaF5pwrBULVnb0WfJdEHFffJRWdX5-Ih2pf5S7ZR4fwNJdDM21i-0ELLP4Rn562Ov-g/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
