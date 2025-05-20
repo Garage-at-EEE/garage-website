@@ -59,9 +59,7 @@ const ContactUs = () => {
                 files: filesPayload.length > 0 ? filesPayload : [],
             };
 
-            const response = await axios.post(UPLOAD_URL, payload, {
-                redirect: "follow",
-                body: JSON.stringify(payload),
+            const response = await axios.post(UPLOAD_URL, JSON.stringify(payload), {
                 headers: { 
                     "Content-Type": "text/plain;charset=utf-8",
                 },
