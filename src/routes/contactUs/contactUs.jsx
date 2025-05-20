@@ -60,9 +60,10 @@ const ContactUs = () => {
             };
 
             const response = await axios.post(UPLOAD_URL, payload, {
+                redirect: "follow",
+                body: JSON.stringify(payload),
                 headers: { 
-                    "Content-Type": "application/json",
-                    //"x-api-key": process.env.REACT_APP_CONTACT_FORM_API_KEY,
+                    "Content-Type": "text/plain;charset=utf-8",
                 },
             });
 
