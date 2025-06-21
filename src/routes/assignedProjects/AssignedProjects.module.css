@@ -1,0 +1,50 @@
+.heading-space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+.register-button {
+  align-self: flex-start;
+  min-width: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: var(--content-gap-mobile);
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+
+.recruiting {
+  background-color: var(--garage-blue);
+}
+
+.not-recruiting {
+  background-color: #D9534F;
+}
+
+.overlay-card {
+  visibility: hidden;
+  z-index: 1;
+  margin-top: -100%;
+  opacity: 0.8;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.card-container:hover .overlay-card {
+  visibility: visible;
+}
