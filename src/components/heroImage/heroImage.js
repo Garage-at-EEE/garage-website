@@ -6,14 +6,14 @@ import Image from "../image/Image";
 const HeroImage = ({ heading, src, subheading, objectFit = "cover" }) => {
   return (
     <div className={styles.heading}>
-      <div className={styles["heading-space"]}>
-        <div>
+      <div className={styles["top-space"]}>
+        <div className={styles["heading-space"]}>
           <Typography variant="heading">{heading}</Typography>
-          {subheading && (
-            <Typography variant={"smallHeading"}>{subheading}</Typography>
-          )}
+          <BackButton />
         </div>
-        <BackButton />
+        {subheading && (
+          <Typography variant={"smallHeading"}>{subheading}</Typography>
+        )}
       </div>
       <Image
         objectFit={objectFit}
