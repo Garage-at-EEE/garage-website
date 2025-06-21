@@ -108,10 +108,11 @@ const TinkeringProjects = () => {
               )}
               </div>
               <div>
-                <Button  
+                <Button to="/assigned_projects"  
                   style={{ width: '100%', textAlign: 'center', padding: '1rem' }}
-                  //replace with link to tab for garage assigned projects 
-                  onClick={() => window.open('https://sites.google.com/d/1375GO9eR4xEgVgK-hdt964GvOFG7iJHi/p/1vrnWRM6KpcNQkk7pSXPpv31h6rmF1FXw/edit')} variant="filled"> 
+                  
+                  // onClick={() => window.open('https://sites.google.com/d/1375GO9eR4xEgVgK-hdt964GvOFG7iJHi/p/1vrnWRM6KpcNQkk7pSXPpv31h6rmF1FXw/edit')} variant="filled"
+                  > 
                   View All 
                 </Button> 
               </div>
@@ -234,7 +235,7 @@ const TinkeringProjects = () => {
                             {index === 0 && i === 1 ? (
                               <a
                                 // replace with link to tab for garage assigned projects
-                                href={'https://sites.google.com/d/1375GO9eR4xEgVgK-hdt964GvOFG7iJHi/p/1vrnWRM6KpcNQkk7pSXPpv31h6rmF1FXw/edit'}
+                                href="/assigned_projects"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles["faq-link"]}
