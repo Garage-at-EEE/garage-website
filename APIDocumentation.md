@@ -32,6 +32,7 @@ To specify the parameters, append them to the end of the endpoint after a `?` ch
 | `facilities`  | Gets the facilities present in Garage                   |
 | `newsletter`  | Gets the newsletters published by Garage                |
 | `assignedProjectInfo` | Gets the data related to Garage assigned projects                |
+| `tinkering` | Gets the data related to Tinkering projects                |
 
 ### `fields`
 
@@ -48,6 +49,9 @@ API will only return data for fields specified. If no fields are specifed, all f
 |             | `innovatorsImage` | URL for the image for the innovators section                               | `string`                                                                                                           |
 |             | `recruitment`     | Call to action text for the recruitment of innovators to Innovators' Track | `string`                                                                                                           |
 |             | `registerLink`    | Link to register for Innovators' Track                                     | `string` \| `undefined`                                                                                            |
+|             | `tinkering `      | Text for the section on Tinkering Projects within Garage                   | `string`                                                                                                           |
+|             | `tinkeringImage` | URLs for the images of for Tinkering Projects                               | `string[]`                                                                                                         |
+|             | `tinkeringRecruitment` | Text for the section on Tinkering Projects Recruitment                | `string`                                                                                                           |
 |             | `facilities`      | Text for the section on the facilities within Garage                       | `string`                                                                                                           |
 |             | `facilitiesImage` | URLs for the images of the facilities                                      | `string[]`                                                                                                         |
 |             | `newsletter`      | Text for the section on Garage's newsletter                                | `string`                                                                                                           |
@@ -82,6 +86,24 @@ API will only return data for fields specified. If no fields are specifed, all f
 |                     | `coverPic`     | URL for the banner image of the project | `string` |
 |                     | `recruitment`  | Recruitment requirements and expectations of the project | `Object:{team_opening: string, looking_for: string, what_you_do: string}` |
 |                     | `isRecruiting`  | Boolean based on whether project is recruiting or not | `string` (Y or N) |
+| tinkering   | `title`           | Title displayed on the Tinkering homepage                                  | `string`                                                                                                           |
+|             | `bannerImage`     | URL for the banner image displayed on Tinkering homepage                   | `string`                                                                                                           |
+|             | `introduction`    | Text for the intro section of the homepage                                 | `string`                                                                                                           |
+|             | `howToJoin`       | Text for the application section for Tinkering projects                    | `string[]`                                                                                                           |
+|             | `registrationLink`| Link to register for Tinkering projects                                    | `string` \| `undefined`                                                                                                           |
+|             | `garageAssigned`  | Text introducing the Garage Assigned projects                              | `string[]`                                                                                                           |
+|             | `garageAssignedImages` | URL for the images for each of the Garage Assigned projects           | `string`                                                                                                           |
+|             | `garageAssignedNames`  | Project names for each of the Garage Assigned projects                | `string`                                                                                                           |
+|             | `supportImages`   | URL for the images for each of the support images                          | `string`                                                                                           |
+|             | `supportImageTitles`   | Title for the images for each of the support images                   | `string`                                                                                                           |
+|             | `supportImageDescriptions` | Description for the images for each of the support images         | `string`                                                                                                         |
+|             | `tinkererNightImage`   | URL for the images for each of Tinkerer Night images                  | `string` 
+|             | `tinkererNightDescription` | Text for information regarding Tinkerer Night                     | `string[]`                                                                                                           |
+|             | `tinkererProjectDescription`    | Text introducing Tinkerer Night Projects                     | `string[]`                                                                                                           |
+|             | `tinkererProjectImages`  | URL for the images for each of Tinkerer Project images              | `string`                                                                                                           |
+|             | `tinkererProjectDescriptions`| Description for the images for each of the support images       | `string`
+|             | `faq`             | Frequently asked questions for Tinkering Projects                          | `string`                                                                                                           |
+|             | `answers`         | Answers to each FAQ for Tinkering Projects                                 | `string[]`
 
 ### `index`
 
