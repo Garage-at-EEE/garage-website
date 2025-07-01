@@ -7,23 +7,6 @@
 4. [Editing Guide]
 5. [Notes and Future Improvements]
 
-## Overview
-This documentation focuses on the "tinkering" folder under the `routes` directory. It consists of the js and css file.
-Under the Garage website, there is a tinkering section consisting of a button leading to the tinkering project page.
-
-Updating of information in the home page should be done from the home tab in the google sheet (including the sections).
-Updating of information in the tinkering page should be done from the tinkering tab in the google sheet.
-The Garage Assigned projects page is then accessible from the tinkering page.
-
-## Usage
-The "tinkering" folder contains route definitions and middleware for handling tinkering-related requests. To use it:
-1. Ensure the folder is properly imported and registered in the main application file
-    (e.g., `src\app.js` and for routing of navbar, under 'src\components\header\Header.jsx').
-2.  Under the navbar, a new component under header (DropdownMenu) was utilized for the dropdown within the Recruitment tab.
-    It navigates to the ids, as long as they are assigned ids correctly within each section
-    (E.g <section id='tinkering'>, <div id='ambassadors'>).
-
-
 ## API Integration
 Refer to the APIDocumentation.md for the full explanation of the API integration with Google Sheets through Apps Script.
 In summary,
