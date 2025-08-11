@@ -1,11 +1,9 @@
 # Tinkering Folder Documentation
 
 ## Table of Contents
-1. [Overview]
-2. [Usage]
-3. [API Integration]
-4. [Editing Guide]
-5. [Notes and Future Improvements]
+1. API Integration
+2. Editing Guide
+3. Notes and Future Improvements
 
 ## API Integration
 Refer to the APIDocumentation.md for the full explanation of the API integration with Google Sheets through Apps Script.
@@ -16,12 +14,12 @@ In summary,
       return getTinkeringRequest(fields, number)
 
     This is how the code below fetches the data from the google sheet, which consists of rows and columns.
-    <!-- 
+    ```
     const TinkeringProjects = () => {
         const { data, isLoading } = useFetch({
             url: API_DOMAIN + "?type=tinkering",
         });
-     -->
+     ```
      Since there are multiple rows, there is a need to index it to call the right row, unless there is a for loop to iterate through.
      (For e.g, calling all images for carousel, or all FAQs for FAQ Accordions)
 
@@ -44,4 +42,4 @@ In summary,
     When navigating from a different page, the scroll may misfire and not reach the section or overshoot it as the page may not be
     fully loaded yet at the time of the command to scroll
 
---> Responsiveness and scrolling can be further improved
+***Responsiveness and scrolling can be further improved
