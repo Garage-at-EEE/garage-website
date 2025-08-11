@@ -14,6 +14,7 @@ import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
 import AssignedProjectsDetail from "./routes/assignedProjects/AssignedProjectDetail";
+import TinkeringProject from "./routes/tinkeringProject/TinkeringProject";
 
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
@@ -46,6 +47,7 @@ function App() {
           }/>
           <Route path="/assigned_projects" element={<AssignedProjects />} />
           <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
+          <Route path="/tinkeringProject" element={<TinkeringProject />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>

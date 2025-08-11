@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Typography from "../typography/Typography";
 import { ReactComponent as ArrowDown } from "../../icons/arrow_down.svg";
 import useBreakpoint from "../../hooks/useBreakpoint";
@@ -38,16 +39,33 @@ const DropdownMenu = ({ children, header, navlinks }) => {
           }
         >
 
-        {navlinks.map((navlink) => (
-          <Link //All protected route links in dropdown menu
-            key={navlink.label}
-            to={navlink.to}
-            className={styles["navlink"]}
-            onClick={handleClose}
-          >
-            <Typography variant="body">{navlink.label}</Typography>
-          </Link>
-        ))}
+          {navlinks.map((item) => {
+            // If it's a hash link, use HashLink for in-page scroll
+            if (item.to.includes("#")) {
+              return (
+                <HashLink
+                  key={item.label}
+                  smooth
+                  to={item.to}
+                  className={styles.navlink}
+                  onClick={() => setOpen(false)}
+                >
+                  <Typography variant="body">{item.label}</Typography>
+                </HashLink>
+              );
+            }
+            // Otherwise a normal page Link
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={styles.navlink}
+                onClick={() => setOpen(false)}
+              >
+                <Typography variant="body">{item.label}</Typography>
+              </Link>
+            );
+          })}
 
         {children}
 
