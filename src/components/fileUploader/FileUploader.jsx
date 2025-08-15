@@ -95,12 +95,16 @@ const FileUploader = ({ onFilesReady }) => {
                 {
                     isDragActive ?
                         <Typography variant="body">
-                            <p>Drop the files here ...</p>
-                        </Typography> :
-                        <Typography variant="body">
-                            <p>Choose a file or drag & drop it here</p>
-                            <p className={styles["upload-text"]}>in JPG, PNG, PDF, DOCX, MP4 formats, up to 50MB</p>
-                        </Typography>
+                            Drop the files here ...
+                        </Typography> :(
+                            <>
+                                <Typography variant="body">
+                                    Choose a file or drag & drop it here
+                                </Typography>
+                            <Typography variant="body" className={styles["upload-text"]}>
+                                in JPG, PNG, PDF, DOCX, MP4 formats, up to 50MB
+                            </Typography>
+                            </>)
                 }
                 <Button to={"/contact-us"} variant="outlined">Browse Files</Button>
             </div>

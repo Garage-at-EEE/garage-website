@@ -9,7 +9,8 @@ import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
 const ContactUs = () => {
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx1L0gavMWf78QhEVwQyik5Rf3TCA5mgNy29yQSe28APV96QKC8u2X7sB3fwTEVJMP3BA/exec";
+    // const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx1L0gavMWf78QhEVwQyik5Rf3TCA5mgNy29yQSe28APV96QKC8u2X7sB3fwTEVJMP3BA/exec";
+    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwLdGh3B-K4WMjKadjVrTlf22I4sOCimkA3FQF0ILcPWNfYr3i-FgoXPWtnvKK6VQiVfQ/exec";
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -152,12 +153,12 @@ const ContactUs = () => {
                                         value={formData.category}
                                         onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                         required>
-                                        <option value="" disabled selected>Select a category</option>
-                                        <option value="facilities">Facilities</option>
-                                        <option value="tinkering-project">Tinkering Project</option>
-                                        <option value="flagship-events">Flagship Events</option>
-                                        <option value="industrial-partner">Industrial Partner</option>
-                                        <option value="others">Others</option>
+                                        <option value="" disabled>Select a category</option>
+                                        <option value="Facilities">Facilities</option>
+                                        <option value="Tinkering-project">Tinkering Project</option>
+                                        <option value="Flagship-events">Flagship Events</option>
+                                        <option value="Industrial-partner">Industrial Partner</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                 </div>
                                 <div className={styles["input-box"]}>
@@ -197,11 +198,9 @@ const ContactUs = () => {
                             <Typography variant="heading">ADDRESS & MAP</Typography>
                         </div>
                         <div className={styles["body-text"]}>
-                            <Typography variant="body">
-                                <p><b>Garage@EEE Workshop:</b></p>
-                                <p>50 Nanyang Ave, Nanyang Technological University</p>
-                                <p>Singapore, S5639798</p>
-                            </Typography>
+                            <Typography variant="body"><b>Garage@EEE Workshop:</b></Typography>
+                            <Typography variant="body">50 Nanyang Ave, Nanyang Technological University</Typography>
+                            <Typography variant="body">Singapore, S5639798</Typography>
                         </div>
                         <div className={styles["body-text"]}>
                             <Typography variant="body"><b>Opening Hours: </b>Weekdays 9am - 5pm</Typography>
