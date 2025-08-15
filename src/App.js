@@ -10,6 +10,7 @@ import ProjectDetail from "./routes/projects/ProjectDetail";
 import NotFound from "./routes/notFound/NotFound";
 import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
+import ContactUsPage from "./routes/contactUs/ContactUs";
 import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetail />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="/contact-us" element={<ContactUsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/database" element={
               <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">

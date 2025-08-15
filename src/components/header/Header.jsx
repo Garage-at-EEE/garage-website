@@ -109,7 +109,11 @@ const Header = () => {
     {
       label: "Newsletter",
       to: "/newsletter",
-    },
+    },  
+    {
+      label: "Contact Us",
+      to: "/contact-us",
+    }
   ];
 
   const protected_navlinks = [
