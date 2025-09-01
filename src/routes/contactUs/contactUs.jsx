@@ -4,7 +4,7 @@ import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import axios from "axios";
 
-import styles from "./ContactUs.module.css";
+import styles from "./contactUs.module.css";
 import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 
