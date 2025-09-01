@@ -56,7 +56,7 @@ const Facilities = () => {
     url: API_DOMAIN + "?type=facilities",
   });
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && (
           <PageGap>

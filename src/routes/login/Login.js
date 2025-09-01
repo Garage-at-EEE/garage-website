@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LOGIN_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/Constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
@@ -24,8 +24,7 @@ function Login() {
   //If accessed through PrivateRoute Navigate => location.state contains data
   //Else accessed through /login url => default redirect to '/' and title: "login"
   const ROUTE_DESTINATION = (location.state?.to || "/");
-  // const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
-  const ROUTE_TITLEHEADING = "Member Login";
+  const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
 
   const handlePasscodeChange = (e) => {
     // Ensure passcode is in the format DDMM (e.g., 1234)
@@ -50,7 +49,7 @@ function Login() {
       setLoading(true);
 
       const response = await axios.post(
-        LOGIN_DOMAIN, 
+        API_DOMAIN, 
         {matric: matric, passcode:passcode, type:"userdata"}, 
         config,
       );

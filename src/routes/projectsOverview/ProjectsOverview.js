@@ -10,7 +10,7 @@ const Projects = () => {
   });
 
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && <OverviewPage heading={"Project Showcase"} data={data} />}
       </PageTemplate>

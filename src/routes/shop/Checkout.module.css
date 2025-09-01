@@ -159,26 +159,27 @@ justify-content: center;
   justify-content: center;
 }
 
-/* Remove (Trash Icon) Button */
 .remove-button {
   width: 45px;
   height: 45px;
-  background-color: #fceaea;
   border: none;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #d9534f;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .remove-button:hover {
-  background-color: #f8d7da;
-  color: #c9302c;
   transform: scale(1.1);
 }
+
+.trash-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .checkout-summary-container{
   display: flex;
   flex-direction: column;
@@ -229,19 +230,19 @@ justify-content: center;
 }
 
 .back-to-shop-button {
-  background-color: #007bff;
+  background-color: #0056b3;
   color: white;
   border: none;
   padding: 10px 15px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 12px;
+  margin-top: 80px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .back-to-shop-button:hover {
-  background-color: #0056b3;
+  background-color: #284d89;
 }
 
 /* Disabled Buttons */
@@ -381,11 +382,9 @@ justify-content: center;
 
 /* Error message container */
 .error-message-container {
-  background-color: #ffeeee;
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 16px;
-  border-left: 4px solid #d9534f;
 }
 
 .error-message {
@@ -412,10 +411,8 @@ justify-content: center;
 
 /* Error container for API errors */
 .error-container {
-  background-color: #ffeeee;
   padding: 16px;
   border-radius: 8px;
   margin: 20px 0;
   text-align: center;
-  border-left: 4px solid #d9534f;
 }
