@@ -74,20 +74,19 @@
     justify-content: space-between;
     margin-bottom: 3rem;
    }
-  .ack-order-id{
+  /* .ack-order-id{
     display: flex;
     justify-content: flex-start;
-  }
-  .ack-order-date{
+  } */
+  .ack-order-date-time{
     display: flex;
-    justify-content: flex-end;
+    text-align: left;
+    gap: 5px;
   }
 
   .ack-subtext-container{
     margin-bottom: 3rem;
   }
-
-
 
   .ack-info {
     margin-top: 0.5rem;

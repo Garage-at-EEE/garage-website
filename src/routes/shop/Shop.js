@@ -18,63 +18,58 @@ import axios from 'axios';
 
 const Shop = () => {
   const { matric, passcode, token } = useAuth();
-  const cart = useCart();
+  const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
   const navigate = useNavigate();
 
-  // Fetch shop items from API
   const { data, isShopLoading } = useFetch({
     url: API_DOMAIN + "?type=shopInventory&token=" + token,
   });
 
   const [quantities, setQuantities] = useState({});
-  const [cartCount, setCartCount] = useState(0);
-  const [userCredits, setUserCredits] = useState();
+  // const [cartCount, setCartCount] = useState(0);
+  // const [userCredits, setUserCredits] = useState();
   const [isLoadingCredits, setIsLoadingCredits] = useState(false);
 
-  useEffect(() => {
-    const fetchPoints = async () => {
+useEffect(() => {
+  if (userCredits) {
+    console.log("User Credits:", userCredits);
+    return;
+  }
+
+  const fetchPoints = async () => {
+    try {
       setIsLoadingCredits(true);
-      try {
-        const config = {
-          headers: {
-            "Content-Type": "text/plain;charset=utf-8",
-          },
-          redirect: "follow",
-          mode: "cors",
-          method: "POST",
-        };
 
-        const response = await axios.post(
-          API_DOMAIN,
-          {
-            matric: matric,
-            passcode: passcode,
-            type: "shopData",
-          },
-          config
-        );
+      const config = { 
+        headers: { 
+          "Content-Type": "text/plain;charset=utf-8", 
+        }, 
+        redirect: "follow", 
+        mode: "cors", 
+        method: "POST", 
+      };
 
-        if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
-          setUserCredits(response.data.info.currentInnocredit);
-          cart.setCredits(response.data.info.currentInnocredit);
-        } else {
-          console.error("Error fetching user credits", response.data.status);
-        }
-      } 
-      catch (error) {
-        console.error("Error fetching data:", error);
-      } 
-      finally {
-        setIsLoadingCredits(false);
+      const response = await axios.post(API_DOMAIN, {
+        matric,
+        passcode,
+        type: "shopData",
+      }, config);
+
+      if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
+        setCredits(response.data.info.currentInnocredit);
+      } else {
+        console.error("Error fetching user credits", response.data.status);
       }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoadingCredits(false);
+    }
     };
 
-    if (matric && passcode) {
-      fetchPoints();
-    }
-  }, [matric, passcode]);
+    fetchPoints();
+  }, [userCredits, matric, passcode]);
 
-  // Filter valid items from the data
   const items = useMemo(() => {
     if (!data || !Array.isArray(data)) {
       return [];
@@ -82,16 +77,19 @@ const Shop = () => {
     return data.filter(entry => entry.itemName && entry.innocreditPrice !== undefined);
   }, [data]);
 
-  // Initialize quantities when data loads
   useEffect(() => {
     if (data && Array.isArray(data)) {
       const initialQuantities = {};
+
       data.forEach(item => {
-        initialQuantities[item.itemName] = 0;
+        const cartItem = cartItems.find(cart => cart.itemName === item.itemName);
+
+        initialQuantities[item.itemName] = cartItem ? cartItem.quantity : 0;
       });
+
       setQuantities(initialQuantities);
     }
-  }, [data]);
+  }, [data, cartItems]);
 
   // Item quantity management functions
   const incrementQuantity = (itemName) => {
@@ -107,24 +105,30 @@ const Shop = () => {
       return;
     }
 
-    setQuantities((prev) => {
-      const newQuantities = { ...prev, [itemName]: (prev[itemName]) + 1 };
-      updateCartCount(newQuantities);
-      return newQuantities;
-    });
+    const newQuantities = {
+      ...quantities,
+      [itemName]: (quantities[itemName] || 0) + 1,
+    };
+
+    setQuantities(newQuantities);
+
+    updateCartCount(newQuantities);
   };
 
   const decrementQuantity = (itemName) => {
-    setQuantities((prev) => {
-      const newQuantities = { ...prev, [itemName]: prev[itemName] > 0 ? prev[itemName] - 1 : 0 };
-      updateCartCount(newQuantities);
-      return newQuantities;
-    });
+    const newQuantities = {
+      ...quantities,
+      [itemName]: (quantities[itemName] || 0) - 1,
+    };
+
+    setQuantities(newQuantities);
+
+    updateCartCount(newQuantities);
   };
 
   const updateCartCount = (newQuantities) => {
     const totalItems = Object.values(newQuantities).reduce((sum, qty) => sum + qty, 0);
-    setCartCount(totalItems);
+    setCart(totalItems, cartItems);
   };
 
   const handleCheckout = () => {
@@ -150,9 +154,9 @@ const Shop = () => {
       image: item.image.preview_url
     }));
     console.log("Cart items", cartItems);
-    cart.setCart(cartCount, cartItems);
+    setCart(cartCount, cartItems);
 
-    navigate("/checkout", { state: { cartItems: { ...quantities } } });
+    navigate("/checkout");
   };
 
   return (

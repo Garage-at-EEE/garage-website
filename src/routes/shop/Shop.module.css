@@ -1,10 +1,3 @@
-
-.page-template {
-  background-color: #f6f6f6; /* Choose your desired color */
-  min-height: 100vh; /* Ensure it covers the full page height */
-  padding: 1rem; /* Optional padding */
-}
-/* Typography */
 .shop-heading {
 
   text-align: center;
@@ -20,7 +13,6 @@
 }
 
 
-/* Credits Display */
 .credits {
   text-align: right;
   margin: 1rem 2rem;
@@ -37,7 +29,7 @@
   margin-left: 8px;
 }
 
-/* Back Button */
+
 .back-button {
   display: inline-block;
   margin: 1rem 2rem;
@@ -57,19 +49,18 @@
 
 .shop-items-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Define 4 columns of equal width */
-  gap: 24px; /* Maintain spacing between grid items */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 
-  overflow: visible; /* Ensure content isn't clipped */
-  justify-content: center; /* Center items within the container */
+  overflow: visible;
+  justify-content: center;
 }
 
 
-/* Shop Item */
 .shop-item {
   background-color: #fff;
-  width: 331px; /* Adjust width for compact layout */
-  height: 550px; /* Allow height to adjust dynamically */
+  width: 331px;
+  height: 550px;
   border: 1px solid #eaeaea;
   border-radius: 1.5rem;
   padding: 16px;
@@ -78,19 +69,18 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  position: relative; /* Make it a containing block for positioning */
-  overflow: hidden; /* Ensure content doesn't overflow */
+  position: relative;
+  overflow: hidden;
 }
 
 .shop-item:hover {
-  transform: translateY(-5px); /* Slight hover effect */
+  transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .Image .image-wrapper{
   border-radius: none;
 }
 
-/* Item Image */
 .item-image {
   width: 100%;
   height: 350px;
@@ -102,7 +92,6 @@
 }
 
 
-/* Item Name */
 .item-name {
   font-weight: bold;
   font-size: 1rem;
@@ -111,17 +100,16 @@
   display: flex;
 }
 
-/* Price and Credits */
 .item-price {
   display: flex;
-  gap: 8px; /* Space between price and icon */
+  gap: 8px;
   font-size: 1rem;
   align-items:center ;
   margin-bottom: 0.5rem;
 }
 
 .item-price img {
-  width: 20px; /* Adjust icon size */
+  width: 20px;
   height: 20px;
 }
 
@@ -145,20 +133,16 @@
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Show description on hover */
 .shop-item:hover .item-description {
   opacity: 1;
   visibility: visible;
   max-height: 100px;
 }
 
-/* Hover Effect */
 .shop-item:hover .item-image {
   opacity: 50; 
 }
 
-
-/* Stock Information */
 .item-stock {
   font-size: 1rem;
   color: #555;
@@ -171,7 +155,6 @@
   align-items: center;
 }
 
-/* Quantity Controls */
 .quantity-controls {
   display: flex;
   justify-content: center;
@@ -237,7 +220,6 @@
   display: inline-block;
 }
 
-/* Checkout Button */
 .checkout-button {
   width: 250px;
   max-height: 200px;
@@ -249,13 +231,12 @@
   display: flex; 
   gap: 50px; 
   cursor: pointer; 
-  z-index: 1000; 
   justify-content: center;
   text-align: center;
   align-items: center;
   box-shadow: none;
-border: none;
-outline: none;
+  border: none;
+  outline: none;
 
 }
 
@@ -319,7 +300,6 @@ outline: none;
   border-radius: 0 !important;
 }
 
-/* Tablet: 640px–1200px */
 @media (max-width: 1200px) {
   .scroll-more {
     display: none;
@@ -397,7 +377,6 @@ outline: none;
   }
 }
 
-/* Mobile: <640px */
 @media (max-width: 640px) {
   .section-wrapper {
     row-gap: var(--content-gap-mobile);

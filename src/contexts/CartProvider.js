@@ -13,7 +13,7 @@ function CartProvider({ children }) {
 
     const setCart = (count, items) => {
         setCartCount(count);
-        setCartItems(items);    // contains item names, quantities, and unit prices
+        setCartItems(items);    // list of json containing item name, quantity, unit price, and image
     };
 
     return (
@@ -21,7 +21,7 @@ function CartProvider({ children }) {
         {children}
     </CartContext.Provider>
     )
-}
+};
 
 export default CartProvider;
 

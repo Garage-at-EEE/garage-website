@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
@@ -9,102 +9,187 @@ import Image from '../../components/image/Image';
 import coinIcon from '../../icons/coin-icon.png';
 import styles from './Acknowledgement.module.css';
 import { API_DOMAIN } from '../../utils/Constants';
+import { useAuth } from "../../contexts/AuthProvider";
+import { useCart } from "../../contexts/CartProvider";
+import axios from 'axios';
 
 const Acknowledgement = () => {
-  const location = useLocation();
-  const orderDetails = location.state?.orderDetails || {
-    orderId: "#0123_456789",
-    date: "December 12, 2024",
-    totalCredits: 14,
-    remainingCredits: 0,
-    items: [
-      {
-        name: "Sample Item",
-        quantity: 1,
-        image: "/default-placeholder.png"
-      }
-    ]
-  };
+  const { token, matric, passcode } = useAuth();
+  const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
 
-  if (!orderDetails) {
-    return (
-      <PageTemplate>
-        <PageGap>
-          <Typography variant="heading">Invalid Order</Typography>
-          <Typography variant="body">No order data was found.</Typography>
-        </PageGap>
-      </PageTemplate>
-    );
-  }
+  const [isLoading, setLoading] = useState(false);
+  const [acknowledgement, setAcknowledgement] = useState();
+  const confirmation = useRef(false);
+
+  const location = useLocation();
+  const payload = (location.state?.payload || {});
+  const now = new Date();
+
+  const currentDate = now.toLocaleDateString();
+  const currentTime = now.toLocaleTimeString();
+
+  const orderDetails = cartItems.map(item => ({
+    ...item,
+    dateTime: new Date().toLocaleString(),
+  }));
+
+  console.log("Order Details:", orderDetails);
+
+  const totalCost = cartItems.reduce((sum, item) => {
+    const quantity = item.quantity;
+    return sum + item.cost * quantity;
+  }, 0);
+
+  console.log("cartItems:", cartItems);
+
+  useEffect(() => {
+    const sendOrder = async () => {
+      try {
+        setLoading(true);
+
+        console.log("Sending request with payload:", payload);
+
+        const response = await axios.post(
+          "https://script.google.com/macros/s/AKfycbx0hV8Qlw1EDDLNkGDU00pSZPbYU5EAaj-wKLTstG0qrkt8Br_aGJChemqrkypjPychxQ/exec",
+          payload,
+          {
+            redirect: "follow",
+            mode: "cors",
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+          }
+        );
+
+        setAcknowledgement(response);
+
+        if (response.data.status === "PURCHASE SUCCESSFUL") {
+          console.log("Purchase successful:", response.data.info);
+          setCredits(payload.remainingCredits);
+          confirmation.current = true;
+          console.log("Response", response.data);
+          return;
+        }
+        else {
+          console.error("Purchase failed:", response.data.info.message);
+          return;
+        }
+      } catch (error) {
+        console.error("Error sending data to the server:", error);
+        return;
+      } finally{
+        setLoading(false);
+      }
+    };
+    sendOrder();
+
+    return () => {
+      if (confirmation.current) {
+        setCart(0, []);
+        console.log("Leaving acknowledgement page...");
+      }
+    };
+  }, []);
+
+  // if (orderDetails.length === 0) {
+  //   return (
+  //     <PageTemplate>
+  //       <PageGap>
+  //         <Typography variant="heading">Invalid Order</Typography>
+  //         <Typography variant="body">No order data was found.</Typography>
+  //       </PageGap>
+  //     </PageTemplate>
+  //   );
+  // }
 
   return (
-    <PageTemplate>
-      <PageGap>
-        <div className={styles['heading-space']}>
-          <Typography variant="heading">Acknowledgement</Typography>
-          <BackButton to="/shop" />
-        </div>
-        <div className={styles["credits-wrapper"]}>
-          <div className={styles['credits']}>
-            <Typography variant="body" className={styles['credits-label']}>
-              Inno Credits:
-            </Typography>
-            <Typography variant="body" className={styles['credits-value']}>
-              {orderDetails.remainingCredits < 0 ? 0 : orderDetails.remainingCredits}
-            </Typography>
-            <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
+    <Transition isLoading={isLoading || !acknowledgement}>
+      <PageTemplate>
+        <PageGap>
+          <div className={styles['heading-space']}>
+            <Typography variant="heading">Acknowledgement</Typography>
+            <BackButton to="/shop" />
           </div>
-        </div>
-
-        <div className={styles['ack-container']}>
-          <div className={styles['ack-info-container']}>
-            <div className={styles['ack-order-id']}>
-              <Typography variant="body">Order ID: {orderDetails.orderId}</Typography>
-            </div>
-            <div className={styles['ack-order-date']}>
-              <Typography variant="body">Date: {orderDetails.date}</Typography>
+          <div className={styles["credits-wrapper"]}>
+            <div className={styles['credits']}>
+              <Typography variant="body" className={styles['credits-label']}>
+                Inno Credits:
+              </Typography>
+              <Typography variant="body" className={styles['credits-value']}>
+                {userCredits}
+              </Typography>
+              <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
             </div>
           </div>
-          <div className={styles['heading-text']}>
-            <Typography variant="smallHeading">Thank You!🎉</Typography>
-          </div>
-          <div className={styles['ack-subtext-container']}>
-            <Typography variant="body" className={styles['ack-subtext']}>
-              Your order has been received.
-            </Typography>
-            <Typography variant="body" className={styles['ack-subtext']}>
-              An email has been sent to you with the collection details.
-            </Typography>
-            <Typography variant="body" className={styles['ack-subtext']}>
-              You can collect your items at the Garage Office (S2-B4c-03) during opening hours.
-            </Typography>
-          </div>
-          <div className={styles['ack-items-card']}>
-            {orderDetails.items.map((item, index) => (
-              <div key={index} className={styles['ack-image-card']}>
-                <div className={styles['quantity-badge']}>
-                  {item.quantity}
+          {confirmation.current ? (
+            <div className={styles['ack-container']}>
+              <div className={styles['ack-info-container']}>
+                {/* <div className={styles['ack-order-id']}>
+                  <Typography variant="body">Order ID: {orderDetails.orderId}</Typography>
+                </div> */}
+                <div className={styles['ack-order-date-time']}>
+                  <Typography variant="body">Order Datetime: {currentDate}</Typography>
+                  <Typography variant="body">{currentTime}</Typography>
                 </div>
-                <Image
-                  src={item.image}
-                  alt={`Item ${index + 1}`}
-                  className={styles['ack-item-image']}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/default-placeholder.png";
-                  }}
-                />
               </div>
-            ))}
-          </div>
-          <div className={styles['ack-info']}>
-            <Typography variant="body">
-              Total: {orderDetails.totalCredits} Credits
-            </Typography>
-          </div>
-        </div>
-      </PageGap>
-    </PageTemplate>
+              <div className={styles['heading-text']}>
+                <Typography variant="smallHeading">Thank You</Typography>
+              </div>
+              <div className={styles['ack-subtext-container']}>
+                <Typography variant="body" className={styles['ack-subtext']}>
+                  
+                </Typography>
+                <Typography variant="body" className={styles['ack-subtext']}>
+                  An email has been sent to you with the collection details.
+                </Typography>
+                <Typography variant="body" className={styles['ack-subtext']}>
+                  You can collect your items at the Garage Office (S2-B4c-03) during opening hours.
+                </Typography>
+              </div>
+              <div className={styles['ack-items-card']}>
+                {orderDetails.map((item, index) => (
+                  <div key={index} className={styles['ack-image-card']}>
+                    <div className={styles['quantity-badge']}>
+                      {item.quantity}
+                    </div>
+                    <Image
+                      src={item.image}
+                      alt={`Item ${index + 1}`}
+                      className={styles['ack-item-image']}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/default-placeholder.png";
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className={styles['ack-info']}>
+                <Typography variant="body">
+                  Total: {totalCost} Credits
+                </Typography>
+              </div>
+            </div>
+          ) : (
+            <div className={styles['ack-container']}>
+              <div className={styles['heading-text']}>
+                <Typography variant="smallHeading">Purchase Failed</Typography>
+              </div>
+              <div className={styles['ack-subtext-container']}>
+                <Typography variant="body" className={styles['ack-subtext']}>
+                  We are unable to process your order at the moment.
+                </Typography>
+                <Typography variant="body" className={styles['ack-subtext']}>
+                  Please try again later.
+                </Typography>
+              </div>
+            </div>
+          )
+        }
+        </PageGap>
+      </PageTemplate>
+    </Transition>
   );
 };
 

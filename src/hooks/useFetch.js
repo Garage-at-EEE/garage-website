@@ -26,12 +26,12 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
     const cacheTimestamp = localStorage.getItem(`${url}_timestamp`);
     const cacheExpiry = 1000 * 60 * 5; // 5 minutes
 
-    // if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
-    //   console.log("Using cached data:", JSON.parse(cachedData));
-    //   setData(JSON.parse(cachedData));
-    //   setIsLoading(false);
-    //   return;
-    // }
+    if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
+      console.log("Using cached data:", JSON.parse(cachedData));
+      setData(JSON.parse(cachedData));
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(url, {
