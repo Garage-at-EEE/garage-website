@@ -18,7 +18,7 @@ import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 const Checkout = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { token, name, matric, passcode } = useAuth();
+  const { token, name, matric } = useAuth();
   const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
 
   console.log("User Credits:", userCredits);
@@ -97,7 +97,6 @@ const Checkout = () => {
     const payload = {
       name: name,
       matric: matric,
-      passcode: passcode,
       item: cartItems.map((item) => ({
         // id: item.uniqueKey,
         itemName: item.itemName,
@@ -141,79 +140,71 @@ const Checkout = () => {
               </Typography>
             </div>
           )}
+          <div className={styles['checkout-wrapper']}>
+            <div className={styles['checkout-table']}>
+              <Typography variant="body" className={styles['checkout-table-heading']}>Image</Typography>
+              <Typography variant="body" className={styles['checkout-table-heading']}>Product</Typography>
+              <Typography variant="body" className={styles['checkout-table-heading']}>Price</Typography>
+              <Typography variant="body" className={styles['checkout-table-heading']}>Quantity</Typography>
+              <Typography variant="body" className={styles['checkout-table-heading']}>Subtotal</Typography>
+              <div></div> {/* For remove icon */}
+            </div>
 
-          <div className={styles['checkout-table']}>
-            <div className={styles['checkout-table-heading']}><Typography variant="body">Image</Typography></div>
-            <div className={styles['checkout-table-heading']}><Typography variant="body">Product Name</Typography></div>
-            <div className={styles['checkout-table-heading']}><Typography variant="body">Price</Typography></div>
-            <div className={styles['checkout-table-heading']}><Typography variant="body">Quantity</Typography></div>
-            <div className={styles['checkout-table-heading']}><Typography variant="body">Subtotal</Typography></div>
-            <div></div> {/* For remove icon */}
+            {cartItems.length > 0 && (
+              <div className={styles['checkout-items-container']}>
+                {cartItems.map((item, idx) => {
+                  const quantity = item.quantity;
+                  const subtotal = item.cost * quantity;
+                  return (
+                    <div className={styles['checkout-item']} key={idx}>
+                      <div className={styles['checkout-item-image']}>
+                        <Image
+                          src={item.image}
+                          className={styles['item-image']}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "/default-placeholder.png";
+                          }}
+                        />
+                      </div>
+                      <div className={styles['checkout-item-name']}>
+                        <Typography variant="smallHeading" className={styles['item-name']}>
+                          {item.itemName}
+                        </Typography>
+                      </div>
+                      <div className={styles['checkout-item-price']}>
+                        <Typography variant="body">
+                          {item.cost} <span className={styles['hide-on-mobile']}>Credits</span>
+                        </Typography>
+                      </div>
+                      <div className={styles['quantity-controls']}>
+                        <button onClick={() => decrementQuantity(item.itemName)}>–</button>
+                        <Typography variant="body" className={styles['quantity-count']}>
+                          {quantity}
+                        </Typography>
+                        <button onClick={() => incrementQuantity(item.itemName, item.cost)}>+</button>
+                      </div>
+                      <div className={styles['checkout-item-subtotal']}>
+                        <Typography variant="body" className={styles['subtotal-text']}>
+                          <strong>{subtotal} <span className={styles['hide-on-mobile']}>Credits</span></strong>
+                        </Typography>
+                      </div>
+                      <div className={styles['checkout-item-remove']}>
+                        <button
+                          className={styles['remove-button']}
+                          onClick={() => removeItem(item.itemName)}
+                          aria-label="Remove item"
+                          title="Remove item"
+                        >
+                          <img src={trashIcon} alt="Remove Icon" className={styles['trash-icon']} />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-
-          {/* {cartItems.length === 0 && (
-            <div className={styles['empty-cart-container']}>
-              <Typography variant="body" className={styles['empty-cart-message']}>
-                Your cart is empty. Add some items before you check out.
-              </Typography>
-              <button className={styles['back-to-shop-button']} onClick={() => navigate("/shop")}>Back to Shop</button>
-            </div>
-          )} */}
-
-          {cartItems.length > 0 && (
-            <div className={styles['checkout-items-container']}>
-              {cartItems.map((item, idx) => {
-                const quantity = item.quantity;
-                const subtotal = item.cost * quantity;
-                return (
-                  <div className={styles['checkout-item']} key={idx}>
-                    <div className={styles['checkout-item-image']}>
-                      <Image
-                        src={item.image}
-                        className={styles['item-image']}
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "/default-placeholder.png";
-                        }}
-                      />
-                    </div>
-                    <div className={styles['checkout-item-name']}>
-                      <Typography variant="smallHeading" className={styles['item-name']}>
-                        {item.itemName}
-                      </Typography>
-                    </div>
-                    <div className={styles['checkout-item-price']}>
-                      <Typography variant="body">
-                        {item.cost} <span className={styles['hide-on-mobile']}>Credits</span>
-                      </Typography>
-                    </div>
-                    <div className={styles['quantity-controls']}>
-                      <button onClick={() => decrementQuantity(item.itemName)}>–</button>
-                      <Typography variant="body" className={styles['quantity-count']}>
-                        {quantity}
-                      </Typography>
-                      <button onClick={() => incrementQuantity(item.itemName, item.cost)}>+</button>
-                    </div>
-                    <div className={styles['checkout-item-subtotal']}>
-                      <Typography variant="body" className={styles['subtotal-text']}>
-                        <strong>{subtotal} <span className={styles['hide-on-mobile']}>Credits</span></strong>
-                      </Typography>
-                    </div>
-                    <div className={styles['checkout-item-remove']}>
-                      <button
-                        className={styles['remove-button']}
-                        onClick={() => removeItem(item.itemName)}
-                        aria-label="Remove item"
-                        title="Remove item"
-                      >
-                        <img src={trashIcon} alt="Remove Icon" className={styles['trash-icon']} />
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
 
           {cartItems.length > 0 && (
             <div className={styles['checkout-summary-container']}>
