@@ -1,5 +1,4 @@
 .shop-heading {
-
   text-align: center;
   font-weight: bold;
   margin-top: 1.5rem;
@@ -193,11 +192,64 @@
   align-items: center;
 }
 
+.purchase-warning-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.purchase-warning-modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  animation: modalAppear 0.3s ease-out forwards;
+}
+
+.purchase-warning-modal button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  background-color:var(--garage-blue);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.purchase-warning-modal button:hover {
+    background-color: #ddd;
+    /* color: white; */
+}
+
+@keyframes modalAppear {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 .cart-icon{
   width: 30px;
   height: 30px;
 }
+
 .cart-count {
   position: absolute;
   top: -6px;
@@ -221,15 +273,15 @@
 }
 
 .checkout-button {
-  width: 250px;
+  width: 220px;
   max-height: 200px;
   background-color: var(--garage-blue);
   color: white; 
-  padding:24px 24px;   
+  padding: 20px;  
   border-radius: 45px;
   font-size: 20px;
   display: flex; 
-  gap: 50px; 
+  gap: 20px; 
   cursor: pointer; 
   justify-content: center;
   text-align: center;
@@ -350,10 +402,10 @@
   }
 
   .checkout-button {
-    width: 200px;
+    width: 190px;
     font-size: 18px;
-    padding: 20px;
-    gap: 30px;
+    padding: 18px;
+    gap: 20px;
   }
 
   .heading-space {
@@ -426,9 +478,10 @@
   }
 
   .checkout-button {
-    width: 150px;
+    width: 180px;
     font-size: 16px;
-
+    gap: 10px;
+    padding: 16px;
   }
 
   .back-button {
