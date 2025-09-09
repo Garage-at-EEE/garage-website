@@ -17,18 +17,18 @@ import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';
 
 const Shop = () => {
-  const { matric, passcode, token } = useAuth();
+  const { matric, token } = useAuth();
   const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
+  const [quantities, setQuantities] = useState({});
+  const [isLoadingCredits, setIsLoadingCredits] = useState(false);
+  const [insufficientCredits, setInsufficientCredits] = useState(false);
+  const [emptyCart, setEmptyCart] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
   const navigate = useNavigate();
 
   const { data, isShopLoading } = useFetch({
     url: API_DOMAIN + "?type=shopInventory&token=" + token,
   });
-
-  const [quantities, setQuantities] = useState({});
-  // const [cartCount, setCartCount] = useState(0);
-  // const [userCredits, setUserCredits] = useState();
-  const [isLoadingCredits, setIsLoadingCredits] = useState(false);
 
 useEffect(() => {
   if (userCredits) {
@@ -51,7 +51,6 @@ useEffect(() => {
 
       const response = await axios.post(API_DOMAIN, {
         matric,
-        passcode,
         type: "shopData",
       }, config);
 
@@ -68,7 +67,7 @@ useEffect(() => {
     };
 
     fetchPoints();
-  }, [userCredits, matric, passcode]);
+  }, [userCredits, matric]);
 
   const items = useMemo(() => {
     if (!data || !Array.isArray(data)) {
@@ -91,9 +90,7 @@ useEffect(() => {
     }
   }, [data, cartItems]);
 
-  // Item quantity management functions
   const incrementQuantity = (itemName) => {
-    // Check if user has enough credits
     const itemPrice = items.find(item => item.itemName === itemName).innocreditPrice;
     const currentTotal = Object.entries(quantities).reduce((sum, [name, qty]) => {
       const item = items.find(i => i.itemName === name);
@@ -101,7 +98,8 @@ useEffect(() => {
     }, 0);
 
     if (userCredits - currentTotal - itemPrice < 0) {
-      alert("Insufficient credits to add this item.");
+      setShowWarning(true);
+      setInsufficientCredits(true);
       return;
     }
 
@@ -111,8 +109,8 @@ useEffect(() => {
     };
 
     setQuantities(newQuantities);
+    updateCart(newQuantities);
 
-    updateCartCount(newQuantities);
   };
 
   const decrementQuantity = (itemName) => {
@@ -120,42 +118,34 @@ useEffect(() => {
       ...quantities,
       [itemName]: (quantities[itemName] || 0) - 1,
     };
-
     setQuantities(newQuantities);
+    updateCart(newQuantities);
 
-    updateCartCount(newQuantities);
   };
 
   const updateCartCount = (newQuantities) => {
     const totalItems = Object.values(newQuantities).reduce((sum, qty) => sum + qty, 0);
+    return totalItems
+  };
+
+  const updateCart = (newQuantities) => {
+    const cartQuantities = items.filter(item => newQuantities[item.itemName] && newQuantities[item.itemName] > 0);
+    const cartItems = cartQuantities.map(item => ({
+      itemName: item.itemName,
+      quantity: newQuantities[item.itemName],
+      cost: item.innocreditPrice,
+      image: item.image.preview_url
+    }));
+    const totalItems = updateCartCount(newQuantities);
     setCart(totalItems, cartItems);
   };
 
   const handleCheckout = () => {
     if (cartCount === 0) {
-      alert("Your cart is empty! Please add items before checking out.");
+      setShowWarning(true);
+      setEmptyCart(true);
       return;
     }
-
-    // Redirect to login if not authenticated
-    if (!token) {
-      navigate("/login", {
-        state: { to: "/checkout", name: "Checkout" }
-      });
-      return;
-    }
-
-    const cartQuantities = items.filter(item => quantities[item.itemName] && quantities[item.itemName] > 0);
-    console.log("Cart quantities", cartQuantities);
-    const cartItems = cartQuantities.map(item => ({
-      itemName: item.itemName,
-      quantity: quantities[item.itemName],
-      cost: item.innocreditPrice,
-      image: item.image.preview_url
-    }));
-    console.log("Cart items", cartItems);
-    setCart(cartCount, cartItems);
-
     navigate("/checkout");
   };
 
@@ -163,6 +153,20 @@ useEffect(() => {
     <Transition isLoading={isShopLoading || isLoadingCredits || !data}>
       <PageTemplate>
         <PageGap>
+          {showWarning && (
+            <div className={styles['purchase-warning-backdrop']}>
+              <div className={styles['purchase-warning-modal']}>
+                {insufficientCredits && <Typography variant='smallHeading'>You have insufficient credits to add this item.</Typography>}
+                {emptyCart && <Typography variant='smallHeading'>Your cart is empty.</Typography>}
+                <button   onClick={() => {
+                  setShowWarning(false);
+                  setEmptyCart(false);
+                  setInsufficientCredits(false);
+                }}><Typography variant='body'>Confirm</Typography>
+                </button>
+              </div>
+            </div>
+          )}
           <div className={styles['heading-space']}>
             <Typography variant="heading">Garage Shop</Typography>
             <BackButton />
