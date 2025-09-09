@@ -1,14 +1,41 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "./CartProvider";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-    const [name, setName] = useState(null);
-    const [matric, setMatric] = useState("");
+    const [name, setName] = useState(() => localStorage.getItem("name") || null);
+    const [matric, setMatric] = useState(() => localStorage.getItem("matric") || "");
     const [passcode, setPasscode] = useState("");
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState(() => localStorage.getItem("authToken") || "");
+    const { clearCart } = useCart();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token) {
+        localStorage.setItem("authToken", token);
+        console.log("Token saved:", token);
+        } else {
+        localStorage.removeItem("authToken");
+        }
+    }, [token]);
+
+    useEffect(() => {
+        if (name) {
+        localStorage.setItem("name", name);
+        } else {
+        localStorage.removeItem("name");
+        }
+    }, [name]);
+
+    useEffect(() => {
+        if (matric) {
+        localStorage.setItem("matric", matric);
+        } else {
+        localStorage.removeItem("matric");
+        }
+    }, [matric]);
 
     const loginAction = (responseData) => {
         const data = responseData.info;
@@ -25,6 +52,10 @@ function AuthProvider({ children }) {
         setPasscode("");
         setToken("");
         navigate("/");
+        localStorage.removeItem("name");
+        localStorage.removeItem("matric");
+        localStorage.removeItem("token");
+        clearCart();
         window.location.reload();
     }
 

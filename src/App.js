@@ -32,50 +32,50 @@ function App() {
   const location = useLocation();
   return (
     <ReactLenis root options={{ duration: 0.8 }}>
-      <AuthProvider>
-        <CartProvider>
-        <Header />
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/ambassadors/:id" element={<AmbassadorDetail />} />
-            <Route path="/events" element={<EventsOverview />} />
-            <Route path="/events/:id" element={<EventDetail />} />
-            <Route path="/projects" element={<ProjectsOverview />} />
-            <Route path="/projects/:id" element={<ProjectDetail />} />
-            <Route path="/facilities" element={<Facilities />} />
-            <Route path="/newsletter" element={<NewsletterPage />} />
-            <Route path="/assigned_projects" element={<AssignedProjects />} />
-            <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
-            <Route path="/tinkeringProject" element={<TinkeringProject />} />
-            <Route path="/contact-us" element={<ContactUsPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/database" element={
-                <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
-                  <Database />
-                </PrivateRoute>
-            }/>
-            <Route path="/shop" element={
-                <PrivateRoute loginPageTitle="Garage Shop" loginRedirect="/shop">
-                  <Shop />
-                </PrivateRoute>
-            }/>
-            <Route path="/checkout" element={
-                <PrivateRoute loginPageTitle="Shop Checkout" loginRedirect="/checkout">
-                  <Checkout />
-                </PrivateRoute>
-            }/>
-            <Route path="/acknowledgement" element={
-                <PrivateRoute loginPageTitle="Shop Acknowledgement" loginRedirect="/acknowledgement">
-                  <Acknowledgement />
-                </PrivateRoute>
-            }/>
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </AnimatePresence>
-        <Footer />
-        </CartProvider>
-      </AuthProvider>
+      <CartProvider>
+        <AuthProvider>
+          <Header />
+          <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/ambassadors/:id" element={<AmbassadorDetail />} />
+              <Route path="/events" element={<EventsOverview />} />
+              <Route path="/events/:id" element={<EventDetail />} />
+              <Route path="/projects" element={<ProjectsOverview />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
+              <Route path="/facilities" element={<Facilities />} />
+              <Route path="/newsletter" element={<NewsletterPage />} />
+              <Route path="/assigned_projects" element={<AssignedProjects />} />
+              <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
+              <Route path="/tinkeringProject" element={<TinkeringProject />} />
+              <Route path="/contact-us" element={<ContactUsPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/database" element={
+                  <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
+                    <Database />
+                  </PrivateRoute>
+              }/>
+              <Route path="/shop" element={
+                  <PrivateRoute loginPageTitle="Garage Shop" loginRedirect="/shop">
+                    <Shop />
+                  </PrivateRoute>
+              }/>
+              <Route path="/checkout" element={
+                  <PrivateRoute loginPageTitle="Shop Checkout" loginRedirect="/checkout">
+                    <Checkout />
+                  </PrivateRoute>
+              }/>
+              <Route path="/acknowledgement" element={
+                  <PrivateRoute loginPageTitle="Shop Acknowledgement" loginRedirect="/acknowledgement">
+                    <Acknowledgement />
+                  </PrivateRoute>
+              }/>
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </AnimatePresence>
+          <Footer />
+        </AuthProvider>
+      </CartProvider>
     </ReactLenis>
   );
 }
