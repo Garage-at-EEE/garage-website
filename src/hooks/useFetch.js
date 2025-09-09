@@ -30,7 +30,7 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
     if (url.includes("type=shopInventory")) {
       const newUrl = new URL(url);
 
-      newUrl.searchParams.set("type", "version");
+      newUrl.searchParams.set("type", "shopInventoryVersion");
 
       const response = await fetch(newUrl.toString());
       if (!response.ok) {
@@ -78,7 +78,7 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
 
         if (url.includes("type=shopInventory")) {
           const newUrl = new URL(url);
-          newUrl.searchParams.set("type", "version");
+          newUrl.searchParams.set("type", "shopInventoryVersion");
           const response = await fetch(newUrl.toString());
           const { cacheVersion: serverVersion } = await response.json();
           localStorage.setItem(`${url}_version`, serverVersion);

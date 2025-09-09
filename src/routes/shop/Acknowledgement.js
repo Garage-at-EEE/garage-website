@@ -14,7 +14,6 @@ import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';
 
 const Acknowledgement = () => {
-  const { token, matric, passcode } = useAuth();
   const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
 
   const [isLoading, setLoading] = useState(false);
