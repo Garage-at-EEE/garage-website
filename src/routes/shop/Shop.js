@@ -15,6 +15,7 @@ import { API_DOMAIN } from '../../utils/Constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';
+import useFetchPoints from "../../hooks/useFetchPoints";
 
 const Shop = () => {
   const { matric, token } = useAuth();
@@ -30,44 +31,13 @@ const Shop = () => {
     url: API_DOMAIN + "?type=shopInventory&token=" + token,
   });
 
-useEffect(() => {
-  if (userCredits) {
-    console.log("User Credits:", userCredits);
-    return;
-  }
-
-  const fetchPoints = async () => {
-    try {
-      setIsLoadingCredits(true);
-
-      const config = { 
-        headers: { 
-          "Content-Type": "text/plain;charset=utf-8", 
-        }, 
-        redirect: "follow", 
-        mode: "cors", 
-        method: "POST", 
-      };
-
-      const response = await axios.post(API_DOMAIN, {
-        matric,
-        type: "shopData",
-      }, config);
-
-      if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
-        setCredits(response.data.info.currentInnocredit);
-      } else {
-        console.error("Error fetching user credits", response.data.status);
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setIsLoadingCredits(false);
-    }
-    };
-
-    fetchPoints();
-  }, [userCredits, matric]);
+  const { credits, loading } = useFetchPoints(matric);
+  
+  useEffect(() => {
+    setIsLoadingCredits(loading);
+    if (credits !== undefined && credits !== null) {
+      setCredits(credits);
+  }  }, [loading, credits]);
 
   const items = useMemo(() => {
     if (!data || !Array.isArray(data)) {
@@ -230,18 +200,26 @@ useEffect(() => {
                   <div className={styles['quantity-controls']}>
                     <button
                       onClick={() => decrementQuantity(item.itemName)}
-                      disabled={quantities[item.itemName] === 0}
+                      disabled={
+                        !item.inventory || quantities[item.itemName] === 0
+                      }
                     >
                       -
                     </button>
-                    <Typography variant="body" className={styles['quantity-count']}>
+                    <Typography
+                      variant="body"
+                      className={
+                        !item.inventory
+                          ? `${styles['quantity-count']} ${styles['quantity-zero']}`
+                          : styles['quantity-count']
+                      }
+                    >
                       {quantities[item.itemName]}
                     </Typography>
                     <button
                       onClick={() => incrementQuantity(item.itemName)}
                       disabled={
-                        item.inventory &&
-                        quantities[item.itemName] >= item.inventory
+                        !item.inventory || quantities[item.itemName] >= item.inventory
                       }
                     >
                       +

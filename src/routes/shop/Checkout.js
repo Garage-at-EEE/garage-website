@@ -97,8 +97,8 @@ const Checkout = () => {
     const payload = {
       name: name,
       matric: matric,
+      token: token,
       item: cartItems.map((item) => ({
-        // id: item.uniqueKey,
         itemName: item.itemName,
         quantity: item.quantity,
       })),
