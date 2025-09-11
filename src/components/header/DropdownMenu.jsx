@@ -19,11 +19,11 @@ const DropdownMenu = ({ children, header, navlinks }) => {
   };
 
   return (
-    <div //Wrapper for entire menu (detects for mouse enter/exit it and its children)
-      className={styles["navlink"]}
-      onMouseEnter={handleOpen}
-      onMouseLeave={handleClose}
-    >
+      <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
+        className={styles["navlink-container"]}
+        onMouseEnter={handleOpen}
+        onMouseLeave={handleClose}
+      >
       <Link className={styles["navlink"]}> 
         <Typography variant="body">
           {header} <ArrowDown />
@@ -33,9 +33,9 @@ const DropdownMenu = ({ children, header, navlinks }) => {
       {open && (
         <div //Main container for dropdown menu
           className={
-            breakpoint !== "mobile" ? 
-              styles["login-menu"] :
-              styles["mobile-login-menu"]
+            breakpoint === "desktop" ?
+            styles["login-menu"] :
+            styles["tablet-login-menu"]
           }
         >
 
