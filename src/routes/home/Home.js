@@ -78,7 +78,7 @@ const Home = () => {
                 </Button>
               </div>
             </section>
-            <section className={styles["section-wrapper"]}>
+            <section id="ambassadors" className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>MEMBER TRACKS</Typography>
               <div className={styles["text-section"]}>
                 <Typography variant={"smallHeading"}>Ambassadors</Typography>
@@ -102,7 +102,7 @@ const Home = () => {
               )}
             </section>
             {data && (
-              <section className={styles["innovators"]}>
+              <section id="innovators" className={styles["innovators"]}>
                 <Typography
                   variant={"smallHeading"}
                   className={styles["tablet"]}
@@ -136,6 +136,33 @@ const Home = () => {
                     {data.registerLink ? "Register" : "Registration Closed"}
                   </Button>
                 </div>
+              </section>
+            )}
+            {data && (
+              <section id="tinkering" className={styles["tinkering"]}>
+                <div className={styles["tinkering-text"]}>
+                  <div className={styles["text-section"]}>
+                    <Typography
+                      variant={"smallHeading"}
+                    >
+                      Tinkering
+                    </Typography>
+                    <Typography variant={"body"}>{data.tinkering}</Typography>
+                    <Typography variant={"smallHeading"}>
+                      Tinkering Project Recruitment
+                    </Typography>
+                    <Typography variant={"body"}>{data.tinkeringRecruitment}</Typography>
+                  </div>
+                  <Button to="/tinkeringProject">
+                    Find out more
+                  </Button>
+                </div>
+                <Image
+                  className={styles["tinkering-image"]}
+                  objectFit="contain"
+                  src={data.tinkeringImage}
+                  alt="Tinkering illustration"
+                />
               </section>
             )}
             <section className={styles["section-wrapper"]}>
