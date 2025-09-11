@@ -12,11 +12,13 @@ import { API_DOMAIN } from '../../utils/Constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';
+import useFetchPoints from "../../hooks/useFetchPoints";
 
 const Acknowledgement = () => {
   const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
-
+  const { matric } = useAuth();
   const [isLoading, setLoading] = useState(false);
+  const [isLoadingCredits, setIsLoadingCredits] = useState(false);
   const [acknowledgement, setAcknowledgement] = useState();
   const confirmation = useRef(false);
 
@@ -39,7 +41,17 @@ const Acknowledgement = () => {
     return sum + item.cost * quantity;
   }, 0);
 
+  const { credits, loading } = useFetchPoints(
+  orderDetails.length === 0 ? matric : null
+  );
+
   console.log("cartItems:", cartItems);
+
+  useEffect(() => {
+    setIsLoadingCredits(loading);
+    if (credits !== undefined && credits !== null) {
+      setCredits(credits);
+  }  }, [loading, credits]);
 
   useEffect(() => {
     const sendOrder = async () => {
@@ -91,19 +103,8 @@ const Acknowledgement = () => {
     };
   }, []);
 
-  // if (orderDetails.length === 0) {
-  //   return (
-  //     <PageTemplate>
-  //       <PageGap>
-  //         <Typography variant="heading">Invalid Order</Typography>
-  //         <Typography variant="body">No order data was found.</Typography>
-  //       </PageGap>
-  //     </PageTemplate>
-  //   );
-  // }
-
   return (
-    <Transition isLoading={isLoading || !acknowledgement}>
+    <Transition isLoading={isLoading || !acknowledgement || isLoadingCredits}>
       <PageTemplate>
         <PageGap>
           <div className={styles['heading-space']}>
@@ -124,9 +125,6 @@ const Acknowledgement = () => {
           {confirmation.current ? (
             <div className={styles['ack-container']}>
               <div className={styles['ack-info-container']}>
-                {/* <div className={styles['ack-order-id']}>
-                  <Typography variant="body">Order ID: {orderDetails.orderId}</Typography>
-                </div> */}
                 <div className={styles['ack-order-date-time']}>
                   <Typography variant="body">Order Datetime: {currentDate}</Typography>
                   <Typography variant="body">{currentTime}</Typography>
