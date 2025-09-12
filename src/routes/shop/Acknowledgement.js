@@ -126,8 +126,7 @@ const Acknowledgement = () => {
             <div className={styles['ack-container']}>
               <div className={styles['ack-info-container']}>
                 <div className={styles['ack-order-date-time']}>
-                  <Typography variant="body">Order Datetime: {currentDate}</Typography>
-                  <Typography variant="body">{currentTime}</Typography>
+                  <Typography variant="body">Order Datetime: {currentDate} {currentTime}</Typography>
                 </div>
               </div>
               <div className={styles['heading-text']}>

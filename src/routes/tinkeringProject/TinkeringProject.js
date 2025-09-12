@@ -25,7 +25,7 @@ const TinkeringProjects = () => {
 
   return (
     <Transition isLoading={isLoading || !data}>
-      {!isLoading && (
+      {data && (
         <PageTemplate>
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>

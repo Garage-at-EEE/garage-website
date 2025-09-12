@@ -37,6 +37,11 @@
   border: none;
 }
 
+.accordion-header-text {
+  flex: 1;
+  text-align: left;
+}
+
 .accordion-content {
   overflow: hidden;
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
