@@ -140,7 +140,7 @@ const Acknowledgement = () => {
                   An email has been sent to you with the collection details.
                 </Typography>
                 <Typography variant="body" className={styles['ack-subtext']}>
-                  You can collect your items at the Garage Office (S2-B4c-03) during opening hours.
+                  You can collect your items at the Garage Office (S2.2-B4-05) during opening hours.
                 </Typography>
               </div>
               <div className={styles['ack-items-card']}>

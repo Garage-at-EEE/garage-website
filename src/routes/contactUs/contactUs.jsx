@@ -200,9 +200,11 @@ const ContactUs = () => {
                             <Typography variant="heading">ADDRESS & MAP</Typography>
                         </div>
                         <div className={styles["body-text"]}>
-                            <Typography variant="body"><b>Garage@EEE Workshop:</b></Typography>
-                            <Typography variant="body">50 Nanyang Ave, Nanyang Technological University</Typography>
-                            <Typography variant="body">Singapore, S5639798</Typography>
+                            <Typography variant="body"><b>Garage@EEE Office:</b></Typography>
+                            <Typography variant="body">S2.2-B4-05</Typography>
+                            <Typography variant="body">50 Nanyang Ave</Typography>
+                            <Typography variant="body">Nanyang Technological University</Typography>
+                            <Typography variant="body">639798 Singapore</Typography>
                         </div>
                         <div className={styles["body-text"]}>
                             <Typography variant="body"><b>Opening Hours: </b>Weekdays 9am - 5pm</Typography>
