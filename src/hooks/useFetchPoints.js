@@ -7,7 +7,7 @@ import { useCart } from "../contexts/CartProvider";
 export default function useFetchPoints(matric) {
   const { userCredits, setCredits } = useCart();
   const [loading, setLoading] = useState(false);
-  const { token } = useAuth();
+  const { token, logoutAction } = useAuth();
 
   useEffect(() => {
     if (!matric) return;
@@ -32,6 +32,9 @@ export default function useFetchPoints(matric) {
         }, config);
         if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
           setCredits(response.data.info.currentInnocredit);
+        }
+        if (response.data.error === 'Invalid token') {
+          return logoutAction(true);
         }
       } catch (err) {
         console.error(err);

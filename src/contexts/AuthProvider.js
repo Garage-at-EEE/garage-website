@@ -15,7 +15,6 @@ function AuthProvider({ children }) {
     useEffect(() => {
         if (token) {
         localStorage.setItem("authToken", token);
-        console.log("Token saved:", token);
         } else {
         localStorage.removeItem("authToken");
         }
@@ -46,7 +45,7 @@ function AuthProvider({ children }) {
         setToken(jwt);
     }
 
-    const logoutAction = () => {
+    const logoutAction = (wasExpired=false) => {
         setName(null);
         setMatric("");
         setPasscode("");
@@ -55,6 +54,7 @@ function AuthProvider({ children }) {
         localStorage.removeItem("name");
         localStorage.removeItem("matric");
         localStorage.removeItem("token");
+        localStorage.setItem("authStatus", wasExpired ? "expired" : "loggedOut");
         clearCart();
         window.location.reload();
     }

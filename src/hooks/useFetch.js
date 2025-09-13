@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from "react";
+import { useAuth } from "../contexts/AuthProvider";
 
 const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const control = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const { logoutAction } = useAuth();
 
   const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
@@ -67,6 +69,10 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
 
       const responseData = await response.json();
       console.log("Parsed response data:", responseData);
+
+      if (responseData.error === 'Invalid token') {
+        return logoutAction(true);
+      }
 
       setData((prev) =>
         JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
