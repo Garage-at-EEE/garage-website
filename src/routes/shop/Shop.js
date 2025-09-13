@@ -126,8 +126,18 @@ const Shop = () => {
           {showWarning && (
             <div className={styles['purchase-warning-backdrop']}>
               <div className={styles['purchase-warning-modal']}>
-                {insufficientCredits && <Typography variant='smallHeading'>You have insufficient credits to add this item.</Typography>}
-                {emptyCart && <Typography variant='smallHeading'>Your cart is empty.</Typography>}
+                {insufficientCredits &&
+                <>
+                  <Typography variant='smallHeading'>Insufficient Credits</Typography>
+                  <Typography variant='body'>You don't have enough credits to add this item.</Typography>
+                </>
+                }
+                {emptyCart && 
+                <>
+                  <Typography variant='smallHeading'>Empty Cart</Typography>
+                  <Typography variant='body'>Please add items before proceeding to checkout.</Typography>
+                </>
+                }
                 <button   onClick={() => {
                   setShowWarning(false);
                   setEmptyCart(false);

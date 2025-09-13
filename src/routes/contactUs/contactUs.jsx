@@ -8,11 +8,9 @@ import styles from "./ContactUs.module.css";
 import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 import { type } from "@testing-library/user-event/dist/type";
+import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/Constants";
 
 const ContactUs = () => {
-    // const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx1L0gavMWf78QhEVwQyik5Rf3TCA5mgNy29yQSe28APV96QKC8u2X7sB3fwTEVJMP3BA/exec";
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwLdGh3B-K4WMjKadjVrTlf22I4sOCimkA3FQF0ILcPWNfYr3i-FgoXPWtnvKK6VQiVfQ/exec";
-
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -62,7 +60,7 @@ const ContactUs = () => {
                 type: "contactUs"
             };
 
-            const response = await axios.post(UPLOAD_URL, JSON.stringify(payload), {
+            const response = await axios.post(CONTACT_US_UPLOAD_DOMAIN, JSON.stringify(payload), {
                 headers: { 
                     "Content-Type": "text/plain;charset=utf-8",
                 },
