@@ -174,15 +174,17 @@ const Shop = () => {
           <div className={styles['shop-items-container']}>
             {items.map((item, index) => (
               <div className={styles['shop-item']} key={index}>
-                <Image
-                  src={item.image?.preview_url ? item.image.preview_url : "/default-placeholder.png"}
-                  alt={item.itemName ? item.itemName : "Unnamed Item"}
-                  className={styles['item-image']}
-                  onError={(e) => {
+                <div className={styles['image-wrapper']}>
+                  <Image
+                    src={item.image?.preview_url ? item.image.preview_url : "/default-placeholder.png"}
+                    alt={item.itemName ? item.itemName : "Unnamed Item"}
+                    className={styles['item-image']}
+                    onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "/default-placeholder.png";
                   }}
-                />
+                  />
+                </div>
 
                 <Typography variant="subtitle" className={styles['item-description']}>
                   {item.description || "No description available."}

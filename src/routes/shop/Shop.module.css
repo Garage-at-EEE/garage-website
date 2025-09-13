@@ -24,7 +24,7 @@
 .shop-item {
   background-color: #fff;
   width: 100%;
-  height: 550px;
+  height: auto;
   border: 1px solid #eaeaea;
   border-radius: 1.5rem;
   padding: 16px;
@@ -43,12 +43,14 @@
 }
 
 .item-image {
+  object-fit: contain;
   width: 100%;
-  height: 350px;
-  object-fit: contain; 
-  background-color: #f9f9f9; 
+  height: auto;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background-color: #f9f9f9;
   margin-bottom: 1rem;
-  transition: opacity 0.3s ease; 
+  transition: opacity 0.3s ease;
   border-radius: 1.5rem;
 }
 
@@ -315,27 +317,9 @@
   height: 24px; 
 }
 
-[class*="image-wrapper"] {
-  border-radius: 0 !important;
-}
-
 @media (max-width: 1200px) {
   .shop-item {
-    width: 100%;
-    height: auto;
-    min-height: 550px;
     overflow: visible;
-  }
-  .Image .image-wrapper{
-    border-radius: 0;
-  }
-
-  .item-image {
-    width: 100%;
-    height: auto;
-    max-height: 368px;
-    object-fit: contain;
-    margin-bottom: 1rem;
   }
 
   .credits {
@@ -378,20 +362,10 @@
   }
 
   .shop-item {
-    width: 100%;
-    min-height: 384px;
     overflow: visible;
-  }
-  .Image .image-wrapper{
-    border-radius: 0;
   }
 
   .item-image {
-    width: 100%;
-    height: auto;
-    max-height: 292px;
-    object-fit: contain;
-    margin-bottom: 1rem;
     border-radius: 8px;
   }
 
