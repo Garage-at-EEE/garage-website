@@ -61,20 +61,6 @@
   align-items: left;
 }
 
-.card-wrapper {
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-}
-
-.grid-wrapper {
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--content-gap-mobile);
-  width: 100%;
-  align-items: center;
-}
-
 .loading-wrapper {
   width: 100%;
   height: 180px;
