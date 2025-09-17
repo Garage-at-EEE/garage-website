@@ -28,9 +28,9 @@
 
 .banner-space {
   display: flex;
-  justify-content: space-between; /* Elements at opposite ends with space in between */
+  justify-content: space-between;
   align-items: flex-end;
-  width: 100%; /* Adjust the width of the container as needed */
+  width: 100%;
 }
 
 .banner-image {
@@ -61,6 +61,23 @@
   align-items: left;
 }
 
+.join-text .text-section button{
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--garage-blue);
+}
+
+.join-text .text-section button:disabled{
+  background-color: #cccccc;
+}
+
+.project-cards-bottom-text,
+.support-cards-bottom-text {
+  text-align: center;
+}
+
 .loading-wrapper {
   width: 100%;
   height: 180px;
@@ -85,6 +102,13 @@
 }
 .custom-photo-layout > :nth-child(4) { grid-area: right1; }
 .custom-photo-layout > :nth-child(5) { grid-area: right2; }
+
+.sharing-cards-bottom-text {
+  text-align: center;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 400;
+}
 
 @media (max-width: 1200px) {
   .scroll-more {
@@ -121,6 +145,10 @@
       "right1 right2";
     grid-template-columns: 1fr 1fr;
   }
+  .sharing-cards-bottom-text{
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -144,5 +172,9 @@
       "right1"
       "right2";
     grid-template-columns: 1fr;
+  }
+  .sharing-cards-bottom-text{
+    font-size: 16px;
+    line-height: 24px;
   }
 }
