@@ -21,22 +21,12 @@ const Checkout = () => {
   const { token, name, matric } = useAuth();
   const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
 
-  console.log("User Credits:", userCredits);
-  console.log("Cart Count:", cartCount);
-  console.log("Cart Items:", cartItems);
-
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    console.log("Cart Updated:", cartItems);
-  }, [cartItems]);
 
   const totalCost = cartItems.reduce((sum, item) => {
     const quantity = item.quantity;
     return sum + item.cost * quantity;
   }, 0);
-
-  console.log("Total Cost:", totalCost);
 
   const remainingCredits = userCredits - totalCost;
 

@@ -45,8 +45,6 @@ const Acknowledgement = () => {
   orderDetails.length === 0 ? matric : null
   );
 
-  console.log("cartItems:", cartItems);
-
   useEffect(() => {
     setIsLoadingCredits(loading);
     if (credits !== undefined && credits !== null) {
@@ -57,8 +55,6 @@ const Acknowledgement = () => {
     const sendOrder = async () => {
       try {
         setLoading(true);
-
-        console.log("Sending request with payload:", payload);
 
         const response = await axios.post(
           "https://script.google.com/macros/s/AKfycbx0hV8Qlw1EDDLNkGDU00pSZPbYU5EAaj-wKLTstG0qrkt8Br_aGJChemqrkypjPychxQ/exec",
@@ -79,7 +75,6 @@ const Acknowledgement = () => {
           console.log("Purchase successful:", response.data.info);
           setCredits(payload.remainingCredits);
           confirmation.current = true;
-          console.log("Response", response.data);
           return;
         }
         else {

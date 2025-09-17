@@ -65,6 +65,8 @@ const AssignedProjects = () => {
     acadYear = "AY" + year + "/" + (year+1);
   }
 
+  console.log("Response received:", data);
+
   return (
     <Transition isLoading={isLoading || !data}>
       <PageTemplate>
@@ -77,9 +79,8 @@ const AssignedProjects = () => {
 
             <Grid>
               {data.map((card, index) => (
-                <div className={styles["project-item"]}>
+                <div key={card.name} className={styles["project-item"]}>
                   <APCard
-                    key={card.name}
                     image={card.coverPic}
                     to={`${index}/`}
                     bottomText={card.name}

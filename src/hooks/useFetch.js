@@ -61,14 +61,13 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
         signal: controller.signal,
         headers: memoizedHeaders,
       });
-      console.log("Response received:", response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const responseData = await response.json();
-      console.log("Parsed response data:", responseData);
+      console.log("Response data:", responseData);
 
       if (responseData.error === 'Invalid token') {
         return logoutAction(true);
