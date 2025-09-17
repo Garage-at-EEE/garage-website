@@ -10,7 +10,7 @@ import ProjectDetail from "./routes/projects/ProjectDetail";
 import NotFound from "./routes/notFound/NotFound";
 import Facilities from "./routes/facilities/Facilities";
 import NewsletterPage from "./routes/newsletter/NewsletterPage";
-import ContactUsPage from "./routes/contactUs/ContactUs";
+import ContactUsPage from "./routes/contactUs/contactUs";
 import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
