@@ -8,7 +8,7 @@ import PageGap from "../../components/pageGap/PageGap";
 import Image from '../../components/image/Image';
 import coinIcon from '../../icons/coin-icon.png';
 import styles from './Acknowledgement.module.css';
-import { API_DOMAIN } from '../../utils/Constants';
+import { PURCHASE_API_DOMAIN } from '../../utils/Constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';
@@ -57,7 +57,7 @@ const Acknowledgement = () => {
         setLoading(true);
 
         const response = await axios.post(
-          "https://script.google.com/macros/s/AKfycbx0hV8Qlw1EDDLNkGDU00pSZPbYU5EAaj-wKLTstG0qrkt8Br_aGJChemqrkypjPychxQ/exec",
+          PURCHASE_API_DOMAIN,
           payload,
           {
             redirect: "follow",

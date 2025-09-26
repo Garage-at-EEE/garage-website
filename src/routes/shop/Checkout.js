@@ -10,7 +10,6 @@ import coinIcon from '../../icons/coin-icon.png';
 import trashIcon from "../../icons/trash.svg";
 import Image from '../../components/image/Image';
 import styles from './Checkout.module.css';
-import { API_DOMAIN } from '../../utils/Constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
