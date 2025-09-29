@@ -65,10 +65,11 @@ const ContactUs = () => {
                     "Content-Type": "text/plain;charset=utf-8",
                 },
             });
+            console.log("Response from server:", response);
 
             if (!response.data.success) throw new Error(response.data.error);
 
-            setMessageStatus("Form submitted successfully!");
+            setMessageStatus("Form submitted successfully. We will get back to you soon!");
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -80,8 +81,8 @@ const ContactUs = () => {
             setFilesToUpload([]);
             setResetKey(prevKey => prevKey + 1);
         } catch (error) {
-            console.error("Error during upload:", error);
-            setMessageStatus("Upload failed. Please try again.");
+            console.error("Error during submission:", error);
+            setMessageStatus("Submission failed. Please try again.");
         } finally {
             setIsLoading(false); // Hide loading spinner after form is submitted successfully
         }
