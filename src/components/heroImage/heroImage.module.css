@@ -15,10 +15,15 @@
   display: flex;
 }
 
+.top-space {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Adjust the width of the container as needed */
+}
+
 .heading-space {
   display: flex;
   justify-content: space-between; /* Elements at opposite ends with space in between */
-  flex-wrap: wrap;
   align-items: center;
   width: 100%; /* Adjust the width of the container as needed */
   gap: 1.5rem;

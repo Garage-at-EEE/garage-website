@@ -16,8 +16,6 @@ function Database() {
     url: API_DOMAIN + "?type=database&token=" + token, //Token REQUIRED to access
   });
   
-  console.log(error); //Debug line
-
   const text = `Welcome ${user.name} (${user.matric}) to the Garage@EEE Database!`
 
   return (

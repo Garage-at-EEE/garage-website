@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from "react";
+import { useAuth } from "../contexts/AuthProvider";
 
 const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const control = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
+  const { logoutAction } = useAuth();
 
   const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
@@ -25,12 +27,33 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
     const cachedData = localStorage.getItem(url);
     const cacheTimestamp = localStorage.getItem(`${url}_timestamp`);
     const cacheExpiry = 1000 * 60 * 5; // 5 minutes
+    const localVersion = localStorage.getItem(`${url}_version`);
 
-    if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
+    if (url.includes("type=shopInventory")) {
+      const newUrl = new URL(url);
+
+      newUrl.searchParams.set("type", "shopInventoryVersion");
+
+      const response = await fetch(newUrl.toString());
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const { cacheVersion: serverVersion } = await response.json();
+
+      if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry && parseInt(localVersion, 10) === parseInt(serverVersion, 10)) {
+        console.log("Using cached data:", JSON.parse(cachedData));
+        setData(JSON.parse(cachedData));
+        setIsLoading(false);
+        return;
+      }
+    }
+    else{
+      if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
       console.log("Using cached data:", JSON.parse(cachedData));
       setData(JSON.parse(cachedData));
       setIsLoading(false);
       return;
+    }
     }
 
     try {
@@ -38,14 +61,17 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
         signal: controller.signal,
         headers: memoizedHeaders,
       });
-      console.log("Response received:", response);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const responseData = await response.json();
-      console.log("Parsed response data:", responseData);
+      console.log("Response data:", responseData);
+
+      if (responseData.error === 'Invalid token') {
+        return logoutAction(true);
+      }
 
       setData((prev) =>
         JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
@@ -54,6 +80,14 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
       if (useCache) {
         localStorage.setItem(url, JSON.stringify(responseData));
         localStorage.setItem(`${url}_timestamp`, Date.now().toString());
+
+        if (url.includes("type=shopInventory")) {
+          const newUrl = new URL(url);
+          newUrl.searchParams.set("type", "shopInventoryVersion");
+          const response = await fetch(newUrl.toString());
+          const { cacheVersion: serverVersion } = await response.json();
+          localStorage.setItem(`${url}_version`, serverVersion);
+        }
       }
     } catch (err) {
       if (err.name !== "AbortError") {

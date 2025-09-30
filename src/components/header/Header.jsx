@@ -17,6 +17,7 @@ import { useAuth } from "../../contexts/AuthProvider";
 import LoginMenu from "./LoginMenu";
 
 import styles from "./Header.module.css";
+import DropdownMenu from "./DropdownMenu";
 
 const MenuButton = ({ open, setOpen }) => {
   const handleClick = (e) => {
@@ -58,12 +59,9 @@ const MenuButton = ({ open, setOpen }) => {
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-
   const breakpoint = useBreakpoint();
-
   const { scrollY } = useScroll();
   const [shadow, setShadow] = useState(false);
-
   const { name } = useAuth();
 
   const topPaddings = {
@@ -91,32 +89,41 @@ const Header = () => {
       to: "/events",
     },
     {
+      label: "Recruitment",
+      dropdown: [
+        { label: "Ambassador", to: "/#ambassadors" },
+        { label: "Innovator",  to: "/#innovators"  },
+        { label: "Tinkering",  to: "/#tinkering"   },
+      ],
+    },
+    {
       label: "Facilities",
       to: "/facilities",
     },
     {
       label: "Newsletter",
       to: "/newsletter",
-    },
+    },  
     {
-      label: "Shop",
-      to: "/shop",
-    },
+      label: "Contact Us",
+      to: "/contact-us",
+    }
   ];
 
   const protected_navlinks = [
     {
       label: "Shop",
       to: "/shop",
-    },
-    {
-      label: "Database",
-      to: "/database",
-    },
+    }
+    // },
+    // {
+    //   label: "Database",     //WIP
+    //   to: "/database",
+    // },
   ];
 
   useEffect(() => {
-    if (breakpoint !== "mobile") handleClose();
+    if (breakpoint !== "tablet") handleClose();
   }, [breakpoint]);
 
   return (
@@ -131,9 +138,18 @@ const Header = () => {
             <Link to="/" onClick={handleClose} className={styles["logo"]}>
               <Logo />
             </Link>
-            {breakpoint !== "mobile" ? (
+
+            {/* DESKTOP HEADER */}
+            {breakpoint === "desktop" ? (
               <nav className={styles["nav"]}>
-                {navlinks.map((navlink) => (
+              {navlinks.map((navlink) =>
+                navlink.dropdown ? (
+                  <DropdownMenu
+                    key={navlink.label}
+                    header={navlink.label}
+                    navlinks={navlink.dropdown}
+                  />
+                ) : (
                   <Link
                     key={navlink.label}
                     to={navlink.to}
@@ -143,6 +159,7 @@ const Header = () => {
                   </Link>
                 ))}
 
+                {/* LAST Link in Header => Login if unauth | {name} if auth*/}
                 {name === null ? (
                   <Link
                     key="Login"
@@ -160,9 +177,11 @@ const Header = () => {
               <MenuButton open={open} setOpen={setOpen} />
             )}
           </div>
-          {breakpoint === "mobile" && (
+
+          {/* MOBILE/TABLET HEADER */}
+          {(breakpoint === "mobile" || breakpoint === "tablet") && (
             <motion.nav
-              className={styles["drawer"]}
+              className={styles.drawer}
               initial={false}
               animate={open ? { height: "auto" } : { height: 0 }}
               transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] }}
@@ -179,28 +198,36 @@ const Header = () => {
                       ease: [0.7, 0, 0.3, 1],
                     }}
                   >
-                    <div className={styles["separator"]} />
-                    {navlinks.map((navlink, index) => (
-                      <div
-                        key={navlink.label}
-                        style={{ animationDelay: `${0.1 * index}s` }}
-                        className={styles["mobile-link"]}
-                      >
-                        <Link
-                          to={navlink.to}
-                          className={styles["navlink"]}
-                          onClick={handleClose}
-                        >
-                          <Typography variant="body">
-                            {navlink.label}
-                          </Typography>
-                        </Link>
+                    {/* single divider at top */}
+                    <div className={styles.separator} />
+
+                    {navlinks.map((navlink) => (
+                      <div key={navlink.label} className={styles["tablet-link"]}>
+                        {navlink.dropdown ? (
+                          <DropdownMenu
+                            key={navlink.label}
+                            header={navlink.label}
+                            navlinks={navlink.dropdown}
+                          />
+                        ) : (
+                          <Link
+                            to={navlink.to}
+                            className={styles[navlink]}
+                            onClick={handleClose}
+                          >
+                            <Typography variant="body">
+                              {navlink.label}
+                            </Typography>
+                          </Link>
+                        )}
                       </div>
                     ))}
+
+                    {/* LAST Link in Header => Login if unauth | {name} if auth*/}
                     <div
                       key="Login"
                       style={{ animationDelay: `${0.1 * navlinks.length}s` }}
-                      className={styles["mobile-link"]}
+                      className={styles["tablet-link"]}
                     >
                       {name===null ? (
                         <Link
