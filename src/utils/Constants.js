@@ -1,8 +1,15 @@
-// Update this when using new AppScript Deployment (now: API 1.0.6)
+// require access to garage database gsheet (API 1.0.8)
 export const API_DOMAIN =
-"https://script.google.com/macros/s/AKfycbxYJlf2ZSuNApWCfk8CxcSC8gl9p-iHn1EI8vmz3ytIuQuJog2xgAsqTTo7-Q-8fdu-uQ/exec";
-// Do not update LOGIN_DOMAIN! Used for login POST method
-export const LOGIN_DOMAIN =
-"https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec";
+    "https://script.google.com/macros/s/AKfycbx0hV8Qlw1EDDLNkGDU00pSZPbYU5EAaj-wKLTstG0qrkt8Br_aGJChemqrkypjPychxQ/exec";
 
-export const ASSIGNED_PROJECTS_SIGNUP_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSejqiZy4ggazdTJYQBebvnmH4Tqh0IizxJZ4ydAapymEOluYQ/viewform?usp=sf_link";
+// require garage official email (API 1.0.7)
+export const CONTACT_US_UPLOAD_DOMAIN = 
+    "https://script.google.com/macros/s/AKfycbz7GLkV_mfPQCQK71MJ37JETpHHJzJ4jASp4fUzGwHgSsQk0_kgkk_6iiyKX8Windioww/exec";
+    
+// require garage official email (API 1.0.7)
+export const PURCHASE_API_DOMAIN = 
+    "https://script.google.com/macros/s/AKfycbz7GLkV_mfPQCQK71MJ37JETpHHJzJ4jASp4fUzGwHgSsQk0_kgkk_6iiyKX8Windioww/exec";
+
+
+    
+    

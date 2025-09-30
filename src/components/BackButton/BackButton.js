@@ -3,13 +3,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as ChevronLeft } from "../../icons/arrow_back_ios.svg";
 import Button from "../button/Button";
 
-const BackButton = () => {
+const BackButton = ({ to }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const hasPreviousState = location.key !== "default";
 
   const goBack = () => {
-    if (hasPreviousState) {
+    if (to) {
+      navigate(to);
+    } else if (hasPreviousState) {
       navigate(-1);
     } else {
       navigate("/");
@@ -27,5 +29,6 @@ const BackButton = () => {
     </Button>
   );
 };
+
 
 export default BackButton;

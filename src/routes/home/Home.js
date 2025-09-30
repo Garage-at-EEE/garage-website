@@ -5,14 +5,18 @@ import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/Constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
-
+import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Button from "../../components/button/Button";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import Image from "../../components/image/Image";
 import Newsletter from "../../components/newsletter/Newsletter";
+import { useAuth } from "../../contexts/AuthProvider"; 
 
 const Home = () => {
+  const [authStatus, setAuthStatus] = useState(() => localStorage.getItem("authStatus") || "loggedOut");
+  const [showWarning, setShowWarning] = useState(false);
+
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=home",
   });
@@ -29,10 +33,34 @@ const Home = () => {
     url: API_DOMAIN + "?type=newsletter",
   });
 
+  useEffect(() => {
+    if (authStatus === "expired") {
+      setShowWarning(true);
+    }
+  }, [authStatus]);
+
+  const handleExpiredLogout = () => {
+    setShowWarning(false);
+    setAuthStatus("loggedOut");
+    localStorage.setItem("authStatus", "loggedOut");
+  };
+
   return (
-    <Transition isLoading={isLoading}>
-      {!isLoading && (
+    <Transition isLoading={isLoading || !data}>
+      {data && (
         <PageTemplate>
+          {showWarning && (
+            <div className={styles['expired-warning-backdrop']}>
+              <div className={styles['expired-warning-modal']}>
+                <Typography variant='smallHeading'>Session Timeout</Typography>
+                <Typography variant='body'>We have logged you out to protect you. Please log in again.</Typography>
+                <button   onClick={() => {
+                  handleExpiredLogout();
+                }}><Typography variant='body'>Confirm</Typography>
+                </button>
+              </div>
+            </div>
+          )}
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>
               <div className={styles["banner-space"]}>
@@ -154,7 +182,7 @@ const Home = () => {
                     <Typography variant={"body"}>{data.tinkeringRecruitment}</Typography>
                   </div>
                   <Button to="/tinkeringProject">
-                    Find out more!
+                    Find out more
                   </Button>
                 </div>
                 <Image

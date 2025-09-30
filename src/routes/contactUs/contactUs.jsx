@@ -4,14 +4,13 @@ import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import axios from "axios";
 
-import styles from "./contactUs.module.css";
+import styles from "./ContactUs.module.css";
 import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
+import { type } from "@testing-library/user-event/dist/type";
+import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/Constants";
 
 const ContactUs = () => {
-    // const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbx1L0gavMWf78QhEVwQyik5Rf3TCA5mgNy29yQSe28APV96QKC8u2X7sB3fwTEVJMP3BA/exec";
-    const UPLOAD_URL = "https://script.google.com/macros/s/AKfycbwLdGh3B-K4WMjKadjVrTlf22I4sOCimkA3FQF0ILcPWNfYr3i-FgoXPWtnvKK6VQiVfQ/exec";
-
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -58,17 +57,19 @@ const ContactUs = () => {
             const payload = {
                 ...formData,
                 files: filesPayload.length > 0 ? filesPayload : [],
+                type: "contactUs"
             };
 
-            const response = await axios.post(UPLOAD_URL, JSON.stringify(payload), {
+            const response = await axios.post(CONTACT_US_UPLOAD_DOMAIN, JSON.stringify(payload), {
                 headers: { 
                     "Content-Type": "text/plain;charset=utf-8",
                 },
             });
+            console.log("Response from server:", response);
 
             if (!response.data.success) throw new Error(response.data.error);
 
-            setMessageStatus("Form submitted successfully!");
+            setMessageStatus("Form submitted successfully. We will get back to you soon!");
             setFormData({
                 firstName: "",
                 lastName: "",
@@ -80,8 +81,8 @@ const ContactUs = () => {
             setFilesToUpload([]);
             setResetKey(prevKey => prevKey + 1);
         } catch (error) {
-            console.error("Error during upload:", error);
-            setMessageStatus("Upload failed. Please try again.");
+            console.error("Error during submission:", error);
+            setMessageStatus("Submission failed. Please try again.");
         } finally {
             setIsLoading(false); // Hide loading spinner after form is submitted successfully
         }
@@ -198,9 +199,11 @@ const ContactUs = () => {
                             <Typography variant="heading">ADDRESS & MAP</Typography>
                         </div>
                         <div className={styles["body-text"]}>
-                            <Typography variant="body"><b>Garage@EEE Workshop:</b></Typography>
-                            <Typography variant="body">50 Nanyang Ave, Nanyang Technological University</Typography>
-                            <Typography variant="body">Singapore, S5639798</Typography>
+                            <Typography variant="body"><b>Garage@EEE Office:</b></Typography>
+                            <Typography variant="body">S2.2-B4-05</Typography>
+                            <Typography variant="body">50 Nanyang Ave</Typography>
+                            <Typography variant="body">Nanyang Technological University</Typography>
+                            <Typography variant="body">639798 Singapore</Typography>
                         </div>
                         <div className={styles["body-text"]}>
                             <Typography variant="body"><b>Opening Hours: </b>Weekdays 9am - 5pm</Typography>

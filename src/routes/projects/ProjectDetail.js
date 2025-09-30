@@ -17,7 +17,7 @@ function ProjectDetail() {
     url: API_DOMAIN + "?type=projectInfo&index=" + id,
   });
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && (
           <PageGap>

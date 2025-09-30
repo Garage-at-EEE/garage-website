@@ -109,30 +109,6 @@ select.field:invalid {
     gap: var(--para-gap-desktop);
 }
 
-.upload-box {
-    width: 100%;
-    padding: 20px 14px;
-    border: 2px dashed #ccc;
-    /* Dotted border */
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-.upload-box:hover {
-    border-color: var(--garage-blue-hover);
-}
-
-/*.upload-text {
-    color: #6A6A6A;
-}*/
-
 .submit-text {
     font-weight: bold;
 }

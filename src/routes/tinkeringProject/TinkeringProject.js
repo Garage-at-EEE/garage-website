@@ -24,8 +24,8 @@ const TinkeringProjects = () => {
   });
 
   return (
-    <Transition isLoading={isLoading}>
-      {!isLoading && (
+    <Transition isLoading={isLoading || !data}>
+      {data && (
         <PageTemplate>
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>
@@ -45,8 +45,6 @@ const TinkeringProjects = () => {
                 className={styles["banner-image"]}
                 src={data[0].bannerImage}
                 alt="Tinkering Cover"
-                // objectFit="contain"
-                // style={{ width: "100%", height: "auto" }}
               />
             </div>
             <section className={styles["section-wrapper"]}>
@@ -63,9 +61,8 @@ const TinkeringProjects = () => {
                     <Typography variant="body">{data[0].howToJoin[1]}</Typography>
                     <div> 
                     <Button
-                      style={{ width: '100%', textAlign: 'center', padding: '1rem',  backgroundColor: data[0].registrationLink ? '#284D8A' : '#D9D9D9', color: data[0].registrationLink ? '#FFFFFF' : '#737373'}}
                       to={data[0].registrationLink ? data[0].registrationLink : undefined}
-                      disabled={!data.registrationLink}
+                      disabled={!data[0].registrationLink}
                       >
                       {data[0].registrationLink ? "Register Now" : "Registration Closed"}
                     </Button>
@@ -91,11 +88,8 @@ const TinkeringProjects = () => {
                         <Card
                           key={imgIndex}
                           image={img}
-                          bottomText={
-                            <Typography variant="body" style={{ textAlign: "center" }}>
-                            {card.garageAssignedNames || ""}
-                            </Typography>
-                          }
+                          bottomText={card.garageAssignedNames || ""}
+                          bottomTextClassName={styles["project-cards-bottom-text"]}
                         />
                       ))}
                     </div>
@@ -110,11 +104,9 @@ const TinkeringProjects = () => {
               <div>
                 <Button to="/assigned_projects"  
                   style={{ width: '100%', textAlign: 'center', padding: '1rem' }}
-                  
-                  // onClick={() => window.open('https://sites.google.com/d/1375GO9eR4xEgVgK-hdt964GvOFG7iJHi/p/1vrnWRM6KpcNQkk7pSXPpv31h6rmF1FXw/edit')} variant="filled"
-                  > 
-                  View All 
-                </Button> 
+                  >
+                  View All
+                </Button>
               </div>
             </section>
 
@@ -126,26 +118,21 @@ const TinkeringProjects = () => {
                   {data.map((card, index) => (
                     <div key={index} className="card-group">
                       {(card.supportImages || []).map((img, imgIndex) => (
-                        <Card
-                          key={imgIndex}
-                          image={img}
-                          bottomText={
-                            <>
-                              <Typography
-                                variant="smallHeading"
-                                style={{ textAlign: "center", fontWeight: "bold" }}
-                              >
-                                {card.supportImageTitles || ""}
-                              </Typography>
-                              <Typography
-                                variant="body"
-                                style={{ textAlign: "center", marginTop: "0.5rem" }}
-                              >
-                                {card.supportImageDescriptions || ""}
-                              </Typography>
-                            </>
-                          }
-                        />
+                        <div key={imgIndex} className="card-with-description">
+                          <Card
+                            key={imgIndex}
+                            image={img}
+                            bottomText={card.supportImageTitles || ""}
+                            bottomTextClassName={styles["support-cards-bottom-text"]}
+                          />
+                          <Typography
+                            variant="body"
+                            textAlign="center"
+                            style={{ marginTop: "0.5rem" }}
+                          >
+                            {card.supportImageDescriptions || ""}
+                          </Typography>
+                        </div>
                       ))}
                     </div>
                   ))}
@@ -204,11 +191,8 @@ const TinkeringProjects = () => {
                               <Card
                                 key={i}
                                 image={img}
-                                bottomText={
-                                  <Typography variant="body" style={{ textAlign: "center" }}>
-                                    {desc}
-                                  </Typography>
-                                }
+                                bottomText={desc}
+                                bottomTextClassName={styles["sharing-cards-bottom-text"]}
                               />
                             )
                           );
@@ -234,7 +218,6 @@ const TinkeringProjects = () => {
                           <Typography key={i} variant="body">
                             {index === 0 && i === 1 ? (
                               <a
-                                // replace with link to tab for garage assigned projects
                                 href="/assigned_projects"
                                 target="_blank"
                                 rel="noopener noreferrer"

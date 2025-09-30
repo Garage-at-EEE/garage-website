@@ -65,9 +65,3 @@
 .remove-icon:hover {
     opacity: 0.5;
 }
-
-.upload-message {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
-}

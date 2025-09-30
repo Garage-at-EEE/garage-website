@@ -18,8 +18,6 @@ import LoginMenu from "./LoginMenu";
 
 import styles from "./Header.module.css";
 import DropdownMenu from "./DropdownMenu";
-import { ReactComponent as ArrowDown } from "../../icons/arrow_down.svg";
-import { HashLink } from "react-router-hash-link";
 
 const MenuButton = ({ open, setOpen }) => {
   const handleClick = (e) => {
@@ -61,13 +59,9 @@ const MenuButton = ({ open, setOpen }) => {
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [mobileSubOpen, setMobileSubOpen] = useState(null);
-
   const breakpoint = useBreakpoint();
-
   const { scrollY } = useScroll();
   const [shadow, setShadow] = useState(false);
-
   const { name } = useAuth();
 
   const topPaddings = {
@@ -120,15 +114,16 @@ const Header = () => {
     {
       label: "Shop",
       to: "/shop",
-    },
-    {
-      label: "Database",
-      to: "/database",
-    },
+    }
+    // },
+    // {
+    //   label: "Database",     //WIP
+    //   to: "/database",
+    // },
   ];
 
   useEffect(() => {
-    if (breakpoint !== "mobile") handleClose();
+    if (breakpoint !== "tablet") handleClose();
   }, [breakpoint]);
 
   return (
@@ -144,8 +139,8 @@ const Header = () => {
               <Logo />
             </Link>
 
-            {/* DESKTOP/TABLET HEADER */}
-            {breakpoint !== "mobile" ? (
+            {/* DESKTOP HEADER */}
+            {breakpoint === "desktop" ? (
               <nav className={styles["nav"]}>
               {navlinks.map((navlink) =>
                 navlink.dropdown ? (
@@ -183,8 +178,8 @@ const Header = () => {
             )}
           </div>
 
-          {/* MOBILE HEADER */}
-          {breakpoint === "mobile" && (
+          {/* MOBILE/TABLET HEADER */}
+          {(breakpoint === "mobile" || breakpoint === "tablet") && (
             <motion.nav
               className={styles.drawer}
               initial={false}
@@ -207,67 +202,17 @@ const Header = () => {
                     <div className={styles.separator} />
 
                     {navlinks.map((navlink) => (
-                      <div key={navlink.label} className={styles["mobile-link"]}>
+                      <div key={navlink.label} className={styles["tablet-link"]}>
                         {navlink.dropdown ? (
-                          <>
-                            {/* 1) Toggle “Recruitment” submenu open/closed */}
-                            <a
-                              href="#"
-                              className={styles.navlink}
-                              onClick={(e) => {
-                                e.preventDefault();
-                                setMobileSubOpen((prev) =>
-                                  prev === navlink.label ? null : navlink.label
-                                );
-                              }}
-                            >
-                              <Typography variant="body">
-                                {navlink.label}{" "}
-                                <ArrowDown
-                                  className={
-                                    mobileSubOpen === navlink.label
-                                      ? styles.rotated
-                                      : ""
-                                  }
-                                />
-                              </Typography>
-                            </a>
-
-                            {/* 2) Only when open, map each sub‐item to a HashLink */}
-                            {mobileSubOpen === navlink.label && (
-                              <div className={styles["mobile-submenu"]}>
-                                {navlink.dropdown.map((item) => (
-                                  <HashLink
-                                    key={item.label}
-                                    smooth
-                                    to={item.to}        // “/#innovators” etc.
-                                    scroll={(el) => {
-                                      // offset for fixed header
-                                      const headerHeight = 80;
-                                      const y =
-                                        el.getBoundingClientRect().top +
-                                        window.pageYOffset -
-                                        headerHeight;
-                                      window.scrollTo({ top: y, behavior: "smooth" });
-                                    }}
-                                    className={styles.navlink}
-                                    onClick={() => {
-                                      handleClose();
-                                      setMobileSubOpen(null);
-                                    }}
-                                  >
-                                    <Typography variant="body">
-                                      {item.label}
-                                    </Typography>
-                                  </HashLink>
-                                ))}
-                              </div>
-                            )}
-                          </>
+                          <DropdownMenu
+                            key={navlink.label}
+                            header={navlink.label}
+                            navlinks={navlink.dropdown}
+                          />
                         ) : (
                           <Link
                             to={navlink.to}
-                            className={styles.navlink}
+                            className={styles[navlink]}
                             onClick={handleClose}
                           >
                             <Typography variant="body">
@@ -282,7 +227,7 @@ const Header = () => {
                     <div
                       key="Login"
                       style={{ animationDelay: `${0.1 * navlinks.length}s` }}
-                      className={styles["mobile-link"]}
+                      className={styles["tablet-link"]}
                     >
                       {name===null ? (
                         <Link
