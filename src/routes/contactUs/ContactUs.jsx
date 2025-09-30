@@ -7,7 +7,6 @@ import axios from "axios";
 import styles from "./ContactUs.module.css";
 import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
-import { type } from "@testing-library/user-event/dist/type";
 import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/Constants";
 
 const ContactUs = () => {

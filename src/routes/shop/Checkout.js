@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
@@ -12,13 +11,11 @@ import Image from '../../components/image/Image';
 import styles from './Checkout.module.css';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
-import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 
 const Checkout = () => {
-  const location = useLocation();
   const navigate = useNavigate();
   const { token, name, matric } = useAuth();
-  const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
+  const { userCredits, cartCount, cartItems, setCart } = useCart();
 
   const [errorMessage, setErrorMessage] = useState("");
 

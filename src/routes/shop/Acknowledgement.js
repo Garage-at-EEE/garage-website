@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
@@ -15,7 +15,7 @@ import axios from 'axios';
 import useFetchPoints from "../../hooks/useFetchPoints";
 
 const Acknowledgement = () => {
-  const { userCredits, cartCount, cartItems, setCredits, setCart } = useCart();
+  const { userCredits, cartItems, setCredits, setCart } = useCart();
   const { matric } = useAuth();
   const [isLoading, setLoading] = useState(false);
   const [isLoadingCredits, setIsLoadingCredits] = useState(false);

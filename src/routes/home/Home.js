@@ -11,7 +11,6 @@ import Button from "../../components/button/Button";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import Image from "../../components/image/Image";
 import Newsletter from "../../components/newsletter/Newsletter";
-import { useAuth } from "../../contexts/AuthProvider"; 
 
 const Home = () => {
   const [authStatus, setAuthStatus] = useState(() => localStorage.getItem("authStatus") || "loggedOut");
