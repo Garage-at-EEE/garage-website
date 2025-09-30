@@ -14,7 +14,6 @@ import { useMemo } from "react";
 import { API_DOMAIN } from '../../utils/Constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
-import axios from 'axios';
 import useFetchPoints from "../../hooks/useFetchPoints";
 
 const Shop = () => {
