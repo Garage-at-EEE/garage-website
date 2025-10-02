@@ -5,4 +5,4 @@ export const API_DOMAIN =
 export const LOGIN_DOMAIN =
 "https://script.google.com/macros/s/AKfycbxooNFuPLMU2fSji-2U4THouVRdbWEJuT0e8Zs0JRMUh50TWveQdS4frPUEYcoeQhkDvg/exec";
 
-export const ASSIGNED_PROJECTS_SIGNUP_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSejqiZy4ggazdTJYQBebvnmH4Tqh0IizxJZ4ydAapymEOluYQ/viewform?usp=sf_link";
+export const ASSIGNED_PROJECTS_SIGNUP_LINK = "https://docs.google.com/forms/d/1h-E1KtJu0i3jQauA49saju4LGI5FU8oDepMZb47IXfw/edit?usp=drive_web&ouid=113151640170447377601";

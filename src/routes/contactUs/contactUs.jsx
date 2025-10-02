@@ -99,7 +99,7 @@ const ContactUs = () => {
                         <div className={styles["body-text"]}>
                             <Typography variant="body">Have some curious questions, inquiries or feedback about Garage@EEE? Contact us here or through our email</Typography>
                         </div>
-                        <form>
+                        <form className={styles["form"]}>
                             <div className={styles["form-title"]}>
                                 <Typography variant="smallHeading">Contact Form</Typography>
                                 <Typography variant="subtitle">Fill up the form below to send us a message</Typography>

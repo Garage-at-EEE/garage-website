@@ -140,9 +140,9 @@ const Header = () => {
       >
         <Gutter>
           <div className={styles["header-inner"]}>
-            <Link to="/" onClick={handleClose} className={styles["logo"]}>
+            <HashLink to="/#start" onClick={handleClose} className={styles["logo"]}>
               <Logo />
-            </Link>
+            </HashLink>
 
             {/* DESKTOP/TABLET HEADER */}
             {breakpoint !== "mobile" ? (

@@ -56,22 +56,13 @@ const AssignedProjects = () => {
   });
   const lenis = useLenis();
 
-  const today = new Date();
-  const year = today.getFullYear()-2000;
-  let acadYear;
-  if (today.getMonth()+1 < 8) {
-    acadYear = "AY" + (year-1) + "/" + year;
-  } else {
-    acadYear = "AY" + year + "/" + (year+1);
-  }
-
   return (
     <Transition isLoading={isLoading}>
       <PageTemplate>
         {data && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
-              <Typography variant="heading">Garage Assigned Projects {acadYear}</Typography>
+              <Typography variant="heading">Garage Assigned Projects</Typography>
               <BackButton />
             </div>
 

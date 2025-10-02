@@ -31,6 +31,7 @@ const Home = () => {
 
   return (
     <Transition isLoading={isLoading}>
+      <div id="start"></div>
       {!isLoading && (
         <PageTemplate>
           <div className={styles["content-wrapper"]}>
