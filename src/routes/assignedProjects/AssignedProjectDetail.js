@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Typography from "../../components/typography/Typography";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN, ASSIGNED_PROJECTS_SIGNUP_LINK } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/Constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";
@@ -14,38 +14,49 @@ import styles from "./AssignedProjects.module.css";
 function ProjectDetail() {
   const params = useParams();
   const id = params.id;
-  const { data, isLoading } = useFetch({ 
+  const { data: projectData, isLoading } = useFetch({ 
     url: API_DOMAIN + "?type=assignedProjectInfo&index=" + id,
   });
+  const { data: tinkeringData } = useFetch({
+    url: API_DOMAIN + "?type=tinkering",
+  });
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !projectData || !tinkeringData}>
       <PageTemplate>
-        {data && (
+        {projectData && tinkeringData && (
           <PageGap>
             <HeroImage
-              heading={data.name}
-              src={data.coverPic}
+              heading={projectData.name}
+              src={projectData.coverPic}
               subheading={""}
             />
             <div>
               <Typography variant="smallHeading">DESCRIPTION</Typography>
-              <Typography variant="body">{data.description}</Typography>
+              <Typography variant="body">{projectData.description}</Typography>
             </div>
-            {(data.isRecruiting === "Y") ?
+            {(projectData.isRecruiting === "Y") ?
             <>
               <div>
                 <Typography variant="smallHeading">RECRUITMENT INFO</Typography>
                 <Typography variant="body"><b>Team Openings</b></Typography>
-                <Typography variant="body">{data.recruitment.team_opening}</Typography>
+                <Typography variant="body">{projectData.recruitment.team_opening}</Typography>
                 <Typography variant="body"><b>What we're looking for</b></Typography>
-                <Typography variant="body">{data.recruitment.looking_for.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body">{projectData.recruitment.looking_for.toString().replace(/-/g, "•")}</Typography>
                 <Typography variant="body"><b>What you'll do</b></Typography>
-                <Typography variant="body">{data.recruitment.what_you_do.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body">{projectData.recruitment.what_you_do.toString().replace(/-/g, "•")}</Typography>
               </div>
               <div>
                 <Typography variant="smallHeading" className={styles["link"]}>
-                  <Button onClick={() => window.open(ASSIGNED_PROJECTS_SIGNUP_LINK, "_blank")}>
-                  REGISTER HERE
+                  <Button
+                    disabled={!tinkeringData[0].registrationLink}
+                    onClick={() => {
+                      if (tinkeringData[0].registrationLink) {
+                        window.open(tinkeringData[0].registrationLink, "_blank");
+                      }
+                    }}
+                    className={styles["register-button"]}
+                  >
+                    {tinkeringData[0].registrationLink ? "Register Here" : "Registration Closed"}
                   </Button>                
                 </Typography>
               </div>

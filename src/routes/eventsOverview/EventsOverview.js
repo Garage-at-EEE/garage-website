@@ -10,7 +10,7 @@ const Events = () => {
   });
 
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && <OverviewPage heading={"Events"} data={data} />}
       </PageTemplate>

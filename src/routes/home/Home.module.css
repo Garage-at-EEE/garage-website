@@ -1,3 +1,52 @@
+.expired-warning-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.expired-warning-modal {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  animation: modalAppear 0.3s ease-out forwards;
+}
+
+.expired-warning-modal > * {
+  margin-bottom: 12px;
+}
+
+.expired-warning-modal > *:last-child {
+  margin-bottom: 0;
+}
+
+.expired-warning-modal button {
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  background-color:var(--garage-blue);
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.expired-warning-modal button:hover {
+    background-color: #ddd;
+}
+
 .content-wrapper {
   display: flex;
   flex-direction: column;

@@ -24,8 +24,7 @@ function Login() {
   //If accessed through PrivateRoute Navigate => location.state contains data
   //Else accessed through /login url => default redirect to '/' and title: "login"
   const ROUTE_DESTINATION = (location.state?.to || "/");
-  // const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
-  const ROUTE_TITLEHEADING = "Member Login";
+  const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
 
   const handlePasscodeChange = (e) => {
     // Ensure passcode is in the format DDMM (e.g., 1234)

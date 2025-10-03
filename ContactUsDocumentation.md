@@ -66,6 +66,6 @@ Callback function defined in `ContactUs`
 #### `GoogleMapComponent`
 Renders custom-styled Google Map centered at *Garage@EEE, NTU*, using `@vis.gl/react-google-maps` package
 
-> `MAP_ID` and `REACT_APP_GOOGLE_MAP_API_KEY` generated in Google Maps Platform
+> `MAP_ID` and `REACT_APP_GOOGLE_MAP_API_KEY` are generated in Google Maps Platform
 
-> `REACT_APP_GOOGLE_MAP_API_KEY` is stored as environment variable in `.env` to prevent publicly exposing the API key
+>  To use the API when first clone the repo, duplicate `env_sample` and rename it to `env`, then paste `AIzaSyByju_JXMse_VYY6Y5SaRyWkMuX1sqZb2s` to replace `YOUR_API_KEY_HERE`.

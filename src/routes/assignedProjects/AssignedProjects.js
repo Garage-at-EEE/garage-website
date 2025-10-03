@@ -1,7 +1,7 @@
 import { useLenis } from "lenis/react";
 import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN, ASSIGNED_PROJECTS_SIGNUP_LINK } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/Constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
@@ -51,15 +51,21 @@ const APCard = ({ image, topText, bottomText, to, isRecruiting }) => {
 };
 
 const AssignedProjects = () => {
-  const { data, isLoading } = useFetch({ 
+  const { data: assignedData, isLoading } = useFetch({ 
     url: API_DOMAIN + "?type=assignedProjectInfo&fields=name,coverPic,isRecruiting",
   });
+
+  const { data: tinkeringData } = useFetch({
+    url: API_DOMAIN + "?type=tinkering",
+  });
+
+
   const lenis = useLenis();
 
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !assignedData || !tinkeringData}>
       <PageTemplate>
-        {data && 
+        {assignedData && tinkeringData && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
               <Typography variant="heading">Garage Assigned Projects</Typography>
@@ -67,10 +73,9 @@ const AssignedProjects = () => {
             </div>
 
             <Grid>
-              {data.map((card, index) => (
-                <div className={styles["project-item"]}>
+              {assignedData.map((card, index) => (
+                <div key={card.name} className={styles["project-item"]}>
                   <APCard
-                    key={card.name}
                     image={card.coverPic}
                     to={`${index}/`}
                     bottomText={card.name}
@@ -79,8 +84,16 @@ const AssignedProjects = () => {
                 </div>
               ))}
             </Grid>
-            <Button onClick={() => window.open(ASSIGNED_PROJECTS_SIGNUP_LINK, "_blank")} className={styles["register-button"]}>
-              Register Here
+            <Button
+              disabled={!tinkeringData[0].registrationLink}
+              onClick={() => {
+                if (tinkeringData[0].registrationLink) {
+                  window.open(tinkeringData[0].registrationLink, "_blank");
+                }
+              }}
+              className={styles["register-button"]}
+            >
+              {tinkeringData[0].registrationLink ? "Register Here" : "Registration Closed"}
             </Button>
             <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
               Back to top
