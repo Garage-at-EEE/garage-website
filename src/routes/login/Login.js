@@ -79,7 +79,7 @@ function Login() {
             <div>
               <Typography variant="heading">{ROUTE_TITLEHEADING}</Typography>
             </div>
-            <BackButton />
+            <BackButton to={"/"}/>
           </div>
 
           <form className={styles["form"]} onSubmit={(e) => {e.preventDefault()}}>
@@ -123,7 +123,7 @@ function Login() {
                 (
                   <LoadingSpinner />
                 ) : (
-                  <Button onClick={handleSubmit}>
+                  <Button onClick={handleSubmit} className={styles['login-btn']}>
                     {"Login"}
                   </Button>
                 )
