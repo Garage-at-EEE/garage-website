@@ -68,7 +68,7 @@ const AssignedProjects = () => {
         {assignedData && tinkeringData && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
-              <Typography variant="heading">Garage Assigned Projects</Typography>
+              <Typography variant="heading">Project Openings</Typography>
               <BackButton />
             </div>
 
