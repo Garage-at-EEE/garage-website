@@ -46,6 +46,7 @@ const Home = () => {
 
   return (
     <Transition isLoading={isLoading || !data}>
+      <div id="start"></div>
       {data && (
         <PageTemplate>
           {showWarning && (

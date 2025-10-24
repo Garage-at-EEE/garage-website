@@ -17,13 +17,10 @@ function ProjectDetail() {
   const { data: projectData, isLoading } = useFetch({ 
     url: API_DOMAIN + "?type=assignedProjectInfo&index=" + id,
   });
-  const { data: tinkeringData } = useFetch({
-    url: API_DOMAIN + "?type=tinkering",
-  });
   return (
-    <Transition isLoading={isLoading || !projectData || !tinkeringData}>
+    <Transition isLoading={isLoading || !projectData }>
       <PageTemplate>
-        {projectData && tinkeringData && (
+        {projectData && (
           <PageGap>
             <HeroImage
               heading={projectData.name}
@@ -48,15 +45,15 @@ function ProjectDetail() {
               <div>
                 <Typography variant="smallHeading" className={styles["link"]}>
                   <Button
-                    disabled={!tinkeringData[0].registrationLink}
+                    disabled={!projectData.assignedProjectsLink}
                     onClick={() => {
-                      if (tinkeringData[0].registrationLink) {
-                        window.open(tinkeringData[0].registrationLink, "_blank");
+                      if (projectData.assignedProjectsLink) {
+                        window.open(projectData.assignedProjectsLink, "_blank");
                       }
                     }}
                     className={styles["register-button"]}
                   >
-                    {tinkeringData[0].registrationLink ? "Register Here" : "Registration Closed"}
+                    {projectData.assignedProjectsLink ? "Register Here" : "Registration Closed"}
                   </Button>                
                 </Typography>
               </div>

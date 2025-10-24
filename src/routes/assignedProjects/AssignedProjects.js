@@ -52,34 +52,18 @@ const APCard = ({ image, topText, bottomText, to, isRecruiting }) => {
 
 const AssignedProjects = () => {
   const { data: assignedData, isLoading } = useFetch({ 
-    url: API_DOMAIN + "?type=assignedProjectInfo&fields=name,coverPic,isRecruiting",
+    url: API_DOMAIN + "?type=assignedProjectInfo&fields=name,coverPic,isRecruiting,assignedProjectsLink",
   });
-
-  const { data: tinkeringData } = useFetch({
-    url: API_DOMAIN + "?type=tinkering",
-  });
-
 
   const lenis = useLenis();
 
-  const today = new Date();
-  const year = today.getFullYear()-2000;
-  let acadYear;
-  if (today.getMonth()+1 < 8) {
-    acadYear = "AY" + (year-1) + "/" + year;
-  } else {
-    acadYear = "AY" + year + "/" + (year+1);
-  }
-
-  console.log("Response received:", assignedData);
-
   return (
-    <Transition isLoading={isLoading || !assignedData || !tinkeringData}>
+    <Transition isLoading={isLoading || !assignedData }>
       <PageTemplate>
-        {assignedData && tinkeringData && 
+        {assignedData && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
-              <Typography variant="heading">Garage Assigned Projects {acadYear}</Typography>
+              <Typography variant="heading">Project Openings</Typography>
               <BackButton />
             </div>
 
@@ -96,15 +80,15 @@ const AssignedProjects = () => {
               ))}
             </Grid>
             <Button
-              disabled={!tinkeringData[0].registrationLink}
+              disabled={!assignedData[0].assignedProjectsLink}
               onClick={() => {
-                if (tinkeringData[0].registrationLink) {
-                  window.open(tinkeringData[0].registrationLink, "_blank");
+                if (assignedData[0].assignedProjectsLink) {
+                  window.open(assignedData[0].assignedProjectsLink, "_blank");
                 }
               }}
               className={styles["register-button"]}
             >
-              {tinkeringData[0].registrationLink ? "Register Here" : "Registration Closed"}
+              {assignedData[0].assignedProjectsLink ? "Register Here" : "Registration Closed"}
             </Button>
             <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
               Back to top

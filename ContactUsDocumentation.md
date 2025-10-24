@@ -68,4 +68,4 @@ Renders custom-styled Google Map centered at *Garage@EEE, NTU*, using `@vis.gl/r
 
 > `MAP_ID` and `REACT_APP_GOOGLE_MAP_API_KEY` are generated in Google Maps Platform
 
->  To use the API when first clone the repo, duplicate `env_sample` and rename it to `env`, then paste `AIzaSyByju_JXMse_VYY6Y5SaRyWkMuX1sqZb2s` to replace `YOUR_API_KEY_HERE`.
+>  To use the API when first clone the repo, duplicate `.env_sample` and rename it to `.env`, then paste the API key found in the AppScript ScriptProperties under `GOOGLE_MAPS_API_KEY` to replace `YOUR_API_KEY_HERE`.
