@@ -18,7 +18,7 @@ const NewsletterPage = () => {
   const lenis = useLenis();
 
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         <div className={styles["content-wrapper"]}>
           <div className={styles["heading-space"]}>

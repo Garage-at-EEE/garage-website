@@ -7,8 +7,6 @@ import instagram from "../../icons/instagram.png";
 import github from "../../icons/github.png";
 
 const Footer = () => {
-  console.log("✅ Footer component is rendered!");
-
   return (
     <footer>
       <div className={styles["footer-wrapper"]}>

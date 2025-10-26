@@ -29,7 +29,7 @@ const AccordionTrigger = forwardRef(
         {...props}
         ref={forwardedRef}
       >
-        {children}
+        <span className={styles["accordion-header-text"]}>{children}</span>
         <Expand className={styles["accordion-chevron"]} aria-hidden />
       </Accordion.Trigger>
     </Accordion.Header>

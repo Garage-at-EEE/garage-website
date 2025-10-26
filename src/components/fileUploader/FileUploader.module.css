@@ -1,0 +1,67 @@
+.upload-box {
+    width: 100%;
+    padding: 20px 14px;
+    border: 2px dashed #ccc; /* Dotted border */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.upload-box:hover {
+    border-color: var(--garage-blue-hover);
+}
+
+
+.upload-text {
+    color: #6A6A6A;
+}
+
+.upload-status-text {
+    color: red;
+}
+
+.file-list {
+    margin-top: var(--para-gap-desktop);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.file-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.file-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.remove-icon {
+    margin-top: 5px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.remove-icon:hover {
+    opacity: 0.5;
+}

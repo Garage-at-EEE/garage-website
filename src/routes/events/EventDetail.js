@@ -18,7 +18,7 @@ function EventDetail() {
     url: API_DOMAIN + "?type=events&index=" + id,
   });
   return (
-    <Transition isLoading={isLoading}>
+    <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && (
           <PageGap>

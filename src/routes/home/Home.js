@@ -5,7 +5,7 @@ import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/Constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
 import Button from "../../components/button/Button";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
@@ -13,6 +13,9 @@ import Image from "../../components/image/Image";
 import Newsletter from "../../components/newsletter/Newsletter";
 
 const Home = () => {
+  const [authStatus, setAuthStatus] = useState(() => localStorage.getItem("authStatus") || "loggedOut");
+  const [showWarning, setShowWarning] = useState(false);
+
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=home",
   });
@@ -28,33 +31,36 @@ const Home = () => {
   const { data: newsletterData } = useFetch({
     url: API_DOMAIN + "?type=newsletter",
   });
-  const { data: shopData, error: shopError, isLoading: shopLoading } = useFetch({
-    url: "https://script.google.com/macros/s/AKfycbyZVob9L1HLQh4PO5zbAwL9182lMBnMCF31wgnkUuq3BqMj_es-gnVsOfu601NhRIOq/exec?timestamp=${new Date().getTime()}",
-  });
-  
 
-  console.log("Shop data fetched:", shopData); // Add this line here
+  useEffect(() => {
+    if (authStatus === "expired") {
+      setShowWarning(true);
+    }
+  }, [authStatus]);
 
-  if (shopError) {
-    console.error("Error fetching Shop data:", shopError);
-  }
+  const handleExpiredLogout = () => {
+    setShowWarning(false);
+    setAuthStatus("loggedOut");
+    localStorage.setItem("authStatus", "loggedOut");
+  };
 
-  if (!data) {
-    console.error("Home data is null or undefined:", data);
-    return (
-      <PageTemplate>
-        <Typography variant="largeHeading">Home Page</Typography>
-        <Typography variant="body" className="error-message">
-          Failed to load homepage data. Please try again later.
-        </Typography>
-      </PageTemplate>
-    );
-  }
- 
   return (
-    <Transition isLoading={isLoading}>
-      {!isLoading && (
+    <Transition isLoading={isLoading || !data}>
+      <div id="start"></div>
+      {data && (
         <PageTemplate>
+          {showWarning && (
+            <div className={styles['expired-warning-backdrop']}>
+              <div className={styles['expired-warning-modal']}>
+                <Typography variant='smallHeading'>Session Timeout</Typography>
+                <Typography variant='body'>We have logged you out to protect you. Please log in again.</Typography>
+                <button   onClick={() => {
+                  handleExpiredLogout();
+                }}><Typography variant='body'>Confirm</Typography>
+                </button>
+              </div>
+            </div>
+          )}
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>
               <div className={styles["banner-space"]}>
@@ -100,7 +106,7 @@ const Home = () => {
                 </Button>
               </div>
             </section>
-            <section className={styles["section-wrapper"]}>
+            <section id="ambassadors" className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>MEMBER TRACKS</Typography>
               <div className={styles["text-section"]}>
                 <Typography variant={"smallHeading"}>Ambassadors</Typography>
@@ -124,7 +130,7 @@ const Home = () => {
               )}
             </section>
             {data && (
-              <section className={styles["innovators"]}>
+              <section id="innovators" className={styles["innovators"]}>
                 <Typography
                   variant={"smallHeading"}
                   className={styles["tablet"]}
@@ -158,6 +164,33 @@ const Home = () => {
                     {data.registerLink ? "Register" : "Registration Closed"}
                   </Button>
                 </div>
+              </section>
+            )}
+            {data && (
+              <section id="tinkering" className={styles["tinkering"]}>
+                <div className={styles["tinkering-text"]}>
+                  <div className={styles["text-section"]}>
+                    <Typography
+                      variant={"smallHeading"}
+                    >
+                      Tinkering
+                    </Typography>
+                    <Typography variant={"body"}>{data.tinkering}</Typography>
+                    <Typography variant={"smallHeading"}>
+                      Tinkering Project Recruitment
+                    </Typography>
+                    <Typography variant={"body"}>{data.tinkeringRecruitment}</Typography>
+                  </div>
+                  <Button to="/tinkeringProject">
+                    Find out more
+                  </Button>
+                </div>
+                <Image
+                  className={styles["tinkering-image"]}
+                  objectFit="contain"
+                  src={data.tinkeringImage}
+                  alt="Tinkering illustration"
+                />
               </section>
             )}
             <section className={styles["section-wrapper"]}>
