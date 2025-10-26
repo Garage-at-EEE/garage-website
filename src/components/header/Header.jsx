@@ -18,6 +18,7 @@ import LoginMenu from "./LoginMenu";
 
 import styles from "./Header.module.css";
 import DropdownMenu from "./DropdownMenu";
+import { HashLink } from "react-router-hash-link";
 
 const MenuButton = ({ open, setOpen }) => {
   const handleClick = (e) => {
@@ -135,9 +136,9 @@ const Header = () => {
       >
         <Gutter>
           <div className={styles["header-inner"]}>
-            <Link to="/" onClick={handleClose} className={styles["logo"]}>
+            <HashLink to="/#start" onClick={handleClose} className={styles["logo"]}>
               <Logo />
-            </Link>
+            </HashLink>
 
             {/* DESKTOP HEADER */}
             {breakpoint === "desktop" ? (
