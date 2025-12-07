@@ -19,6 +19,7 @@ import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
 import AssignedProjectsDetail from "./routes/assignedProjects/AssignedProjectDetail";
 import TinkeringProject from "./routes/tinkeringProject/TinkeringProject";
+import Innotrack from "./routes/innotrack/Innotrack";
 
 import { AnimatePresence } from "framer-motion";
 import Header from "./components/header/Header";
@@ -48,6 +49,7 @@ function App() {
               <Route path="/assigned_projects" element={<AssignedProjects />} />
               <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
               <Route path="/tinkeringProject" element={<TinkeringProject />} />
+              <Route path="/innotrack" element={<Innotrack />} />
               <Route path="/contact-us" element={<ContactUsPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/database" element={
