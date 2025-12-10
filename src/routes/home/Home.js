@@ -157,11 +157,8 @@ const Home = () => {
                     </Typography>
                     <Typography variant={"body"}>{data.recruitment}</Typography>
                   </div>
-                  <Button
-                    to={data.registerLink ? data.registerLink : undefined}
-                    disabled={!data.registerLink}
-                  >
-                    {data.registerLink ? "Register" : "Registration Closed"}
+                  <Button to="/innovatorsTrack">
+                    Find out more
                   </Button>
                 </div>
               </section>

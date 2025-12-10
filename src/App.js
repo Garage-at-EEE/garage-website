@@ -18,6 +18,8 @@ import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
 import AssignedProjectsDetail from "./routes/assignedProjects/AssignedProjectDetail";
+import InnovatorsTrack from "./routes/innovatorsTrack/InnovatorsTrack";
+import Launchpad from "./routes/launchpad/Launchpad";
 import TinkeringProject from "./routes/tinkeringProject/TinkeringProject";
 
 import { AnimatePresence } from "framer-motion";
@@ -48,6 +50,8 @@ function App() {
               <Route path="/assigned_projects" element={<AssignedProjects />} />
               <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
               <Route path="/tinkeringProject" element={<TinkeringProject />} />
+              <Route path="/innovatorsTrack" element={<InnovatorsTrack />} />
+              <Route path="/launchpad" element={<Launchpad />} />
               <Route path="/contact-us" element={<ContactUsPage />} />
               <Route path="/login" element={<Login />} />
               <Route path="/database" element={
