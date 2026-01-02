@@ -239,34 +239,34 @@ const Home = () => {
               </section>
             )}
             {data && (
-              <section id="innovators" className={styles["innovators"]}>
+              <section id="launchpad" className={styles["launchpad"]}>
                 <Typography
                   variant={"smallHeading"}
                   className={styles["tablet"]}
                 >
-                  Innovators
+                  La
                 </Typography>
                 <Image
-                  className={styles["innovators-image"]}
+                  className={styles["launchpad-image"]}
                   objectFit="contain"
-                  src={data.innovatorsImage}
-                  alt="Innovators illustration"
+                  src={data.launchpadImage}
+                  alt="Launchpad illustration"
                 />
-                <div className={styles["innovators-text"]}>
+                <div className={styles["launchpad-text"]}>
                   <div className={styles["text-section"]}>
                     <Typography
                       variant={"smallHeading"}
                       className={styles["tablet-hide"]}
                     >
-                      Innovators
+                      Launchpad
                     </Typography>
-                    <Typography variant={"body"}>{data.innovators}</Typography>
+                    <Typography variant={"body"}>To fetch body data from Launchpad DB</Typography>
                     <Typography variant={"smallHeading"}>
-                      Innovator's Track Recruitment
+                      Launchpad Recruitment
                     </Typography>
                     <Typography variant={"body"}>{data.recruitment}</Typography>
                   </div>
-                  <Button to="/innotrack">Find out more</Button>
+                  <Button to="/launchpad">Find out more</Button>
                 </div>
               </section>
             )}
