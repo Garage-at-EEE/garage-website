@@ -86,14 +86,27 @@
   min-height: 640px;
 }
 
-.innovators, .tinkering {
+.innovators {
   display: flex;
+  gap: var(--content-gap-mobile);
+  align-items: center;
+}
+
+.tinkering {
+  display: flex;
+  flex-direction: column;
   gap: var(--content-gap-mobile);
   align-items: center;
 }
 
 .tablet {
   display: none;
+}
+
+.tinkering-hero {
+  display: flex;
+  align-items: center;
+  gap: var(--content-gap-mobile);
 }
 
 .innovators-image, .tinkering-image {
@@ -104,8 +117,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
+  row-gap: var(--content-gap-mobile);
   align-items: center;
+}
+
+.tinkering-projects {
+  display: flex;
+  align-items: center;
+  gap: var(--content-gap-mobile);
 }
 
 .card-wrapper {
@@ -205,6 +224,12 @@
   }
   .innovators-image, .tinkering-image {
     aspect-ratio: unset;
+  }
+  .tinkering-hero {
+    flex-direction: column-reverse;
+  }
+  .tinkering-projects {
+    flex-direction: column;
   }
   .facilities-images {
     flex-direction: column;

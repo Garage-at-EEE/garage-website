@@ -10,10 +10,13 @@ import styles from "./Home.module.css";
 import Button from "../../components/button/Button";
 import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import Image from "../../components/image/Image";
+import CardCarousel from "../../components/cardCarousel/cardCarousel";
 import Newsletter from "../../components/newsletter/Newsletter";
 
 const Home = () => {
-  const [authStatus, setAuthStatus] = useState(() => localStorage.getItem("authStatus") || "loggedOut");
+  const [authStatus, setAuthStatus] = useState(
+    () => localStorage.getItem("authStatus") || "loggedOut"
+  );
   const [showWarning, setShowWarning] = useState(false);
 
   const { data, isLoading } = useFetch({
@@ -23,7 +26,7 @@ const Home = () => {
     url: API_DOMAIN + "?type=ambassadors&fields=name,homeImage",
   });
   const { data: projectData } = useFetch({
-    url: API_DOMAIN + "?type=projectInfo&fields=name,coverPic",
+    url: API_DOMAIN + "?type=projectInfo&fields=name,coverPic,id",
   });
   const { data: eventData } = useFetch({
     url: API_DOMAIN + "?type=events&fields=name,coverPic",
@@ -50,13 +53,18 @@ const Home = () => {
       {data && (
         <PageTemplate>
           {showWarning && (
-            <div className={styles['expired-warning-backdrop']}>
-              <div className={styles['expired-warning-modal']}>
-                <Typography variant='smallHeading'>Session Timeout</Typography>
-                <Typography variant='body'>We have logged you out to protect you. Please log in again.</Typography>
-                <button   onClick={() => {
-                  handleExpiredLogout();
-                }}><Typography variant='body'>Confirm</Typography>
+            <div className={styles["expired-warning-backdrop"]}>
+              <div className={styles["expired-warning-modal"]}>
+                <Typography variant="smallHeading">Session Timeout</Typography>
+                <Typography variant="body">
+                  We have logged you out to protect you. Please log in again.
+                </Typography>
+                <button
+                  onClick={() => {
+                    handleExpiredLogout();
+                  }}
+                >
+                  <Typography variant="body">Confirm</Typography>
                 </button>
               </div>
             </div>
@@ -157,40 +165,109 @@ const Home = () => {
                     </Typography>
                     <Typography variant={"body"}>{data.recruitment}</Typography>
                   </div>
-                  <Button
-                    to={data.registerLink ? data.registerLink : undefined}
-                    disabled={!data.registerLink}
-                  >
-                    {data.registerLink ? "Register" : "Registration Closed"}
-                  </Button>
+                  <Button to="/innotrack">Find out more</Button>
                 </div>
               </section>
             )}
             {data && (
               <section id="tinkering" className={styles["tinkering"]}>
-                <div className={styles["tinkering-text"]}>
+                {/* Hero Section (Text & Illustration) */}
+                <div className={styles["tinkering-hero"]}>
+                  <div className={styles["tinkering-text"]}>
+                    <div className={styles["text-section"]}>
+                      <Typography variant={"smallHeading"}>
+                        Tinkering
+                      </Typography>
+                      <Typography variant={"body"}>{data.tinkering}</Typography>
+                      <Typography variant={"smallHeading"}>
+                        Tinkering Project Recruitment
+                      </Typography>
+                      <Typography variant={"body"}>
+                        {data.tinkeringRecruitment}
+                      </Typography>
+                    </div>
+                    <Button to="/tinkeringProject">Find out more</Button>
+                  </div>
+                  <Image
+                    className={styles["tinkering-image"]}
+                    objectFit="contain"
+                    src={data.tinkeringImage}
+                    alt="Tinkering illustration"
+                  />
+                </div>
+
+                {/* Tinkering Assigned Projects */}
+                <div className={styles["tinkering-projects"]}>
+                  {/* Image Carousel */}
+                  {/* <div className={styles["carousel-container"]}>
+
+                  <Image
+                    className={styles["tinkering-image"]}
+                    objectFit="contain"
+                    src={data.tinkeringImage}
+                    alt="Tinkering illustration"
+                  />
+                  </div> */}
+                  <CardCarousel
+                    data={projectData}
+                    linkPrefix="/assigned_projects/"
+                  />
+
+                  {/* Text description */}
+                  <div className={styles["tinkering-text"]}>
+                    <div className={styles["text-section"]}>
+                      <Typography variant={"smallHeading"}>
+                        Tinkering Assigned Projects
+                      </Typography>
+                      {/* <Typography variant={"body"}>
+                        {data.tinkeringProjects}
+                      </Typography> */}
+
+                      <Typography variant={"body"}>
+                        Open to all NTU students (with at least one EEE student
+                        on each team), you’ll get access to state-of-the-art
+                        prototyping equipment, funding, and a vibrant community
+                        of makers and innovators. Dive in, tinker boldly, and
+                        create something that matters.
+                        <br/><br/>
+                        Click on the image on the left to check out our recent projects!
+                      </Typography>
+                    </div>
+                    <Button to="/assigned_projects">View All</Button>
+                  </div>
+                </div>
+              </section>
+            )}
+            {data && (
+              <section id="innovators" className={styles["innovators"]}>
+                <Typography
+                  variant={"smallHeading"}
+                  className={styles["tablet"]}
+                >
+                  Innovators
+                </Typography>
+                <Image
+                  className={styles["innovators-image"]}
+                  objectFit="contain"
+                  src={data.innovatorsImage}
+                  alt="Innovators illustration"
+                />
+                <div className={styles["innovators-text"]}>
                   <div className={styles["text-section"]}>
                     <Typography
                       variant={"smallHeading"}
+                      className={styles["tablet-hide"]}
                     >
-                      Tinkering
+                      Innovators
                     </Typography>
-                    <Typography variant={"body"}>{data.tinkering}</Typography>
+                    <Typography variant={"body"}>{data.innovators}</Typography>
                     <Typography variant={"smallHeading"}>
-                      Tinkering Project Recruitment
+                      Innovator's Track Recruitment
                     </Typography>
-                    <Typography variant={"body"}>{data.tinkeringRecruitment}</Typography>
+                    <Typography variant={"body"}>{data.recruitment}</Typography>
                   </div>
-                  <Button to="/tinkeringProject">
-                    Find out more
-                  </Button>
+                  <Button to="/innotrack">Find out more</Button>
                 </div>
-                <Image
-                  className={styles["tinkering-image"]}
-                  objectFit="contain"
-                  src={data.tinkeringImage}
-                  alt="Tinkering illustration"
-                />
               </section>
             )}
             <section className={styles["section-wrapper"]}>
