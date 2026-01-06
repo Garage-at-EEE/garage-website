@@ -6,69 +6,89 @@ import { ReactComponent as ArrowDown } from "../../icons/arrow_down.svg";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import styles from "./Header.module.css";
 
-const DropdownMenu = ({ children, header, navlinks }) => {
+const isHashLink = (to) => typeof to === "string" && to.includes("#");
+
+const DropdownMenu = ({ children, header, navlinks = [] }) => {
   const [open, setOpen] = useState(false);
   const breakpoint = useBreakpoint();
 
-  const handleOpen = (e) => {
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleClose = (e) => {
-    setOpen(false);
+  const containerClassName =
+    breakpoint === "desktop" ? styles["login-menu"] : styles["tablet-login-menu"];
+
+  const renderLink = (item) => {
+    if (!item?.to) return null;
+
+    if (isHashLink(item.to)) {
+      return (
+        <HashLink
+          key={item.label}
+          smooth
+          to={item.to}
+          className={styles.navlink}
+          onClick={handleClose}
+        >
+          <Typography variant="body">{item.label}</Typography>
+        </HashLink>
+      );
+    }
+
+    return (
+      <Link
+        key={item.label}
+        to={item.to}
+        className={styles.navlink}
+        onClick={handleClose}
+      >
+        <Typography variant="body">{item.label}</Typography>
+      </Link>
+    );
   };
 
   return (
-      <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
-        className={styles["navlink-container"]}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
+    <div
+      className={styles["navlink-container"]}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+    >
+      {/* Header button (not actually navigating) */}
+      <div
+        className={`${styles.navlink} ${styles["navlink--dropdown"]}`}
+        role="button"
+        tabIndex={0}
       >
-      <Link className={styles["navlink"]}> 
         <Typography variant="body">
           {header} <ArrowDown />
         </Typography>
-      </Link>
+      </div>
 
       {open && (
-        <div //Main container for dropdown menu
-          className={
-            breakpoint === "desktop" ?
-            styles["login-menu"] :
-            styles["tablet-login-menu"]
-          }
-        >
-
+        <div className={containerClassName}>
           {navlinks.map((item) => {
-            // If it's a hash link, use HashLink for in-page scroll
-            if (item.to.includes("#")) {
+            // 2nd level dropdown (e.g. Programmes -> ...)
+            if (Array.isArray(item.dropdown)) {
               return (
-                <HashLink
-                  key={item.label}
-                  smooth
-                  to={item.to}
-                  className={styles.navlink}
-                  onClick={() => setOpen(false)}
-                >
-                  <Typography variant="body">{item.label}</Typography>
-                </HashLink>
+                <div key={item.label} className={styles["submenu-container"]}>
+                  <div className={styles["submenu-header"]}>
+                    <Typography variant="body">{item.label}</Typography>
+                    {/* optional right caret */}
+                    <span style={{ marginLeft: 8 }}>›</span>
+                  </div>
+
+                  <div className={styles["submenu"]}>
+                    {item.dropdown.map((sub) => renderLink(sub))}
+                  </div>
+                </div>
               );
             }
-            // Otherwise a normal page Link
-            return (
-              <Link
-                key={item.label}
-                to={item.to}
-                className={styles.navlink}
-                onClick={() => setOpen(false)}
-              >
-                <Typography variant="body">{item.label}</Typography>
-              </Link>
-            );
+
+            // normal item
+            return renderLink(item);
           })}
 
-        {children}
-
+          {children}
         </div>
       )}
     </div>

@@ -82,7 +82,7 @@ const Header = () => {
 
   const navlinks = [
     {
-      label: "Projects",
+      label: "Showcase",
       to: "/projects",
     },
     {
@@ -90,22 +90,31 @@ const Header = () => {
       to: "/events",
     },
     {
-      label: "Recruitment",
-      dropdown: [
-        { label: "Ambassador", to: "/#ambassadors" },
-        { label: "Innovator",  to: "/#innovators"  },
-        { label: "Tinkering",  to: "/#tinkering"   },
-        { label: "Launchpad",  to: "/launchpad"   },
-      ],
-    },
+      label: "Newsletter",
+      to: "/newsletter",
+    },  
     {
       label: "Facilities",
       to: "/facilities",
     },
     {
-      label: "Newsletter",
-      to: "/newsletter",
-    },  
+    label: "Join Us",
+    dropdown: [
+      { label: "Ambassadors", to: "/#ambassadors" },
+
+      {
+        label: "Programmes",
+        dropdown: [
+          { label: "Innovator's Track", to: "/innovatorsTrack" },
+          { label: "Tinkering Project", to: "/tinkeringProject" },
+          { label: "Launchpad", to: "/launchpad" },
+        ],
+      },
+
+      { label: "Project Openings", to: "/launchpad" }, // temporary link
+      { label: "Upcoming Workshops", to: "/launchpad" }, // temporary link
+    ],
+    },
     {
       label: "Contact Us",
       to: "/contact-us",
