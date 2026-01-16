@@ -1,0 +1,73 @@
+.icon {
+  fill: inherit;
+}
+
+.pagination {
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+  fill: var(--body);
+  cursor: pointer;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.pagination:disabled {
+  fill: var(--disabled);
+  cursor: default;
+}
+
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.carousel-pagination {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.image-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 2rem;
+}
+
+.images {
+  display: flex;
+  touch-action: pan-y;
+  margin-left: -2.5rem;
+}
+
+.image-slide {
+  flex: 0 0 100%;
+  padding-left: 2.5rem;
+  aspect-ratio: 16 / 9;
+  transition: opacity 0.3s;
+}
+
+.focus-image {
+  max-width: calc(100vw - 3rem);
+  max-height: calc(100svh - 3rem);
+}
+
+@media (max-width: 640px) {
+  .image-container {
+    border-radius: 1.5rem;
+  }
+  .focus-image {
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100svh - 2rem);
+  }
+}

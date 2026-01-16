@@ -1,0 +1,101 @@
+.btn {
+  padding: 0 1.25rem;
+  border-radius: 999px;                 
+  height: clamp(2.6rem, 2.6vw, 3rem);  
+  display: inline-flex;                 
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+  box-sizing: border-box;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+
+  transition: transform 160ms ease, box-shadow 160ms ease,
+    background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+}
+
+.outlined {
+  border: 2px solid rgba(26, 26, 26, 0.75);
+  color: #1a1a1a;
+  background-color: rgba(26, 26, 26, 0.02);
+}
+
+.outlined:hover {
+  border-color: rgba(26, 26, 26, 0.95);
+  background-color: var(--outline-hover);
+  transform: translateY(-1px);
+}
+
+.outlined:active {
+  background-color: var(--outline-press);
+  transform: translateY(0px);
+}
+
+.filled {
+  border: 0;
+  background-color: var(--garage-blue);
+  color: var(--white);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.22);
+}
+
+.filled:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.28);
+}
+
+.filled:active {
+  background-color: var(--garage-blue-press);
+  transform: translateY(0px) scale(0.99);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+}
+
+.outlined.disabled {
+  border: 0.25rem solid var(--Disabled, #d9d9d9); 
+  color: var(--onDisabled, #737373);
+}
+
+.outlined.disabled:hover,
+.outlined.disabled:active {
+  background-color: transparent;
+}
+
+.filled.disabled {
+  background-color: var(--Disabled, #d9d9d9);
+  color: var(--onDisabled, #737373);
+}
+
+.filled.disabled:hover,
+.filled.disabled:active {
+  background-color: var(--Disabled, #d9d9d9);
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.start-icon-wrapper {
+  margin-right: 0.5rem; 
+}
+
+.end-icon-wrapper {
+  margin-left: 0.5rem; 
+}
+
+.small {
+  height: 2.35rem;
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+

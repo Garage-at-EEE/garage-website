@@ -1,0 +1,41 @@
+.container {
+  perspective: 3000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  min-height: 24rem;
+  width: 20rem;
+  max-width: 90vw;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: var(--white);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-2);
+  border: 1px solid var(--outline);
+  transform-style: preserve-3d;
+  cursor: grab;
+  user-select: none;
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 22rem;
+    min-height: 28rem;
+  }
+}

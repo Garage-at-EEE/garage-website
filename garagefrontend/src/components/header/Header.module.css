@@ -1,0 +1,206 @@
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  z-index: 50;
+  transition: background-color 0.3s, backdrop-filter 0.3s;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--outline);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--content-gap-mobile);
+  height: 5rem;
+}
+
+.logo {
+  height: 2.25rem;
+  flex-shrink: 0;
+}
+
+a {
+  color: var(--body);
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.navlink-container {
+  color: #475569;
+  position: relative;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.navlink {
+  color: #475569;
+  position: relative;
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navlink span,
+.navlink p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.navlink:hover {
+  color: var(--garage-blue);
+}
+
+.navlink::after {
+  display: none;
+}
+
+.navlink.active {
+  color: var(--garage-blue);
+  font-weight: 700;
+  border-bottom: 2px solid var(--garage-blue);
+  padding-bottom: 0.125rem;
+}
+
+.button {
+  background-color: transparent;
+  padding: 0.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #475569;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #f1f5f9;
+}
+
+.drawer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.drawer-inner {
+  padding-top: 0.75rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.shadow {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.separator {
+  height: 1px;
+  background-color: #e2e8f0;
+  width: 0;
+  animation: grow 0.5s cubic-bezier(0.7, 0, 0.3, 1) 0.1s both;
+}
+
+.tablet-link {
+  animation: slide-in 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+.tablet-link .navlink {
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.login-menu, .tablet-login-menu {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-1);
+}
+
+.login-menu {
+  position: absolute;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  align-items: flex-end;
+  right: 0;
+  left: auto;
+}
+
+.tablet-login-menu {
+  position: relative;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.login-btn {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--body);
+  transition: color 0.2s;
+}
+
+.login-btn:hover {
+  color: var(--garage-blue);
+}
+
+.join-btn {
+  background-color: var(--garage-blue);
+  color: var(--white);
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  transition: all 0.2s;
+}
+
+.join-btn:hover {
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
+}
+
+.nav,
+.navlink,
+.navlink-container,
+.drawer-inner,
+.tablet-link,
+.login-menu,
+.tablet-login-menu {
+  font-family: "Inter", sans-serif;
+}
+
+
+@keyframes grow {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(3.125rem);
+  }
+
+  to {
+    transform: translateX(0px);
+  }
+}

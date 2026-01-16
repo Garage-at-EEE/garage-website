@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/create-react-app/tsconfig.json",
+  "compilerOptions": {
+    "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
+    "jsx": "preserve"
+  },
+  "include": [
+    "src"
+  ]
+}
