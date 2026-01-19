@@ -15,7 +15,7 @@ import Newsletter from "../../components/newsletter/Newsletter";
 
 const Home = () => {
   const [authStatus, setAuthStatus] = useState(
-    () => localStorage.getItem("authStatus") || "loggedOut"
+    () => localStorage.getItem("authStatus") || "loggedOut",
   );
   const [showWarning, setShowWarning] = useState(false);
 
@@ -138,7 +138,7 @@ const Home = () => {
               )}
             </section>
             {data && (
-              <section id="innovators" className={styles["innovators"]}>
+              <section id="innovators" className={styles["section-block"]}>
                 <Typography
                   variant={"smallHeading"}
                   className={styles["tablet"]}
@@ -146,12 +146,12 @@ const Home = () => {
                   Innovators
                 </Typography>
                 <Image
-                  className={styles["innovators-image"]}
+                  className={styles["section-block-image"]}
                   objectFit="contain"
                   src={data.innovatorsImage}
                   alt="Innovators illustration"
                 />
-                <div className={styles["innovators-text"]}>
+                <div className={styles["section-block-text"]}>
                   <div className={styles["text-section"]}>
                     <Typography
                       variant={"smallHeading"}
@@ -170,10 +170,10 @@ const Home = () => {
               </section>
             )}
             {data && (
-              <section id="tinkering" className={styles["tinkering"]}>
+              <section id="tinkering" className={styles["section-block"]}>
                 {/* Hero Section (Text & Illustration) */}
                 <div className={styles["tinkering-hero"]}>
-                  <div className={styles["tinkering-text"]}>
+                  <div className={styles["section-block-text"]}>
                     <div className={styles["text-section"]}>
                       <Typography variant={"smallHeading"}>
                         Tinkering
@@ -189,70 +189,29 @@ const Home = () => {
                     <Button to="/tinkeringProject">Find out more</Button>
                   </div>
                   <Image
-                    className={styles["tinkering-image"]}
+                    className={styles["section-block-image"]}
                     objectFit="contain"
                     src={data.tinkeringImage}
                     alt="Tinkering illustration"
                   />
-                </div>
-
-                {/* Tinkering Assigned Projects */}
-                <div className={styles["tinkering-projects"]}>
-                  {/* Image Carousel */}
-                  {/* <div className={styles["carousel-container"]}>
-
-                  <Image
-                    className={styles["tinkering-image"]}
-                    objectFit="contain"
-                    src={data.tinkeringImage}
-                    alt="Tinkering illustration"
-                  />
-                  </div> */}
-                  <CardCarousel
-                    data={projectData}
-                    linkPrefix="/assigned_projects/"
-                  />
-
-                  {/* Text description */}
-                  <div className={styles["tinkering-text"]}>
-                    <div className={styles["text-section"]}>
-                      <Typography variant={"smallHeading"}>
-                        Tinkering Assigned Projects
-                      </Typography>
-                      {/* <Typography variant={"body"}>
-                        {data.tinkeringProjects}
-                      </Typography> */}
-
-                      <Typography variant={"body"}>
-                        Open to all NTU students (with at least one EEE student
-                        on each team), you’ll get access to state-of-the-art
-                        prototyping equipment, funding, and a vibrant community
-                        of makers and innovators. Dive in, tinker boldly, and
-                        create something that matters.
-                        <br/><br/>
-                        Click on the image on the left to check out our recent projects!
-                      </Typography>
-                    </div>
-                    <Button to="/assigned_projects">View All</Button>
-                  </div>
                 </div>
               </section>
             )}
             {data && (
-              <section id="launchpad" className={styles["launchpad"]}>
-                <Typography
+              <section id="launchpad" className={styles["section-block"]}>
+                {/* <Typography
                   variant={"smallHeading"}
                   className={styles["tablet"]}
                 >
                   La
-                </Typography>
+                </Typography> */}
                 <Image
-                  className={styles["launchpad-image"]}
+                  className={styles["section-block-image"]}
                   objectFit="contain"
                   src={data.launchpadImage}
                   alt="Launchpad illustration"
                 />
-                <div className={styles["launchpad-text"]}>
+                <div className={styles["section-block-text"]}>
                   <div className={styles["text-section"]}>
                     <Typography
                       variant={"smallHeading"}
@@ -260,7 +219,9 @@ const Home = () => {
                     >
                       Launchpad
                     </Typography>
-                    <Typography variant={"body"}>To fetch body data from Launchpad DB</Typography>
+                    <Typography variant={"body"}>
+                      To fetch body data from Launchpad DB
+                    </Typography>
                     <Typography variant={"smallHeading"}>
                       Launchpad Recruitment
                     </Typography>
@@ -270,6 +231,42 @@ const Home = () => {
                 </div>
               </section>
             )}
+            <section
+              id="assigned-projects"
+              className={styles["section-block"]}
+            >
+              {/* Assigned Projects */}
+                {/* Text description */}
+                <div className={styles["section-block-text"]}>
+                  <div className={styles["text-section"]}>
+                    <Typography variant={"smallHeading"}>
+                      Assigned Projects
+                    </Typography>
+                    {/* <Typography variant={"body"}>
+                        To fetch from db
+                        {data.tinkeringProjects}
+                      </Typography> */}
+
+                    <Typography variant={"body"}>
+                      Open to all NTU students (with at least one EEE student on
+                      each team), you’ll get access to state-of-the-art
+                      prototyping equipment, funding, and a vibrant community of
+                      makers and innovators. Dive in, tinker boldly, and create
+                      something that matters.
+                      <br/>
+                      <br/>
+                      Click on the image on the right to check out our recent
+                      projects!
+                    </Typography>
+                  </div>
+                  <Button to="/assigned_projects">View All</Button>
+                </div>
+                {/* Image Carousel */}
+                <CardCarousel
+                  data={projectData}
+                  linkPrefix="/assigned_projects/"
+                />
+            </section>
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>PROJECT SHOWCASE</Typography>
               {projectData ? (

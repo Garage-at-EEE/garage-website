@@ -16,7 +16,7 @@ const CardCarousel = ({
   const arrayData = Array.isArray(data) ? data : [];
   const displayData = arrayData.slice(0, maxItems);
 
-  // Left/right arrrow navigation
+  // Left/right arrow navigation
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % displayData.length);
   };
