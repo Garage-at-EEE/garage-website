@@ -28,6 +28,7 @@ const Home = () => {
   const { data: projectData } = useFetch({
     url: API_DOMAIN + "?type=projectInfo&fields=name,coverPic,id",
   });
+  console.log("Project data from backend:", projectData);
   const { data: eventData } = useFetch({
     url: API_DOMAIN + "?type=events&fields=name,coverPic",
   });
@@ -120,7 +121,7 @@ const Home = () => {
                 <Typography variant={"smallHeading"}>Ambassadors</Typography>
                 <Typography variant={"body"}>{data.ambassadors}</Typography>
               </div>
-              {ambassadorData ? (
+              {Array.isArray(ambassadorData) ? (
                 <Grid>
                   {ambassadorData.map((card, index) => (
                     <Card
@@ -163,7 +164,7 @@ const Home = () => {
                     <Typography variant={"smallHeading"}>
                       Innovator's Track Recruitment
                     </Typography>
-                    <Typography variant={"body"}>{data.recruitment}</Typography>
+                    <Typography variant={"body"}>{data.innovatorsRecruitment}</Typography>
                   </div>
                   <Button to="/innotrack">Find out more</Button>
                 </div>
@@ -199,12 +200,6 @@ const Home = () => {
             )}
             {data && (
               <section id="launchpad" className={styles["section-block"]}>
-                {/* <Typography
-                  variant={"smallHeading"}
-                  className={styles["tablet"]}
-                >
-                  La
-                </Typography> */}
                 <Image
                   className={styles["section-block-image"]}
                   objectFit="contain"
@@ -220,44 +215,31 @@ const Home = () => {
                       Launchpad
                     </Typography>
                     <Typography variant={"body"}>
-                      To fetch body data from Launchpad DB
+                      {data.launchpad}
                     </Typography>
                     <Typography variant={"smallHeading"}>
                       Launchpad Recruitment
                     </Typography>
-                    <Typography variant={"body"}>{data.recruitment}</Typography>
+                    <Typography variant={"body"}>{data.launchpadRecruitment}</Typography>
                   </div>
                   <Button to="/launchpad">Find out more</Button>
                 </div>
               </section>
             )}
             <section
-              id="assigned-projects"
+              id="project-openings"
               className={styles["section-block"]}
             >
-              {/* Assigned Projects */}
+              {/* Project Openings */}
                 {/* Text description */}
                 <div className={styles["section-block-text"]}>
                   <div className={styles["text-section"]}>
                     <Typography variant={"smallHeading"}>
-                      Assigned Projects
+                      Project Openings
                     </Typography>
-                    {/* <Typography variant={"body"}>
-                        To fetch from db
-                        {data.tinkeringProjects}
-                      </Typography> */}
-
                     <Typography variant={"body"}>
-                      Open to all NTU students (with at least one EEE student on
-                      each team), you’ll get access to state-of-the-art
-                      prototyping equipment, funding, and a vibrant community of
-                      makers and innovators. Dive in, tinker boldly, and create
-                      something that matters.
-                      <br/>
-                      <br/>
-                      Click on the image on the right to check out our recent
-                      projects!
-                    </Typography>
+                        {data.projectOpenings}
+                      </Typography>
                   </div>
                   <Button to="/assigned_projects">View All</Button>
                 </div>
@@ -269,7 +251,7 @@ const Home = () => {
             </section>
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>PROJECT SHOWCASE</Typography>
-              {projectData ? (
+              {Array.isArray(projectData) ? (
                 <div className={styles["grid-wrapper"]}>
                   <Grid>
                     {projectData.map((card, index) => (
@@ -293,7 +275,7 @@ const Home = () => {
             </section>
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>OUR EVENTS</Typography>
-              {eventData ? (
+              {Array.isArray(eventData) ? (
                 <Grid>
                   {eventData.map((card, index) => (
                     <Card
@@ -314,7 +296,7 @@ const Home = () => {
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>Behind The Rollerdoor</Typography>
               <Typography variant="body">{data.newsletter}</Typography>
-              {newsletterData ? (
+              {Array.isArray(newsletterData) ? (
                 <div className={styles["grid-wrapper"]}>
                   <div className={styles["issues"]}>
                     <Typography variant="smallHeading">
