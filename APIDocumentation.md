@@ -31,7 +31,7 @@ To specify the parameters, append them to the end of the endpoint after a `?` ch
 | `events`      | Gets the data related to events hosted by Garage        |
 | `facilities`  | Gets the facilities present in Garage                   |
 | `newsletter`  | Gets the newsletters published by Garage                |
-| `assignedProjectInfo` | Gets the data related to Garage assigned projects                |
+| `projectOpenings` | Gets the data related to Garage project openings                |
 | `tinkering` | Gets the data related to Tinkering projects                |
 
 ### `fields`
@@ -81,7 +81,7 @@ API will only return data for fields specified. If no fields are specifed, all f
 |             | `date`            | Date of when the newsletter was published                                  | `string`                                                                                                           |
 |             | `link`            | URL that links to the newsletter                                           | `string`                                                                                                           |
 |             | `image`           | URL for the image of the newsletter                                        | `string`                                                                                                           |
-| assignedProjectInfo | `name`         | Name of the project/team | `string` |
+| projectOpeningsInfo | `name`         | Name of the project/team | `string` |
 |                     | `description`  | Description of the project | Markdown formatted `string` |
 |                     | `coverPic`     | URL for the banner image of the project | `string` |
 |                     | `recruitment`  | Recruitment requirements and expectations of the project | `Object:{team_opening: string, looking_for: string, what_you_do: string}` |

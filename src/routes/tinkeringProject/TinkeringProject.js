@@ -102,7 +102,7 @@ const TinkeringProjects = () => {
               )}
               </div>
               <div>
-                <Button to="/assigned_projects"  
+                <Button to="/project-openings"  
                   style={{ width: '100%', textAlign: 'center', padding: '1rem' }}
                   >
                   View All
@@ -218,7 +218,7 @@ const TinkeringProjects = () => {
                           <Typography key={i} variant="body">
                             {index === 0 && i === 1 ? (
                               <a
-                                href="/assigned_projects"
+                                href="/project-openings"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles["faq-link"]}

@@ -6,7 +6,7 @@ import styles from "./cardCarousel.module.css";
 
 const CardCarousel = ({
   data,
-  linkPrefix = "/assigned_projects/", // default to assigned_projects
+  linkPrefix = "/project-openings/", // default to project-openings
   autoPlay = true, // default auto play next image
   interval = 10000, // default to 10 seconds
   maxItems = 5, // default to display 5 items max

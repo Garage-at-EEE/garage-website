@@ -28,7 +28,10 @@ const Home = () => {
   const { data: projectData } = useFetch({
     url: API_DOMAIN + "?type=projectInfo&fields=name,coverPic,id",
   });
-  console.log("Project data from backend:", projectData);
+  const { data: projectOpeningsData } = useFetch({ 
+    url: API_DOMAIN + "?type=projectOpenings&fields=name,coverPic",
+  });
+  console.log("Project Openings data:", projectOpeningsData);
   const { data: eventData } = useFetch({
     url: API_DOMAIN + "?type=events&fields=name,coverPic",
   });
@@ -241,12 +244,12 @@ const Home = () => {
                         {data.projectOpenings}
                       </Typography>
                   </div>
-                  <Button to="/assigned_projects">View All</Button>
+                  <Button to="/project-openings">View All</Button>
                 </div>
                 {/* Image Carousel */}
                 <CardCarousel
-                  data={projectData}
-                  linkPrefix="/assigned_projects/"
+                  data={projectOpeningsData}
+                  linkPrefix="/project-openings/"
                 />
             </section>
             <section className={styles["section-wrapper"]}>
