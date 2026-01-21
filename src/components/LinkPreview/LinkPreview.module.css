@@ -11,7 +11,7 @@
 
 .link-preview:hover {
   color: var(--body);
-  box-shadow: 0 0px 50px -12px rgb(0 0 0 / 0.4);
+  box-shadow: 0 0 3.125rem -0.75rem rgb(0 0 0 / 0.4);
 }
 
 .link-preview:link {
@@ -26,7 +26,7 @@
 }
 
 .link-preview img {
-  width: 96px;
+  width: 6rem;
   aspect-ratio: 1;
   border-radius: 1.25rem;
 }
@@ -42,7 +42,7 @@
     border-radius: 1.5rem;
   }
   .link-preview img {
-    width: 64px;
+    width: 4rem;
     border-radius: 0.75rem;
   }
 }

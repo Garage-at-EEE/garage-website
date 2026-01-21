@@ -1,7 +1,7 @@
 .upload-box {
     width: 100%;
     padding: 20px 14px;
-    border: 2px dashed #ccc; /* Dotted border */
+    border: 2px dashed #ccc; 
     border-radius: 8px;
     display: flex;
     flex-direction: column;

@@ -2,9 +2,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Typography from "../typography/Typography";
-import { ReactComponent as ArrowDown } from "../../icons/arrow_down.svg";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import styles from "./Header.module.css";
+
+const CircuitArrowDown = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline-block', marginLeft: '4px' }}>
+    <path d="M12 16l-6-6h12l-6 6z" />
+    <circle cx="12" cy="4" r="1.5" />
+    <line x1="12" y1="4" x2="12" y2="10" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
 
 const DropdownMenu = ({ children, header, navlinks }) => {
   const [open, setOpen] = useState(false);
@@ -19,19 +26,19 @@ const DropdownMenu = ({ children, header, navlinks }) => {
   };
 
   return (
-      <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
+      <div
         className={styles["navlink-container"]}
         onMouseEnter={handleOpen}
         onMouseLeave={handleClose}
       >
       <Link className={styles["navlink"]}> 
         <Typography variant="body">
-          {header} <ArrowDown />
+          {header} <CircuitArrowDown />
         </Typography>
       </Link>
 
       {open && (
-        <div //Main container for dropdown menu
+        <div
           className={
             breakpoint === "desktop" ?
             styles["login-menu"] :
@@ -40,7 +47,6 @@ const DropdownMenu = ({ children, header, navlinks }) => {
         >
 
           {navlinks.map((item) => {
-            // If it's a hash link, use HashLink for in-page scroll
             if (item.to.includes("#")) {
               return (
                 <HashLink
@@ -54,7 +60,6 @@ const DropdownMenu = ({ children, header, navlinks }) => {
                 </HashLink>
               );
             }
-            // Otherwise a normal page Link
             return (
               <Link
                 key={item.label}

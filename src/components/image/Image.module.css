@@ -17,7 +17,7 @@
 }
 
 .image-wrapper {
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   background-color: var(--white);
   overflow: hidden;
   display: flex;
@@ -28,6 +28,6 @@
 
 @media (max-width: 640px) {
   .image-wrapper {
-    border-radius: 1.5rem;
+    border-radius: 0.375rem;
   }
 }
