@@ -58,7 +58,7 @@ const CardCarousel = ({
           <Card
             image={activeItem.coverPic}
             bottomText={activeItem.name}
-            to={`${linkPrefix}${activeIndex}`}
+            to={`${linkPrefix}${activeItem.id}`}
           />
         </div>
 

@@ -29,7 +29,7 @@ const Home = () => {
     url: API_DOMAIN + "?type=projectInfo&fields=name,coverPic,id",
   });
   const { data: projectOpeningsData } = useFetch({ 
-    url: API_DOMAIN + "?type=projectOpenings&fields=name,coverPic",
+    url: API_DOMAIN + "?type=projectOpenings&fields=name,coverPic,id,timestamp&limit=5",
   });
   console.log("Project Openings data:", projectOpeningsData);
   const { data: eventData } = useFetch({
