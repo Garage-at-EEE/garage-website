@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 
 import Home from "./routes/home/Home";
+import Workshops from "./routes/workshops/Workshops";
 import AmbassadorDetail from "./routes/ambassadors/AmbassadorDetail";
 import EventsOverview from "./routes/eventsOverview/EventsOverview";
 import EventDetail from "./routes/events/EventDetail";
@@ -13,7 +14,7 @@ import NewsletterPage from "./routes/newsletter/NewsletterPage";
 import ContactUsPage from "./routes/contactUs/ContactUs";
 import Shop from "./routes/shop/Shop";
 import Checkout from "./routes/shop/Checkout";
-import Acknowledgement from "./routes/shop/Acknowledgement";  
+import Acknowledgement from "./routes/shop/Acknowledgement";
 import Database from "./routes/database/Database";
 import Login from "./routes/login/Login";
 import AssignedProjects from "./routes/assignedProjects/AssignedProjects";
@@ -42,34 +43,62 @@ function App() {
               <Route path="/events" element={<EventsOverview />} />
               <Route path="/events/:id" element={<EventDetail />} />
               <Route path="/projects" element={<ProjectsOverview />} />
+              <Route path="/workshops" element={<Workshops />} />
               <Route path="/projects/:id" element={<ProjectDetail />} />
               <Route path="/facilities" element={<Facilities />} />
               <Route path="/newsletter" element={<NewsletterPage />} />
               <Route path="/assigned_projects" element={<AssignedProjects />} />
-              <Route path="/assigned_projects/:id" element={<AssignedProjectsDetail />} />
+              <Route
+                path="/assigned_projects/:id"
+                element={<AssignedProjectsDetail />}
+              />
               <Route path="/tinkeringProject" element={<TinkeringProject />} />
               <Route path="/contact-us" element={<ContactUsPage />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/database" element={
-                  <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
+              <Route
+                path="/database"
+                element={
+                  <PrivateRoute
+                    loginPageTitle="Member Database"
+                    loginRedirect="/database"
+                  >
                     <Database />
                   </PrivateRoute>
-              }/>
-              <Route path="/shop" element={
-                  <PrivateRoute loginPageTitle="Garage Shop" loginRedirect="/shop">
+                }
+              />
+              <Route
+                path="/shop"
+                element={
+                  <PrivateRoute
+                    loginPageTitle="Garage Shop"
+                    loginRedirect="/shop"
+                  >
                     <Shop />
                   </PrivateRoute>
-              }/>
-              <Route path="/checkout" element={
-                  <PrivateRoute loginPageTitle="Shop Checkout" loginRedirect="/checkout">
+                }
+              />
+              <Route
+                path="/checkout"
+                element={
+                  <PrivateRoute
+                    loginPageTitle="Shop Checkout"
+                    loginRedirect="/checkout"
+                  >
                     <Checkout />
                   </PrivateRoute>
-              }/>
-              <Route path="/acknowledgement" element={
-                  <PrivateRoute loginPageTitle="Shop Acknowledgement" loginRedirect="/acknowledgement">
+                }
+              />
+              <Route
+                path="/acknowledgement"
+                element={
+                  <PrivateRoute
+                    loginPageTitle="Shop Acknowledgement"
+                    loginRedirect="/acknowledgement"
+                  >
                     <Acknowledgement />
                   </PrivateRoute>
-              }/>
+                }
+              />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

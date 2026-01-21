@@ -14,7 +14,7 @@ import {
 import { API_DOMAIN } from "../../utils/Constants";
 import Button from "../../components/button/Button";
 
-import styles from "./Facilities.module.css";
+import styles from "./Workshops.module.css";
 
 const FacilityCard = ({ even, description, title, src, label, link }) => {
   return (
@@ -51,17 +51,18 @@ const FacilityCard = ({ even, description, title, src, label, link }) => {
   );
 };
 
-const Facilities = () => {
+const Workshops = () => {
   const { data, isLoading } = useFetch({
-    url: API_DOMAIN + "?type=facilities",
+    url: API_DOMAIN + "?type=workshops",
   });
+  console.log("jus fetch", data);
   return (
     <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && (
           <PageGap>
-            <HeroImage heading="Facilities" src={data.coverPic} />
-            {data?.facilities?.map((facility, index) => (
+            <HeroImage heading="Workshops" src={data?.coverPic} />
+            {data?.workshops?.map((facility, index) => (
               <FacilityCard
                 key={facility.name}
                 even={index % 2 === 0}
@@ -72,28 +73,30 @@ const Facilities = () => {
                 link={facility.link}
               />
             ))}
-            <AccordionRoot type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <Typography variant="body">Other Useful Links</Typography>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <div className={styles["links"]}>
-                    {data?.others?.map((link) => (
-                      <a
-                        key={link.label}
-                        className={styles["link"]}
-                        href={link.link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <Typography variant="body">{link.label}</Typography>
-                      </a>
-                    ))}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </AccordionRoot>
+            {data.others && (
+              <AccordionRoot type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>
+                    <Typography variant="body">Other Useful Links</Typography>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className={styles["links"]}>
+                      {data.others.map((link) => (
+                        <a
+                          key={link.label}
+                          className={styles["link"]}
+                          href={link.link}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Typography variant="body">{link.label}</Typography>
+                        </a>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </AccordionRoot>
+            )}
           </PageGap>
         )}
       </PageTemplate>
@@ -101,4 +104,4 @@ const Facilities = () => {
   );
 };
 
-export default Facilities;
+export default Workshops;

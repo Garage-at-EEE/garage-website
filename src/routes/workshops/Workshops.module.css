@@ -1,0 +1,78 @@
+.facility-card {
+  display: flex;
+  gap: var(--content-gap-mobile);
+  align-items: center;
+  width: 100%;
+}
+
+.facility-image {
+  flex: 7 0;
+  height: 500px;
+}
+
+.facility-description {
+  flex: 5 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--para-gap-desktop);
+}
+.odd {
+  order: -1;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.mobile {
+  display: none;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.link {
+  color: var(--garage-blue);
+}
+.link:hover {
+  color: var(--garage-blue-hover);
+}
+
+/* Wide screen styling */
+@media (max-width: 1200px) {
+  .facility-description {
+    gap: var(--para-gap-tablet);
+  }
+  .facility-image {
+    flex: unset;
+    width: clamp(256px, 40%, 400px);
+    height: auto;
+  }
+  .square {
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .odd {
+    order: unset;
+  }
+  .facility-card {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .facility-description {
+    gap: var(--para-gap-mobile);
+  }
+  .facility-image {
+    width: 100%;
+    height: initial;
+  }
+  .mobile {
+    display: unset;
+  }
+  .mobile-hide {
+    display: none;
+  }
+}

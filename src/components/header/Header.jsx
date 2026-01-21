@@ -82,6 +82,10 @@ const Header = () => {
 
   const navlinks = [
     {
+      label: "Workshops",
+      to: "/workshops",
+    },
+    {
       label: "Projects",
       to: "/projects",
     },
@@ -93,8 +97,8 @@ const Header = () => {
       label: "Recruitment",
       dropdown: [
         { label: "Ambassador", to: "/#ambassadors" },
-        { label: "Innovator",  to: "/#innovators"  },
-        { label: "Tinkering",  to: "/#tinkering"   },
+        { label: "Innovator", to: "/#innovators" },
+        { label: "Tinkering", to: "/#tinkering" },
       ],
     },
     {
@@ -104,18 +108,18 @@ const Header = () => {
     {
       label: "Newsletter",
       to: "/newsletter",
-    },  
+    },
     {
       label: "Contact Us",
       to: "/contact-us",
-    }
+    },
   ];
 
   const protected_navlinks = [
     {
       label: "Shop",
       to: "/shop",
-    }
+    },
     // },
     // {
     //   label: "Database",     //WIP
@@ -136,43 +140,43 @@ const Header = () => {
       >
         <Gutter>
           <div className={styles["header-inner"]}>
-            <HashLink to="/#start" onClick={handleClose} className={styles["logo"]}>
+            <HashLink
+              to="/#start"
+              onClick={handleClose}
+              className={styles["logo"]}
+            >
               <Logo />
             </HashLink>
 
             {/* DESKTOP HEADER */}
             {breakpoint === "desktop" ? (
               <nav className={styles["nav"]}>
-              {navlinks.map((navlink) =>
-                navlink.dropdown ? (
-                  <DropdownMenu
-                    key={navlink.label}
-                    header={navlink.label}
-                    navlinks={navlink.dropdown}
-                  />
-                ) : (
-                  <Link
-                    key={navlink.label}
-                    to={navlink.to}
-                    className={styles["navlink"]}
-                  >
-                    <Typography variant="body">{navlink.label}</Typography>
-                  </Link>
-                ))}
+                {navlinks.map((navlink) =>
+                  navlink.dropdown ? (
+                    <DropdownMenu
+                      key={navlink.label}
+                      header={navlink.label}
+                      navlinks={navlink.dropdown}
+                    />
+                  ) : (
+                    <Link
+                      key={navlink.label}
+                      to={navlink.to}
+                      className={styles["navlink"]}
+                    >
+                      <Typography variant="body">{navlink.label}</Typography>
+                    </Link>
+                  )
+                )}
 
                 {/* LAST Link in Header => Login if unauth | {name} if auth*/}
                 {name === null ? (
-                  <Link
-                    key="Login"
-                    to="/login"
-                    className={styles["navlink"]}
-                  >
+                  <Link key="Login" to="/login" className={styles["navlink"]}>
                     <Typography variant="body">Login</Typography>
                   </Link>
-                  ) : (
-                    <LoginMenu protected_navlinks={protected_navlinks}/>
-                  )
-                }
+                ) : (
+                  <LoginMenu protected_navlinks={protected_navlinks} />
+                )}
               </nav>
             ) : (
               <MenuButton open={open} setOpen={setOpen} />
@@ -203,7 +207,10 @@ const Header = () => {
                     <div className={styles.separator} />
 
                     {navlinks.map((navlink) => (
-                      <div key={navlink.label} className={styles["tablet-link"]}>
+                      <div
+                        key={navlink.label}
+                        className={styles["tablet-link"]}
+                      >
                         {navlink.dropdown ? (
                           <DropdownMenu
                             key={navlink.label}
@@ -230,18 +237,16 @@ const Header = () => {
                       style={{ animationDelay: `${0.1 * navlinks.length}s` }}
                       className={styles["tablet-link"]}
                     >
-                      {name===null ? (
+                      {name === null ? (
                         <Link
                           to="/login"
                           className={styles["navlink"]}
                           onClick={handleClose}
                         >
-                          <Typography variant="body">
-                            Login
-                          </Typography>
+                          <Typography variant="body">Login</Typography>
                         </Link>
-                      ):(
-                        <LoginMenu protected_navlinks={protected_navlinks}/>
+                      ) : (
+                        <LoginMenu protected_navlinks={protected_navlinks} />
                       )}
                     </div>
                   </motion.div>
