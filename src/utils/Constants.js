@@ -1,5 +1,6 @@
 // this should be latest api domain (NOW: API 1.0.14)
-export const API_DOMAIN = "https://script.google.com/macros/s/AKfycbwqbqzPx8cJr6Ill-_07Crab1mYbKCQioBx6Dj39CR8slYbGSbdCsIf3Vm2ruNxlIS7Mw/exec"
+export const API_DOMAIN =
+    "https://script.google.com/macros/s/AKfycbz34_zcYZq9GUXjxfxIXX0SCImcj_087_Vsxv5eG0-3eXhwJIa9DVBcrMwm4VMRk4KJ8g/exec";
 
 // require access to garage database gsheet (NOW: API 1.0.8)
 export const LOGIN_DOMAIN =

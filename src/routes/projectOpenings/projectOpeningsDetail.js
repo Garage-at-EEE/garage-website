@@ -34,13 +34,12 @@ function ProjectDetail() {
             {(projectOpeningsData.isRecruiting === "Y") ?
             <>
               <div>
-                <Typography variant="smallHeading">RECRUITMENT INFO</Typography>
-                <Typography variant="body"><b>Team Openings</b></Typography>
-                <Typography variant="body">{projectOpeningsData.recruitment.team_opening}</Typography>
-                <Typography variant="body"><b>What we're looking for</b></Typography>
-                <Typography variant="body">{projectOpeningsData.recruitment.looking_for.toString().replace(/-/g, "•")}</Typography>
-                <Typography variant="body"><b>What you'll do</b></Typography>
-                <Typography variant="body">{projectOpeningsData.recruitment.what_you_do.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body"><b>Programme</b></Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.programme}</Typography>
+                <Typography variant="body"><b>Be Part of the Project</b></Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.join_project.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body"><b>People Behind the Project</b></Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.people.toString().replace(/-/g, "•")}</Typography>
               </div>
               <div>
                 <Typography variant="smallHeading" className={styles["link"]}>
