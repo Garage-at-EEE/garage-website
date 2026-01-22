@@ -2,12 +2,12 @@ import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 
 const containerStyle = {
   width: "100%",
-  height: "400px", // Adjust height as needed
+  height: "400px",
 };
 
 const center = {
-  lat: 1.3483, // Latitude
-  lng: 103.6831, // Longitude for Garage@EEE, NTU
+  lat: 1.3483,
+  lng: 103.6831,
 };
 
 const MAP_ID = "c8b545f909f6471e";

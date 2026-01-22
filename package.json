@@ -4,7 +4,7 @@
   "homepage": "https://garage-eee.com/",
   "private": true,
   "dependencies": {
-    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-accordion": "^1.2.12",
     "@react-google-maps/api": "^2.20.6",
     "@splidejs/react-splide": "^0.7.8",
     "@testing-library/jest-dom": "^5.16.4",
@@ -13,7 +13,6 @@
     "@vis.gl/react-google-maps": "^1.5.2",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
-    "caniuse-lite": "^1.0.30001538",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.0.2",
     "framer-motion": "^11.0.14",
@@ -22,8 +21,8 @@
     "react-dom": "^18.1.0",
     "react-dropzone": "^14.3.8",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "^5.0.1",
     "react-router-hash-link": "^2.4.3",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

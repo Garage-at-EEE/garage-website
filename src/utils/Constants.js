@@ -2,11 +2,9 @@
 export const API_DOMAIN =
     "https://script.google.com/macros/s/AKfycbz34_zcYZq9GUXjxfxIXX0SCImcj_087_Vsxv5eG0-3eXhwJIa9DVBcrMwm4VMRk4KJ8g/exec";
 
-// require access to garage database gsheet (NOW: API 1.0.8)
 export const LOGIN_DOMAIN =
     "https://script.google.com/macros/s/AKfycbx0hV8Qlw1EDDLNkGDU00pSZPbYU5EAaj-wKLTstG0qrkt8Br_aGJChemqrkypjPychxQ/exec";
 
-// require garage official email (NOW: API 1.0.7)
 export const CONTACT_US_UPLOAD_DOMAIN = 
     "https://script.google.com/macros/s/AKfycbz7GLkV_mfPQCQK71MJ37JETpHHJzJ4jASp4fUzGwHgSsQk0_kgkk_6iiyKX8Windioww/exec";
     

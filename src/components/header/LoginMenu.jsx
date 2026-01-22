@@ -13,7 +13,7 @@ const LoginMenu = ({ protected_navlinks }) => {
 
   return (
     <DropdownMenu header={name} navlinks={protected_navlinks}>
-      <Link //Logout will be last link in the dropdown menu
+      <Link
         key="Logout"
         className={styles["navlink"]}
         onClick={handleLogout}

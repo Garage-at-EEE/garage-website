@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"; // Import Link from React Router
+import { Link } from "react-router-dom";
 import styles from "./PhotoCard.module.css";
 import Typography from "../typography/Typography";
 import Image from "../image/Image";
 
-const Card = ({ image, topText, bottomText, bottomTextClassName, to }) => {
+const Card = ({ image, topText, bottomText, tagline, bottomTextClassName, to }) => {
   const Comp = to ? Link : "div";
   return (
     <Comp
@@ -20,10 +20,17 @@ const Card = ({ image, topText, bottomText, bottomTextClassName, to }) => {
           <Typography variant={"smallHeading"}>{topText}</Typography>
         </div>
       </div>
-      {bottomText && (
-        <Typography variant={"smallHeading"} className={[styles["bottom-text"], bottomTextClassName].join(" ")}>
-          {bottomText}
-        </Typography>
+      {(bottomText || tagline) && (
+        <div className={styles["card-content"]}>
+          {bottomText && (
+            <Typography variant={"smallHeading"} className={[styles["bottom-text"], bottomTextClassName].join(" ")}>
+              {bottomText}
+            </Typography>
+          )}
+          {tagline && (
+            <p className={styles["card-tagline"]}>{tagline}</p>
+          )}
+        </div>
       )}
     </Comp>
   );

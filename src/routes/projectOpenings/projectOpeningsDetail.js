@@ -9,51 +9,50 @@ import HeroImage from "../../components/heroImage/heroImage";
 import Button from "../../components/button/Button";
 
 
-import styles from "./AssignedProjects.module.css";
+import styles from "./projectOpenings.module.css";
 
 function ProjectDetail() {
   const params = useParams();
   const id = params.id;
-  const { data: projectData, isLoading } = useFetch({ 
-    url: API_DOMAIN + "?type=assignedProjectInfo&index=" + id,
+  const { data: projectOpeningsData, isLoading } = useFetch({ 
+    url: API_DOMAIN + "?type=projectOpenings&index=" + id,
   });
   return (
-    <Transition isLoading={isLoading || !projectData }>
+    <Transition isLoading={isLoading || !projectOpeningsData }>
       <PageTemplate>
-        {projectData && (
+        {projectOpeningsData && (
           <PageGap>
             <HeroImage
-              heading={projectData.name}
-              src={projectData.coverPic || "https://via.placeholder.com/800x400/f8f9fa/6c757d?text=Project+Image"}
+              heading={projectOpeningsData.name}
+              src={projectOpeningsData.coverPic}
               subheading={""}
             />
             <div>
               <Typography variant="smallHeading">DESCRIPTION</Typography>
-              <Typography variant="body">{projectData.description}</Typography>
+              <Typography variant="body">{projectOpeningsData.description}</Typography>
             </div>
-            {(projectData.isRecruiting === "Y") ?
+            {(projectOpeningsData.isRecruiting === "Y") ?
             <>
               <div>
-                <Typography variant="smallHeading">RECRUITMENT INFO</Typography>
                 <Typography variant="body"><b>Programme</b></Typography>
-                <Typography variant="body">{projectData.recruitment.programme}</Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.programme}</Typography>
                 <Typography variant="body"><b>Be Part of the Project</b></Typography>
-                <Typography variant="body">{projectData.recruitment.join_project.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.join_project.toString().replace(/-/g, "•")}</Typography>
                 <Typography variant="body"><b>People Behind the Project</b></Typography>
-                <Typography variant="body">{projectData.recruitment.people.toString().replace(/-/g, "•")}</Typography>
+                <Typography variant="body">{projectOpeningsData.recruitment.people.toString().replace(/-/g, "•")}</Typography>
               </div>
               <div>
                 <Typography variant="smallHeading" className={styles["link"]}>
                   <Button
-                    disabled={!projectData.assignedProjectsLink}
+                    disabled={!projectOpeningsData.projectLink}
                     onClick={() => {
-                      if (projectData.assignedProjectsLink) {
-                        window.open(projectData.assignedProjectsLink, "_blank");
+                      if (projectOpeningsData.projectLink) {
+                        window.open(projectOpeningsData.projectLink, "_blank");
                       }
                     }}
                     className={styles["register-button"]}
                   >
-                    {projectData.assignedProjectsLink ? "Register Here" : "Registration Closed"}
+                    {projectOpeningsData.projectLink ? "Register Here" : "Registration Closed"}
                   </Button>                
                 </Typography>
               </div>

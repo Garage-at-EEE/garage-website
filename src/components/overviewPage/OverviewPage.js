@@ -12,8 +12,8 @@ const OverviewPage = ({ heading, data }) => {
   return (
     <div className={styles["content-wrapper"]}>
       <div className={styles["heading-space"]}>
-        <Typography variant="heading">{heading}</Typography>
         <BackButton />
+        <Typography variant="heading">{heading}</Typography>
       </div>
       {data && (
         <>
@@ -24,6 +24,7 @@ const OverviewPage = ({ heading, data }) => {
                 image={card.coverPic}
                 to={`${index}/`}
                 bottomText={card.name}
+                tagline={card.tagline}
               />
             ))}
           </Grid>

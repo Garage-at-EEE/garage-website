@@ -54,6 +54,12 @@
     font-size: 14px;
     line-height: 20px;
   }
+
+  .banner,
+  .heading,
+  .smallHeading {
+    font-family: "Inter", sans-serif;
+  }
 }
 
 @media (max-width: 640px) {

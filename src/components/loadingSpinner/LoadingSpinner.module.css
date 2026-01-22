@@ -1,7 +1,7 @@
 .loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid var(--garage-blue);
+  width: 3rem;
+  height: 3rem;
+  border: 0.3125rem solid var(--garage-blue);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

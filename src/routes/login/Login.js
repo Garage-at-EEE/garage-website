@@ -18,18 +18,15 @@ function Login() {
   const [isDenied, setDenied] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); //State obtained from PrivateRoute 
+  const location = useLocation();
   const auth = useAuth();
 
-  //If accessed through PrivateRoute Navigate => location.state contains data
-  //Else accessed through /login url => default redirect to '/' and title: "login"
   const ROUTE_DESTINATION = (location.state?.to || "/");
   const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
 
   const handlePasscodeChange = (e) => {
-    // Ensure passcode is in the format DDMM (e.g., 1234)
     const inputPasscode = e.target.value;
-    const formattedPasscode = inputPasscode.replace(/\D/g, '').slice(0, 4); // Only allow digits, max length 4
+    const formattedPasscode = inputPasscode.replace(/\D/g, '').slice(0, 4);
     setPasscode(formattedPasscode);
   };
 
@@ -43,7 +40,7 @@ function Login() {
       },
     };
 
-    console.log(`Attempting to log in with matric: ${matric} and passcode: ${passcode}`); //Debug line
+    console.log(`Attempting to log in with matric: ${matric} and passcode: ${passcode}`);
     
     try {
       setLoading(true);
@@ -54,12 +51,11 @@ function Login() {
         config,
       );
 
-      console.log('Response:', response); //Debug line
+      console.log('Response:', response);
 
       setLoading(false);
       
       if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
-        //Upon success, update AuthContext with responseData to provide auth context to entire App
         auth.loginAction(response.data); 
         navigate(ROUTE_DESTINATION);
       } else {

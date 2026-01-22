@@ -1,58 +1,248 @@
-footer {
-  background-color: #284d89;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+.footer {
+  background-color: #000000;
+  padding: 3rem 0 1.5rem;
 }
 
-.footer-wrapper {
-  max-width: 1440px;
-  display: flex;
-  width: 100%;
-
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 3rem;
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.texts {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem 0;
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
 }
 
-footer p {
+@media (min-width: 640px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  }
+}
+
+.brandSection {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+  .brandSection {
+    grid-column: auto;
+  }
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.brandLogo svg {
   color: #ffffff;
 }
 
-.social-media {
+.brandName {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.brandDesc {
+  color: #cccccc;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  color: #cccccc;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.socialLink:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.socialLink svg {
+  fill: currentColor;
+}
+
+.linkSection {
+  min-width: 0;
+}
+
+.linkTitle {
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.media-buttons {
+.footerLink {
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
 }
 
-footer img {
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #cccccc;
+  font-size: 0.875rem;
+}
+
+.contactItem svg {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  stroke: #ffffff;
+}
+
+.divider {
+  height: 1px;
+  background-color: #333333;
+  margin: 2rem 0 1.5rem;
+}
+
+.footerBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footerBottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  color: #cccccc;
+  font-size: 0.75rem;
+}
+
+.backToTop {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #cccccc;
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.backToTop:hover {
+  color: #ffffff;
+}
+
+.backToTop svg {
+  transition: transform 0.2s;
+}
+
+.backToTop:hover svg {
+  transform: translateY(-2px);
+}
+
+.mobileNav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  background-color: #000000;
+  border-top: 1px solid #333333;
+  justify-content: space-around;
+  padding: 0.75rem 0.5rem;
+  z-index: 50;
 }
 
-.social-media a {
-  transition: 0.3s ease;
-  width: 2.25rem;
-  height: 2.25rem;
+@media (min-width: 1024px) {
+  .mobileNav {
+    display: none;
+  }
 }
 
-.social-media a:hover {
-  opacity: 0.6;
+.mobileNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobileNavItem:hover {
+  color: #ffffff;
+}
+
+.mobileNavItem svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.mobileNavItem span {
+  font-size: 0.625rem;
+  font-weight: 500;
+}
+
+.mobileNavActive {
+  color: #ffffff;
+}
+
+.mobileNavSpacer {
+  height: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .mobileNavSpacer {
+    display: none;
+  }
 }
