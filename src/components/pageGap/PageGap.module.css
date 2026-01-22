@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: var(--content-gap-desktop);
+  gap: 1.25rem;
 }
 
 @media (max-width: 1200px) {

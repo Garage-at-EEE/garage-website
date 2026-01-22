@@ -48,12 +48,10 @@ const TinkeringProjects = () => {
               />
             </div>
             <section className={styles["section-wrapper"]}>
-              {/* Intro section */}
               <Typography variant="heading">Introduction</Typography>
               <Typography variant="body"> {data[0].introduction}
               </Typography>
             
-              {/* Join section */} 
               <Typography variant="heading">How Can I Join?</Typography> 
               <div className={styles["join-text"]}> 
                   <div className={styles["text-section"]}> 
@@ -70,7 +68,6 @@ const TinkeringProjects = () => {
                   </div> 
               </div> 
                
-              {/* Garage Assigned section */} 
               <Typography variant="heading">Alternatively,</Typography> 
               <div className={styles["garage-assigned-text"]}> 
                   <div className={styles["text-section"]}> 
@@ -110,7 +107,6 @@ const TinkeringProjects = () => {
               </div>
             </section>
 
-            {/* Support section */} 
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>SUPPPORT</Typography>
               {data ? (
@@ -144,7 +140,6 @@ const TinkeringProjects = () => {
               )}
             </section>
 
-            {/* Programmes section */} 
             <section className={styles["section-wrapper"]}>
                 <Typography variant={"heading"}>PROGRAMMES</Typography>
                 <div className={styles["programme-section"]}> 
@@ -202,7 +197,6 @@ const TinkeringProjects = () => {
               </div> 
             </section>
 
-            {/* FAQ section */} 
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>FREQUENTLY ASKED QUESTIONS</Typography>
               <PageGap>

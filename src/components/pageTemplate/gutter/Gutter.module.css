@@ -1,17 +1,19 @@
 .gutter {
-    padding-left: var(--gutter);
-    padding-right: var(--gutter);
+    padding-left: var(--gutter, clamp(1rem, 4vw, 3rem));
+    padding-right: var(--gutter, clamp(1rem, 4vw, 3rem));
 }
 
 .container {
-    max-width: var(--max-width);
+    max-width: var(--max-width, min(90vw, 1400px));
     margin-left: auto;
     margin-right: auto;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 1600px) {
     .gutter {
-        padding-left: var(--gutter-mobile);
-        padding-right: var(--gutter-mobile);
+        padding-left: clamp(3rem, 8vw, 6rem);
+        padding-right: clamp(3rem, 8vw, 6rem);
     }
 }
+
+

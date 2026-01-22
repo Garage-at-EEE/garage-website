@@ -2,10 +2,6 @@ import { forwardRef, useState } from "react";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 import styles from "./Image.module.css";
 
-/**
- * Drop in replacement for `<img>` tags. Provides lazy loading spinners
- * and fades image in on load
- */
 const Image = forwardRef(
   (
     { src, alt, className, wrapperClassName, objectFit = "cover", ...rest },
