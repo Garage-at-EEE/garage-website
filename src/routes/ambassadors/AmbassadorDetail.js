@@ -20,11 +20,11 @@ function AmbassadorDetail() {
         {data && (
           <PageGap>
             <HeroImage
-              heading={data.name}
-              src={data.coverPic}
+              heading={data[0].name}
+              src={data[0].coverPic}
               objectFit="contain"
             />
-            <Typography variant="body">{data.description}</Typography>
+            <Typography variant="body">{data[0].description}</Typography>
           </PageGap>
         )}
       </PageTemplate>

@@ -34,20 +34,20 @@ function EventDetail() {
                         <path d="M9 18l6-6-6-6" />
                       </svg>
                     </span>
-                    <span className={styles["breadcrumb-current"]}>{data.name}</span>
+                    <span className={styles["breadcrumb-current"]}>{data[0].name}</span>
                   </nav>
 
                   <div className={styles["title-block"]}>
-                    <h1 className={styles["page-title"]}>{data.name}</h1>
-                    {data.tagline && (
-                      <p className={styles["page-subtitle"]}>{data.tagline}</p>
+                    <h1 className={styles["page-title"]}>{data[0].name}</h1>
+                    {data[0].tagline && (
+                      <p className={styles["page-subtitle"]}>{data[0].tagline}</p>
                     )}
                   </div>
 
                   <div className={styles["divider"]} />
 
                   <div className={styles["content-sections"]}>
-                    {data.description && (
+                    {data[0].description && (
                       <section className={styles["content-section"]}>
                         <div className={styles["section-header"]}>
                           <div className={styles["section-icon"]}>
@@ -59,7 +59,7 @@ function EventDetail() {
                           <h2 className={styles["section-title"]}>About this Event</h2>
                         </div>
                         <div className={styles["prose"]}>
-                          {data.description.split('\n').map((paragraph, index) => (
+                          {data[0].description.split('\n').map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                           ))}
                         </div>
@@ -69,12 +69,12 @@ function EventDetail() {
                 </div>
 
                 <div className={styles["sidebar-column"]}>
-                  {data.coverPic && (
+                  {data[0].coverPic && (
                     <div className={styles["hero-image-wrapper"]}>
                       <div className={styles["hero-overlay"]} />
                       <img
-                        src={data.coverPic}
-                        alt={data.name}
+                        src={data[0].coverPic}
+                        alt={data[0].name}
                         className={styles["hero-image"]}
                       />
                     </div>
@@ -103,7 +103,7 @@ function EventDetail() {
                           <span className={styles["info-value"]}>Garage Event</span>
                         </div>
                       </div>
-                      {data.links && (
+                      {data[0].link && (
                         <div className={styles["info-item"]}>
                           <div className={styles["info-icon"]}>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -114,7 +114,7 @@ function EventDetail() {
                           <div className={styles["info-text"]}>
                             <span className={styles["info-label"]}>Links</span>
                             <a 
-                              href={data.links.split(",")[0]} 
+                              href={data[0].links.split(",")[0]} 
                               target="_blank" 
                               rel="noopener noreferrer"
                               className={styles["info-link"]}
@@ -136,7 +136,7 @@ function EventDetail() {
                 </div>
               </div>
 
-              {data.photos && data.photos.length > 0 && (
+              {data[0].photos && data[0].photos.length > 0 && (
                 <section className={styles["gallery-section"]}>
                   <div className={styles["gallery-header"]}>
                     <div>
@@ -145,9 +145,9 @@ function EventDetail() {
                     </div>
                   </div>
                   <div className={styles["masonry-grid"]}>
-                    {data.photos.map((photo, index) => (
+                    {data[0].photos.map((photo, index) => (
                       <div key={index} className={styles["masonry-item"]}>
-                        <img src={photo} alt={`${data.name} - ${index + 1}`} />
+                        <img src={photo} alt={`${data[0].name} - ${index + 1}`} />
                         <div className={styles["masonry-overlay"]} />
                       </div>
                     ))}

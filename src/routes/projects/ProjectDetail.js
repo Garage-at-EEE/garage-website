@@ -33,20 +33,20 @@ function ProjectDetail() {
                     <path d="M9 18l6-6-6-6" />
                   </svg>
                 </span>
-                <span className={styles["breadcrumb-current"]}>{data.name}</span>
+                <span className={styles["breadcrumb-current"]}>{data[0].name}</span>
               </nav>
 
               {/* Page Header */}
               <header className={styles["page-header"]}>
                 <div className={styles["header-content"]}>
-                  <h1 className={styles["page-title"]}>{data.name}</h1>
-                  {data.tagline && (
-                    <p className={styles["page-subtitle"]}>{data.tagline}</p>
+                  <h1 className={styles["page-title"]}>{data[0].name}</h1>
+                  {data[0].tagline && (
+                    <p className={styles["page-subtitle"]}>{data[0].tagline}</p>
                   )}
                 </div>
-                {data.event && (
+                {data[0].event && (
                   <div className={styles["status-badge"]}>
-                    <span className={styles["badge-text"]}>{data.event}</span>
+                    <span className={styles["badge-text"]}>{data[0].event}</span>
                   </div>
                 )}
               </header>
@@ -64,13 +64,13 @@ function ProjectDetail() {
                       <h2 className={styles["section-title"]}>About the Project</h2>
                     </div>
                     <div className={styles["prose"]}>
-                      {data.description && data.description.split('\n').map((paragraph, index) => (
+                      {data[0].description && data[0].description.split('\n').map((paragraph, index) => (
                         <p key={index}>{paragraph}</p>
                       ))}
                     </div>
                   </section>
 
-                  {data.teamMembers && data.teamMembers.length > 0 && (
+                  {data[0].teamMembers && data[0].teamMembers.length > 0 && (
                     <section className={styles["content-section"]}>
                       <div className={styles["section-header"]}>
                         <div className={styles["section-icon"]}>
@@ -83,7 +83,7 @@ function ProjectDetail() {
                         <h2 className={styles["section-title"]}>Team Members</h2>
                       </div>
                       <ul className={styles["team-grid"]}>
-                        {data.teamMembers.map((member, index) => (
+                        {data[0].teamMembers.map((member, index) => (
                           <li key={index} className={styles["team-card"]}>
                             <div className={styles["team-avatar"]}>
                               {member.charAt(0).toUpperCase()}
@@ -97,17 +97,17 @@ function ProjectDetail() {
                 </div>
 
                 <div className={styles["sidebar-column"]}>
-                  {data.coverPic && (
+                  {data[0].coverPic && (
                     <div className={styles["hero-image-wrapper"]}>
                       <div className={styles["hero-overlay"]} />
                       <img
-                        src={data.coverPic}
-                        alt={data.name}
+                        src={data[0].coverPic}
+                        alt={data[0].name}
                         className={styles["hero-image"]}
                       />
-                      {data.event && (
+                      {data[0].event && (
                         <div className={styles["hero-badge"]}>
-                          {data.event}
+                          {data[0].event}
                         </div>
                       )}
                     </div>
@@ -116,7 +116,7 @@ function ProjectDetail() {
                   <div className={styles["details-card"]}>
                     <h3 className={styles["details-title"]}>Project Details</h3>
                     <div className={styles["details-list"]}>
-                      {data.event && (
+                      {data[0].event && (
                         <div className={styles["detail-item"]}>
                           <div className={styles["detail-label"]}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -127,10 +127,10 @@ function ProjectDetail() {
                             </svg>
                             <span>Event</span>
                           </div>
-                          <span className={styles["detail-value"]}>{data.event}</span>
+                          <span className={styles["detail-value"]}>{data[0].event}</span>
                         </div>
                       )}
-                      {data.teamMembers && (
+                      {data[0].teamMembers && (
                         <div className={styles["detail-item"]}>
                           <div className={styles["detail-label"]}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -140,10 +140,10 @@ function ProjectDetail() {
                             </svg>
                             <span>Team Size</span>
                           </div>
-                          <span className={styles["detail-value"]}>{data.teamMembers.length} Members</span>
+                          <span className={styles["detail-value"]}>{data[0].teamMembers.length} Members</span>
                         </div>
                       )}
-                      {data.contactInfo && (
+                      {data[0].contactInfo && (
                         <div className={styles["detail-item"]}>
                           <div className={styles["detail-label"]}>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -152,7 +152,7 @@ function ProjectDetail() {
                             </svg>
                             <span>Contact</span>
                           </div>
-                          <span className={styles["detail-value"]}>{data.contactInfo}</span>
+                          <span className={styles["detail-value"]}>{data[0].contactInfo}</span>
                         </div>
                       )}
                     </div>
@@ -169,7 +169,7 @@ function ProjectDetail() {
                 </div>
               </div>
 
-              {data.photos && data.photos.length > 0 && (
+              {data[0].photos && data[0].photos.length > 0 && (
                 <section className={styles["gallery-section"]}>
                   <div className={styles["gallery-header"]}>
                     <h2 className={styles["gallery-title"]}>
@@ -178,9 +178,9 @@ function ProjectDetail() {
                     </h2>
                   </div>
                   <div className={styles["gallery-grid"]}>
-                    {data.photos.map((photo, index) => (
+                    {data[0].photos.map((photo, index) => (
                       <div key={index} className={styles["gallery-item"]}>
-                        <img src={photo} alt={`${data.name} - ${index + 1}`} />
+                        <img src={photo} alt={`${data[0].name} - ${index + 1}`} />
                         <div className={styles["gallery-overlay"]}>
                           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="11" cy="11" r="8" />
