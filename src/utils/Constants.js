@@ -1,9 +1,10 @@
-// this should be latest api domain (NOW: API 1.0.14)
+// this should be latest api domain (NOW: v250)
 export const API_DOMAIN =
-    "https://script.google.com/macros/s/AKfycbz34_zcYZq9GUXjxfxIXX0SCImcj_087_Vsxv5eG0-3eXhwJIa9DVBcrMwm4VMRk4KJ8g/exec";
+    "https://script.google.com/macros/s/AKfycbyUEXjEM9YoXQudh4ML8gZakfg1XBpqAvdRjoSMRJwT9Ghj_V4-thlhEYpf4LfjXEE4uw/exec";
 
+// v250
 export const LOGIN_DOMAIN =
-    "https://script.google.com/macros/s/AKfycbz7GLkV_mfPQCQK71MJ37JETpHHJzJ4jASp4fUzGwHgSsQk0_kgkk_6iiyKX8Windioww/exec";
+    "https://script.google.com/macros/s/AKfycbyUEXjEM9YoXQudh4ML8gZakfg1XBpqAvdRjoSMRJwT9Ghj_V4-thlhEYpf4LfjXEE4uw/exec";
 
 export const CONTACT_US_UPLOAD_DOMAIN = 
     "https://script.google.com/macros/s/AKfycbz7GLkV_mfPQCQK71MJ37JETpHHJzJ4jASp4fUzGwHgSsQk0_kgkk_6iiyKX8Windioww/exec";
