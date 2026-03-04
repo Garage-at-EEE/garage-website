@@ -28,8 +28,8 @@ const Checkout = lazy(() => import("./routes/shop/Checkout"));
 const Acknowledgement = lazy(() => import("./routes/shop/Acknowledgement"));
 const Database = lazy(() => import("./routes/database/Database"));
 const Login = lazy(() => import("./routes/login/Login"));
-// const ProjectOpenings = lazy(() => import("./routes/projectOpenings/projectOpenings"));
-// const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/projectOpeningsDetail"));
+const ProjectOpenings = lazy(() => import("./routes/projectOpenings/projectOpenings"));
+const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/projectOpeningsDetail"));
 const TinkeringProject = lazy(() => import("./routes/tinkeringProject/TinkeringProject"));
 // const Innotrack = lazy(() => import("./routes/innotrack/Innotrack"));
 const AboutUs = lazy(() => import("./routes/aboutUs/AboutUs"));
@@ -63,14 +63,14 @@ function App() {
                 <Route path="/projects" element={<ProjectsOverview />} />
                 <Route path="/projects/:id" element={<ProjectDetail />} />
                 <Route path="/facilities" element={<Facilities />} />
-                <Route path="/innovators" element={<InnovatorsOverview />} />
-                <Route path="/tinkering" element={<TinkeringOverview />} />
+                {/*<Route path="/innovators" element={<InnovatorsOverview />} /> */}
                 {/* <Route path="/innotrack" element={<Innotrack />} /> */}
-                <Route path="/newsletter" element={<NewsletterPage />} />
+                {/* Workshop page does not exist yet} */}
+                {/* <Route path="/workshops" element={<Workshops />} /> */}
                 <Route path="/tinkering-project" element={<TinkeringProject />} />
                 {/* TODO: Update styling of project openings page to new style */}
-                {/* <Route path="/project-openings" element={<ProjectOpenings />} /> */}
-                {/* <Route path="/project-openings/:id" element={<ProjectOpeningsDetail />} /> */}
+                <Route path="/project-openings" element={<ProjectOpenings />} />
+                <Route path="/project-openings/:id" element={<ProjectOpeningsDetail />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/contact-us" element={<ContactUsPage />} />
                 <Route path="/login" element={<Login />} />

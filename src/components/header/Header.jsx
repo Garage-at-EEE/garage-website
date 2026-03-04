@@ -100,7 +100,10 @@ const Header = () => {
   const navlinks = [
     {
       label: "Projects",
-      to: "/projects",
+      dropdown: [
+        { label: "Showcase", to: "/projects" },
+        { label: "Openings",  to: "/project-openings"  },
+      ]
     },
     {
       label: "Events",
@@ -117,6 +120,7 @@ const Header = () => {
         { label: "Innovator",  to: "/innovators"  },
         // { label: "Innotrack", to: "/innotrack"},
         { label: "Tinkering",  to: "/tinkering"   },
+        { label: "LaunchPad",  to: "/launchpad"   },
       ],
     },
     {
@@ -124,8 +128,8 @@ const Header = () => {
       to: "/facilities",
     },
     {
-      label: "Newsletter",
-      to: "/newsletter",
+      label: "Workshops",
+      to: "/workshops",
     },  
     {
       label: "Contact Us",
