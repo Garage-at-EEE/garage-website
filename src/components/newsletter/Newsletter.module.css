@@ -1,15 +1,24 @@
 .newsletter-wrapper {
   display: flex;
-  padding-right: 2rem;
-  align-items: center;
-  gap: 2.5rem;
-  width: 100%;
+  background-color: var(--white);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--outline);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.newsletter-wrapper:hover {
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
 }
 
 .cover {
-  height: 256px;
-  border-radius: 0.75rem !important;
-  width: unset !important;
+  width: 200px !important;
+  min-width: 200px;
+  height: 160px;
+  border-radius: 0 !important;
+  object-fit: cover;
 }
 
 .link {
@@ -17,35 +26,71 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: 1.5rem;
   flex: 1;
+  padding: 1.5rem;
+  text-decoration: none;
 }
 
 .link:hover {
   color: var(--body);
 }
-.link > * {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
-.link:hover > * {
-  transform: translateX(20px);
+
+.text span:first-child {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--body);
+  transition: color 0.2s;
+}
+
+.text span:last-child {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.newsletter-wrapper:hover .text span:first-child {
+  color: var(--garage-blue);
+}
+
+.chevron {
+  color: #cbd5e1;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.newsletter-wrapper:hover .chevron {
+  color: var(--garage-blue);
+  transform: translateX(4px);
 }
 
 @media (max-width: 640px) {
   .newsletter-wrapper {
     flex-direction: column;
-    justify-content: center;
-    gap: 1.5rem;
-    padding-right: 0;
   }
+
+  .cover {
+    width: 100% !important;
+    min-width: unset;
+    height: 12rem;
+  }
+
+  .link {
+    padding: 1.25rem;
+  }
+
   .chevron {
     display: none;
   }
-  .link:hover > * {
-    transform: unset;
-  }
+
   .text {
-    text-align: center;
-    color: inherit;
+    text-align: left;
   }
 }

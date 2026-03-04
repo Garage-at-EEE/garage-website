@@ -1,0 +1,17 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.baseLine {
+  width: 100%;
+}
+
+.accentLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}

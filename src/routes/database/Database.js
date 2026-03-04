@@ -13,7 +13,7 @@ function Database() {
   const { matric, name, token } = useAuth();
   const user = {name:name, matric:matric};
   const { data, isLoading, error } = useFetch({
-    url: API_DOMAIN + "?type=database&token=" + token, //Token REQUIRED to access
+    url: API_DOMAIN + "?type=database&token=" + token,
   });
   
   const text = `Welcome ${user.name} (${user.matric}) to the Garage@EEE Database!`

@@ -1,4 +1,3 @@
-/* style for item container */
 .item-container {
     background-size: cover;
     background-repeat: no-repeat;
@@ -25,7 +24,6 @@
     width: 100%;
     line-height: 1.2;
     margin-top: 10px;
-    font-family: 'Lexend Deca';
     font-style: normal;
 }
 

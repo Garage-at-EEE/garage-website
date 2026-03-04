@@ -22,8 +22,8 @@ const NewsletterPage = () => {
       <PageTemplate>
         <div className={styles["content-wrapper"]}>
           <div className={styles["heading-space"]}>
-            <Typography variant="heading">Behind The Rollerdoor</Typography>
             <BackButton />
+            <Typography variant="heading">Behind The Rollerdoor</Typography>
           </div>
           {data &&
             data.map((issue) => (

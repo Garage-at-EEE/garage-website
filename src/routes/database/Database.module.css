@@ -10,10 +10,10 @@
 
 .heading-space {
   display: flex;
-  justify-content: space-between; /* Elements at opposite ends with space in between */
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  width: 100%; /* Adjust the width of the container as needed */
+  width: 100%;
   gap: 1.5rem;
 }
 

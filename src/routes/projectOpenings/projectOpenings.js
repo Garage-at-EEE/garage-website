@@ -10,10 +10,10 @@ import Button from "../../components/button/Button";
 import { Link } from "react-router-dom";
 import Image from "../../components/image/Image";
 
-import styles from "./AssignedProjects.module.css";
+import styles from "./projectOpenings.module.css";
 import cardStyles from "../../components/PhotoCard/PhotoCard.module.css";
 
-const APCard = ({ image, topText, bottomText, to, isRecruiting }) => {
+const ProjectCard = ({ image, topText, bottomText, to, isRecruiting }) => {
   const Comp = to ? Link : "div";
   return (
     <Comp
@@ -50,17 +50,17 @@ const APCard = ({ image, topText, bottomText, to, isRecruiting }) => {
   );
 };
 
-const AssignedProjects = () => {
-  const { data: assignedData, isLoading } = useFetch({ 
-    url: API_DOMAIN + "?type=assignedProjectInfo&fields=name,coverPic,isRecruiting,assignedProjectsLink",
+const ProjectOpenings = () => {
+  const { data: projectOpeningsData, isLoading } = useFetch({ 
+    url: API_DOMAIN + "?type=projectOpenings&fields=name,coverPic,isRecruiting,projectLink",
   });
 
   const lenis = useLenis();
 
   return (
-    <Transition isLoading={isLoading || !assignedData }>
+    <Transition isLoading={isLoading || !projectOpeningsData }>
       <PageTemplate>
-        {assignedData && 
+        {Array.isArray(projectOpeningsData) && 
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
               <Typography variant="heading">Project Openings</Typography>
@@ -68,9 +68,9 @@ const AssignedProjects = () => {
             </div>
 
             <Grid>
-              {assignedData.map((card, index) => (
+              {projectOpeningsData.map((card, index) => (
                 <div key={card.name} className={styles["project-item"]}>
-                  <APCard
+                  <ProjectCard
                     image={card.coverPic}
                     to={`${index}/`}
                     bottomText={card.name}
@@ -80,15 +80,15 @@ const AssignedProjects = () => {
               ))}
             </Grid>
             <Button
-              disabled={!assignedData[0].assignedProjectsLink}
+              disabled={!projectOpeningsData[0].projectLink}
               onClick={() => {
-                if (assignedData[0].assignedProjectsLink) {
-                  window.open(assignedData[0].assignedProjectsLink, "_blank");
+                if (projectOpeningsData[0].projectLink) {
+                  window.open(projectOpeningsData[0].projectLink, "_blank");
                 }
               }}
               className={styles["register-button"]}
             >
-              {assignedData[0].assignedProjectsLink ? "Register Here" : "Registration Closed"}
+              {projectOpeningsData[0].projectLink ? "Register Here" : "Registration Closed"}
             </Button>
             <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
               Back to top
@@ -100,4 +100,4 @@ const AssignedProjects = () => {
   );
 };
 
-export default AssignedProjects;
+export default ProjectOpenings;

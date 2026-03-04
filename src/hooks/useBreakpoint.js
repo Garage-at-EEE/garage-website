@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function useBreakpoint() {
-  const [breakpoint, setBreakpoint] = useState("desktop"); // Default breakpoint
+  const [breakpoint, setBreakpoint] = useState("desktop");
 
   useEffect(() => {
     const handleResize = () => {

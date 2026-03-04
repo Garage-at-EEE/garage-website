@@ -19,10 +19,9 @@ const Button = forwardRef(
     },
     ref
   ) => {
-    // Use the btnStyle prop to determine the button class to be applied
     const cn = [
       className,
-      styles.btn, // Base button class
+      styles.btn,
       styles[variant],
       disabled && styles.disabled,
     ]

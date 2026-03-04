@@ -1,4 +1,5 @@
-/* OVERALL STYLING */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 * {
   box-sizing: border-box;
   scrollbar-color: var(--table-disabled) var(--background);
@@ -35,36 +36,55 @@ body {
   margin: 0;
   padding: 0;
   background: var(--background);
+  font-family: "Inter", sans-serif;
 }
 
 :root {
-  --garage-blue: #284d8a;
-  --garage-blue-hover: #204279;
-  --garage-blue-press: #193462;
-  --white: #ffffff;
-  --body: #1a1a1a;
-  --background: #f6f6f6;
-  --outline: #cbcbcb;
-  --outline-hover: #1a1a1a1a;
-  --outline-press: #1a1a1a33;
-  --disabled: #d9d9d9;
-  --on-disabled: #737373;
-  --error: #e10d0d;
-  --table-disabled: #a3b4cc;
-  --table-accent: #e5f1ff;
+  /* New color palette - Light mode oriented */
+  --dark-navy: #030211;
+  --deep-navy: #000127;
+  --bright-blue: #39B5E8;
+  --medium-blue: #2691cf;
+  --dark-blue: #0B2759;
+  --cyan-gradient: #A1F5F5;
+
+  /* Primary colors */
+  --garage-blue: #2691cf;
+  --garage-blue-hover: #39B5E8;
+  --garage-blue-press: #0B2759;
+
+  --white: #f1eee8;
+  --body: #030211;
+  --background: #f1eee8;
+  --outline: #cbd5e1;
+  --outline-hover: #39B5E822;
+  --outline-press: #2691cf44;
+
+  --disabled: #94a3b8;
+  --on-disabled: #64748b;
+
+  --error: #E10D0D;
+  --table-disabled: #cbd5e1;
+  --table-accent: #E6F7FF;
+
+  --radius: 16px;
+  --card-radius: 1.5rem;
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 28px rgba(0, 0, 0, 0.12);
+  --glow: 0 0 0 1px rgba(37, 99, 235, 0.12), 0 0 28px rgba(37, 99, 235, 0.18);
 
   --max-width: 1440px;
   --header-height: 60px;
-  --gutter: 24px;
-  --gutter-mobile: 16px;
-  --content-gap-desktop: 80px;
+  --gutter: 22px;
+  --gutter-mobile: 10px;
+  --content-gap-desktop: 60px;
   --content-gap-tablet: 60px;
-  --content-gap-mobile: 40px;
-  --para-gap-desktop: 24px;
+  --content-gap-mobile: 30px;
+  --para-gap-desktop: 25px;
   --para-gap-tablet: 20px;
   --para-gap-mobile: 18px;
-  --top-padding: calc(60px + var(--header-height));
-  --top-padding-mobile: calc(40px + var(--header-height));
+  --top-padding: calc(30px + var(--header-height));
+  --top-padding-mobile: calc(18px + var(--header-height));
 }
 
 :root:has(.modal) {
@@ -77,7 +97,16 @@ a {
 
 p {
   margin: 0;
-  font-family: "Lexend Deca", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", sans-serif;
+}
+
+.banner,
+.heading,
+.smallHeading {
+  font-family: "Inter", sans-serif;
 }
 
 code {
