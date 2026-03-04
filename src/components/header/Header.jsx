@@ -119,7 +119,7 @@ const Header = () => {
         { label: "Ambassador", to: "/ambassadors" },
         { label: "Innovator",  to: "/innovators"  },
         // { label: "Innotrack", to: "/innotrack"},
-        { label: "Tinkering",  to: "/tinkering"   },
+        { label: "Tinkering",  to: "/tinkering-project"   },
         { label: "LaunchPad",  to: "/launchpad"   },
       ],
     },
