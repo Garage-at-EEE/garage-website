@@ -59,7 +59,7 @@ function EventDetail() {
                           <h2 className={styles["section-title"]}>About this Event</h2>
                         </div>
                         <div className={styles["prose"]}>
-                          {data[0].description.split('\n').map((paragraph, index) => (
+                          {data[0].description?.split('\n').map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                           ))}
                         </div>
@@ -114,7 +114,7 @@ function EventDetail() {
                           <div className={styles["info-text"]}>
                             <span className={styles["info-label"]}>Links</span>
                             <a 
-                              href={data[0].links.split(",")[0]} 
+                              href={data[0].links?.split(",")[0]} 
                               target="_blank" 
                               rel="noopener noreferrer"
                               className={styles["info-link"]}
@@ -136,7 +136,7 @@ function EventDetail() {
                 </div>
               </div>
 
-              {data[0].photos && data[0].photos.length > 0 && (
+              {data[0].photos && data[0].photos?.length > 0 && (
                 <section className={styles["gallery-section"]}>
                   <div className={styles["gallery-header"]}>
                     <div>
@@ -145,7 +145,7 @@ function EventDetail() {
                     </div>
                   </div>
                   <div className={styles["masonry-grid"]}>
-                    {data[0].photos.map((photo, index) => (
+                    {data[0].photos?.map((photo, index) => (
                       <div key={index} className={styles["masonry-item"]}>
                         <img src={photo} alt={`${data[0].name} - ${index + 1}`} />
                         <div className={styles["masonry-overlay"]} />
