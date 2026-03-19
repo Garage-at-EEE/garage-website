@@ -72,11 +72,12 @@ a {
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 1.2rem;
   align-items: center;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+
 }
 
 @media (max-width: 1200px) {
@@ -106,6 +107,7 @@ a {
   font-size: 0.875rem;
   font-weight: 500;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .navlink span,
