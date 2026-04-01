@@ -99,6 +99,10 @@ const Header = () => {
 
   const navlinks = [
     {
+      label: "Workshops",
+      to: "/workshops",
+    },
+    {
       label: "Projects",
       dropdown: [
         { label: "Showcase", to: "/projects" },
@@ -128,13 +132,9 @@ const Header = () => {
       to: "/facilities",
     },
     {
-      label: "Workshops",
-      to: "/workshops",
-    },  
-    {
       label: "Contact Us",
       to: "/contact-us",
-    }
+    },
   ];
 
   const protected_navlinks = [
@@ -163,7 +163,11 @@ const Header = () => {
       >
         <Gutter>
           <div className={styles["header-inner"]}>
-            <HashLink to="/#start" onClick={handleClose} className={styles["logo"]}>
+            <HashLink
+              to="/#start"
+              onClick={handleClose}
+              className={styles["logo"]}
+            >
               <Logo />
             </HashLink>
 
@@ -229,7 +233,10 @@ const Header = () => {
                     <div className={styles.separator} />
 
                     {navlinks.map((navlink) => (
-                      <div key={navlink.label} className={styles["tablet-link"]}>
+                      <div
+                        key={navlink.label}
+                        className={styles["tablet-link"]}
+                      >
                         {navlink.dropdown ? (
                           <DropdownMenu
                             key={navlink.label}
@@ -255,18 +262,16 @@ const Header = () => {
                       style={{ animationDelay: `${0.1 * navlinks.length}s` }}
                       className={styles["tablet-link"]}
                     >
-                      {name===null ? (
+                      {name === null ? (
                         <Link
                           to="/login"
                           className={styles["navlink"]}
                           onClick={handleClose}
                         >
-                          <Typography variant="body">
-                            Login
-                          </Typography>
+                          <Typography variant="body">Login</Typography>
                         </Link>
-                      ):(
-                        <LoginMenu protected_navlinks={protected_navlinks}/>
+                      ) : (
+                        <LoginMenu protected_navlinks={protected_navlinks} />
                       )}
                     </div>
                   </motion.div>

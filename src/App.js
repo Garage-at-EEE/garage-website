@@ -33,6 +33,7 @@ const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/projec
 const TinkeringProject = lazy(() => import("./routes/tinkeringProject/TinkeringProject"));
 // const Innotrack = lazy(() => import("./routes/innotrack/Innotrack"));
 const AboutUs = lazy(() => import("./routes/aboutUs/AboutUs"));
+const Workshops = lazy(() => import("./routes/workshops/Workshops"))
 
 const PageLoader = () => (
   <div style={{ 
@@ -66,7 +67,7 @@ function App() {
                 {/*<Route path="/innovators" element={<InnovatorsOverview />} /> */}
                 {/* <Route path="/innotrack" element={<Innotrack />} /> */}
                 {/* Workshop page does not exist yet} */}
-                {/* <Route path="/workshops" element={<Workshops />} /> */}
+                <Route path="/workshops" element={<Workshops />} />
                 <Route path="/tinkering-project" element={<TinkeringProject />} />
                 {/* TODO: Update styling of project openings page to new style */}
                 <Route path="/project-openings" element={<ProjectOpenings />} />
