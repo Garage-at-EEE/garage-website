@@ -64,14 +64,13 @@ const FileUploader = ({ onFilesReady }) => {
         setFiles(prev => {
             const updatedFiles = prev.filter((_, i) => i !== indexToRemove);
 
-            // Notify parent about the updated file list
             if (onFilesReady) {
                 const structuredFiles = updatedFiles.map(f => f.file);
                 onFilesReady(structuredFiles);
             }
 
             if (updatedFiles.length === 0) {
-                setUploadHeader(""); // Clear header if no files left
+                setUploadHeader("");
             }
 
             return updatedFiles;
@@ -109,7 +108,6 @@ const FileUploader = ({ onFilesReady }) => {
                 <Button to={"/contact-us"} variant="outlined">Browse Files</Button>
             </div>
 
-            {/* File List */}
             <div className={styles["file-list"]}>
                 <div className={styles["upload-text-group"]}>
                     <Typography variant="body">{uploadHeader}</Typography>

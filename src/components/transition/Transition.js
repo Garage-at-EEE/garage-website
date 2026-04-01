@@ -14,11 +14,8 @@ const Transition = ({ children, isLoading }) => {
   };
 
   const easing = [0.7, 0, 0.3, 1];
-  const duration = 0.75; // Minimum of 0.1
+  const duration = 0.75;
   const loadingText = "Loading";
-
-  // Animation starts from initial -> loading, once isLoading == false -> hide
-  // On unmount exit animation plays
 
   const slideWhite = {
     initial: {
@@ -159,7 +156,6 @@ const Transition = ({ children, isLoading }) => {
   };
 
   useLayoutEffect(() => {
-    // Scroll to top of page
     window.scrollTo(0, 0);
   }, []);
 

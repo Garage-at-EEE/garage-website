@@ -133,7 +133,7 @@ const Checkout = () => {
               <Typography variant="body" className={styles['checkout-table-heading']}>Price</Typography>
               <Typography variant="body" className={styles['checkout-table-heading']}>Quantity</Typography>
               <Typography variant="body" className={styles['checkout-table-heading']}>Subtotal</Typography>
-              <div></div> {/* For remove icon */}
+              <div></div>
             </div>
 
             {cartItems.length > 0 && (
