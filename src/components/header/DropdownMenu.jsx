@@ -13,29 +13,63 @@ const CircuitArrowDown = () => (
   </svg>
 );
 
-const DropdownMenu = ({ children, header, navlinks }) => {
+const isHashLink = (to) => typeof to === "string" && to.includes("#");
+
+const DropdownMenu = ({ children, header, navlinks = [] }) => {
   const [open, setOpen] = useState(false);
   const breakpoint = useBreakpoint();
 
-  const handleOpen = (e) => {
-    setOpen(true);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const handleClose = (e) => {
-    setOpen(false);
+  const containerClassName =
+    breakpoint === "desktop" ? styles["login-menu"] : styles["tablet-login-menu"];
+
+  const renderLink = (item) => {
+    if (!item?.to) return null;
+
+    if (isHashLink(item.to)) {
+      return (
+        <HashLink
+          key={item.label}
+          smooth
+          to={item.to}
+          className={styles.navlink}
+          onClick={handleClose}
+        >
+          <Typography variant="body">{item.label}</Typography>
+        </HashLink>
+      );
+    }
+
+    return (
+      <Link
+        key={item.label}
+        to={item.to}
+        className={styles.navlink}
+        onClick={handleClose}
+      >
+        <Typography variant="body">{item.label}</Typography>
+      </Link>
+    );
   };
 
   return (
+    <div
+      className={styles["navlink-container"]}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+    >
+      {/* Header button (not actually navigating) */}
       <div
-        className={styles["navlink-container"]}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
+        className={`${styles.navlink} ${styles["navlink--dropdown"]}`}
+        role="button"
+        tabIndex={0}
       >
-      <Link className={styles["navlink"]}> 
         <Typography variant="body">
           {header} <CircuitArrowDown />
         </Typography>
-      </Link>
+      </div>
 
       {open && (
         <div
@@ -45,35 +79,29 @@ const DropdownMenu = ({ children, header, navlinks }) => {
             styles["tablet-login-menu"]
           }
         >
-
           {navlinks.map((item) => {
-            if (item.to.includes("#")) {
+            // 2nd level dropdown (e.g. Programmes -> ...)
+            if (Array.isArray(item.dropdown)) {
               return (
-                <HashLink
-                  key={item.label}
-                  smooth
-                  to={item.to}
-                  className={styles.navlink}
-                  onClick={() => setOpen(false)}
-                >
-                  <Typography variant="body">{item.label}</Typography>
-                </HashLink>
+                <div key={item.label} className={styles["submenu-container"]}>
+                  <div className={styles["submenu-header"]}>
+                    <Typography variant="body">{item.label}</Typography>
+                    {/* optional right caret */}
+                    <span style={{ marginLeft: 8 }}>›</span>
+                  </div>
+
+                  <div className={styles["submenu"]}>
+                    {item.dropdown.map((sub) => renderLink(sub))}
+                  </div>
+                </div>
               );
             }
-            return (
-              <Link
-                key={item.label}
-                to={item.to}
-                className={styles.navlink}
-                onClick={() => setOpen(false)}
-              >
-                <Typography variant="body">{item.label}</Typography>
-              </Link>
-            );
+
+            // normal item
+            return renderLink(item);
           })}
 
-        {children}
-
+          {children}
         </div>
       )}
     </div>

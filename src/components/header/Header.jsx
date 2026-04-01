@@ -122,7 +122,6 @@ const Header = () => {
       dropdown: [
         { label: "Ambassador", to: "/ambassadors" },
         { label: "Innovator",  to: "/innovators"  },
-        // { label: "Innotrack", to: "/innotrack"},
         { label: "Tinkering",  to: "/tinkering-project"   },
         { label: "LaunchPad",  to: "/launchpad"   },
       ],

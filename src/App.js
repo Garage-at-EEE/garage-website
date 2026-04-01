@@ -10,6 +10,7 @@ import AuthProvider from "./contexts/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CartProvider from "./contexts/CartProvider";
 import LoadingSpinner from "./components/loadingSpinner/LoadingSpinner";
+import Launchpad from "./routes/launchpad/Launchpad";
 
 const AmbassadorDetail = lazy(() => import("./routes/ambassadors/AmbassadorDetail"));
 const AmbassadorsOverview = lazy(() => import("./routes/ambassadorsOverview/AmbassadorsOverview"));
@@ -18,10 +19,10 @@ const EventDetail = lazy(() => import("./routes/events/EventDetail"));
 const ProjectsOverview = lazy(() => import("./routes/projectsOverview/ProjectsOverview"));
 const ProjectDetail = lazy(() => import("./routes/projects/ProjectDetail"));
 const InnovatorsOverview = lazy(() => import("./routes/innovatorsOverview/InnovatorsOverview"));
-const TinkeringOverview = lazy(() => import("./routes/tinkeringOverview/TinkeringOverview"));
+// const TinkeringOverview = lazy(() => import("./routes/tinkeringOverview/TinkeringOverview"));
 const NotFound = lazy(() => import("./routes/notFound/NotFound"));
 const Facilities = lazy(() => import("./routes/facilities/Facilities"));
-const NewsletterPage = lazy(() => import("./routes/newsletter/NewsletterPage"));
+// const NewsletterPage = lazy(() => import("./routes/newsletter/NewsletterPage"));
 const ContactUsPage = lazy(() => import("./routes/contactUs/ContactUs"));
 const Shop = lazy(() => import("./routes/shop/Shop"));
 const Checkout = lazy(() => import("./routes/shop/Checkout"));
@@ -31,7 +32,6 @@ const Login = lazy(() => import("./routes/login/Login"));
 const ProjectOpenings = lazy(() => import("./routes/projectOpenings/projectOpenings"));
 const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/projectOpeningsDetail"));
 const TinkeringProject = lazy(() => import("./routes/tinkeringProject/TinkeringProject"));
-// const Innotrack = lazy(() => import("./routes/innotrack/Innotrack"));
 const AboutUs = lazy(() => import("./routes/aboutUs/AboutUs"));
 const Workshops = lazy(() => import("./routes/workshops/Workshops"))
 
@@ -64,12 +64,10 @@ function App() {
                 <Route path="/projects" element={<ProjectsOverview />} />
                 <Route path="/projects/:id" element={<ProjectDetail />} />
                 <Route path="/facilities" element={<Facilities />} />
-                {/*<Route path="/innovators" element={<InnovatorsOverview />} /> */}
-                {/* <Route path="/innotrack" element={<Innotrack />} /> */}
-                {/* Workshop page does not exist yet} */}
+                <Route path="/innovators" element={<InnovatorsOverview />} />
+                <Route path="/launchpad" element={<Launchpad />} />
                 <Route path="/workshops" element={<Workshops />} />
                 <Route path="/tinkering-project" element={<TinkeringProject />} />
-                {/* TODO: Update styling of project openings page to new style */}
                 <Route path="/project-openings" element={<ProjectOpenings />} />
                 <Route path="/project-openings/:id" element={<ProjectOpeningsDetail />} />
                 <Route path="/about-us" element={<AboutUs />} />
