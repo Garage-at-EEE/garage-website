@@ -62,7 +62,7 @@ const InfoCard = memo(({ icon, title, subtitle, color }) => {
   );
 });
 
-const BookableCard = memo(({ facility, index }) => {
+const SpaceCard = memo(({ facility, index }) => {
   return (
     <motion.div
       className={styles.facilityCard}
@@ -226,7 +226,7 @@ const Facilities = () => {
                 </Typography>
                 <div className={styles.facilitiesGrid}>
                   {spaces.map((facility, index) => (
-                    <BookableCard
+                    <SpaceCard
                       key={facility.name || index}
                       facility={facility}
                       index={index}
