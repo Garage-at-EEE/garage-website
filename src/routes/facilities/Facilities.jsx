@@ -180,16 +180,20 @@ const EquipmentCard = memo(({ facility, index }) => {
 const Facilities = () => {
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=facilities",
+    useCache: false,
   });
 
-  const infoCards = data?.infoCards || [
+  const facilities = data?.facilities || [];
+  const otherLinks = data?.others || [];
+
+  const infoCards = [
     { icon: "clock", title: "Open 24/7", subtitle: "For authorized members", color: "Green" },
     { icon: "shield", title: "Safety First", subtitle: "Induction required", color: "Orange" },
     { icon: "box", title: "Free Equipment", subtitle: "Use on site", color: "Purple" },
   ];
 
-  const bookableSpaces = data?.facilities?.filter(f => f.isBookable || f.link) || data?.bookableSpaces || [];
-  const equipment = data?.facilities?.filter(f => !f.isBookable && !f.link) || data?.equipment || [];
+  const bookableSpaces = facilities.filter(f => f.link);
+  const equipment = facilities.filter(f => !f.link);
 
   return (
     <Transition isLoading={isLoading || !data}>
@@ -201,7 +205,7 @@ const Facilities = () => {
                 Our <span className={styles.highlight}>Facilities</span>
               </Typography>
               <Typography variant="body" className={styles.heroSubtitle}>
-                {data.subtitle || "Explore our makerspace. Whether you need to solder a circuit, print a 3D model, or just brainstorm, we have the space for you."}
+                Explore our makerspace. Whether you need to solder a circuit, print a 3D model, or just brainstorm, we have the space for you.
               </Typography>
             </section>
 
@@ -271,12 +275,28 @@ const Facilities = () => {
                   page to get certified.
                 </Typography>
               </div>
-              <div className={styles.beforeBookAction}>
-                <button className={styles.guidelinesBtn}>
-                  View Guidelines
-                </button>
-              </div>
             </section>
+
+            {otherLinks.length > 0 && (
+              <section className={styles.otherLinksSection}>
+                <Typography variant="smallHeading" className={styles.sectionHeading}>
+                  Other Useful Links
+                </Typography>
+                <div className={styles.otherLinksGrid}>
+                  {otherLinks.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.guidelinesBtn}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
         )}
       </PageTemplate>
