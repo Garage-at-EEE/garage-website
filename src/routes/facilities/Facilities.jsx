@@ -80,8 +80,8 @@ const BookableCard = memo(({ facility, index }) => {
             loading="lazy"
           />
         )}
-        <span className={`${styles.statusBadge} ${styles.statusBookable}`}>
-          Bookable
+        <span className={`${styles.statusBadge} ${facility.link ? styles.statusBookable : styles.statusLimited}`}>
+          {facility.link ? "Bookable" : "Walk-in"}
         </span>
       </div>
       <div className={styles.facilityContent}>
@@ -115,13 +115,11 @@ const BookableCard = memo(({ facility, index }) => {
               </svg>
             </a>
           ) : (
-            <button className={styles.btnOutlined}>
-              <span>{facility.label || "Book Now"}</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
+            <button className={styles.btnDisabled} disabled>
+              <span>Not Bookable</span>
+               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
           )}
@@ -150,7 +148,7 @@ const EquipmentCard = memo(({ facility, index }) => {
           />
         )}
         <span className={`${styles.statusBadge} ${styles.statusFacility}`}>
-          Facility
+          Equipment
         </span>
       </div>
       <div className={styles.facilityContent}>
@@ -192,8 +190,8 @@ const Facilities = () => {
     { icon: "box", title: "Free Equipment", subtitle: "Use on site", color: "Purple" },
   ];
 
-  const bookableSpaces = facilities.filter(f => f.link);
-  const equipment = facilities.filter(f => !f.link);
+  const spaces = facilities.filter(f => f.isSpace);
+  const equipment = facilities.filter(f => !f.isSpace);
 
   return (
     <Transition isLoading={isLoading || !data}>
@@ -221,13 +219,13 @@ const Facilities = () => {
               ))}
             </section>
 
-            {bookableSpaces.length > 0 && (
+            {spaces.length > 0 && (
               <section className={styles.facilitiesSection}>
                 <Typography variant="smallHeading" className={styles.sectionHeading}>
-                  Bookable Spaces
+                  Our Spaces
                 </Typography>
                 <div className={styles.facilitiesGrid}>
-                  {bookableSpaces.map((facility, index) => (
+                  {spaces.map((facility, index) => (
                     <BookableCard
                       key={facility.name || index}
                       facility={facility}
@@ -241,7 +239,7 @@ const Facilities = () => {
             {equipment.length > 0 && (
               <section className={styles.facilitiesSection}>
                 <Typography variant="smallHeading" className={styles.sectionHeading}>
-                  Facilities & Equipment
+                  Our Equipment
                 </Typography>
                 <div className={styles.facilitiesGrid}>
                   {equipment.map((facility, index) => (
