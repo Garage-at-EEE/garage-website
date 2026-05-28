@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import styles from "./Facilities.module.css";
+import Image from "../../components/image/Image";
 
 const getIcon = (iconName) => {
   const icons = {
@@ -73,7 +74,7 @@ const SpaceCard = memo(({ facility, index }) => {
     >
       <div className={styles.facilityImageWrapper}>
         {facility.coverPic && (
-          <img
+          <Image
             src={facility.coverPic}
             alt={facility.name}
             className={styles.facilityImage}
@@ -140,7 +141,7 @@ const EquipmentCard = memo(({ facility, index }) => {
     >
       <div className={styles.facilityImageWrapper}>
         {facility.coverPic && (
-          <img
+          <Image
             src={facility.coverPic}
             alt={facility.name}
             className={styles.facilityImage}

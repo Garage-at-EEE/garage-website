@@ -7,6 +7,7 @@ import bannerImage from "../../img/banner.jpeg";
 import cappyimg from "../../img/cappy/goldcappyforwardtrans.png";
 import excitedcappy from "../../img/cappy/excitedtranscappy copy.webm";
 import bluecappy from "../../img/cappy/bluecappyforwardtrans.png";
+import Image from "../../components/image/Image";
 
 const AboutUs = () => {
   useEffect(() => {
@@ -59,7 +60,7 @@ const AboutUs = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <img
+            <Image
               src={cappyimg}
               alt="Garage Mascot"
               className={styles.mascot}
@@ -77,7 +78,7 @@ const AboutUs = () => {
             </Typography>
           </div>
 
-          <img 
+          <Image 
             src={bluecappy} 
             alt="Garage Mascot Blue Cappy" 
             className="fade-on-scroll"

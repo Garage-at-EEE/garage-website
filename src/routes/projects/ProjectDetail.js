@@ -5,6 +5,7 @@ import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 
 import styles from "./ProjectDetail.module.css";
+import Image from "../../components/image/Image";
 
 function ProjectDetail() {
   const params = useParams();
@@ -100,7 +101,7 @@ function ProjectDetail() {
                   {data[0].coverPic && (
                     <div className={styles["hero-image-wrapper"]}>
                       <div className={styles["hero-overlay"]} />
-                      <img
+                      <Image
                         src={data[0].coverPic}
                         alt={data[0].name}
                         className={styles["hero-image"]}
@@ -180,7 +181,7 @@ function ProjectDetail() {
                   <div className={styles["gallery-grid"]}>
                     {data[0].photos.map((photo, index) => (
                       <div key={index} className={styles["gallery-item"]}>
-                        <img src={photo} alt={`${data[0].name} - ${index + 1}`} />
+                        <Image src={photo} alt={`${data[0].name} - ${index + 1}`} />
                         <div className={styles["gallery-overlay"]}>
                           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="11" cy="11" r="8" />

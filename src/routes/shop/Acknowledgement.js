@@ -49,7 +49,7 @@ const Acknowledgement = () => {
     setIsLoadingCredits(loading);
     if (credits !== undefined && credits !== null) {
       setCredits(credits);
-  }  }, [loading, credits]);
+  }  }, [loading, credits, setCredits]);
 
   useEffect(() => {
     const sendOrder = async () => {
@@ -114,7 +114,7 @@ const Acknowledgement = () => {
               <Typography variant="body" className={styles['credits-value']}>
                 {userCredits}
               </Typography>
-              <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
+              <Image src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
             </div>
           </div>
           {confirmation.current ? (
