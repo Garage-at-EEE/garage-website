@@ -470,6 +470,19 @@
   flex-shrink: 0;
 }
 
+.otherLinksSection {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.otherLinksGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 .guidelinesBtn {
   padding: 0.75rem 2rem;
   border-radius: 1rem;
