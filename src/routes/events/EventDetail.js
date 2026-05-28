@@ -5,6 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/Constants";
 
 import styles from "./EventDetail.module.css";
+import Image from "../../components/image/Image";
 
 function EventDetail() {
   const params = useParams();
@@ -72,7 +73,7 @@ function EventDetail() {
                   {data[0].coverPic && (
                     <div className={styles["hero-image-wrapper"]}>
                       <div className={styles["hero-overlay"]} />
-                      <img
+                      <Image
                         src={data[0].coverPic}
                         alt={data[0].name}
                         className={styles["hero-image"]}
@@ -147,7 +148,7 @@ function EventDetail() {
                   <div className={styles["masonry-grid"]}>
                     {data[0].photos?.map((photo, index) => (
                       <div key={index} className={styles["masonry-item"]}>
-                        <img src={photo} alt={`${data[0].name} - ${index + 1}`} />
+                        <Image src={photo} alt={`${data[0].name} - ${index + 1}`} />
                         <div className={styles["masonry-overlay"]} />
                       </div>
                     ))}

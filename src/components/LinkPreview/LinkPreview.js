@@ -1,3 +1,4 @@
+import Image from "../image/Image";
 import Typography from "../typography/Typography";
 import styles from "./LinkPreview.module.css";
 
@@ -9,7 +10,7 @@ function LinkPreview({ link }) {
       rel="noreferrer"
       className={styles["link-preview"]}
     >
-      <img
+      <Image
         className={styles["favicon"]}
         src={`https://www.google.com/s2/favicons?domain=${link}&sz=128`}
         alt="url's favicon"

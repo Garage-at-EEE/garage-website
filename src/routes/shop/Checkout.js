@@ -115,7 +115,7 @@ const Checkout = () => {
               <Typography variant="body" className={styles['credits-value']}>
                 {userCredits}
               </Typography>
-              <img src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
+              <Image src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
             </div>
           </div>
 
@@ -182,7 +182,7 @@ const Checkout = () => {
                           aria-label="Remove item"
                           title="Remove item"
                         >
-                          <img src={trashIcon} alt="Remove Icon" className={styles['trash-icon']} />
+                          <Image src={trashIcon} alt="Remove Icon" className={styles['trash-icon']} />
                         </button>
                       </div>
                     </div>

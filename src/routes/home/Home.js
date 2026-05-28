@@ -10,6 +10,7 @@ import LoadingSpinner from "../../components/loadingSpinner/LoadingSpinner";
 import { Link } from "react-router-dom";
 import CountUp from "../../components/CountUp/CountUp";
 import { motion } from "framer-motion";
+import Image from "../../components/image/Image";
 
 const CircuitArrowForward = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -202,7 +203,7 @@ const Home = () => {
                       transition={{ duration: 0.45, ease: "easeOut" }}
                     >
                       {sponsor.image ? (
-                        <img src={sponsor.image} alt={sponsor.name} />
+                        <Image src={sponsor.image} alt={sponsor.name} />
                       ) : (
                         <Typography variant="subtitle" style={{ color: "#94a3b8" }}>
                           SPONSOR
@@ -239,7 +240,7 @@ const Home = () => {
                       <>
                         <div className={styles["event-detail-image"]}>
                           {event.coverPic ? (
-                            <img src={event.coverPic} alt={event.name} loading="lazy" />
+                            <Image src={event.coverPic} alt={event.name} loading="lazy" />
                           ) : (
                             <div className={styles["event-detail-placeholder"]}></div>
                           )}
@@ -315,7 +316,7 @@ const Home = () => {
                         </div>
                         <div className={styles["event-detail-image"]}>
                           {event.coverPic ? (
-                            <img src={event.coverPic} alt={event.name} loading="lazy" />
+                            <Image src={event.coverPic} alt={event.name} loading="lazy" />
                           ) : (
                             <div className={styles["event-detail-placeholder"]}></div>
                           )}
@@ -362,7 +363,7 @@ const Home = () => {
                       >
                         <Link to={`/events/${index}`} className={styles["gallery-card"]}>
                           {event.coverPic ? (
-                            <img
+                            <Image
                               src={event.coverPic}
                               alt={event.name}
                               className={styles["gallery-image"]}
@@ -514,7 +515,7 @@ const Home = () => {
                             to={`/ambassadors/${index}`}
                             className={styles["portfolio-card"]}
                           >
-                            <img
+                            <Image
                               src={portfolio.homeImage}
                               alt={portfolio.name}
                               className={styles["portfolio-image"]}

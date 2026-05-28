@@ -162,7 +162,7 @@ const Shop = () => {
               <Typography variant="body" className={styles['credits-value']}>
                 {isLoadingCredits ? "..." : userCredits}
               </Typography>
-              <img
+              <Image
                 src={coinIcon}
                 alt="Credits Icon"
                 className={styles['credits-icon']}
@@ -197,7 +197,7 @@ const Shop = () => {
                   <Typography variant="body">
                     {item.innocreditPrice} Credits
                   </Typography>
-                  <img
+                  <Image
                     src={coinIcon}
                     alt="Credits Icon"
                     className={styles['credits-icon']}
@@ -244,7 +244,7 @@ const Shop = () => {
           <div className={styles['checkout']}>
             <button className={styles['checkout-button']} onClick={handleCheckout}>
               <div className={styles['cart-icon-wrapper']}>
-                <img
+                <Image
                   src={cartIcon}
                   alt="Cart Icon"
                   className={styles['cart-icon']}
