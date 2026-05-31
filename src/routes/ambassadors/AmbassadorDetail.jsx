@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Typography from "../../components/typography/Typography";
-import HeroImage from "../../components/heroImage/heroImage";
+import HeroImage from "../../components/heroImage/HeroImage";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import useFetch from "../../hooks/useFetch";

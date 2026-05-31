@@ -29,8 +29,8 @@ const Checkout = lazy(() => import("./routes/shop/Checkout"));
 const Acknowledgement = lazy(() => import("./routes/shop/Acknowledgement"));
 const Database = lazy(() => import("./routes/database/Database"));
 const Login = lazy(() => import("./routes/login/Login"));
-const ProjectOpenings = lazy(() => import("./routes/projectOpenings/projectOpenings"));
-const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/projectOpeningsDetail"));
+const ProjectOpenings = lazy(() => import("./routes/projectOpenings/ProjectOpenings"));
+const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/ProjectOpeningsDetail"));
 const TinkeringProject = lazy(() => import("./routes/tinkeringProject/TinkeringProject"));
 const AboutUs = lazy(() => import("./routes/aboutUs/AboutUs"));
 const Workshops = lazy(() => import("./routes/workshops/Workshops"))

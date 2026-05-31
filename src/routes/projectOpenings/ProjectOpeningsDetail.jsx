@@ -5,7 +5,7 @@ import { API_DOMAIN } from "../../utils/Constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";
-import HeroImage from "../../components/heroImage/heroImage";
+import HeroImage from "../../components/heroImage/HeroImage";
 import Button from "../../components/button/Button";
 
 

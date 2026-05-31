@@ -2,7 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";
-import HeroImage from "../../components/heroImage/heroImage";
+import HeroImage from "../../components/heroImage/HeroImage";
 import Image from "../../components/image/Image";
 import Typography from "../../components/typography/Typography";
 import {

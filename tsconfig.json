@@ -3,7 +3,8 @@
   "compilerOptions": {
     "noFallthroughCasesInSwitch": false,
     "moduleResolution": "node",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "src"
