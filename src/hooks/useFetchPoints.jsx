@@ -44,7 +44,7 @@ export default function useFetchPoints(matric) {
     };
 
     fetchPoints();
-  }, [matric]);
+  }, [matric, logoutAction, setCredits, token]);
 
   return { userCredits, loading };
 }

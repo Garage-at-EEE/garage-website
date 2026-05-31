@@ -23,7 +23,6 @@ const Acknowledgement = () => {
   const confirmation = useRef(false);
 
   const location = useLocation();
-  const payload = (location.state?.payload || {});
   const now = new Date();
 
   const currentDate = now.toLocaleDateString();
@@ -52,6 +51,7 @@ const Acknowledgement = () => {
   }  }, [loading, credits, setCredits]);
 
   useEffect(() => {
+    const payload = (location.state?.payload || {});
     const sendOrder = async () => {
       try {
         setLoading(true);
@@ -96,7 +96,7 @@ const Acknowledgement = () => {
         console.log("Leaving acknowledgement page...");
       }
     };
-  }, []);
+  }, [location.state?.payload, setCart, setCredits]);
 
   return (
     <Transition isLoading={isLoading || !acknowledgement || isLoadingCredits}>

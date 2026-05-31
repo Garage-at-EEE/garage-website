@@ -15,6 +15,8 @@ function Database() {
   const { data, isLoading, error } = useFetch({
     url: API_DOMAIN + "?type=database&token=" + token,
   });
+
+  console.log(data, isLoading, error)
   
   const text = `Welcome ${user.name} (${user.matric}) to the Garage@EEE Database!`
 

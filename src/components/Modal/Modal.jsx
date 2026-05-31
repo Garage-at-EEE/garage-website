@@ -10,7 +10,7 @@ const Modal = ({ children, open, onClose, below = false }) => {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [onClose]);
 
   return createPortal(
     <AnimatePresence>

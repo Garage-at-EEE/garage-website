@@ -36,7 +36,7 @@ const Shop = () => {
     setIsLoadingCredits(loading);
     if (credits !== undefined && credits !== null) {
       setCredits(credits);
-  }  }, [loading, credits]);
+  }  }, [loading, credits, setCredits]);
 
   const items = useMemo(() => {
     if (!data || !Array.isArray(data)) {
