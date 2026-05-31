@@ -1,11 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
+import Transition from "../../../components/Transition/Transition";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
 
 import styles from "./EventDetail.module.css";
-import Image from "../../components/Image/Image";
+import Image from "../../../components/Image/Image";
 
 function EventDetail() {
   const params = useParams();

@@ -12,7 +12,7 @@ const center = {
 
 const MAP_ID = "c8b545f909f6471e";
 
-const GoogleMapComponent = () => {
+const GoogleMap = () => {
   
   return (
     <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
@@ -28,4 +28,4 @@ const GoogleMapComponent = () => {
   );
 };
 
-export default GoogleMapComponent;
+export default GoogleMap;

@@ -12,28 +12,40 @@ import CartProvider from "./contexts/CartProvider";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Launchpad from "./routes/Launchpad/Launchpad";
 
-const AmbassadorDetail = lazy(() => import("./routes/Ambassadors/AmbassadorDetail"));
-const AmbassadorsOverview = lazy(() => import("./routes/AmbassadorsOverview/AmbassadorsOverview"));
-const EventsOverview = lazy(() => import("./routes/EventsOverview/EventsOverview"));
-const EventDetail = lazy(() => import("./routes/Events/EventDetail"));
-const ProjectsOverview = lazy(() => import("./routes/ProjectsOverview/ProjectsOverview"));
-const ProjectDetail = lazy(() => import("./routes/Projects/ProjectDetail"));
-const InnovatorsOverview = lazy(() => import("./routes/InnovatorsOverview/InnovatorsOverview"));
-// const TinkeringOverview = lazy(() => import("./routes/TinkeringOverview/TinkeringOverview"));
+// Routes
+const Workshops = lazy(() => import("./routes/Workshops/Workshops"))
+const EventsOverview = lazy(() => import("./routes/Events/Overview/EventsOverview"));
+const EventDetail = lazy(() => import("./routes/Events/Detail/EventDetail"));
 const NotFound = lazy(() => import("./routes/NotFound/NotFound"));
 const Facilities = lazy(() => import("./routes/Facilities/Facilities"));
-// const NewsletterPage = lazy(() => import("./routes/Newsletter/NewsletterPage"));
 const ContactUsPage = lazy(() => import("./routes/ContactUs/ContactUs"));
+const AboutUs = lazy(() => import("./routes/AboutUs/AboutUs"));
+// const NewsletterPage = lazy(() => import("./routes/Newsletter/NewsletterPage"));
+
+// Projects
+const ProjectShowcase = lazy(() => import("./routes/Projects/Showcase/Showcase"));
+const ProjectShowcaseDetail = lazy(() => import("./routes/Projects/Showcase/ShowcaseDetail"));
+
+const ProjectOpenings = lazy(() => import("./routes/Projects/Openings/Openings"));
+const ProjectOpeningsDetail = lazy(() => import("./routes/Projects/Openings/OpeningsDetail"));
+
+// Recruitment
+const AmbassadorsOverview = lazy(() => import("./routes/Recruitment/AmbassadorsOverview/AmbassadorsOverview"));
+const AmbassadorDetail = lazy(() => import("./routes/Recruitment/Ambassadors/AmbassadorDetail"));
+
+const TinkeringProject = lazy(() => import("./routes/Recruitment/TinkeringProject/TinkeringProject"));
+// TODO: Project -> Tinkering Overview
+
+const InnovatorsOverview = lazy(() => import("./routes/Recruitment/InnovatorsOverview/InnovatorsOverview"));
+
+// Protected
+const Login = lazy(() => import("./routes/Login/Login"));
+
 const Shop = lazy(() => import("./routes/Shop/Shop"));
 const Checkout = lazy(() => import("./routes/Shop/Checkout"));
 const Acknowledgement = lazy(() => import("./routes/Shop/Acknowledgement"));
 const Database = lazy(() => import("./routes/Database/Database"));
-const Login = lazy(() => import("./routes/Login/Login"));
-const ProjectOpenings = lazy(() => import("./routes/ProjectOpenings/ProjectOpenings"));
-const ProjectOpeningsDetail = lazy(() => import("./routes/ProjectOpenings/ProjectOpeningsDetail"));
-const TinkeringProject = lazy(() => import("./routes/TinkeringProject/TinkeringProject"));
-const AboutUs = lazy(() => import("./routes/AboutUs/AboutUs"));
-const Workshops = lazy(() => import("./routes/Workshops/Workshops"))
+// const TinkeringOverview = lazy(() => import("./routes/TinkeringOverview/TinkeringOverview"));
 
 const PageLoader = () => (
   <div style={{ 
@@ -61,8 +73,8 @@ function App() {
                 <Route path="/ambassadors/:id" element={<AmbassadorDetail />} />
                 <Route path="/events" element={<EventsOverview />} />
                 <Route path="/events/:id" element={<EventDetail />} />
-                <Route path="/projects" element={<ProjectsOverview />} />
-                <Route path="/projects/:id" element={<ProjectDetail />} />
+                <Route path="/projects" element={<ProjectShowcase />} />
+                <Route path="/projects/:id" element={<ProjectShowcaseDetail />} />
                 <Route path="/facilities" element={<Facilities />} />
                 <Route path="/innovators" element={<InnovatorsOverview />} />
                 <Route path="/launchpad" element={<Launchpad />} />

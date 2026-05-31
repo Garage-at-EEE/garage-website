@@ -1,24 +1,24 @@
-import Grid from "../../components/Grid/Grid";
-import Card from "../../components/PhotoCard/PhotoCard";
-import Typography from "../../components/Typography/Typography";
-import Transition from "../../components/Transition/Transition";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import PageGap from "../../components/PageGap/PageGap";
+import Grid from "../../../components/Grid/Grid";
+import Card from "../../../components/PhotoCard/PhotoCard";
+import Typography from "../../../components/Typography/Typography";
+import Transition from "../../../components/Transition/Transition";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
+import PageGap from "../../../components/PageGap/PageGap";
 import {
     AccordionRoot,
     AccordionContent,
     AccordionTrigger,
     AccordionItem,
-  } from "../../components/Accordion/Accordion";
+  } from "../../../components/Accordion/Accordion";
 
-import styles from "./TinkeringProject.module.css";
-import Button from "../../components/Button/Button";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import Image from "../../components/Image/Image";
+import styles from "./InnovatorsTrack.module.css";
+import Button from "../../../components/Button/Button";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
+import Image from "../../../components/Image/Image";
 
-const TinkeringProjects = () => {
+const InnovatorsTrack = () => {
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=tinkering",
   });
@@ -30,7 +30,7 @@ const TinkeringProjects = () => {
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>
               <div className={styles["banner-space"]}>
-                <Typography variant="banner">TINKERING PROJECTS</Typography>
+                <Typography variant="banner">INNOVATOR'S TRACK</Typography>
                 <div className={styles["scroll-more"]}>
                   <Typography
                     variant="body"
@@ -44,14 +44,16 @@ const TinkeringProjects = () => {
               <Image
                 className={styles["banner-image"]}
                 src={data[0].bannerImage}
-                alt="Tinkering Cover"
+                alt="Innovator's Track Cover"
               />
             </div>
             <section className={styles["section-wrapper"]}>
+              {/* Intro section */}
               <Typography variant="heading">Introduction</Typography>
               <Typography variant="body"> {data[0].introduction}
               </Typography>
             
+              {/* Join section */} 
               <Typography variant="heading">How Can I Join?</Typography> 
               <div className={styles["join-text"]}> 
                   <div className={styles["text-section"]}> 
@@ -68,6 +70,7 @@ const TinkeringProjects = () => {
                   </div> 
               </div> 
                
+              {/* Garage Assigned section */} 
               <Typography variant="heading">Alternatively,</Typography> 
               <div className={styles["garage-assigned-text"]}> 
                   <div className={styles["text-section"]}> 
@@ -99,7 +102,7 @@ const TinkeringProjects = () => {
               )}
               </div>
               <div>
-                <Button to="/project-openings"  
+                <Button to="/assigned_projects"  
                   style={{ width: '100%', textAlign: 'center', padding: '1rem' }}
                   >
                   View All
@@ -107,8 +110,9 @@ const TinkeringProjects = () => {
               </div>
             </section>
 
+            {/* Support section */} 
             <section className={styles["section-wrapper"]}>
-              <Typography variant={"heading"}>SUPPPORT</Typography>
+              <Typography variant={"heading"}>SUPPORT</Typography>
               {data ? (
                 <Grid desktop={3} tablet={2} mobile={1}>
                   {data.map((card, index) => (
@@ -140,11 +144,12 @@ const TinkeringProjects = () => {
               )}
             </section>
 
+            {/* Programmes section */} 
             <section className={styles["section-wrapper"]}>
                 <Typography variant={"heading"}>PROGRAMMES</Typography>
                 <div className={styles["programme-section"]}> 
                   <div className={styles["text-section"]}> 
-                    <Typography variant={"smallHeading"}>Tinkerer's Night</Typography>
+                    <Typography variant={"smallHeading"}>Innovator's Night</Typography>
                     {data && (
                     <section className={styles["tinkererNight"]}>
                         <Image
@@ -171,7 +176,7 @@ const TinkeringProjects = () => {
                         </div>
                     </section>
                     )}
-                    <Typography variant={"smallHeading"}>Tinkering Projects Sharing Session</Typography>
+                    <Typography variant={"smallHeading"}>Innovator's Track Sharing Session</Typography>
                     <Typography variant={"body"}>
                       {data[0].tinkererProjectDescription}
                     </Typography>
@@ -197,6 +202,7 @@ const TinkeringProjects = () => {
               </div> 
             </section>
 
+            {/* FAQ section */} 
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>FREQUENTLY ASKED QUESTIONS</Typography>
               <PageGap>
@@ -212,7 +218,7 @@ const TinkeringProjects = () => {
                           <Typography key={i} variant="body">
                             {index === 0 && i === 1 ? (
                               <a
-                                href="/project-openings"
+                                href="/assigned_projects"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles["faq-link"]}
@@ -238,4 +244,4 @@ const TinkeringProjects = () => {
   );
 };
 
-export default TinkeringProjects;
+export default InnovatorsTrack;

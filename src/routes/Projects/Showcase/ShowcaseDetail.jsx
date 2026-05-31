@@ -1,11 +1,11 @@
 import { useParams, Link } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
+import Transition from "../../../components/Transition/Transition";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
 
-import styles from "./ProjectDetail.module.css";
-import Image from "../../components/Image/Image";
+import styles from "./ShowcaseDetail.module.css";
+import Image from "../../../components/Image/Image";
 
 function ProjectDetail() {
   const params = useParams();

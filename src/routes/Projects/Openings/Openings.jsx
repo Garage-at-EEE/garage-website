@@ -1,17 +1,17 @@
 import { useLenis } from "lenis/react";
-import Transition from "../../components/Transition/Transition";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
-import Grid from "../../components/Grid/Grid";
-import Button from "../../components/Button/Button";
+import Transition from "../../../components/Transition/Transition";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
+import Typography from "../../../components/Typography/Typography";
+import BackButton from "../../../components/BackButton/BackButton";
+import Grid from "../../../components/Grid/Grid";
+import Button from "../../../components/Button/Button";
 import { Link } from "react-router-dom";
-import Image from "../../components/Image/Image";
+import Image from "../../../components/Image/Image";
 
-import styles from "./ProjectOpenings.module.css";
-import cardStyles from "../../components/PhotoCard/PhotoCard.module.css";
+import styles from "./Openings.module.css";
+import cardStyles from "../../../components/PhotoCard/PhotoCard.module.css";
 
 const ProjectCard = ({ image, topText, bottomText, to, isRecruiting }) => {
   const Comp = to ? Link : "div";

@@ -1,14 +1,14 @@
-import Transition from "../../components/Transition/Transition";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import Transition from "../../../components/Transition/Transition";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
 import { useLenis } from "lenis/react";
-import BackButton from "../../components/BackButton/BackButton";
-import Grid from "../../components/Grid/Grid";
-import Card from "../../components/PhotoCard/PhotoCard";
-import Typography from "../../components/Typography/Typography";
-import Button from "../../components/Button/Button";
-import styles from "../../components/OverviewPage/OverviewPage.module.css";
+import BackButton from "../../../components/BackButton/BackButton";
+import Grid from "../../../components/Grid/Grid";
+import Card from "../../../components/PhotoCard/PhotoCard";
+import Typography from "../../../components/Typography/Typography";
+import Button from "../../../components/Button/Button";
+import styles from "../../../components/OverviewPage/OverviewPage.module.css";
 
 const InnovatorsOverview = () => {
   const { data, isLoading } = useFetch({

@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
-import Typography from "../../components/Typography/Typography";
-import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/constants";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import PageGap from "../../components/PageGap/PageGap";
-import HeroImage from "../../components/HeroImage/HeroImage";
-import Button from "../../components/Button/Button";
+import Typography from "../../../components/Typography/Typography";
+import useFetch from "../../../hooks/useFetch";
+import { API_DOMAIN } from "../../../utils/constants";
+import Transition from "../../../components/Transition/Transition";
+import PageTemplate from "../../../components/PageTemplate/PageTemplate";
+import PageGap from "../../../components/PageGap/PageGap";
+import HeroImage from "../../../components/HeroImage/HeroImage";
+import Button from "../../../components/Button/Button";
 
 
-import styles from "./ProjectOpenings.module.css";
+import styles from "./Openings.module.css";
 
 function ProjectDetail() {
   const params = useParams();

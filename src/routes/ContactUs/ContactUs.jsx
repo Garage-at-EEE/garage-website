@@ -7,7 +7,7 @@ import axios from "axios";
 
 import styles from "./ContactUs.module.css";
 import FileUploader from "../../components/FileUploader/FileUploader";
-import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
+import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/constants";
 
 const ContactUs = () => {
@@ -272,7 +272,7 @@ const ContactUs = () => {
                                 </div>
 
                                 <div className={styles["map-wrapper"]}>
-                                    <GoogleMapComponent />
+                                    <GoogleMap />
                                 </div>
                             </aside>
                         </div>

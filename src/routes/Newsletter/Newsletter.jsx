@@ -3,14 +3,13 @@ import PageTemplate from "../../components/PageTemplate/PageTemplate";
 import Transition from "../../components/Transition/Transition";
 import Button from "../../components/Button/Button";
 import BackButton from "../../components/BackButton/BackButton";
-import Newsletter from "../../components/Newsletter/Newsletter";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/constants";
 
-import styles from "./NewsletterPage.module.css";
+import styles from "./Newsletter.module.css";
 import { useLenis } from "lenis/react";
 
-const NewsletterPage = () => {
+const Newsletter = () => {
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=newsletter",
   });
@@ -44,4 +43,4 @@ const NewsletterPage = () => {
   );
 };
 
-export default NewsletterPage;
+export default Newsletter;
