@@ -105,7 +105,7 @@ const Header = () => {
     {
       label: "Projects",
       dropdown: [
-        { label: "Showcase", to: "/projects" },
+        { label: "Showcase", to: "/project-showcase" },
         { label: "Openings",  to: "/project-openings"  },
       ]
     },
@@ -114,15 +114,11 @@ const Header = () => {
       to: "/events",
     },
     {
-      label: "About Us",
-      to: "/about-us",
-    },
-    {
       label: "Recruitment",
       dropdown: [
         { label: "Ambassador", to: "/ambassadors" },
-        { label: "Innovator",  to: "/innovators"  },
-        { label: "Tinkering",  to: "/tinkering-project"   },
+        { label: "Innotrack",  to: "/innotrack"  },
+        { label: "Tinkering",  to: "/tinkering"   },
         { label: "LaunchPad",  to: "/launchpad"   },
       ],
     },

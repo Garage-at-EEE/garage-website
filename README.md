@@ -610,13 +610,13 @@ If you ever want to move off Google Sheets:
 | /ambassadors/:id | Ambassador portfolio detail | No | ambassadors (by index) |
 | /projects | All projects grid | No | projectInfo (name, coverPic) |
 | /projects/:id | Project detail | No | projectInfo (by index) |
+| /project-openings | Project openings grid | No | projectOpenings |
+| /project-openings/:id | Project detail | No | projectOpenings (by index) |
 | /events | All events grid | No | events (name, tagline, coverPic) |
 | /events/:id | Event detail | No | events (by index) |
 | /facilities | Facilities overview | No | facilities |
 | /newsletter | Newsletter archive | No | newsletter |
-| /tinkering-project | Tinkering program info | No | tinkering |
-| /project-openings | Project openings grid | No | projectOpenings |
-| /project-openings/:id | Project detail | No | projectOpenings (by index) |
+| /tinkering | Tinkering program info | No | tinkering |
 | /contact-us | Contact form + map | No | None (posts to CONTACT_US_UPLOAD_DOMAIN) |
 | /login | Login form | No | Posts to LOGIN_DOMAIN |
 | /database | Member database | Yes | database (token protected) |

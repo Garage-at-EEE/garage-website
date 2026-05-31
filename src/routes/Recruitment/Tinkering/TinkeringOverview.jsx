@@ -8,7 +8,7 @@ import Grid from "../../../components/Grid/Grid";
 import Card from "../../../components/PhotoCard/PhotoCard";
 import Typography from "../../../components/Typography/Typography";
 import Button from "../../../components/Button/Button";
-import styles from "../../components/OverviewPage/OverviewPage.module.css";
+import styles from "../../../components/OverviewPage/OverviewPage.module.css";
 
 const TinkeringOverview = () => {
   const { data, isLoading } = useFetch({

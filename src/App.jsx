@@ -10,7 +10,6 @@ import AuthProvider from "./contexts/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CartProvider from "./contexts/CartProvider";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
-import Launchpad from "./routes/Launchpad/Launchpad";
 
 // Routes
 const Workshops = lazy(() => import("./routes/Workshops/Workshops"))
@@ -18,9 +17,9 @@ const EventsOverview = lazy(() => import("./routes/Events/Overview/EventsOvervie
 const EventDetail = lazy(() => import("./routes/Events/Detail/EventDetail"));
 const NotFound = lazy(() => import("./routes/NotFound/NotFound"));
 const Facilities = lazy(() => import("./routes/Facilities/Facilities"));
-const ContactUsPage = lazy(() => import("./routes/ContactUs/ContactUs"));
-const AboutUs = lazy(() => import("./routes/AboutUs/AboutUs"));
-// const NewsletterPage = lazy(() => import("./routes/Newsletter/NewsletterPage"));
+const ContactUs = lazy(() => import("./routes/ContactUs/ContactUs"));
+// const AboutUs = lazy(() => import("./routes/AboutUs/AboutUs"));
+// const Newsletter = lazy(() => import("./routes/Newsletter/Newsletter"));
 
 // Projects
 const ProjectShowcase = lazy(() => import("./routes/Projects/Showcase/Showcase"));
@@ -30,13 +29,12 @@ const ProjectOpenings = lazy(() => import("./routes/Projects/Openings/Openings")
 const ProjectOpeningsDetail = lazy(() => import("./routes/Projects/Openings/OpeningsDetail"));
 
 // Recruitment
-const AmbassadorsOverview = lazy(() => import("./routes/Recruitment/AmbassadorsOverview/AmbassadorsOverview"));
-const AmbassadorDetail = lazy(() => import("./routes/Recruitment/Ambassadors/AmbassadorDetail"));
+const AmbassadorsOverview = lazy(() => import("./routes/Recruitment/Ambassadors/Overview/AmbassadorsOverview"));
+const AmbassadorDetail = lazy(() => import("./routes/Recruitment/Ambassadors/Detail/AmbassadorDetail"));
 
-const TinkeringProject = lazy(() => import("./routes/Recruitment/TinkeringProject/TinkeringProject"));
-// TODO: Project -> Tinkering Overview
-
-const InnovatorsOverview = lazy(() => import("./routes/Recruitment/InnovatorsOverview/InnovatorsOverview"));
+const Tinkering = lazy(() => import("./routes/Recruitment/Tinkering/TinkeringOverview"));
+const Innotrack = lazy(() => import("./routes/Recruitment/Innotrack/Innotrack"));
+const Launchpad = lazy(() => import("./routes/Recruitment/Launchpad/Launchpad"));
 
 // Protected
 const Login = lazy(() => import("./routes/Login/Login"));
@@ -45,7 +43,6 @@ const Shop = lazy(() => import("./routes/Shop/Shop"));
 const Checkout = lazy(() => import("./routes/Shop/Checkout"));
 const Acknowledgement = lazy(() => import("./routes/Shop/Acknowledgement"));
 const Database = lazy(() => import("./routes/Database/Database"));
-// const TinkeringOverview = lazy(() => import("./routes/TinkeringOverview/TinkeringOverview"));
 
 const PageLoader = () => (
   <div style={{ 
@@ -69,21 +66,32 @@ function App() {
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route exact path="/" element={<Home />} />
-                <Route path="/ambassadors" element={<AmbassadorsOverview />} />
-                <Route path="/ambassadors/:id" element={<AmbassadorDetail />} />
+
+                {/* Base */}
                 <Route path="/events" element={<EventsOverview />} />
-                <Route path="/events/:id" element={<EventDetail />} />
-                <Route path="/projects" element={<ProjectShowcase />} />
-                <Route path="/projects/:id" element={<ProjectShowcaseDetail />} />
+                <Route path="/events/:id" element={<EventDetail />} />  
                 <Route path="/facilities" element={<Facilities />} />
-                <Route path="/innovators" element={<InnovatorsOverview />} />
-                <Route path="/launchpad" element={<Launchpad />} />
                 <Route path="/workshops" element={<Workshops />} />
-                <Route path="/tinkering-project" element={<TinkeringProject />} />
+                <Route path="/contact-us" element={<ContactUs />} />
+
+                {/* DEPRECIATED */}
+                {/* <Route path="/about-us" element={<AboutUs />} /> */}
+                {/* <Route path="/newsletter" element={<Newsletter />} /> */}
+
+                {/* Projects */}
+                <Route path="/project-showcase" element={<ProjectShowcase />} />
+                <Route path="/project-showcase/:id" element={<ProjectShowcaseDetail />} />
                 <Route path="/project-openings" element={<ProjectOpenings />} />
                 <Route path="/project-openings/:id" element={<ProjectOpeningsDetail />} />
-                <Route path="/about-us" element={<AboutUs />} />
-                <Route path="/contact-us" element={<ContactUsPage />} />
+
+                {/* Recruitment */}
+                <Route path="/ambassadors" element={<AmbassadorsOverview />} />
+                <Route path="/ambassadors/:id" element={<AmbassadorDetail />} />
+                <Route path="/innotrack" element={<Innotrack />} />
+                <Route path="/launchpad" element={<Launchpad />} />
+                <Route path="/tinkering" element={<Tinkering />} />
+
+                {/* Protected */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/database" element={
                     <PrivateRoute loginPageTitle="Member Database" loginRedirect="/database">
@@ -96,15 +104,17 @@ function App() {
                     </PrivateRoute>
                 }/>
                 <Route path="/checkout" element={
-                    <PrivateRoute loginPageTitle="Shop Checkout" loginRedirect="/checkout">
+                    <PrivateRoute loginPageTitle="Shop Checkout" loginRedirect="/shop">
                       <Checkout />
                     </PrivateRoute>
                 }/>
                 <Route path="/acknowledgement" element={
-                    <PrivateRoute loginPageTitle="Shop Acknowledgement" loginRedirect="/acknowledgement">
+                    <PrivateRoute loginPageTitle="Shop Acknowledgement" loginRedirect="/shop">
                       <Acknowledgement />
                     </PrivateRoute>
                 }/>
+
+                {/* Wildcard */}
                 <Route path="/*" element={<NotFound />} />
               </Routes>
             </AnimatePresence>
