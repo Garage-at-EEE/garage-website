@@ -8,8 +8,8 @@ const Grid = ({ children, desktop = 3, tablet = 2, mobile = 1 }) => {
       breakpoint === "desktop"
         ? `repeat(${desktop}, 1fr)`
         : breakpoint === "tablet"
-        ? `repeat(${tablet}, 1fr)`
-        : `repeat(${mobile}, 1fr)`,
+          ? `repeat(${tablet}, 1fr)`
+          : `repeat(${mobile}, 1fr)`,
   };
   return (
     <div className={styles["grid-container"]} style={gridStyles}>

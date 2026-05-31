@@ -17,7 +17,7 @@ const Button = forwardRef(
       className,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const cn = [
       className,
@@ -46,7 +46,7 @@ const Button = forwardRef(
         {endIcon && <div className={styles["end-icon-wrapper"]}>{endIcon}</div>}
       </Comp>
     );
-  }
+  },
 );
 
 export default Button;

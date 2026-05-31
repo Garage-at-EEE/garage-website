@@ -24,7 +24,7 @@ const CountUp = ({
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -51,8 +51,7 @@ const CountUp = ({
 
   const formatted = useMemo(() => {
     const n = Number.isFinite(value) ? value : 0;
-    const rounded =
-      decimals > 0 ? Number(n.toFixed(decimals)) : Math.round(n);
+    const rounded = decimals > 0 ? Number(n.toFixed(decimals)) : Math.round(n);
     const fmt = new Intl.NumberFormat(undefined, {
       maximumFractionDigits: decimals,
     });

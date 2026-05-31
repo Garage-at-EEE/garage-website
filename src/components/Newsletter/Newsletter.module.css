@@ -5,7 +5,9 @@
   box-shadow: var(--shadow-1);
   border: 1px solid var(--outline);
   overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
 .newsletter-wrapper:hover {

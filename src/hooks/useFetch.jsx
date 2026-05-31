@@ -11,10 +11,10 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   const memoizedHeaders = useMemo(() => headers, [JSON.stringify(headers)]);
 
   const getData = async () => {
-    console.log("Fetching data from:", url);
+    // console.log("Fetching data from:", url);
 
     if (control.current) {
-      console.log("Aborting previous request");
+      // console.log("Aborting previous request");
       control.current.abort();
     }
 
@@ -40,20 +40,24 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
       }
       const { cacheVersion: serverVersion } = await response.json();
 
-      if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry && parseInt(localVersion, 10) === parseInt(serverVersion, 10)) {
-        console.log("Using cached data:", JSON.parse(cachedData));
+      if (
+        cachedData &&
+        useCache &&
+        Date.now() - cacheTimestamp < cacheExpiry &&
+        parseInt(localVersion, 10) === parseInt(serverVersion, 10)
+      ) {
+        // console.log("Using cached data:", JSON.parse(cachedData));
         setData(JSON.parse(cachedData));
         setIsLoading(false);
         return;
       }
-    }
-    else{
+    } else {
       if (cachedData && useCache && Date.now() - cacheTimestamp < cacheExpiry) {
-      console.log("Using cached data:", JSON.parse(cachedData));
-      setData(JSON.parse(cachedData));
-      setIsLoading(false);
-      return;
-    }
+        // console.log("Using cached data:", JSON.parse(cachedData));
+        setData(JSON.parse(cachedData));
+        setIsLoading(false);
+        return;
+      }
     }
 
     try {
@@ -67,14 +71,16 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
       }
 
       const responseData = await response.json();
-      console.log("Response data:", responseData);
+      // console.log("Response data:", responseData);
 
-      if (responseData.error === 'Invalid token') {
+      if (responseData.error === "Invalid token") {
         return logoutAction(true);
       }
 
       setData((prev) =>
-        JSON.stringify(prev) !== JSON.stringify(responseData) ? responseData : prev
+        JSON.stringify(prev) !== JSON.stringify(responseData)
+          ? responseData
+          : prev,
       );
 
       if (useCache) {
@@ -91,7 +97,7 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
       }
     } catch (err) {
       if (err.name !== "AbortError") {
-        console.error("Error during fetch:", err);
+        // console.error("Error during fetch:", err);
         setError(err.message || "An error occurred");
       }
     } finally {
@@ -100,14 +106,14 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
   };
 
   useEffect(() => {
-    console.log("useFetch triggered:", { url, enabled, useCache });
+    // console.log("useFetch triggered:", { url, enabled, useCache });
     if (enabled) {
       getData();
     }
 
     return () => {
       if (control.current) {
-        console.log("Cleaning up fetch request");
+        // console.log("Cleaning up fetch request");
         control.current.abort();
       }
     };
@@ -115,6 +121,5 @@ const useFetch = ({ url, headers = {}, enabled = true, useCache = true }) => {
 
   return { data, isLoading, error };
 };
-
 
 export default useFetch;

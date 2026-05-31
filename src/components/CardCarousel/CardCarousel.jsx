@@ -23,7 +23,7 @@ const CardCarousel = ({
 
   const handlePrev = () => {
     setActiveIndex(
-      (prev) => (prev - 1 + displayData.length) % displayData.length
+      (prev) => (prev - 1 + displayData.length) % displayData.length,
     );
   };
 

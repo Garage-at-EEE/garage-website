@@ -5,7 +5,7 @@ import styles from "./Image.module.css";
 const Image = forwardRef(
   (
     { src, alt, className, wrapperClassName, objectFit = "cover", ...rest },
-    ref
+    ref,
   ) => {
     const [isLoading, setIsLoading] = useState(true);
     return (
@@ -39,7 +39,7 @@ const Image = forwardRef(
         />
       </div>
     );
-  }
+  },
 );
 
 export default Image;

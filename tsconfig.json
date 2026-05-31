@@ -6,7 +6,5 @@
     "jsx": "preserve",
     "ignoreDeprecations": "6.0"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

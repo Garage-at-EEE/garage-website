@@ -75,21 +75,21 @@ const Header = () => {
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const previous = lastScrollY.current;
-    
+
     if (y >= topPaddings[breakpoint] && !shadow) setShadow(true);
     else if (y < topPaddings[breakpoint] && shadow) setShadow(false);
-    
+
     if (!open) {
       const scrollingDown = y > previous;
       const scrolledPastThreshold = y > 100;
-      
+
       if (scrollingDown && scrolledPastThreshold) {
         setHidden(true);
       } else if (!scrollingDown) {
         setHidden(false);
       }
     }
-    
+
     lastScrollY.current = y;
   });
 
@@ -106,8 +106,8 @@ const Header = () => {
       label: "Projects",
       dropdown: [
         { label: "Showcase", to: "/project-showcase" },
-        { label: "Openings",  to: "/project-openings"  },
-      ]
+        { label: "Openings", to: "/project-openings" },
+      ],
     },
     {
       label: "Events",
@@ -117,9 +117,9 @@ const Header = () => {
       label: "Recruitment",
       dropdown: [
         { label: "Ambassador", to: "/ambassadors" },
-        { label: "Innotrack",  to: "/innotrack"  },
-        { label: "Tinkering",  to: "/tinkering"   },
-        { label: "LaunchPad",  to: "/launchpad"   },
+        { label: "Innotrack", to: "/innotrack" },
+        { label: "Tinkering", to: "/tinkering" },
+        { label: "LaunchPad", to: "/launchpad" },
       ],
     },
     {
@@ -136,7 +136,7 @@ const Header = () => {
     {
       label: "Shop",
       to: "/shop",
-    }
+    },
   ];
 
   useEffect(() => {
@@ -150,9 +150,9 @@ const Header = () => {
           .filter(Boolean)
           .join(" ")}
         initial={{ y: 0, opacity: 1 }}
-        animate={{ 
+        animate={{
           y: hidden ? "-150%" : 0,
-          opacity: hidden ? 0 : 1
+          opacity: hidden ? 0 : 1,
         }}
         transition={{ duration: 0.3, ease: [0.7, 0, 0.3, 1] }}
       >
@@ -169,22 +169,23 @@ const Header = () => {
             {breakpoint === "desktop" ? (
               <>
                 <nav className={styles["nav"]}>
-                {navlinks.map((navlink) =>
-                  navlink.dropdown ? (
-                    <DropdownMenu
-                      key={navlink.label}
-                      header={navlink.label}
-                      navlinks={navlink.dropdown}
-                    />
-                  ) : (
-                    <Link
-                      key={navlink.label}
-                      to={navlink.to}
-                      className={styles["navlink"]}
-                    >
-                      <Typography variant="body">{navlink.label}</Typography>
-                    </Link>
-                  ))}
+                  {navlinks.map((navlink) =>
+                    navlink.dropdown ? (
+                      <DropdownMenu
+                        key={navlink.label}
+                        header={navlink.label}
+                        navlinks={navlink.dropdown}
+                      />
+                    ) : (
+                      <Link
+                        key={navlink.label}
+                        to={navlink.to}
+                        className={styles["navlink"]}
+                      >
+                        <Typography variant="body">{navlink.label}</Typography>
+                      </Link>
+                    ),
+                  )}
                 </nav>
                 <div className={styles["header-right"]}>
                   {name === null ? (
@@ -195,10 +196,9 @@ const Header = () => {
                     >
                       Login
                     </Link>
-                    ) : (
-                      <LoginMenu protected_navlinks={protected_navlinks}/>
-                    )
-                  }
+                  ) : (
+                    <LoginMenu protected_navlinks={protected_navlinks} />
+                  )}
                 </div>
               </>
             ) : (

@@ -13,11 +13,7 @@ const LoginMenu = ({ protected_navlinks }) => {
 
   return (
     <DropdownMenu header={name} navlinks={protected_navlinks}>
-      <Link
-        key="Logout"
-        className={styles["navlink"]}
-        onClick={handleLogout}
-      >
+      <Link key="Logout" className={styles["navlink"]} onClick={handleLogout}>
         <Typography variant="body">Logout</Typography>
       </Link>
     </DropdownMenu>

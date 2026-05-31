@@ -13,7 +13,7 @@ import {
   AccordionItem,
 } from "../../../components/Accordion/Accordion";
 
-import styles from "./Launchpad.module.css"; 
+import styles from "./Launchpad.module.css";
 import Button from "../../../components/Button/Button";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import Image from "../../../components/Image/Image";
@@ -60,9 +60,7 @@ const Launchpad = () => {
                   <Typography variant="smallHeading">
                     {data[0].howToJoin[0]}
                   </Typography>
-                  <Typography variant="body">
-                    {data[0].howToJoin[1]}
-                  </Typography>
+                  <Typography variant="body">{data[0].howToJoin[1]}</Typography>
                   <div>
                     <Button
                       to={
@@ -111,7 +109,7 @@ const Launchpad = () => {
                                 styles["project-cards-bottom-text"]
                               }
                             />
-                          )
+                          ),
                         )}
                       </div>
                     ))}
@@ -126,7 +124,11 @@ const Launchpad = () => {
               <div>
                 <Button
                   to="/assigned_projects"
-                  style={{ width: "100%", textAlign: "center", padding: "1rem" }}
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    padding: "1rem",
+                  }}
                 >
                   View All
                 </Button>
@@ -191,15 +193,21 @@ const Launchpad = () => {
                             {data[0].tinkererNightDescription[0]}
                           </Typography>
                           <Typography variant={"body"}>
-                            <strong>{data[0].tinkererNightDescription[1]}</strong>{" "}
+                            <strong>
+                              {data[0].tinkererNightDescription[1]}
+                            </strong>{" "}
                             {data[0].tinkererNightDescription[2]}
                           </Typography>
                           <Typography variant={"body"}>
-                            <strong>{data[0].tinkererNightDescription[3]}</strong>{" "}
+                            <strong>
+                              {data[0].tinkererNightDescription[3]}
+                            </strong>{" "}
                             {data[0].tinkererNightDescription[4]}
                           </Typography>
                           <Typography variant={"body"}>
-                            <strong>{data[0].tinkererNightDescription[5]}</strong>{" "}
+                            <strong>
+                              {data[0].tinkererNightDescription[5]}
+                            </strong>{" "}
                             {data[0].tinkererNightDescription[6]}
                           </Typography>
                         </div>
@@ -287,5 +295,3 @@ const Launchpad = () => {
 };
 
 export default Launchpad;
-
-

@@ -155,7 +155,9 @@
   border-radius: 0.5rem;
   font-size: 1rem;
   color: var(--body);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .field:focus {
@@ -324,7 +326,7 @@ select.field:invalid {
 }
 
 .info-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -4rem;
   right: -4rem;
@@ -337,7 +339,7 @@ select.field:invalid {
 }
 
 .info-card::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -4rem;
   left: -4rem;

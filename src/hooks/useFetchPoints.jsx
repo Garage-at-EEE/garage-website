@@ -15,25 +15,28 @@ export default function useFetchPoints(matric) {
     const fetchPoints = async () => {
       setLoading(true);
       try {
-
-        const config = { 
-        headers: { 
-            "Content-Type": "text/plain;charset=utf-8", 
-            }, 
-            redirect: "follow", 
-            mode: "cors", 
-            method: "POST", 
+        const config = {
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          redirect: "follow",
+          mode: "cors",
+          method: "POST",
         };
-  
-        const response = await axios.post(API_DOMAIN, {
-          matric,
-          type: "shopData",
-          token: token,
-        }, config);
+
+        const response = await axios.post(
+          API_DOMAIN,
+          {
+            matric,
+            type: "shopData",
+            token: token,
+          },
+          config,
+        );
         if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
           setCredits(response.data.info.currentInnocredit);
         }
-        if (response.data.error === 'Invalid token') {
+        if (response.data.error === "Invalid token") {
           return logoutAction(true);
         }
       } catch (err) {

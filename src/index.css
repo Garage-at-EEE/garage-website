@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 * {
   box-sizing: border-box;
@@ -43,29 +43,29 @@ body {
   /* New color palette - Light mode oriented */
   --dark-navy: #030211;
   --deep-navy: #000127;
-  --bright-blue: #39B5E8;
+  --bright-blue: #39b5e8;
   --medium-blue: #2691cf;
-  --dark-blue: #0B2759;
-  --cyan-gradient: #A1F5F5;
+  --dark-blue: #0b2759;
+  --cyan-gradient: #a1f5f5;
 
   /* Primary colors */
   --garage-blue: #2691cf;
-  --garage-blue-hover: #39B5E8;
-  --garage-blue-press: #0B2759;
+  --garage-blue-hover: #39b5e8;
+  --garage-blue-press: #0b2759;
 
   --white: #f1eee8;
   --body: #030211;
   --background: #f1eee8;
   --outline: #cbd5e1;
-  --outline-hover: #39B5E822;
+  --outline-hover: #39b5e822;
   --outline-press: #2691cf44;
 
   --disabled: #94a3b8;
   --on-disabled: #64748b;
 
-  --error: #E10D0D;
+  --error: #e10d0d;
   --table-disabled: #cbd5e1;
-  --table-accent: #E6F7FF;
+  --table-accent: #e6f7ff;
 
   --radius: 16px;
   --card-radius: 1.5rem;
@@ -99,7 +99,12 @@ p {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Inter", sans-serif;
 }
 
@@ -110,8 +115,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 section[id] {

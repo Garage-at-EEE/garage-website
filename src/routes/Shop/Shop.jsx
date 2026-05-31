@@ -5,13 +5,13 @@ import PageTemplate from "../../components/PageTemplate/PageTemplate";
 import Typography from "../../components/Typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/PageGap/PageGap";
-import Image from '../../components/Image/Image';
-import coinIcon from '../../icons/coin-icon.png';
-import cartIcon from '../../icons/shopping-cart.png';
-import styles from './Shop.module.css';
+import Image from "../../components/Image/Image";
+import coinIcon from "../../icons/coin-icon.png";
+import cartIcon from "../../icons/shopping-cart.png";
+import styles from "./Shop.module.css";
 import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
-import { API_DOMAIN } from '../../utils/constants';
+import { API_DOMAIN } from "../../utils/constants";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import useFetchPoints from "../../hooks/useFetchPoints";
@@ -31,26 +31,31 @@ const Shop = () => {
   });
 
   const { credits, loading } = useFetchPoints(matric);
-  
+
   useEffect(() => {
     setIsLoadingCredits(loading);
     if (credits !== undefined && credits !== null) {
       setCredits(credits);
-  }  }, [loading, credits, setCredits]);
+    }
+  }, [loading, credits, setCredits]);
 
   const items = useMemo(() => {
     if (!data || !Array.isArray(data)) {
       return [];
     }
-    return data.filter(entry => entry.itemName && entry.innocreditPrice !== undefined);
+    return data.filter(
+      (entry) => entry.itemName && entry.innocreditPrice !== undefined,
+    );
   }, [data]);
 
   useEffect(() => {
     if (data && Array.isArray(data)) {
       const initialQuantities = {};
 
-      data.forEach(item => {
-        const cartItem = cartItems.find(cart => cart.itemName === item.itemName);
+      data.forEach((item) => {
+        const cartItem = cartItems.find(
+          (cart) => cart.itemName === item.itemName,
+        );
 
         initialQuantities[item.itemName] = cartItem ? cartItem.quantity : 0;
       });
@@ -60,11 +65,16 @@ const Shop = () => {
   }, [data, cartItems]);
 
   const incrementQuantity = (itemName) => {
-    const itemPrice = items.find(item => item.itemName === itemName).innocreditPrice;
-    const currentTotal = Object.entries(quantities).reduce((sum, [name, qty]) => {
-      const item = items.find(i => i.itemName === name);
-      return sum + (item.innocreditPrice) * qty;
-    }, 0);
+    const itemPrice = items.find(
+      (item) => item.itemName === itemName,
+    ).innocreditPrice;
+    const currentTotal = Object.entries(quantities).reduce(
+      (sum, [name, qty]) => {
+        const item = items.find((i) => i.itemName === name);
+        return sum + item.innocreditPrice * qty;
+      },
+      0,
+    );
 
     if (userCredits - currentTotal - itemPrice < 0) {
       setShowWarning(true);
@@ -79,7 +89,6 @@ const Shop = () => {
 
     setQuantities(newQuantities);
     updateCart(newQuantities);
-
   };
 
   const decrementQuantity = (itemName) => {
@@ -89,21 +98,26 @@ const Shop = () => {
     };
     setQuantities(newQuantities);
     updateCart(newQuantities);
-
   };
 
   const updateCartCount = (newQuantities) => {
-    const totalItems = Object.values(newQuantities).reduce((sum, qty) => sum + qty, 0);
-    return totalItems
+    const totalItems = Object.values(newQuantities).reduce(
+      (sum, qty) => sum + qty,
+      0,
+    );
+    return totalItems;
   };
 
   const updateCart = (newQuantities) => {
-    const cartQuantities = items.filter(item => newQuantities[item.itemName] && newQuantities[item.itemName] > 0);
-    const cartItems = cartQuantities.map(item => ({
+    const cartQuantities = items.filter(
+      (item) =>
+        newQuantities[item.itemName] && newQuantities[item.itemName] > 0,
+    );
+    const cartItems = cartQuantities.map((item) => ({
       itemName: item.itemName,
       quantity: newQuantities[item.itemName],
       cost: item.innocreditPrice,
-      image: item.image.preview_url
+      image: item.image.preview_url,
     }));
     const totalItems = updateCartCount(newQuantities);
     setCart(totalItems, cartItems);
@@ -123,92 +137,110 @@ const Shop = () => {
       <PageTemplate>
         <PageGap>
           {showWarning && (
-            <div className={styles['purchase-warning-backdrop']}>
-              <div className={styles['purchase-warning-modal']}>
-                {insufficientCredits &&
-                <>
-                  <Typography variant='smallHeading'>Insufficient Credits</Typography>
-                  <Typography variant='body'>You don't have enough credits to add this item.</Typography>
-                </>
-                }
-                {emptyCart && 
-                <>
-                  <Typography variant='smallHeading'>Empty Cart</Typography>
-                  <Typography variant='body'>Please add items before proceeding to checkout.</Typography>
-                </>
-                }
-                <button   onClick={() => {
-                  setShowWarning(false);
-                  setEmptyCart(false);
-                  setInsufficientCredits(false);
-                }}><Typography variant='body'>Confirm</Typography>
+            <div className={styles["purchase-warning-backdrop"]}>
+              <div className={styles["purchase-warning-modal"]}>
+                {insufficientCredits && (
+                  <>
+                    <Typography variant="smallHeading">
+                      Insufficient Credits
+                    </Typography>
+                    <Typography variant="body">
+                      You don't have enough credits to add this item.
+                    </Typography>
+                  </>
+                )}
+                {emptyCart && (
+                  <>
+                    <Typography variant="smallHeading">Empty Cart</Typography>
+                    <Typography variant="body">
+                      Please add items before proceeding to checkout.
+                    </Typography>
+                  </>
+                )}
+                <button
+                  onClick={() => {
+                    setShowWarning(false);
+                    setEmptyCart(false);
+                    setInsufficientCredits(false);
+                  }}
+                >
+                  <Typography variant="body">Confirm</Typography>
                 </button>
               </div>
             </div>
           )}
-          <div className={styles['heading-space']}>
+          <div className={styles["heading-space"]}>
             <Typography variant="heading">Garage Shop</Typography>
             <BackButton />
           </div>
 
-          <div className={styles['heading-info-space']}>
+          <div className={styles["heading-info-space"]}>
             <Typography variant="smallHeading">
               Welcome to Garage Shop
             </Typography>
-            <div className={styles['credits']}>
-              <Typography variant="body" className={styles['credits-label']}>
+            <div className={styles["credits"]}>
+              <Typography variant="body" className={styles["credits-label"]}>
                 Inno Credits:
               </Typography>
-              <Typography variant="body" className={styles['credits-value']}>
+              <Typography variant="body" className={styles["credits-value"]}>
                 {isLoadingCredits ? "..." : userCredits}
               </Typography>
               <Image
                 src={coinIcon}
                 alt="Credits Icon"
-                className={styles['credits-icon']}
+                className={styles["credits-icon"]}
               />
             </div>
           </div>
 
-          <div className={styles['shop-items-container']}>
+          <div className={styles["shop-items-container"]}>
             {items.map((item, index) => (
-              <div className={styles['shop-item']} key={index}>
-                <div className={styles['image-wrapper']}>
+              <div className={styles["shop-item"]} key={index}>
+                <div className={styles["image-wrapper"]}>
                   <Image
-                    src={item.image?.preview_url ? item.image.preview_url : "/default-placeholder.png"}
+                    src={
+                      item.image?.preview_url
+                        ? item.image.preview_url
+                        : "/default-placeholder.png"
+                    }
                     alt={item.itemName ? item.itemName : "Unnamed Item"}
-                    className={styles['item-image']}
+                    className={styles["item-image"]}
                     onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/default-placeholder.png";
-                  }}
+                      e.target.onerror = null;
+                      e.target.src = "/default-placeholder.png";
+                    }}
                   />
                 </div>
 
-                <Typography variant="subtitle" className={styles['item-description']}>
+                <Typography
+                  variant="subtitle"
+                  className={styles["item-description"]}
+                >
                   {item.description || "No description available."}
                 </Typography>
 
-                <Typography variant="body" className={styles['item-name']}>
+                <Typography variant="body" className={styles["item-name"]}>
                   {item.itemName || "No Name"}
                 </Typography>
 
-                <div className={styles['item-price']}>
+                <div className={styles["item-price"]}>
                   <Typography variant="body">
                     {item.innocreditPrice} Credits
                   </Typography>
                   <Image
                     src={coinIcon}
                     alt="Credits Icon"
-                    className={styles['credits-icon']}
+                    className={styles["credits-icon"]}
                   />
                 </div>
 
-                <div className={styles['item-stock-quantity']}>
-                  <Typography variant="body" className={styles['item-stock']}>
-                    {item.inventory ? `Stock: ${item.inventory}` : "Out of Stock"}
+                <div className={styles["item-stock-quantity"]}>
+                  <Typography variant="body" className={styles["item-stock"]}>
+                    {item.inventory
+                      ? `Stock: ${item.inventory}`
+                      : "Out of Stock"}
                   </Typography>
-                  <div className={styles['quantity-controls']}>
+                  <div className={styles["quantity-controls"]}>
                     <button
                       onClick={() => decrementQuantity(item.itemName)}
                       disabled={
@@ -221,8 +253,8 @@ const Shop = () => {
                       variant="body"
                       className={
                         !item.inventory
-                          ? `${styles['quantity-count']} ${styles['quantity-zero']}`
-                          : styles['quantity-count']
+                          ? `${styles["quantity-count"]} ${styles["quantity-zero"]}`
+                          : styles["quantity-count"]
                       }
                     >
                       {quantities[item.itemName]}
@@ -230,7 +262,8 @@ const Shop = () => {
                     <button
                       onClick={() => incrementQuantity(item.itemName)}
                       disabled={
-                        !item.inventory || quantities[item.itemName] >= item.inventory
+                        !item.inventory ||
+                        quantities[item.itemName] >= item.inventory
                       }
                     >
                       +
@@ -241,16 +274,19 @@ const Shop = () => {
             ))}
           </div>
 
-          <div className={styles['checkout']}>
-            <button className={styles['checkout-button']} onClick={handleCheckout}>
-              <div className={styles['cart-icon-wrapper']}>
+          <div className={styles["checkout"]}>
+            <button
+              className={styles["checkout-button"]}
+              onClick={handleCheckout}
+            >
+              <div className={styles["cart-icon-wrapper"]}>
                 <Image
                   src={cartIcon}
                   alt="Cart Icon"
-                  className={styles['cart-icon']}
+                  className={styles["cart-icon"]}
                 />
                 {cartCount > 0 && (
-                  <span className={styles['cart-count']}>{cartCount}</span>
+                  <span className={styles["cart-count"]}>{cartCount}</span>
                 )}
               </div>
               Check Out
@@ -259,7 +295,6 @@ const Shop = () => {
         </PageGap>
       </PageTemplate>
     </Transition>
-    
   );
 };
 

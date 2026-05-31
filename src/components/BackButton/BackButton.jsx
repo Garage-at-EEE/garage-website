@@ -30,5 +30,4 @@ const BackButton = ({ to }) => {
   );
 };
 
-
 export default BackButton;

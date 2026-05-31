@@ -13,13 +13,13 @@ const AmbassadorsOverview = () => {
     <Transition isLoading={isLoading || !data}>
       <PageTemplate>
         {data && (
-          <OverviewPage 
-            heading={"Ambassador Track"} 
+          <OverviewPage
+            heading={"Ambassador Track"}
             data={data.map((ambassador) => ({
               name: ambassador.name,
               coverPic: ambassador.homeImage,
               tagline: "",
-            }))} 
+            }))}
           />
         )}
       </PageTemplate>

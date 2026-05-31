@@ -6,10 +6,23 @@ import useBreakpoint from "../../hooks/useBreakpoint";
 import styles from "./Header.module.css";
 
 const CircuitArrowDown = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style={{ display: 'inline-block', marginLeft: '4px' }}>
+  <svg
+    width="12"
+    height="12"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    style={{ display: "inline-block", marginLeft: "4px" }}
+  >
     <path d="M12 16l-6-6h12l-6 6z" />
     <circle cx="12" cy="4" r="1.5" />
-    <line x1="12" y1="4" x2="12" y2="10" stroke="currentColor" strokeWidth="1.5" />
+    <line
+      x1="12"
+      y1="4"
+      x2="12"
+      y2="10"
+      stroke="currentColor"
+      strokeWidth="1.5"
+    />
   </svg>
 );
 
@@ -71,9 +84,9 @@ const DropdownMenu = ({ children, header, navlinks = [] }) => {
       {open && (
         <div
           className={
-            breakpoint === "desktop" ?
-            styles["login-menu"] :
-            styles["tablet-login-menu"]
+            breakpoint === "desktop"
+              ? styles["login-menu"]
+              : styles["tablet-login-menu"]
           }
         >
           {navlinks.map((item) => {

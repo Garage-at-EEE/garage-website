@@ -5,10 +5,10 @@ import PageTemplate from "../../components/PageTemplate/PageTemplate";
 import Typography from "../../components/Typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";
 import PageGap from "../../components/PageGap/PageGap";
-import coinIcon from '../../icons/coin-icon.png';
+import coinIcon from "../../icons/coin-icon.png";
 import trashIcon from "../../icons/trash.svg";
-import Image from '../../components/Image/Image';
-import styles from './Checkout.module.css';
+import Image from "../../components/Image/Image";
+import styles from "./Checkout.module.css";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 
@@ -32,49 +32,50 @@ const Checkout = () => {
       return;
     }
 
-    const updatedCart = cartItems.map(item =>
+    const updatedCart = cartItems.map((item) =>
       item.itemName === itemName
-        ? { ...item, quantity: item.quantity + 1}
-        : item
+        ? { ...item, quantity: item.quantity + 1 }
+        : item,
     );
 
-  const updatedCount = updatedCart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+    const updatedCount = updatedCart.reduce(
+      (total, item) => total + item.quantity,
+      0,
+    );
 
-  setCart(updatedCount, updatedCart);
+    setCart(updatedCount, updatedCart);
   };
 
   const decrementQuantity = (itemName) => {
+    if (errorMessage) {
+      setErrorMessage("");
+    }
 
-  if (errorMessage) {
-    setErrorMessage("");
-  }
-
-  const updatedCart = cartItems.map(item =>
+    const updatedCart = cartItems.map((item) =>
       item.itemName === itemName && item.quantity > 0
-        ? { ...item, quantity: item.quantity - 1}
-        : item
+        ? { ...item, quantity: item.quantity - 1 }
+        : item,
     );
 
-  const updatedCount = updatedCart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+    const updatedCount = updatedCart.reduce(
+      (total, item) => total + item.quantity,
+      0,
+    );
 
-  setCart(updatedCount, updatedCart);
+    setCart(updatedCount, updatedCart);
   };
 
   const removeItem = (itemName) => {
+    if (errorMessage) {
+      setErrorMessage("");
+    }
 
-  if (errorMessage) {
-    setErrorMessage("");
-  }
+    const updatedItems = cartItems.filter((item) => item.itemName !== itemName);
 
-    const updatedItems = cartItems.filter(item => item.itemName !== itemName);
-
-    const updatedCount = updatedItems.reduce((sum, item) => sum + item.quantity, 0);
+    const updatedCount = updatedItems.reduce(
+      (sum, item) => sum + item.quantity,
+      0,
+    );
 
     setCart(updatedCount, updatedItems);
   };
@@ -91,7 +92,7 @@ const Checkout = () => {
       type: "purchase",
       totalCost: totalCost,
       userCredits: userCredits,
-      remainingCredits: remainingCredits
+      remainingCredits: remainingCredits,
     };
 
     navigate("/acknowledgement", { state: { payload } });
@@ -101,88 +102,148 @@ const Checkout = () => {
     <Transition>
       <PageTemplate>
         <PageGap>
-          <div className={styles['heading-space']}>
+          <div className={styles["heading-space"]}>
             <Typography variant="heading">Checkout</Typography>
             <BackButton />
           </div>
 
-          <div className={styles['heading-space']}>
+          <div className={styles["heading-space"]}>
             <Typography variant="smallHeading">Review Your Order</Typography>
-            <div className={styles['credits']}>
-              <Typography variant="body" className={styles['credits-label']}>
+            <div className={styles["credits"]}>
+              <Typography variant="body" className={styles["credits-label"]}>
                 Inno Credits:
               </Typography>
-              <Typography variant="body" className={styles['credits-value']}>
+              <Typography variant="body" className={styles["credits-value"]}>
                 {userCredits}
               </Typography>
-              <Image src={coinIcon} alt="Credits Icon" className={styles['credits-icon']} />
+              <Image
+                src={coinIcon}
+                alt="Credits Icon"
+                className={styles["credits-icon"]}
+              />
             </div>
           </div>
 
           {errorMessage && (
-            <div className={styles['error-message-container']}>
-              <Typography variant="body" className={styles['error-message']}>
+            <div className={styles["error-message-container"]}>
+              <Typography variant="body" className={styles["error-message"]}>
                 {errorMessage}
               </Typography>
             </div>
           )}
-          <div className={styles['checkout-wrapper']}>
-            <div className={styles['checkout-table']}>
-              <Typography variant="body" className={styles['checkout-table-heading']}>Image</Typography>
-              <Typography variant="body" className={styles['checkout-table-heading']}>Product</Typography>
-              <Typography variant="body" className={styles['checkout-table-heading']}>Price</Typography>
-              <Typography variant="body" className={styles['checkout-table-heading']}>Quantity</Typography>
-              <Typography variant="body" className={styles['checkout-table-heading']}>Subtotal</Typography>
+          <div className={styles["checkout-wrapper"]}>
+            <div className={styles["checkout-table"]}>
+              <Typography
+                variant="body"
+                className={styles["checkout-table-heading"]}
+              >
+                Image
+              </Typography>
+              <Typography
+                variant="body"
+                className={styles["checkout-table-heading"]}
+              >
+                Product
+              </Typography>
+              <Typography
+                variant="body"
+                className={styles["checkout-table-heading"]}
+              >
+                Price
+              </Typography>
+              <Typography
+                variant="body"
+                className={styles["checkout-table-heading"]}
+              >
+                Quantity
+              </Typography>
+              <Typography
+                variant="body"
+                className={styles["checkout-table-heading"]}
+              >
+                Subtotal
+              </Typography>
               <div></div>
             </div>
 
             {cartItems.length > 0 && (
-              <div className={styles['checkout-items-container']}>
+              <div className={styles["checkout-items-container"]}>
                 {cartItems.map((item, idx) => {
                   const quantity = item.quantity;
                   const subtotal = item.cost * quantity;
                   return (
-                    <div className={styles['checkout-item']} key={idx}>
-                      <div className={styles['checkout-item-image']}>
+                    <div className={styles["checkout-item"]} key={idx}>
+                      <div className={styles["checkout-item-image"]}>
                         <Image
                           src={item.image}
-                          className={styles['item-image']}
+                          className={styles["item-image"]}
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "/default-placeholder.png";
                           }}
                         />
                       </div>
-                      <div className={styles['checkout-item-name']}>
-                        <Typography variant="smallHeading" className={styles['item-name']}>
+                      <div className={styles["checkout-item-name"]}>
+                        <Typography
+                          variant="smallHeading"
+                          className={styles["item-name"]}
+                        >
                           {item.itemName}
                         </Typography>
                       </div>
-                      <div className={styles['checkout-item-price']}>
+                      <div className={styles["checkout-item-price"]}>
                         <Typography variant="body">
-                          {item.cost} <span className={styles['hide-on-mobile']}>Credits</span>
+                          {item.cost}{" "}
+                          <span className={styles["hide-on-mobile"]}>
+                            Credits
+                          </span>
                         </Typography>
                       </div>
-                      <div className={styles['quantity-controls']}>
-                        <button onClick={() => decrementQuantity(item.itemName)}>–</button>
-                        <Typography variant="body" className={styles['quantity-count']}>
+                      <div className={styles["quantity-controls"]}>
+                        <button
+                          onClick={() => decrementQuantity(item.itemName)}
+                        >
+                          –
+                        </button>
+                        <Typography
+                          variant="body"
+                          className={styles["quantity-count"]}
+                        >
                           {quantity}
                         </Typography>
-                        <button onClick={() => incrementQuantity(item.itemName, item.cost)}>+</button>
+                        <button
+                          onClick={() =>
+                            incrementQuantity(item.itemName, item.cost)
+                          }
+                        >
+                          +
+                        </button>
                       </div>
-                      <div className={styles['checkout-item-subtotal']}>
-                        <Typography variant="body" className={styles['subtotal-text']}>
-                          <strong>{subtotal} <span className={styles['hide-on-mobile']}>Credits</span></strong>
+                      <div className={styles["checkout-item-subtotal"]}>
+                        <Typography
+                          variant="body"
+                          className={styles["subtotal-text"]}
+                        >
+                          <strong>
+                            {subtotal}{" "}
+                            <span className={styles["hide-on-mobile"]}>
+                              Credits
+                            </span>
+                          </strong>
                         </Typography>
                       </div>
-                      <div className={styles['checkout-item-remove']}>
+                      <div className={styles["checkout-item-remove"]}>
                         <button
-                          className={styles['remove-button']}
+                          className={styles["remove-button"]}
                           onClick={() => removeItem(item.itemName)}
                           aria-label="Remove item"
                           title="Remove item"
                         >
-                          <Image src={trashIcon} alt="Remove Icon" className={styles['trash-icon']} />
+                          <Image
+                            src={trashIcon}
+                            alt="Remove Icon"
+                            className={styles["trash-icon"]}
+                          />
                         </button>
                       </div>
                     </div>
@@ -193,15 +254,18 @@ const Checkout = () => {
           </div>
 
           {cartItems.length > 0 && (
-            <div className={styles['checkout-summary-container']}>
-              <div className={styles['checkout-summary']}>
-                <Typography variant="smallHeading" className={styles['summary-text']}>
+            <div className={styles["checkout-summary-container"]}>
+              <div className={styles["checkout-summary"]}>
+                <Typography
+                  variant="smallHeading"
+                  className={styles["summary-text"]}
+                >
                   Total: {totalCost} Credits
                 </Typography>
               </div>
-              <div className={styles['checkout-place-order-container']}>
+              <div className={styles["checkout-place-order-container"]}>
                 <button
-                  className={styles['checkout-place-order-button']}
+                  className={styles["checkout-place-order-button"]}
                   onClick={handlePlaceOrder}
                   disabled={!cartCount}
                 >

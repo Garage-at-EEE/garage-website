@@ -30,7 +30,7 @@
 }
 
 .not-recruiting {
-  background-color: #D9534F;
+  background-color: #d9534f;
 }
 
 .overlay-card {
@@ -39,7 +39,7 @@
   margin-top: -100%;
   opacity: 0.8;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--white);

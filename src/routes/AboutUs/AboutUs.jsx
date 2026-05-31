@@ -11,21 +11,24 @@ import Image from "../../components/Image/Image";
 
 const AboutUs = () => {
   useEffect(() => {
-    const images = document.querySelectorAll('.fade-on-scroll');
+    const images = document.querySelectorAll(".fade-on-scroll");
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          entry.target.classList.remove('is-fading');
-        } else {
-          entry.target.classList.remove('is-visible');
-          entry.target.classList.add('is-fading');
-        }
-      });
-    }, { threshold: 0.3 });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            entry.target.classList.remove("is-fading");
+          } else {
+            entry.target.classList.remove("is-visible");
+            entry.target.classList.add("is-fading");
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
 
-    images.forEach(img => observer.observe(img));
+    images.forEach((img) => observer.observe(img));
 
     return () => {
       observer.disconnect();
@@ -36,7 +39,7 @@ const AboutUs = () => {
     <Transition>
       <div className={styles.aboutContainer}>
         <div className={styles.heroSection}>
-          <div 
+          <div
             className={styles.heroBackground}
             style={{ backgroundImage: `url(${bannerImage})` }}
           />
@@ -70,38 +73,34 @@ const AboutUs = () => {
 
         <div className={styles.comingSoon}>
           <div className={styles.textContent}>
-            <Typography variant="Heading">
-              Our story begins here...
-            </Typography>
+            <Typography variant="Heading">Our story begins here...</Typography>
             <Typography variant="body">
-              conceptualized in 2012, with the first batch of projects approved in october 2014 
+              conceptualized in 2012, with the first batch of projects approved
+              in october 2014
             </Typography>
           </div>
 
-          <Image 
-            src={bluecappy} 
-            alt="Garage Mascot Blue Cappy" 
+          <Image
+            src={bluecappy}
+            alt="Garage Mascot Blue Cappy"
             className="fade-on-scroll"
-            style={{ width: '200px', height: 'auto', marginRight: 'auto' }}
+            style={{ width: "200px", height: "auto", marginRight: "auto" }}
           />
-          
-          <video 
+
+          <video
             className={styles.videoRight}
-            autoPlay 
-            muted 
+            autoPlay
+            muted
             loop
             playsInline
-            style={{ backgroundColor: 'transparent' }}
+            style={{ backgroundColor: "transparent" }}
           >
             <source src={excitedcappy} type="video/webm" />
           </video>
         </div>
-  
       </div>
     </Transition>
   );
 };
 
 export default AboutUs;
-
-

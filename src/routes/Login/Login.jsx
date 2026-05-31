@@ -9,24 +9,24 @@ import Button from "../../components/Button/Button";
 import { useAuth } from "../../contexts/AuthProvider";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
-import axios from 'axios';
+import axios from "axios";
 import styles from "./Login.module.css";
 
 function Login() {
-  const [matric, setMatric] = useState('');
-  const [passcode, setPasscode] = useState('');
+  const [matric, setMatric] = useState("");
+  const [passcode, setPasscode] = useState("");
   const [isDenied, setDenied] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const auth = useAuth();
 
-  const ROUTE_DESTINATION = (location.state?.to || "/");
-  const ROUTE_TITLEHEADING = (location.state?.name || "Member Login");
+  const ROUTE_DESTINATION = location.state?.to || "/";
+  const ROUTE_TITLEHEADING = location.state?.name || "Member Login";
 
   const handlePasscodeChange = (e) => {
     const inputPasscode = e.target.value;
-    const formattedPasscode = inputPasscode.replace(/\D/g, '').slice(0, 4);
+    const formattedPasscode = inputPasscode.replace(/\D/g, "").slice(0, 4);
     setPasscode(formattedPasscode);
   };
 
@@ -40,23 +40,25 @@ function Login() {
       },
     };
 
-    console.log(`Attempting to log in with matric: ${matric} and passcode: ${passcode}`);
-    
+    console.log(
+      `Attempting to log in with matric: ${matric} and passcode: ${passcode}`,
+    );
+
     try {
       setLoading(true);
 
       const response = await axios.post(
-        LOGIN_DOMAIN, 
-        {matric: matric, passcode:passcode, type:"userdata"}, 
+        LOGIN_DOMAIN,
+        { matric: matric, passcode: passcode, type: "userdata" },
         config,
       );
 
-      console.log('Response:', response);
+      console.log("Response:", response);
 
       setLoading(false);
-      
+
       if (response.data.status === "DATA RETRIEVAL SUCCESSFUL") {
-        auth.loginAction(response.data); 
+        auth.loginAction(response.data);
         navigate(ROUTE_DESTINATION);
       } else {
         setDenied(true);
@@ -70,63 +72,63 @@ function Login() {
     <Transition>
       <PageTemplate>
         <div className={styles.content}>
-
           <div className={styles["heading-space"]}>
             <div>
               <Typography variant="heading">{ROUTE_TITLEHEADING}</Typography>
             </div>
-            <BackButton to={"/"}/>
+            <BackButton to={"/"} />
           </div>
 
-          <form className={styles["form"]} onSubmit={(e) => {e.preventDefault()}}>
-
+          <form
+            className={styles["form"]}
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div className={styles["form-item"]}>
               <Typography variant="body">{"Matriculation Number:"}</Typography>
-                <input
-                  className={ (isDenied ?
-                    styles["form-input-invalid"]:
-                    styles["form-input"]
-                  )}
-                  type="text" 
-                  placeholder="eg. U123456789A"
-                  value={matric}
-                  onChange={(e) => setMatric(e.target.value)}
-                  required
-                />
+              <input
+                className={
+                  isDenied ? styles["form-input-invalid"] : styles["form-input"]
+                }
+                type="text"
+                placeholder="eg. U123456789A"
+                value={matric}
+                onChange={(e) => setMatric(e.target.value)}
+                required
+              />
             </div>
 
             <div className={styles["form-item"]}>
               <Typography variant="body">{"Passcode (DDMM):"}</Typography>
-                <input 
-                  className={ (isDenied ?
-                    styles["form-input-invalid"]:
-                    styles["form-input"]
-                  )}
-                  type="password" 
-                  placeholder="eg. 1911"
-                  value={passcode}
-                  onChange={handlePasscodeChange}
-                  required
-                  minLength={4}
-                />
+              <input
+                className={
+                  isDenied ? styles["form-input-invalid"] : styles["form-input"]
+                }
+                type="password"
+                placeholder="eg. 1911"
+                value={passcode}
+                onChange={handlePasscodeChange}
+                required
+                minLength={4}
+              />
             </div>
-            
-            <Typography variant="body" className={(isDenied ? styles["error-message"] : styles["hidden"])}>
+
+            <Typography
+              variant="body"
+              className={isDenied ? styles["error-message"] : styles["hidden"]}
+            >
               {"Invalid matriculation number or passcode"}
             </Typography>
 
-            {isLoading ? 
-                (
-                  <LoadingSpinner />
-                ) : (
-                  <Button onClick={handleSubmit} className={styles['login-btn']}>
-                    {"Login"}
-                  </Button>
-                )
-              }
-            
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <Button onClick={handleSubmit} className={styles["login-btn"]}>
+                {"Login"}
+              </Button>
+            )}
           </form>
-
         </div>
       </PageTemplate>
     </Transition>

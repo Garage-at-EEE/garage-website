@@ -31,18 +31,25 @@ const ProjectCard = ({ image, topText, bottomText, to, isRecruiting }) => {
             <Typography variant={"smallHeading"}>{topText}</Typography>
           </div>
         </div>
-        <div className={[
-          cardStyles.card, 
-          styles["overlay-card"],
-          (isRecruiting==="Y") ? styles["recruiting"] : styles["not-recruiting"],
-          ].join(" ")}>
-        <Typography variant="smallHeading">
-        {(isRecruiting==="Y") ? "RECRUITING" : "CLOSED"}
-        </Typography>
+        <div
+          className={[
+            cardStyles.card,
+            styles["overlay-card"],
+            isRecruiting === "Y"
+              ? styles["recruiting"]
+              : styles["not-recruiting"],
+          ].join(" ")}
+        >
+          <Typography variant="smallHeading">
+            {isRecruiting === "Y" ? "RECRUITING" : "CLOSED"}
+          </Typography>
         </div>
       </div>
       {bottomText && (
-        <Typography variant={"smallHeading"} className={cardStyles["bottom-text"]}>
+        <Typography
+          variant={"smallHeading"}
+          className={cardStyles["bottom-text"]}
+        >
           {bottomText}
         </Typography>
       )}
@@ -51,16 +58,18 @@ const ProjectCard = ({ image, topText, bottomText, to, isRecruiting }) => {
 };
 
 const ProjectOpenings = () => {
-  const { data: projectOpeningsData, isLoading } = useFetch({ 
-    url: API_DOMAIN + "?type=projectOpenings&fields=name,coverPic,isRecruiting,projectLink",
+  const { data: projectOpeningsData, isLoading } = useFetch({
+    url:
+      API_DOMAIN +
+      "?type=projectOpenings&fields=name,coverPic,isRecruiting,projectLink",
   });
 
   const lenis = useLenis();
 
   return (
-    <Transition isLoading={isLoading || !projectOpeningsData }>
+    <Transition isLoading={isLoading || !projectOpeningsData}>
       <PageTemplate>
-        {Array.isArray(projectOpeningsData) && 
+        {Array.isArray(projectOpeningsData) && (
           <div className={styles["content-wrapper"]}>
             <div className={styles["heading-space"]}>
               <Typography variant="heading">Project Openings</Typography>
@@ -88,13 +97,15 @@ const ProjectOpenings = () => {
               }}
               className={styles["register-button"]}
             >
-              {projectOpeningsData[0].projectLink ? "Register Here" : "Registration Closed"}
+              {projectOpeningsData[0].projectLink
+                ? "Register Here"
+                : "Registration Closed"}
             </Button>
             <Button onClick={() => lenis.scrollTo(0, 0)} variant="outlined">
               Back to top
             </Button>
           </div>
-        }
+        )}
       </PageTemplate>
     </Transition>
   );

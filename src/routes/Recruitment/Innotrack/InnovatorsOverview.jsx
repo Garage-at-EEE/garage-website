@@ -16,11 +16,14 @@ const InnovatorsOverview = () => {
   });
   const lenis = useLenis();
 
-  const innovatorsData = data ? data
-    .map((project, originalIndex) => ({ ...project, originalIndex }))
-    .filter(project => 
-      project.event && project.event.toLowerCase().includes("innovator")
-    ) : null;
+  const innovatorsData = data
+    ? data
+        .map((project, originalIndex) => ({ ...project, originalIndex }))
+        .filter(
+          (project) =>
+            project.event && project.event.toLowerCase().includes("innovator"),
+        )
+    : null;
 
   return (
     <Transition isLoading={isLoading || !data}>

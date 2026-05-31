@@ -8,23 +8,21 @@ import { useAuth } from "../../contexts/AuthProvider";
 
 import styles from "./Database.module.css";
 
-
 function Database() {
   const { matric, name, token } = useAuth();
-  const user = {name:name, matric:matric};
+  const user = { name: name, matric: matric };
   const { data, isLoading, error } = useFetch({
     url: API_DOMAIN + "?type=database&token=" + token,
   });
 
-  console.log(data, isLoading, error)
-  
-  const text = `Welcome ${user.name} (${user.matric}) to the Garage@EEE Database!`
+  console.log(data, isLoading, error);
+
+  const text = `Welcome ${user.name} (${user.matric}) to the Garage@EEE Database!`;
 
   return (
     <Transition>
       <PageTemplate>
         <div className={styles.content}>
-
           <div className={styles["heading-space"]}>
             <div>
               <Typography variant="heading">{"Member Database"}</Typography>

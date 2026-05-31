@@ -29,7 +29,7 @@ const Modal = ({ children, open, onClose, below = false }) => {
         </motion.div>
       )}
     </AnimatePresence>,
-    document.body
+    document.body,
   );
 };
 

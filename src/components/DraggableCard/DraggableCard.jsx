@@ -41,21 +41,21 @@ export const DraggableCardBody = ({ className, children, style }) => {
 
   const rotateX = useSpring(
     useTransform(mouseY, [-300, 300], [25, -25]),
-    springConfig
+    springConfig,
   );
   const rotateY = useSpring(
     useTransform(mouseX, [-300, 300], [-25, 25]),
-    springConfig
+    springConfig,
   );
 
   const opacity = useSpring(
     useTransform(mouseX, [-300, 0, 300], [0.8, 1, 0.8]),
-    springConfig
+    springConfig,
   );
 
   const glareOpacity = useSpring(
     useTransform(mouseX, [-300, 0, 300], [0.15, 0, 0.15]),
-    springConfig
+    springConfig,
   );
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export const DraggableCardBody = ({ className, children, style }) => {
     const currentVelocityX = velocityX.get();
     const currentVelocityY = velocityY.get();
     const velocityMagnitude = Math.sqrt(
-      currentVelocityX * currentVelocityX + currentVelocityY * currentVelocityY
+      currentVelocityX * currentVelocityX + currentVelocityY * currentVelocityY,
     );
     const bounce = Math.min(0.8, velocityMagnitude / 1000);
 

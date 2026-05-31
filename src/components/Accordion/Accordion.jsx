@@ -14,7 +14,7 @@ const AccordionItem = forwardRef(
     >
       {children}
     </Accordion.Item>
-  )
+  ),
 );
 
 AccordionItem.displayName = "AccordionItem";
@@ -33,7 +33,7 @@ const AccordionTrigger = forwardRef(
         <Expand className={styles["accordion-chevron"]} aria-hidden />
       </Accordion.Trigger>
     </Accordion.Header>
-  )
+  ),
 );
 
 AccordionTrigger.displayName = Accordion.Trigger.displayName;
@@ -49,7 +49,7 @@ const AccordionContent = forwardRef(
     >
       <div className={styles["accordion-content-wrapper"]}>{children}</div>
     </Accordion.Content>
-  )
+  ),
 );
 
 AccordionContent.displayName = Accordion.Content.displayName;
@@ -65,7 +65,7 @@ const AccordionRoot = forwardRef(
     >
       {children}
     </Accordion.Root>
-  )
+  ),
 );
 
 AccordionRoot.displayName = Accordion.Root.displayName;
