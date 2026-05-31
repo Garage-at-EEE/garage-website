@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
   AccordionItem,
 } from "../../components/accordion/Accordion";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import Button from "../../components/button/Button";
 
 import styles from "./Workshops.module.css";

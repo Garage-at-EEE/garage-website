@@ -1,7 +1,7 @@
 import { useLenis } from "lenis/react";
 import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
 import BackButton from "../../components/BackButton/BackButton";

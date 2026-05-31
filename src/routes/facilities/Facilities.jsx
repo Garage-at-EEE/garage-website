@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 

@@ -8,7 +8,7 @@ import axios from "axios";
 import styles from "./ContactUs.module.css";
 import FileUploader from "../../components/fileUploader/FileUploader";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
-import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/Constants";
+import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/constants";
 
 const ContactUs = () => {
     const [formData, setFormData] = useState({

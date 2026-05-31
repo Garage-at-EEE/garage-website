@@ -11,7 +11,7 @@ import cartIcon from '../../icons/shopping-cart.png';
 import styles from './Shop.module.css';
 import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
-import { API_DOMAIN } from '../../utils/Constants';
+import { API_DOMAIN } from '../../utils/constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import useFetchPoints from "../../hooks/useFetchPoints";

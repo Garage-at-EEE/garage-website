@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 
 import styles from "./EventDetail.module.css";
 import Image from "../../components/image/Image";

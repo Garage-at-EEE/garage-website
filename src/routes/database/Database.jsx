@@ -1,5 +1,5 @@
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import Typography from "../../components/typography/Typography";

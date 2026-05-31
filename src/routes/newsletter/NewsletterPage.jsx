@@ -5,7 +5,7 @@ import Button from "../../components/button/Button";
 import BackButton from "../../components/BackButton/BackButton";
 import Newsletter from "../../components/newsletter/Newsletter";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 
 import styles from "./NewsletterPage.module.css";
 import { useLenis } from "lenis/react";

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Typography from "../../components/typography/Typography";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import Transition from "../../components/transition/Transition";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";

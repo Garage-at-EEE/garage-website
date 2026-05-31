@@ -8,7 +8,7 @@ import PageGap from "../../components/pageGap/PageGap";
 import Image from '../../components/image/Image';
 import coinIcon from '../../icons/coin-icon.png';
 import styles from './Acknowledgement.module.css';
-import { PURCHASE_API_DOMAIN } from '../../utils/Constants';
+import { PURCHASE_API_DOMAIN } from '../../utils/constants';
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
 import axios from 'axios';

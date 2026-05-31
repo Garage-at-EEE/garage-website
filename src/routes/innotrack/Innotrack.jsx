@@ -3,7 +3,7 @@ import Card from "../../components/PhotoCard/PhotoCard";
 import Typography from "../../components/typography/Typography";
 import Transition from "../../components/transition/Transition";
 import useFetch from "../../hooks/useFetch";
-import { API_DOMAIN } from "../../utils/Constants";
+import { API_DOMAIN } from "../../utils/constants";
 import PageTemplate from "../../components/pageTemplate/PageTemplate";
 import PageGap from "../../components/pageGap/PageGap";
 import {
