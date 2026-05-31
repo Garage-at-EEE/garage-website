@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./PhotoCard.module.css";
-import Typography from "../typography/Typography";
-import Image from "../image/Image";
+import Typography from "../Typography/Typography";
+import Image from "../Image/Image";
 
 const Card = ({ image, topText, bottomText, tagline, bottomTextClassName, to }) => {
   const Comp = to ? Link : "div";

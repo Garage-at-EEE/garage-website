@@ -3,37 +3,37 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 import { AnimatePresence } from "framer-motion";
 
-import Home from "./routes/home/Home";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import Home from "./routes/Home/Home";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import AuthProvider from "./contexts/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CartProvider from "./contexts/CartProvider";
-import LoadingSpinner from "./components/loadingSpinner/LoadingSpinner";
-import Launchpad from "./routes/launchpad/Launchpad";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import Launchpad from "./routes/Launchpad/Launchpad";
 
-const AmbassadorDetail = lazy(() => import("./routes/ambassadors/AmbassadorDetail"));
-const AmbassadorsOverview = lazy(() => import("./routes/ambassadorsOverview/AmbassadorsOverview"));
-const EventsOverview = lazy(() => import("./routes/eventsOverview/EventsOverview"));
-const EventDetail = lazy(() => import("./routes/events/EventDetail"));
-const ProjectsOverview = lazy(() => import("./routes/projectsOverview/ProjectsOverview"));
-const ProjectDetail = lazy(() => import("./routes/projects/ProjectDetail"));
-const InnovatorsOverview = lazy(() => import("./routes/innovatorsOverview/InnovatorsOverview"));
-// const TinkeringOverview = lazy(() => import("./routes/tinkeringOverview/TinkeringOverview"));
-const NotFound = lazy(() => import("./routes/notFound/NotFound"));
-const Facilities = lazy(() => import("./routes/facilities/Facilities"));
-// const NewsletterPage = lazy(() => import("./routes/newsletter/NewsletterPage"));
-const ContactUsPage = lazy(() => import("./routes/contactUs/ContactUs"));
-const Shop = lazy(() => import("./routes/shop/Shop"));
-const Checkout = lazy(() => import("./routes/shop/Checkout"));
-const Acknowledgement = lazy(() => import("./routes/shop/Acknowledgement"));
-const Database = lazy(() => import("./routes/database/Database"));
-const Login = lazy(() => import("./routes/login/Login"));
-const ProjectOpenings = lazy(() => import("./routes/projectOpenings/ProjectOpenings"));
-const ProjectOpeningsDetail = lazy(() => import("./routes/projectOpenings/ProjectOpeningsDetail"));
-const TinkeringProject = lazy(() => import("./routes/tinkeringProject/TinkeringProject"));
-const AboutUs = lazy(() => import("./routes/aboutUs/AboutUs"));
-const Workshops = lazy(() => import("./routes/workshops/Workshops"))
+const AmbassadorDetail = lazy(() => import("./routes/Ambassadors/AmbassadorDetail"));
+const AmbassadorsOverview = lazy(() => import("./routes/AmbassadorsOverview/AmbassadorsOverview"));
+const EventsOverview = lazy(() => import("./routes/EventsOverview/EventsOverview"));
+const EventDetail = lazy(() => import("./routes/Events/EventDetail"));
+const ProjectsOverview = lazy(() => import("./routes/ProjectsOverview/ProjectsOverview"));
+const ProjectDetail = lazy(() => import("./routes/Projects/ProjectDetail"));
+const InnovatorsOverview = lazy(() => import("./routes/InnovatorsOverview/InnovatorsOverview"));
+// const TinkeringOverview = lazy(() => import("./routes/TinkeringOverview/TinkeringOverview"));
+const NotFound = lazy(() => import("./routes/NotFound/NotFound"));
+const Facilities = lazy(() => import("./routes/Facilities/Facilities"));
+// const NewsletterPage = lazy(() => import("./routes/Newsletter/NewsletterPage"));
+const ContactUsPage = lazy(() => import("./routes/ContactUs/ContactUs"));
+const Shop = lazy(() => import("./routes/Shop/Shop"));
+const Checkout = lazy(() => import("./routes/Shop/Checkout"));
+const Acknowledgement = lazy(() => import("./routes/Shop/Acknowledgement"));
+const Database = lazy(() => import("./routes/Database/Database"));
+const Login = lazy(() => import("./routes/Login/Login"));
+const ProjectOpenings = lazy(() => import("./routes/ProjectOpenings/ProjectOpenings"));
+const ProjectOpeningsDetail = lazy(() => import("./routes/ProjectOpenings/ProjectOpeningsDetail"));
+const TinkeringProject = lazy(() => import("./routes/TinkeringProject/TinkeringProject"));
+const AboutUs = lazy(() => import("./routes/AboutUs/AboutUs"));
+const Workshops = lazy(() => import("./routes/Workshops/Workshops"))
 
 const PageLoader = () => (
   <div style={{ 
