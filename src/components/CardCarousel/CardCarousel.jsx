@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import Card from "../PhotoCard/PhotoCard";
-import { ReactComponent as Back } from "../../icons/arrow_back_ios.svg";
-import { ReactComponent as Next } from "../../icons/arrow_forward_ios.svg";
+import { ReactComponent as Back } from "../../icons/arrow-back-ios.svg";
+import { ReactComponent as Next } from "../../icons/arrow-forward-ios.svg";
+import { Card } from "../../components";
+
 import styles from "./CardCarousel.module.css";
 
 const CardCarousel = ({

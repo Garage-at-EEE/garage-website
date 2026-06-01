@@ -1,10 +1,13 @@
-import Typography from "../../components/Typography/Typography";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Transition from "../../components/Transition/Transition";
-import Button from "../../components/Button/Button";
-import BackButton from "../../components/BackButton/BackButton";
+import {
+  Typography,
+  PageTemplate,
+  Transition,
+  Button,
+  BackButton,
+} from "../../components";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/constants";
+import { NewsletterComponent } from "./NewsletterComponent/Newsletter";
 
 import styles from "./Newsletter.module.css";
 import { useLenis } from "lenis/react";
@@ -26,7 +29,7 @@ const Newsletter = () => {
           </div>
           {data &&
             data.map((issue) => (
-              <Newsletter
+              <NewsletterComponent
                 key={issue.name}
                 src={issue.image}
                 link={issue.link}

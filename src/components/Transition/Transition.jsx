@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import styles from "./Transition.module.css";
 import { useLayoutEffect } from "react";
+
+import styles from "./Transition.module.css";
 
 const Transition = ({ children, isLoading }) => {
   const anim = (variants, custom) => {

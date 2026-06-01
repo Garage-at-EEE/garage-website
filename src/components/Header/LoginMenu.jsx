@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import Typography from "../Typography/Typography";
 import { useAuth } from "../../contexts/AuthProvider";
-import styles from "./Header.module.css";
+import { Typography } from "../../components";
 import DropdownMenu from "./DropdownMenu";
+
+import styles from "./Header.module.css";
 
 const LoginMenu = ({ protected_navlinks }) => {
   const { name, logoutAction } = useAuth();

@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ReactComponent as Expand } from "../../icons/expand_more.svg";
+import { ReactComponent as Expand } from "../../icons/expand-more.svg";
+
 import styles from "./Accordion.module.css";
 
 const AccordionItem = forwardRef(

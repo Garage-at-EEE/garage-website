@@ -1,7 +1,8 @@
-import styles from "./BackButton.module.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ReactComponent as ChevronLeft } from "../../icons/arrow_back_ios.svg";
-import Button from "../Button/Button";
+import { ReactComponent as ChevronLeft } from "../../icons/arrow-back-ios.svg";
+import { Button } from "../../components";
+
+import styles from "./BackButton.module.css";
 
 const BackButton = ({ to }) => {
   const navigate = useNavigate();

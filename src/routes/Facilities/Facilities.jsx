@@ -1,14 +1,11 @@
 import React, { memo } from "react";
 import useFetch from "../../hooks/useFetch";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
+import { Transition, PageTemplate, Typography, Image } from "../../components";
 import { API_DOMAIN } from "../../utils/constants";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import styles from "./Facilities.module.css";
-import Image from "../../components/Image/Image";
 
 const getIcon = (iconName) => {
   const icons = {

@@ -1,74 +1,41 @@
-import Typography from "../../components/Typography/Typography";
-import Transition from "../../components/Transition/Transition";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/constants";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Transition,
+  PageTemplate,
+  Button,
+  LoadingSpinner,
+  CountUp,
+  Image,
+} from "../../components";
+import CircuitArrowForward from "../../icons/circuit-arrow-forward";
+
 import styles from "./Home.module.css";
-import Button from "../../components/Button/Button";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-import { Link } from "react-router-dom";
-import CountUp from "../../components/CountUp/CountUp";
-import { motion } from "framer-motion";
-import Image from "../../components/Image/Image";
-
-const CircuitArrowForward = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <line
-      x1="4"
-      y1="12"
-      x2="16"
-      y2="12"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-    <line
-      x1="12"
-      y1="8"
-      x2="16"
-      y2="12"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-    <line
-      x1="12"
-      y1="16"
-      x2="16"
-      y2="12"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-    <line
-      x1="16"
-      y1="12"
-      x2="20"
-      y2="12"
-      stroke="currentColor"
-      strokeWidth="2"
-    />
-  </svg>
-);
-
-const viewportOnce = { once: true, amount: 0.25 };
-
-const revealUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const revealUpSoft = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const staggerWrap = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-  },
-};
 
 const Home = () => {
+  const viewportOnce = { once: true, amount: 0.25 };
+
+  const revealUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const revealUpSoft = {
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const staggerWrap = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+    },
+  };
+
   const [authStatus, setAuthStatus] = useState(
     () => localStorage.getItem("authStatus") || "loggedOut",
   );

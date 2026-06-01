@@ -26,9 +26,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prettier": "npx prettier -w --cache -l ./src",
+    "prestart": "npm i && npm run prettier",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "npm run prestart && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

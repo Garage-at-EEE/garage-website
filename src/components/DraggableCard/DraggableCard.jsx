@@ -8,6 +8,7 @@ import {
   useAnimationControls,
   animate,
 } from "framer-motion";
+
 import styles from "./DraggableCard.module.css";
 
 export const DraggableCardContainer = ({ className, children }) => {

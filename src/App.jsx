@@ -3,15 +3,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 import { AnimatePresence } from "framer-motion";
 
-import Home from "./routes/Home/Home";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import { Header, Footer } from "./components";
 import AuthProvider from "./contexts/AuthProvider";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CartProvider from "./contexts/CartProvider";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 // Routes
+const Home = lazy(() => import("./routes/Home/Home"));
 const Workshops = lazy(() => import("./routes/Workshops/Workshops"));
 const EventsOverview = lazy(
   () => import("./routes/Events/Overview/EventsOverview"),

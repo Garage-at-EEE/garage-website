@@ -1,5 +1,5 @@
-import Image from "../image/Image";
-import Typography from "../typography/Typography";
+import { Image, Typography } from "../../components";
+
 import styles from "./LinkPreview.module.css";
 
 function LinkPreview({ link }) {

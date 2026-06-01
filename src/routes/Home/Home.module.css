@@ -434,6 +434,7 @@
   padding: 2rem 5rem;
   margin-bottom: 2rem;
   background-color: #2691cf;
+  border-radius: var(--card-radius);
 }
 
 .gallery-link-wrapper {

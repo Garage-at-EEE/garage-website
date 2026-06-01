@@ -1,9 +1,5 @@
 import { useLenis } from "lenis/react";
-import BackButton from "../../components/BackButton/BackButton";
-import Grid from "../../components/Grid/Grid";
-import Card from "../../components/PhotoCard/PhotoCard";
-import Typography from "../../components/Typography/Typography";
-import Button from "../Button/Button";
+import { BackButton, Grid, Card, Typography, Button } from "../../components";
 
 import styles from "./OverviewPage.module.css";
 

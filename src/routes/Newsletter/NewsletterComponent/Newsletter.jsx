@@ -1,9 +1,9 @@
-import Typography from "../typography/Typography";
-import { ReactComponent as RightChevron } from "../../icons/arrow_forward_ios.svg";
-import Image from "../image/Image";
+import { Typography, Image } from "../../../components";
+import { ReactComponent as RightChevron } from "../../../icons/arrow-forward-ios.svg";
+
 import styles from "./Newsletter.module.css";
 
-const Newsletter = ({ src, link, title, date }) => {
+const NewsletterComponent = ({ src, link, title, date }) => {
   return (
     <div className={styles["newsletter-wrapper"]}>
       <Image
@@ -27,4 +27,4 @@ const Newsletter = ({ src, link, title, date }) => {
   );
 };
 
-export default Newsletter;
+export default NewsletterComponent;

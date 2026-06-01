@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Typography from "../Typography/Typography";
+import { forwardRef } from "react";
+import { Typography } from "../../components";
 
 import styles from "./Button.module.css";
-import { forwardRef } from "react";
 
 const Button = forwardRef(
   (

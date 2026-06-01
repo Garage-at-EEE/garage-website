@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import {
   AnimatePresence,
@@ -6,19 +7,17 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import Typography from "../Typography/Typography";
+import { useAuth } from "../../contexts/AuthProvider";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import { ReactComponent as Logo } from "../../icons/header.svg";
 import { ReactComponent as Menu } from "../../icons/menu.svg";
 import { ReactComponent as Close } from "../../icons/close.svg";
-import Gutter from "../PageTemplate/Gutter/Gutter";
-import Modal from "../Modal/Modal";
-import { useAuth } from "../../contexts/AuthProvider";
+import { Gutter, Modal, Typography } from "../../components";
+
 import LoginMenu from "./LoginMenu";
+import DropdownMenu from "./DropdownMenu";
 
 import styles from "./Header.module.css";
-import DropdownMenu from "./DropdownMenu";
-import { HashLink } from "react-router-hash-link";
 
 const MenuButton = ({ open, setOpen }) => {
   const handleClick = (e) => {

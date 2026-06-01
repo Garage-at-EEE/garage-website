@@ -9,7 +9,9 @@
   - Directory structure: `/src/components/ComponentName/ComponentName.jsx`
 - **Component Naming**: Export components with the same `PascalCase` name as the file
   - Example: `export default function Button() { ... }`
-- **Component Props Objects**: Use `PascalCase` for prop interfaces/types when documented
+- **Registering Components**: Add new components into [`components/index.js`](../src/components/index.js)
+  - Example: `export { default as NewComponent } from "./NewComponent/NewComponent";`
+  - Import new components using `import { ...,NewComponent } from "../../components"`
 
 ### Routes
 
@@ -55,6 +57,11 @@
 - **Boolean Variables**: Prefix with `is`, `has`, `can`, or similar
   - Example: `isActive`, `hasError`, `canSubmit`
 
+### Icons
+
+- **SVG, JPG, PNG, JSX Naming**: Use `hyphen-case`
+  - Example: `arrow-down.svg`, `circuit-arrow-forward.jsx`, `coin-icon.png`
+
 ## Styling Conventions
 
 ### CSS Modules
@@ -81,11 +88,14 @@ import React from "react";
 import PropTypes from "prop-types"; // if used
 
 // Component-specific imports
+import { Button, Typography } from "../../components";
+import { useAuth } from "../../contexts/AuthProvider"
+
+// Style imports just before definition
 import styles from "./ComponentName.module.css";
-import { utilityFunction } from "../../utils/utilities";
 
 // Component definition
-export default function ComponentName({ prop1, prop2 }) {
+const ComponentName = ({ prop1, prop2 }) => {
   // State and hooks
   const [state, setState] = React.useState();
 
@@ -98,11 +108,7 @@ export default function ComponentName({ prop1, prop2 }) {
   return <div className={styles.container}>{/* JSX */}</div>;
 }
 
-// PropTypes (if used)
-ComponentName.propTypes = {
-  prop1: PropTypes.string,
-  prop2: PropTypes.number,
-};
+export default ComponentName
 ```
 
 ### Directory Structure
@@ -120,7 +126,7 @@ ComponentName.propTypes = {
 
 - Use default exports for components, contexts, and hooks
   - Example: `export default function Button() { ... }`
-- Example in consumption: `import Button from './components/Button/Button'`
+- Example in consumption: `import { Button } from './components'`
 
 ### Named Exports
 
@@ -142,8 +148,9 @@ import React from "react";
 import axios from "axios";
 
 import { AuthContext } from "../../contexts/AuthProvider";
-import Button from "./Button/Button";
+import { Button } from "../../components";
 import { validateInput } from "../../utils/validation";
+
 import styles from "./MyComponent.module.css";
 ```
 

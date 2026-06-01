@@ -1,4 +1,4 @@
-import Gutter from "./Gutter/Gutter";
+import { Gutter } from "../../components";
 
 import styles from "./PageTemplate.module.css";
 

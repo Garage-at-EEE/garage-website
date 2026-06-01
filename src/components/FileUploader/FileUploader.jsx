@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Typography from "../Typography/Typography";
-import styles from "./FileUploader.module.css";
-import Button from "../Button/Button";
-import { ReactComponent as FileUpload } from "../../icons/file_upload.svg";
-import { ReactComponent as WordFile } from "../../icons/word_file_icon.svg";
-import { ReactComponent as VideoFile } from "../../icons/video_file_icon.svg";
-import { ReactComponent as ImageFile } from "../../icons/image_file_icon.svg";
+import { ReactComponent as FileUpload } from "../../icons/file-upload.svg";
+import { ReactComponent as WordFile } from "../../icons/word-file-icon.svg";
+import { ReactComponent as VideoFile } from "../../icons/video-file-icon.svg";
+import { ReactComponent as ImageFile } from "../../icons/image-file-icon.svg";
 import { ReactComponent as RemoveFile } from "../../icons/close.svg";
+import { Button, Typography } from "../../components";
+
+import styles from "./FileUploader.module.css";
 
 const FileUploader = ({ onFilesReady }) => {
   const [files, setFiles] = useState([]);

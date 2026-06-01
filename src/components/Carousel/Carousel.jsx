@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ReactComponent as Back } from "../../icons/arrow_back_ios.svg";
-import { ReactComponent as Next } from "../../icons/arrow_forward_ios.svg";
+import { ReactComponent as Back } from "../../icons/arrow-back-ios.svg";
+import { ReactComponent as Next } from "../../icons/arrow-forward-ios.svg";
+import { Typography, Image, Modal } from "../../components";
+
 import styles from "./Carousel.module.css";
-import Typography from "../typography/Typography";
-import Image from "../image/Image";
-import Modal from "../modal/Modal";
 
 const PrevButton = (props) => {
   const { children, ...restProps } = props;
@@ -73,7 +72,13 @@ const Carousel = ({ images }) => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [prevBtnDisabled, nextBtnDisabled, emblaApi]);
+  }, [
+    prevBtnDisabled,
+    nextBtnDisabled,
+    emblaApi,
+    onPrevButtonClick,
+    onNextButtonClick,
+  ]);
 
   return (
     <section className={styles["carousel-container"]}>

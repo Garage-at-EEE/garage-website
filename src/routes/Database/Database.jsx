@@ -1,9 +1,11 @@
 import useFetch from "../../hooks/useFetch";
 import { API_DOMAIN } from "../../utils/constants";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
+import {
+  Transition,
+  PageTemplate,
+  Typography,
+  BackButton,
+} from "../../components";
 import { useAuth } from "../../contexts/AuthProvider";
 
 import styles from "./Database.module.css";

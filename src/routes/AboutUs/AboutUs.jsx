@@ -1,5 +1,4 @@
-import Typography from "../../components/Typography/Typography";
-import Transition from "../../components/Transition/Transition";
+import { Typography, Transition, Image } from "../../components";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styles from "./AboutUs.module.css";
@@ -7,7 +6,6 @@ import bannerImage from "../../img/banner.jpeg";
 import cappyimg from "../../img/cappy/goldcappyforwardtrans.png";
 import excitedcappy from "../../img/cappy/excitedtranscappy copy.webm";
 import bluecappy from "../../img/cappy/bluecappyforwardtrans.png";
-import Image from "../../components/Image/Image";
 
 const AboutUs = () => {
   useEffect(() => {

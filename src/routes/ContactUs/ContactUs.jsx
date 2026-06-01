@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Typography from "../../components/Typography/Typography";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import {
+  Typography,
+  Transition,
+  PageTemplate,
+  FileUploader,
+  GoogleMap,
+} from "../../components";
+import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/constants";
 import axios from "axios";
 
 import styles from "./ContactUs.module.css";
-import FileUploader from "../../components/FileUploader/FileUploader";
-import GoogleMap from "../../components/GoogleMap/GoogleMap";
-import { CONTACT_US_UPLOAD_DOMAIN } from "../../utils/constants";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
