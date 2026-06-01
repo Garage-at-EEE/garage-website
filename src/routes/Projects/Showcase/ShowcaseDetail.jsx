@@ -1,11 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
-import {
-  Transition,
-  PageTemplate,
-  Image,
-} from "../../../components";
+import { Transition, PageTemplate, Image } from "../../../components";
 
 import styles from "./ShowcaseDetail.module.css";
 

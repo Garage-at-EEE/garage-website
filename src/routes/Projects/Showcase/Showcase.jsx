@@ -1,10 +1,6 @@
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
-import {
-  Transition,
-  OverviewPage,
-  PageTemplate,
-} from "../../../components";
+import { Transition, OverviewPage, PageTemplate } from "../../../components";
 
 const Projects = () => {
   const { data, isLoading } = useFetch({

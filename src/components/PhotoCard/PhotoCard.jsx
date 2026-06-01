@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import  { Typography, Image } from "../../components";
+import { Typography, Image } from "../../components";
 
 import styles from "./PhotoCard.module.css";
 
