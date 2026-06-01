@@ -3,18 +3,14 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 import { AnimatePresence } from "framer-motion";
 
-import { Header, Footer } from "./components";
+import { Header, Footer, PrivateRoute, LoadingSpinner } from "./components";
 import AuthProvider from "./contexts/AuthProvider";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import CartProvider from "./contexts/CartProvider";
-import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 // Routes
 const Home = lazy(() => import("./routes/Home/Home"));
 const Workshops = lazy(() => import("./routes/Workshops/Workshops"));
-const EventsOverview = lazy(
-  () => import("./routes/Events/Overview/EventsOverview"),
-);
+const EventsOverview = lazy(() => import("./routes/Events/Overview/EventsOverview"));
 const EventDetail = lazy(() => import("./routes/Events/Detail/EventDetail"));
 const NotFound = lazy(() => import("./routes/NotFound/NotFound"));
 const Facilities = lazy(() => import("./routes/Facilities/Facilities"));
@@ -23,41 +19,22 @@ const ContactUs = lazy(() => import("./routes/ContactUs/ContactUs"));
 // const Newsletter = lazy(() => import("./routes/Newsletter/Newsletter"));
 
 // Projects
-const ProjectShowcase = lazy(
-  () => import("./routes/Projects/Showcase/Showcase"),
-);
-const ProjectShowcaseDetail = lazy(
-  () => import("./routes/Projects/Showcase/ShowcaseDetail"),
-);
+const ProjectShowcase = lazy(() => import("./routes/Projects/Showcase/Showcase"));
+const ProjectShowcaseDetail = lazy(() => import("./routes/Projects/Showcase/ShowcaseDetail"));
 
-const ProjectOpenings = lazy(
-  () => import("./routes/Projects/Openings/Openings"),
-);
-const ProjectOpeningsDetail = lazy(
-  () => import("./routes/Projects/Openings/OpeningsDetail"),
-);
+const ProjectOpenings = lazy(() => import("./routes/Projects/Openings/Openings"));
+const ProjectOpeningsDetail = lazy(() => import("./routes/Projects/Openings/OpeningsDetail"));
 
 // Recruitment
-const AmbassadorsOverview = lazy(
-  () => import("./routes/Recruitment/Ambassadors/Overview/AmbassadorsOverview"),
-);
-const AmbassadorDetail = lazy(
-  () => import("./routes/Recruitment/Ambassadors/Detail/AmbassadorDetail"),
-);
+const AmbassadorsOverview = lazy(() => import("./routes/Recruitment/Ambassadors/Overview/AmbassadorsOverview"));
+const AmbassadorDetail = lazy(() => import("./routes/Recruitment/Ambassadors/Detail/AmbassadorDetail"));
 
-const Tinkering = lazy(
-  () => import("./routes/Recruitment/Tinkering/TinkeringOverview"),
-);
-const Innotrack = lazy(
-  () => import("./routes/Recruitment/Innotrack/Innotrack"),
-);
-const Launchpad = lazy(
-  () => import("./routes/Recruitment/Launchpad/Launchpad"),
-);
+const Tinkering = lazy(() => import("./routes/Recruitment/Tinkering/Tinkering"));
+const Innotrack = lazy(() => import("./routes/Recruitment/Innotrack/Innotrack"));
+const Launchpad = lazy(() => import("./routes/Recruitment/Launchpad/Launchpad"));
 
 // Protected
 const Login = lazy(() => import("./routes/Login/Login"));
-
 const Shop = lazy(() => import("./routes/Shop/Shop"));
 const Checkout = lazy(() => import("./routes/Shop/Checkout"));
 const Acknowledgement = lazy(() => import("./routes/Shop/Acknowledgement"));

@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
-import Typography from "../../../../components/Typography/Typography";
-import HeroImage from "../../../../components/HeroImage/HeroImage";
-import Transition from "../../../../components/Transition/Transition";
-import PageTemplate from "../../../../components/PageTemplate/PageTemplate";
 import useFetch from "../../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../../utils/constants";
-import PageGap from "../../../../components/PageGap/PageGap";
+import {
+  Typography,
+  HeroImage,
+  Transition,
+  PageTemplate,
+  PageGap,
+} from "../../../../components";
 
 function AmbassadorDetail() {
   const params = useParams();

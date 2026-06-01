@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
-import PageGap from "../../components/PageGap/PageGap";
-import Image from "../../components/Image/Image";
-import coinIcon from "../../icons/coin-icon.png";
-import cartIcon from "../../icons/shopping-cart.png";
-import styles from "./Shop.module.css";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMemo } from "react";
+import useFetch from "../../hooks/useFetch";
+import useFetchPoints from "../../hooks/useFetchPoints";
 import { API_DOMAIN } from "../../utils/constants";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
-import useFetchPoints from "../../hooks/useFetchPoints";
+import {
+  Transition,
+  PageTemplate,
+  Typography,
+  BackButton,
+  PageGap,
+  Image,
+} from "../../components";
+import coinIcon from "../../icons/coin-icon.png";
+import cartIcon from "../../icons/shopping-cart.png";
+
+import styles from "./Shop.module.css";
 
 const Shop = () => {
   const { matric, token } = useAuth();

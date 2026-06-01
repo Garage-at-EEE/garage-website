@@ -1,24 +1,24 @@
-import Grid from "../../../components/Grid/Grid";
-import Card from "../../../components/PhotoCard/PhotoCard";
-import Typography from "../../../components/Typography/Typography";
-import Transition from "../../../components/Transition/Transition";
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
-import PageTemplate from "../../../components/PageTemplate/PageTemplate";
-import PageGap from "../../../components/PageGap/PageGap";
 import {
+  Grid,
+  Card,
+  Typography,
+  Transition,
+  PageTemplate,
+  PageGap,
   AccordionRoot,
   AccordionContent,
   AccordionTrigger,
   AccordionItem,
-} from "../../../components/Accordion/Accordion";
+  Button,
+  LoadingSpinner,
+  Image,
+} from "../../../components";
 
-import styles from "./InnovatorsTrack.module.css";
-import Button from "../../../components/Button/Button";
-import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
-import Image from "../../../components/Image/Image";
+import styles from "./Tinkering.module.css";
 
-const InnovatorsTrack = () => {
+const TinkeringProjects = () => {
   const { data, isLoading } = useFetch({
     url: API_DOMAIN + "?type=tinkering",
   });
@@ -30,7 +30,7 @@ const InnovatorsTrack = () => {
           <div className={styles["content-wrapper"]}>
             <div className={styles["banner"]}>
               <div className={styles["banner-space"]}>
-                <Typography variant="banner">INNOVATOR'S TRACK</Typography>
+                <Typography variant="banner">TINKERING PROJECTS</Typography>
                 <div className={styles["scroll-more"]}>
                   <Typography
                     variant="body"
@@ -44,15 +44,13 @@ const InnovatorsTrack = () => {
               <Image
                 className={styles["banner-image"]}
                 src={data[0].bannerImage}
-                alt="Innovator's Track Cover"
+                alt="Tinkering Cover"
               />
             </div>
             <section className={styles["section-wrapper"]}>
-              {/* Intro section */}
               <Typography variant="heading">Introduction</Typography>
               <Typography variant="body"> {data[0].introduction}</Typography>
 
-              {/* Join section */}
               <Typography variant="heading">How Can I Join?</Typography>
               <div className={styles["join-text"]}>
                 <div className={styles["text-section"]}>
@@ -78,7 +76,6 @@ const InnovatorsTrack = () => {
                 </div>
               </div>
 
-              {/* Garage Assigned section */}
               <Typography variant="heading">Alternatively,</Typography>
               <div className={styles["garage-assigned-text"]}>
                 <div className={styles["text-section"]}>
@@ -121,7 +118,7 @@ const InnovatorsTrack = () => {
               </div>
               <div>
                 <Button
-                  to="/assigned_projects"
+                  to="/project-openings"
                   style={{
                     width: "100%",
                     textAlign: "center",
@@ -133,9 +130,8 @@ const InnovatorsTrack = () => {
               </div>
             </section>
 
-            {/* Support section */}
             <section className={styles["section-wrapper"]}>
-              <Typography variant={"heading"}>SUPPORT</Typography>
+              <Typography variant={"heading"}>SUPPPORT</Typography>
               {data ? (
                 <Grid desktop={3} tablet={2} mobile={1}>
                   {data.map((card, index) => (
@@ -169,13 +165,12 @@ const InnovatorsTrack = () => {
               )}
             </section>
 
-            {/* Programmes section */}
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>PROGRAMMES</Typography>
               <div className={styles["programme-section"]}>
                 <div className={styles["text-section"]}>
                   <Typography variant={"smallHeading"}>
-                    Innovator's Night
+                    Tinkerer's Night
                   </Typography>
                   {data && (
                     <section className={styles["tinkererNight"]}>
@@ -213,7 +208,7 @@ const InnovatorsTrack = () => {
                     </section>
                   )}
                   <Typography variant={"smallHeading"}>
-                    Innovator's Track Sharing Session
+                    Tinkering Projects Sharing Session
                   </Typography>
                   <Typography variant={"body"}>
                     {data[0].tinkererProjectDescription}
@@ -245,7 +240,6 @@ const InnovatorsTrack = () => {
               </div>
             </section>
 
-            {/* FAQ section */}
             <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>
                 FREQUENTLY ASKED QUESTIONS
@@ -265,7 +259,7 @@ const InnovatorsTrack = () => {
                             <Typography key={i} variant="body">
                               {index === 0 && i === 1 ? (
                                 <a
-                                  href="/assigned_projects"
+                                  href="/project-openings"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className={styles["faq-link"]}
@@ -291,4 +285,4 @@ const InnovatorsTrack = () => {
   );
 };
 
-export default InnovatorsTrack;
+export default TinkeringProjects;

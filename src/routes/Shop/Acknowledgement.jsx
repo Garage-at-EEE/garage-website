@@ -1,18 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
-import PageGap from "../../components/PageGap/PageGap";
-import Image from "../../components/Image/Image";
-import coinIcon from "../../icons/coin-icon.png";
-import styles from "./Acknowledgement.module.css";
 import { PURCHASE_API_DOMAIN } from "../../utils/constants";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
-import axios from "axios";
 import useFetchPoints from "../../hooks/useFetchPoints";
+import {
+  Transition,
+  PageTemplate,
+  Typography,
+  BackButton,
+  PageGap,
+  Image,
+} from "../../components";
+import coinIcon from "../../icons/coin-icon.png";
+
+import styles from "./Acknowledgement.module.css";
 
 const Acknowledgement = () => {
   const { userCredits, cartItems, setCredits, setCart } = useCart();

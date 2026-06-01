@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { LOGIN_DOMAIN } from "../../utils/constants";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
-import Button from "../../components/Button/Button";
-import { useAuth } from "../../contexts/AuthProvider";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
-
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthProvider";
+import { LOGIN_DOMAIN } from "../../utils/constants";
+import {
+  Transition,
+  PageTemplate,
+  Typography,
+  BackButton,
+  Button,
+  LoadingSpinner,
+} from "../../components";
+
 import styles from "./Login.module.css";
 
 function Login() {

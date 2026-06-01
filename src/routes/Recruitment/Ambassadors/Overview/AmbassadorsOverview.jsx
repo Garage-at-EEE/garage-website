@@ -1,8 +1,10 @@
-import Transition from "../../../../components/Transition/Transition";
 import useFetch from "../../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../../utils/constants";
-import OverviewPage from "../../../../components/OverviewPage/OverviewPage";
-import PageTemplate from "../../../../components/PageTemplate/PageTemplate";
+import {
+  OverviewPage,
+  PageTemplate,
+  Transition,
+} from "../../../../components";
 
 const AmbassadorsOverview = () => {
   const { data, isLoading } = useFetch({

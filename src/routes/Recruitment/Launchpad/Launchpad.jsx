@@ -1,22 +1,22 @@
-import Grid from "../../../components/Grid/Grid";
-import Card from "../../../components/PhotoCard/PhotoCard";
-import Typography from "../../../components/Typography/Typography";
-import Transition from "../../../components/Transition/Transition";
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
-import PageTemplate from "../../../components/PageTemplate/PageTemplate";
-import PageGap from "../../../components/PageGap/PageGap";
 import {
+  Grid,
+  Card,
+  Typography,
+  Transition,
+  PageTemplate,
+  PageGap,
   AccordionRoot,
   AccordionContent,
   AccordionTrigger,
   AccordionItem,
-} from "../../../components/Accordion/Accordion";
+  Button,
+  LoadingSpinner,
+  Image,
+} from "../../../components";
 
 import styles from "./Launchpad.module.css";
-import Button from "../../../components/Button/Button";
-import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
-import Image from "../../../components/Image/Image";
 
 const Launchpad = () => {
   const { data, isLoading } = useFetch({

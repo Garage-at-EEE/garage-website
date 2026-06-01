@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import Typography from "../../components/Typography/Typography";
-import BackButton from "../../components/BackButton/BackButton";
-import PageGap from "../../components/PageGap/PageGap";
-import coinIcon from "../../icons/coin-icon.png";
-import trashIcon from "../../icons/trash.svg";
-import Image from "../../components/Image/Image";
-import styles from "./Checkout.module.css";
 import { useAuth } from "../../contexts/AuthProvider";
 import { useCart } from "../../contexts/CartProvider";
+import coinIcon from "../../icons/coin-icon.png";
+import trashIcon from "../../icons/trash.svg";
+import {
+  Transition,
+  PageTemplate,
+  Typography,
+  BackButton,
+  PageGap,
+  Image,
+} from "../../components";
+
+import styles from "./Checkout.module.css";
 
 const Checkout = () => {
   const navigate = useNavigate();

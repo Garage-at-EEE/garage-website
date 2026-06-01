@@ -1,3 +1,4 @@
+import { useLenis } from "lenis/react";
 import {
   Typography,
   PageTemplate,
@@ -10,7 +11,6 @@ import { API_DOMAIN } from "../../utils/constants";
 import { NewsletterComponent } from "./NewsletterComponent/Newsletter";
 
 import styles from "./Newsletter.module.css";
-import { useLenis } from "lenis/react";
 
 const Newsletter = () => {
   const { data, isLoading } = useFetch({

@@ -1,18 +1,18 @@
 import useFetch from "../../hooks/useFetch";
-import Transition from "../../components/Transition/Transition";
-import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import PageGap from "../../components/PageGap/PageGap";
-import HeroImage from "../../components/HeroImage/HeroImage";
-import Image from "../../components/Image/Image";
-import Typography from "../../components/Typography/Typography";
+import { API_DOMAIN } from "../../utils/constants";
 import {
+  Transition,
+  PageTemplate,
+  PageGap,
+  HeroImage,
+  Image,
+  Typography,
   AccordionRoot,
   AccordionContent,
   AccordionTrigger,
   AccordionItem,
-} from "../../components/Accordion/Accordion";
-import { API_DOMAIN } from "../../utils/constants";
-import Button from "../../components/Button/Button";
+  Button,
+} from "../../components";
 
 import styles from "./Workshops.module.css";
 
