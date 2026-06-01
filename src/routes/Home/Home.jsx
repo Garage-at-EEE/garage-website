@@ -112,7 +112,7 @@ const Home = () => {
 
   return (
     <Transition isLoading={isLoading || !data}>
-      <div id="start"></div>
+      <div id="start" data-testid="home"></div>
 
       {data && (
         <>
