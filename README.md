@@ -3,6 +3,7 @@
 ## Project Summary
 
 React-based frontend for Garage@EEE's website (https://garage-eee.com/). Uses Google Sheets as a backend database accessed through Google Apps Script APIs. Built with Create React App, deployed via GitHub Pages.
+> For Garage Web Developers, **READ HERE: [CodeConventions.md](./docs/CodeConventions.md)**
 
 ## Core Architecture
 
@@ -13,7 +14,6 @@ React-based frontend for Garage@EEE's website (https://garage-eee.com/). Uses Go
 - **Styling**: CSS Modules (component-level scoping)
 - **Animations**: Framer Motion v11.0.14
 - **Smooth Scroll**: Lenis v1.0.45
-- **HTTP Client**: Axios v1.8.4
 - **Build Tool**: react-scripts v5.0.1
 - **Deployment**: gh-pages package
 
@@ -48,10 +48,11 @@ To get started running this locally, follow the steps below:
 
 **Documentation (`docs/`)**
 
-- **APIDocumentation.md**: Comprehensive Google Sheets API docs - explains all data types (home, projectInfo, ambassadors, events, facilities, newsletter, projectOpenings, tinkering), field structures, and token authentication
-- **LoginDocumentation.md**: JWT auth flow, PrivateRoute pattern, AuthProvider context usage
-- **ContactUsDocumentation.md**: File upload system using base64 encoding, Google Drive storage, email notifications
-- **TinkeringProjDocumentation.md**: Known issues with responsiveness and smooth scrolling on page navigation
+- **[CodeConventions.md](./docs/CodeConventions.md)**: Guide on all the conventions used within this project, adhering to most standard React.js practices
+- **[APIDocumentation.md](./docs/APIDocumentation.md)**: Comprehensive Google Sheets API docs - explains all data types (home, projectInfo, ambassadors, events, facilities, newsletter, projectOpenings, tinkering), field structures, and token authentication
+- **[LoginDocumentation.md](./docs/LoginDocumentation.md)**: JWT auth flow, PrivateRoute pattern, AuthProvider context usage
+- **[ContactUsDocumentation.md](./docs/ContactUsDocumentation.md)**: File upload system using base64 encoding, Google Drive storage, email notifications
+- **[TinkeringProjDocumentation.md](./docs/TinkeringProjDocumentation.md)**: Known issues with responsiveness and smooth scrolling on page navigation
 
 ## Source Directory (`src/`)
 

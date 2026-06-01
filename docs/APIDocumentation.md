@@ -2,7 +2,7 @@
 
 Garage uses Google Sheets for the database of the website, along with Apps Script to do some processing. The database can be found [here](https://docs.google.com/spreadsheets/d/1rWDvldXmyz687YoeeJD5V0Wt3bRS1YD7wMGzBBwjiUo/edit?gid=516508848#gid=516508848).
 
-API Endpoint: [src/utils/Constants.js](./src/utils/Constants.js)
+API Endpoint: [src/utils/constants.js](./src/utils/constants.js)
 
 ## Parameters
 
