@@ -9,8 +9,8 @@
  * @param {string} fallback - Fallback URL if validation fails (default: '#')
  * @returns {string} - Validated URL or fallback
  */
-export const validateUrl = (url, fallback = '#') => {
-  if (!url || typeof url !== 'string') {
+export const validateUrl = (url, fallback = "#") => {
+  if (!url || typeof url !== "string") {
     return fallback;
   }
 
@@ -25,20 +25,20 @@ export const validateUrl = (url, fallback = '#') => {
   try {
     // Try to parse as absolute URL
     const parsed = new URL(url);
-    
+
     // Only allow http and https protocols
-    if (!['http:', 'https:'].includes(parsed.protocol)) {
+    if (!["http:", "https:"].includes(parsed.protocol)) {
       return fallback;
     }
-    
+
     return url;
   } catch (e) {
     // If URL parsing fails, check if it's a relative URL
     // Allow relative URLs starting with / or ./
-    if (url.startsWith('/') || url.startsWith('./') || url.startsWith('../')) {
+    if (url.startsWith("/") || url.startsWith("./") || url.startsWith("../")) {
       return url;
     }
-    
+
     // If it's not a valid absolute or relative URL, return fallback
     return fallback;
   }
@@ -50,13 +50,16 @@ export const validateUrl = (url, fallback = '#') => {
  * @param {string} fallback - Fallback URL if validation fails
  * @returns {string} - First valid URL or fallback
  */
-export const validateFirstUrl = (urlString, fallback = '#') => {
-  if (!urlString || typeof urlString !== 'string') {
+export const validateFirstUrl = (urlString, fallback = "#") => {
+  if (!urlString || typeof urlString !== "string") {
     return fallback;
   }
 
-  const urls = urlString.split(',').map(u => u.trim()).filter(Boolean);
-  
+  const urls = urlString
+    .split(",")
+    .map((u) => u.trim())
+    .filter(Boolean);
+
   if (urls.length === 0) {
     return fallback;
   }
@@ -70,6 +73,9 @@ export const validateFirstUrl = (urlString, fallback = '#') => {
  * @param {string} fallback - Fallback image URL (default: '/default-placeholder.png')
  * @returns {string} - Validated URL or fallback
  */
-export const validateImageUrl = (url, fallback = '/default-placeholder.png') => {
+export const validateImageUrl = (
+  url,
+  fallback = "/default-placeholder.png",
+) => {
   return validateUrl(url, fallback);
 };

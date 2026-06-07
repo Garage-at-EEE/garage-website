@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+
 import styles from "./AnimatedLine.module.css";
 
 const AnimatedLine = ({
