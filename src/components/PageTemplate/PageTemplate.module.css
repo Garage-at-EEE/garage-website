@@ -1,18 +1,18 @@
 .wrapper {
   padding-top: var(--top-padding);
-  padding-bottom: 0;
+  padding-bottom: var(--content-gap-desktop);
   min-height: 100svh;
 }
 
-@media (max-width: 75rem) {
+@media (max-width: 1200px) {
   .wrapper {
-    padding-bottom: 0;
+    padding-bottom: var(--content-gap-tablet);
   }
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 640px) {
   .wrapper {
     padding-top: var(--top-padding-mobile);
-    padding-bottom: 0.5rem;
+    padding-bottom: var(--content-gap-mobile);
   }
 }

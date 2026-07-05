@@ -1,7 +1,7 @@
 // by brandon 6/9/2022
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Tile.css";
+import "./Tile.module.css";
 
 function CarouselItem(props) {
   const content = props.data.itemContent;

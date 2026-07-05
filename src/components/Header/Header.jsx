@@ -1,21 +1,20 @@
-import { useEffect, useRef, useState } from "react";
-import { HashLink } from "react-router-hash-link";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
-import { useAuth } from "../../contexts/AuthProvider";
 import useBreakpoint from "../../hooks/useBreakpoint";
+import { useAuth } from "../../contexts/AuthProvider";
 import { ReactComponent as Logo } from "../../icons/header.svg";
 import { ReactComponent as Menu } from "../../icons/menu.svg";
 import { ReactComponent as Close } from "../../icons/close.svg";
-import { Gutter, Modal, Typography } from "../../components";
-
-import LoginMenu from "./LoginMenu";
+import { Typography, Gutter, Modal } from "../../components";
 import DropdownMenu from "./DropdownMenu";
+import LoginMenu from "./LoginMenu";
 
 import styles from "./Header.module.css";
 
@@ -62,8 +61,6 @@ const Header = () => {
   const breakpoint = useBreakpoint();
   const { scrollY } = useScroll();
   const [shadow, setShadow] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const lastScrollY = useRef(0);
   const { name } = useAuth();
 
   const topPaddings = {
@@ -73,23 +70,8 @@ const Header = () => {
   };
 
   useMotionValueEvent(scrollY, "change", (y) => {
-    const previous = lastScrollY.current;
-
     if (y >= topPaddings[breakpoint] && !shadow) setShadow(true);
     else if (y < topPaddings[breakpoint] && shadow) setShadow(false);
-
-    if (!open) {
-      const scrollingDown = y > previous;
-      const scrolledPastThreshold = y > 100;
-
-      if (scrollingDown && scrolledPastThreshold) {
-        setHidden(true);
-      } else if (!scrollingDown) {
-        setHidden(false);
-      }
-    }
-
-    lastScrollY.current = y;
   });
 
   const handleClose = () => {
@@ -144,16 +126,10 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
+      <header
         className={[styles.header, (shadow || open) && styles["shadow"]]
           .filter(Boolean)
           .join(" ")}
-        initial={{ y: 0, opacity: 1 }}
-        animate={{
-          y: hidden ? "-150%" : 0,
-          opacity: hidden ? 0 : 1,
-        }}
-        transition={{ duration: 0.3, ease: [0.7, 0, 0.3, 1] }}
       >
         <Gutter>
           <div className={styles["header-inner"]}>
@@ -165,46 +141,42 @@ const Header = () => {
               <Logo />
             </HashLink>
 
+            {/* DESKTOP HEADER */}
             {breakpoint === "desktop" ? (
-              <>
-                <nav className={styles["nav"]}>
-                  {navlinks.map((navlink) =>
-                    navlink.dropdown ? (
-                      <DropdownMenu
-                        key={navlink.label}
-                        header={navlink.label}
-                        navlinks={navlink.dropdown}
-                      />
-                    ) : (
-                      <Link
-                        key={navlink.label}
-                        to={navlink.to}
-                        className={styles["navlink"]}
-                      >
-                        <Typography variant="body">{navlink.label}</Typography>
-                      </Link>
-                    ),
-                  )}
-                </nav>
-                <div className={styles["header-right"]}>
-                  {name === null ? (
-                    <Link
-                      key="Login"
-                      to="/login"
-                      className={styles["join-btn"]}
-                    >
-                      Login
-                    </Link>
+              <nav className={styles["nav"]}>
+                {navlinks.map((navlink) =>
+                  navlink.dropdown ? (
+                    <DropdownMenu
+                      key={navlink.label}
+                      header={navlink.label}
+                      navlinks={navlink.dropdown}
+                    />
                   ) : (
-                    <LoginMenu protected_navlinks={protected_navlinks} />
-                  )}
-                </div>
-              </>
+                    <Link
+                      key={navlink.label}
+                      to={navlink.to}
+                      className={styles["navlink"]}
+                    >
+                      <Typography variant="body">{navlink.label}</Typography>
+                    </Link>
+                  ),
+                )}
+
+                {/* LAST Link in Header => Login if unauth | {name} if auth*/}
+                {name === null ? (
+                  <Link key="Login" to="/login" className={styles["navlink"]}>
+                    <Typography variant="body">Login</Typography>
+                  </Link>
+                ) : (
+                  <LoginMenu protected_navlinks={protected_navlinks} />
+                )}
+              </nav>
             ) : (
               <MenuButton open={open} setOpen={setOpen} />
             )}
           </div>
 
+          {/* MOBILE/TABLET HEADER */}
           {(breakpoint === "mobile" || breakpoint === "tablet") && (
             <motion.nav
               className={styles.drawer}
@@ -224,6 +196,7 @@ const Header = () => {
                       ease: [0.7, 0, 0.3, 1],
                     }}
                   >
+                    {/* single divider at top */}
                     <div className={styles.separator} />
 
                     {navlinks.map((navlink) => (
@@ -240,7 +213,7 @@ const Header = () => {
                         ) : (
                           <Link
                             to={navlink.to}
-                            className={styles["navlink"]}
+                            className={styles[navlink]}
                             onClick={handleClose}
                           >
                             <Typography variant="body">
@@ -251,6 +224,7 @@ const Header = () => {
                       </div>
                     ))}
 
+                    {/* LAST Link in Header => Login if unauth | {name} if auth*/}
                     <div
                       key="Login"
                       style={{ animationDelay: `${0.1 * navlinks.length}s` }}
@@ -274,7 +248,7 @@ const Header = () => {
             </motion.nav>
           )}
         </Gutter>
-      </motion.header>
+      </header>
       <Modal open={open} onClose={handleClose} below />
     </>
   );

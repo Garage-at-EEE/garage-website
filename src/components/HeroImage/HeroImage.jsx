@@ -1,7 +1,7 @@
 import Typography from "../Typography/Typography";
 import BackButton from "../BackButton/BackButton";
-import styles from "./HeroImage.module.css";
 import Image from "../Image/Image";
+import styles from "./HeroImage.module.css";
 
 const HeroImage = ({ heading, src, subheading, objectFit = "cover" }) => {
   return (
