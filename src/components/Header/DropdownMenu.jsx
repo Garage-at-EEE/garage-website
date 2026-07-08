@@ -19,12 +19,12 @@ const DropdownMenu = ({ children, header, navlinks }) => {
   };
 
   return (
-      <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
-        className={styles["navlink-container"]}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
-      >
-      <Link className={styles["navlink"]}> 
+    <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
+      className={styles["navlink-container"]}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+    >
+      <Link className={styles["navlink"]}>
         <Typography variant="body">
           {header} <ArrowDown />
         </Typography>
@@ -33,12 +33,11 @@ const DropdownMenu = ({ children, header, navlinks }) => {
       {open && (
         <div //Main container for dropdown menu
           className={
-            breakpoint === "desktop" ?
-            styles["login-menu"] :
-            styles["tablet-login-menu"]
+            breakpoint === "desktop"
+              ? styles["login-menu"]
+              : styles["tablet-login-menu"]
           }
         >
-
           {navlinks.map((item) => {
             // If it's a hash link, use HashLink for in-page scroll
             if (item.to.includes("#")) {
@@ -67,8 +66,7 @@ const DropdownMenu = ({ children, header, navlinks }) => {
             );
           })}
 
-        {children}
-
+          {children}
         </div>
       )}
     </div>

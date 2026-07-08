@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {Typography, Image} from "../../components";
+import { Typography, Image } from "../../components";
 
 import styles from "./PhotoCard.module.css";
 
@@ -21,7 +21,10 @@ const Card = ({ image, topText, bottomText, bottomTextClassName, to }) => {
         </div>
       </div>
       {bottomText && (
-        <Typography variant={"smallHeading"} className={[styles["bottom-text"], bottomTextClassName].join(" ")}>
+        <Typography
+          variant={"smallHeading"}
+          className={[styles["bottom-text"], bottomTextClassName].join(" ")}
+        >
           {bottomText}
         </Typography>
       )}
