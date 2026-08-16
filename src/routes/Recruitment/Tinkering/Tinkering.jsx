@@ -1,7 +1,6 @@
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
 import {
-  Grid,
   Card,
   Typography,
   Transition,
@@ -12,7 +11,6 @@ import {
   AccordionTrigger,
   AccordionItem,
   Button,
-  LoadingSpinner,
   Image,
 } from "../../../components";
 
@@ -75,41 +73,6 @@ const TinkeringProjects = () => {
                   </div>
                 </div>
               </div>
-            </section>
-
-            <section className={styles["section-wrapper"]}>
-              <Typography variant={"heading"}>SUPPPORT</Typography>
-              {data ? (
-                <Grid desktop={3} tablet={2} mobile={1}>
-                  {data.map((card, index) => (
-                    <div key={index} className="card-group">
-                      {(card.supportImages || []).map((img, imgIndex) => (
-                        <div key={imgIndex} className="card-with-description">
-                          <Card
-                            key={imgIndex}
-                            image={img}
-                            bottomText={card.supportImageTitles || ""}
-                            bottomTextClassName={
-                              styles["support-cards-bottom-text"]
-                            }
-                          />
-                          <Typography
-                            variant="body"
-                            textAlign="center"
-                            style={{ marginTop: "0.5rem" }}
-                          >
-                            {card.supportImageDescriptions || ""}
-                          </Typography>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </Grid>
-              ) : (
-                <div className={styles["loading-wrapper"]}>
-                  <LoadingSpinner />
-                </div>
-              )}
             </section>
 
             <section className={styles["section-wrapper"]}>

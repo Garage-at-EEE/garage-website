@@ -1,6 +1,6 @@
 // this should be latest api domain (NOW: API 1.1.0 | VER 290)
 export const API_DOMAIN =
-  "https://script.google.com/macros/s/AKfycby5M_jOeD24B3Lu3fpgYnMhOu0HKtnebQVadbrmGEB3RRaioMSTY_6N9hdKD4fnbntGTg/exec";
+  "https://script.google.com/macros/s/AKfycbyjq_7U2LSD_XLhtmN5jMpeACpzDoJ6Xcup-g-S1ygSVhStdCn2di7iXbRPido3bKL9kA/exec";
 
 // API 1.0.7
 export const LOGIN_DOMAIN = 
