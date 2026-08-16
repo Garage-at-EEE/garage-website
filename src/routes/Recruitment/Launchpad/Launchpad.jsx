@@ -20,7 +20,7 @@ import styles from "./Launchpad.module.css";
 
 const Launchpad = () => {
   const { data, isLoading } = useFetch({
-    url: API_DOMAIN + "?type=tinkering",
+    url: API_DOMAIN + "?type=launchpad",
   });
 
   return (
@@ -77,62 +77,6 @@ const Launchpad = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Garage Assigned section */}
-              <Typography variant="heading">Alternatively,</Typography>
-              <div className={styles["garage-assigned-text"]}>
-                <div className={styles["text-section"]}>
-                  <Typography variant="smallHeading">
-                    {data[0].garageAssigned[0]}
-                  </Typography>
-                  <Typography variant="body">
-                    {data[0].garageAssigned[1]}
-                  </Typography>
-                  <Typography variant="body">
-                    {data[0].garageAssigned[2]}
-                  </Typography>
-                </div>
-              </div>
-
-              <div>
-                {data ? (
-                  <Grid desktop={3} tablet={2} mobile={1}>
-                    {data.map((card, index) => (
-                      <div key={index} className="card-group">
-                        {(card.garageAssignedImages || []).map(
-                          (img, imgIndex) => (
-                            <Card
-                              key={imgIndex}
-                              image={img}
-                              bottomText={card.garageAssignedNames || ""}
-                              bottomTextClassName={
-                                styles["project-cards-bottom-text"]
-                              }
-                            />
-                          ),
-                        )}
-                      </div>
-                    ))}
-                  </Grid>
-                ) : (
-                  <div className={styles["loading-wrapper"]}>
-                    <LoadingSpinner />
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <Button
-                  to="/assigned_projects"
-                  style={{
-                    width: "100%",
-                    textAlign: "center",
-                    padding: "1rem",
-                  }}
-                >
-                  View All
-                </Button>
-              </div>
             </section>
 
             {/* Support section */}
@@ -172,7 +116,7 @@ const Launchpad = () => {
             </section>
 
             {/* Programmes section */}
-            <section className={styles["section-wrapper"]}>
+            {/* <section className={styles["section-wrapper"]}>
               <Typography variant={"heading"}>PROGRAMMES</Typography>
               <div className={styles["programme-section"]}>
                 <div className={styles["text-section"]}>
@@ -246,7 +190,7 @@ const Launchpad = () => {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
             {/* FAQ section */}
             <section className={styles["section-wrapper"]}>
