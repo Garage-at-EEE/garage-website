@@ -8,8 +8,8 @@ const OverviewPage = ({ heading, data }) => {
   return (
     <div className={styles["content-wrapper"]}>
       <div className={styles["heading-space"]}>
-        <BackButton />
         <Typography variant="heading">{heading}</Typography>
+        <BackButton />
       </div>
       {data && (
         <>
@@ -20,7 +20,6 @@ const OverviewPage = ({ heading, data }) => {
                 image={card.coverPic}
                 to={`${index}/`}
                 bottomText={card.name}
-                tagline={card.tagline}
               />
             ))}
           </Grid>

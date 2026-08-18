@@ -1,7 +1,6 @@
 import useFetch from "../../../hooks/useFetch";
 import { API_DOMAIN } from "../../../utils/constants";
 import {
-  Grid,
   Card,
   Typography,
   Transition,
@@ -12,7 +11,6 @@ import {
   AccordionTrigger,
   AccordionItem,
   Button,
-  LoadingSpinner,
   Image,
 } from "../../../components";
 
@@ -77,96 +75,6 @@ const Innotrack = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Garage Assigned section */}
-              <Typography variant="heading">Alternatively,</Typography>
-              <div className={styles["garage-assigned-text"]}>
-                <div className={styles["text-section"]}>
-                  <Typography variant="smallHeading">
-                    {data[0].garageAssigned[0]}
-                  </Typography>
-                  <Typography variant="body">
-                    {data[0].garageAssigned[1]}
-                  </Typography>
-                  <Typography variant="body">
-                    {data[0].garageAssigned[2]}
-                  </Typography>
-                </div>
-              </div>
-              <div>
-                {data ? (
-                  <Grid desktop={3} tablet={2} mobile={1}>
-                    {data.map((card, index) => (
-                      <div key={index} className="card-group">
-                        {(card.garageAssignedImages || []).map(
-                          (img, imgIndex) => (
-                            <Card
-                              key={imgIndex}
-                              image={img}
-                              bottomText={card.garageAssignedNames || ""}
-                              bottomTextClassName={
-                                styles["project-cards-bottom-text"]
-                              }
-                            />
-                          ),
-                        )}
-                      </div>
-                    ))}
-                  </Grid>
-                ) : (
-                  <div className={styles["loading-wrapper"]}>
-                    <LoadingSpinner />
-                  </div>
-                )}
-              </div>
-              <div>
-                <Button
-                  to="/project-openings"
-                  style={{
-                    width: "100%",
-                    textAlign: "center",
-                    padding: "1rem",
-                  }}
-                >
-                  View All
-                </Button>
-              </div>
-            </section>
-
-            {/* Support section */}
-            <section className={styles["section-wrapper"]}>
-              <Typography variant={"heading"}>SUPPPORT</Typography>
-              {data ? (
-                <Grid desktop={3} tablet={2} mobile={1}>
-                  {data.map((card, index) => (
-                    <div key={index} className="card-group">
-                      {(card.supportImages || []).map((img, imgIndex) => (
-                        <div key={imgIndex} className="card-with-description">
-                          <Card
-                            key={imgIndex}
-                            image={img}
-                            bottomText={card.supportImageTitles || ""}
-                            bottomTextClassName={
-                              styles["support-cards-bottom-text"]
-                            }
-                          />
-                          <Typography
-                            variant="body"
-                            textAlign="center"
-                            style={{ marginTop: "0.5rem" }}
-                          >
-                            {card.supportImageDescriptions || ""}
-                          </Typography>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </Grid>
-              ) : (
-                <div className={styles["loading-wrapper"]}>
-                  <LoadingSpinner />
-                </div>
-              )}
             </section>
 
             {/* Programmes section */}

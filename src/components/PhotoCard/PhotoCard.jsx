@@ -3,14 +3,7 @@ import { Typography, Image } from "../../components";
 
 import styles from "./PhotoCard.module.css";
 
-const Card = ({
-  image,
-  topText,
-  bottomText,
-  tagline,
-  bottomTextClassName,
-  to,
-}) => {
+const Card = ({ image, topText, bottomText, bottomTextClassName, to }) => {
   const Comp = to ? Link : "div";
   return (
     <Comp
@@ -27,18 +20,13 @@ const Card = ({
           <Typography variant={"smallHeading"}>{topText}</Typography>
         </div>
       </div>
-      {(bottomText || tagline) && (
-        <div className={styles["card-content"]}>
-          {bottomText && (
-            <Typography
-              variant={"smallHeading"}
-              className={[styles["bottom-text"], bottomTextClassName].join(" ")}
-            >
-              {bottomText}
-            </Typography>
-          )}
-          {tagline && <p className={styles["card-tagline"]}>{tagline}</p>}
-        </div>
+      {bottomText && (
+        <Typography
+          variant={"smallHeading"}
+          className={[styles["bottom-text"], bottomTextClassName].join(" ")}
+        >
+          {bottomText}
+        </Typography>
       )}
     </Comp>
   );

@@ -1,6 +1,6 @@
 .heading {
   height: calc(100vh - var(--top-padding));
-  min-height: 47.5rem;
+  min-height: 760px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -10,27 +10,27 @@
 
 .subheader-space {
   font-style: italic;
-  margin-bottom: 0;
-  margin-right: 0;
+  margin-bottom: 0px;
+  margin-right: 0px;
   display: flex;
 }
 
 .top-space {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100%; /* Adjust the width of the container as needed */
 }
 
 .heading-space {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Elements at opposite ends with space in between */
   align-items: center;
-  width: 100%;
+  width: 100%; /* Adjust the width of the container as needed */
   gap: 1.5rem;
 }
 
 .hero-image {
-  min-height: 40rem;
+  min-height: 640px;
 }
 
 @media (max-width: 1200px) {
@@ -39,13 +39,13 @@
     min-height: unset;
   }
   .hero-image {
-    max-height: 51.25rem;
+    max-height: 820px;
   }
 }
 
 @media (max-width: 640px) {
   .hero-image {
-    min-height: 20rem;
-    max-height: 30rem;
+    min-height: 320px;
+    max-height: 480px;
   }
 }

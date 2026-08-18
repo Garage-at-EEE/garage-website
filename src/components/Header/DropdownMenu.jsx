@@ -1,88 +1,37 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import Typography from "../Typography/Typography";
+import { Typography } from "../../components";
+import { ReactComponent as ArrowDown } from "../../icons/arrow-down.svg";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import styles from "./Header.module.css";
 
-const CircuitArrowDown = () => (
-  <svg
-    width="12"
-    height="12"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    style={{ display: "inline-block", marginLeft: "4px" }}
-  >
-    <path d="M12 16l-6-6h12l-6 6z" />
-    <circle cx="12" cy="4" r="1.5" />
-    <line
-      x1="12"
-      y1="4"
-      x2="12"
-      y2="10"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
-  </svg>
-);
-
-const isHashLink = (to) => typeof to === "string" && to.includes("#");
-
-const DropdownMenu = ({ children, header, navlinks = [] }) => {
+const DropdownMenu = ({ children, header, navlinks }) => {
   const [open, setOpen] = useState(false);
   const breakpoint = useBreakpoint();
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = (e) => {
+    setOpen(true);
+  };
 
-  const renderLink = (item) => {
-    if (!item?.to) return null;
-
-    if (isHashLink(item.to)) {
-      return (
-        <HashLink
-          key={item.label}
-          smooth
-          to={item.to}
-          className={styles.navlink}
-          onClick={handleClose}
-        >
-          <Typography variant="body">{item.label}</Typography>
-        </HashLink>
-      );
-    }
-
-    return (
-      <Link
-        key={item.label}
-        to={item.to}
-        className={styles.navlink}
-        onClick={handleClose}
-      >
-        <Typography variant="body">{item.label}</Typography>
-      </Link>
-    );
+  const handleClose = (e) => {
+    setOpen(false);
   };
 
   return (
-    <div
+    <div //Wrapper for entire menu (detects for mouse enter/exit it and its children (desktop) & detects clicks (tablet))
       className={styles["navlink-container"]}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
     >
-      {/* Header button (not actually navigating) */}
-      <div
-        className={`${styles.navlink} ${styles["navlink--dropdown"]}`}
-        role="button"
-        tabIndex={0}
-      >
+      <Link className={styles["navlink"]}>
         <Typography variant="body">
-          {header} <CircuitArrowDown />
+          {header} <ArrowDown />
         </Typography>
-      </div>
+      </Link>
 
       {open && (
-        <div
+        <div //Main container for dropdown menu
           className={
             breakpoint === "desktop"
               ? styles["login-menu"]
@@ -90,25 +39,31 @@ const DropdownMenu = ({ children, header, navlinks = [] }) => {
           }
         >
           {navlinks.map((item) => {
-            // 2nd level dropdown (e.g. Programmes -> ...)
-            if (Array.isArray(item.dropdown)) {
+            // If it's a hash link, use HashLink for in-page scroll
+            if (item.to.includes("#")) {
               return (
-                <div key={item.label} className={styles["submenu-container"]}>
-                  <div className={styles["submenu-header"]}>
-                    <Typography variant="body">{item.label}</Typography>
-                    {/* optional right caret */}
-                    <span style={{ marginLeft: 8 }}>›</span>
-                  </div>
-
-                  <div className={styles["submenu"]}>
-                    {item.dropdown.map((sub) => renderLink(sub))}
-                  </div>
-                </div>
+                <HashLink
+                  key={item.label}
+                  smooth
+                  to={item.to}
+                  className={styles.navlink}
+                  onClick={() => setOpen(false)}
+                >
+                  <Typography variant="body">{item.label}</Typography>
+                </HashLink>
               );
             }
-
-            // normal item
-            return renderLink(item);
+            // Otherwise a normal page Link
+            return (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={styles.navlink}
+                onClick={() => setOpen(false)}
+              >
+                <Typography variant="body">{item.label}</Typography>
+              </Link>
+            );
           })}
 
           {children}
